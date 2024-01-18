@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>租你好運商城</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!--核心文件-->
     <script src="../bootstrap3/js/holder.js"></script>
@@ -23,16 +24,21 @@
 <body>
 <!--頭部-->
 <header class="header">
-    <img src="../images/index/loogo-fotor-2024011212725.jpg" alt=""/>
-    <span class="pull-right"><small>歡迎來到</small><b>租你好運商城</b></span>
+    <div id="header-div">
+        <img class="logo-img" src="../images/index/logo.png" alt=""/>
+        <span class="pull-right"><small>歡迎來到</small><b>租你好運商城</b></span>
+    </div>
 </header>
 <!--本體-->
 <div class="container mycontent text-left">
     <!--透明層 -->
+
     <div class="loginDiv">
         <p>會員登錄</p>
         <!--表單開始-->
+<!--        <img src="../images/index/logo.png" alt=""/>-->
         <form id="form-login" action="index.html" class="form-horizontal" role="form">
+
             <!--會員名稱-->
             <div class="form-group">
                 <label for="username" class="col-md-3 control-label">會員名稱:</label>
@@ -50,20 +56,15 @@
             <!-- 記住我-->
             <div class="form-group">
                 <div class="col-md-offset-3 col-md-6">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" id="auto">自動登錄
-                        </label>
+                    <div id="loginCtrl">
+                        <input id="btn-login" class="btn btn-primary" type="button" value="登錄"/>
+                        <span class="pull-right"><small>還沒有會員嗎?</small><a href="register.html">註冊</a></span>
                     </div>
                 </div>
             </div>
             <!--提交的按紐-->
-            <div class="form-group">
-                <label class="col-md-3 control-label"></label>
-                <div class="col-md-8">
-                    <input id="btn-login" class="btn btn-primary" type="button" value="登錄"/>
-                    <span class="pull-right"><small>還沒有會員嗎?</small><a href="register.html">註冊</a></span>
-                </div>
+
+
             </div>
         </form>
     </div>
@@ -86,32 +87,10 @@
         </div>
         <div class="col-md-2">
             <span class="fa fa-bitcoin"></span>
-            <p>@@@@</p>
+            <p>帶你發財</p>
         </div>
     </div>
-    <div class="container beforeBottom">
-        <div class="col-md-offset-1 col-md-3">
-            <div><img src="../images/index/loogo-fotor-2024011212725.jpg" alt="" class="footLogo"/></div>
-        </div>
-        <div class="col-md-4 callus text-center">
-            <div class="col-md-4">
-                <ul>
-                    <li><a href="#"><p>買家幫助</p></a></li>
-                    <li><a href="#">新手指南</a></li>
-                    <li><a href="#">服務保障</a></li>
-                    <li><a href="#">常見問題</a></li>
-                </ul>
-            </div>
 
-            <div class="col-md-4">
-                <ul>
-                    <li><a href="#"><p>關於我們</p></a></li>
-                    <li><a href="#">關於租你好運</a></li>
-                    <li><a href="#">聯繫我們</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
     <!-- #footer底部 -->
     <div class="col-md-12 text-center bottom">
         中壢 A.K.A <a target="_blank" href="https://www.tibame.com/">Tibame公司</a>

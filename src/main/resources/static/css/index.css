@@ -3,7 +3,7 @@
 	background-image: url(../images/index/bg111.jpg);
 	background-repeat: no-repeat;
 	width: 100%;
-	height: 561px;
+	height: 400px;
 }
 /*首頁透明層*/
 .inputDiv {
@@ -24,4 +24,49 @@
 /*按鈕寬度	*/
 .inputDiv .btn {
 	width: 90%;
+}
+
+html,body{
+	max-width: 100%;
+	text-align: center;
+}
+*{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+.logo-img{
+	width: 30px;
+}
+#header-div {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+#header-div>span,
+#header-div>b{
+	font-size: 2em;
+}
+
+#header-div b{
+	margin-left: 1em;
+}
+
+.loginDiv{
+	position: absolute;
+	left: 50%;
+	right: 50%;
+	transform: translate(-50%, -30%);
+}
+
+
+small{
+	font-weight: 900;
+}
+
+#loginCtrl{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
