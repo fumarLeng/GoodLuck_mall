@@ -1,11 +1,30 @@
 /*登录页的半透明层的样式*/
 .loginDiv {
-	height: 280px;
+	height: 300px;
 	width: 500px;
 	background-color: rgba(255, 255, 255, 0.85);
 	float: right;
 	margin: 130px 60px 0 0;
 	border-radius: 10px;
 	color: #666666;
-	padding: 8px;
+	padding: 20px;
+
 }
+.loginDiv p{
+	font-size: 3em;
+	text-align: center;
+	font-weight: normal;
+}
+.loginDiv input{
+	border-radius: 25px;
+	font-size: 1.5em;
+	text-align: center;
+}
+.loginDiv label,.loginDiv small,.loginDiv a{
+	font-size: 1.5em;
+}
+
+#btn-login{
+	font-size: 2em;
+}
+
