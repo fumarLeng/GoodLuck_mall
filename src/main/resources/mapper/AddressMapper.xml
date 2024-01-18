@@ -20,7 +20,8 @@
 
     <insert id="insert" useGeneratedKeys="true" keyProperty="aid">
         INSERT INTO t_address (uid, name, province_name, province_code, city_name, city_code, area_name, area_code, zip,
-                               address, phone, tel, tag, is_default, created_user, created_time, modified_user,modified_time)
+                               address, phone, tel, tag, is_default, created_user, created_time, modified_user,
+                               modified_time)
         VALUES (#{uid}, #{name}, #{provinceName}, #{provinceCode}, #{cityName}, #{cityCode}, #{areaName}, #{areaCode},
                 #{zip}, #{address}, #{phone}, #{tel}, #{tag}, #{isDefault}, #{createdUser}, #{createdTime},
                 #{modifiedUser}, #{modifiedTime})
@@ -37,8 +38,8 @@
     <select id="findByUid" resultMap="AddressEntityMap">
         SELECT *
         FROM t_address
-        WHERE  uid=#{uid}
-        ORDER BY is_default DESC,created_time DESC
+        WHERE uid = #{uid}
+        ORDER BY is_default DESC, created_time DESC
     </select>
 
 
@@ -76,8 +77,6 @@
         ORDER BY modified_time DESC
         LIMIT 0,1
     </select>
-
-
 
 
 </mapper>

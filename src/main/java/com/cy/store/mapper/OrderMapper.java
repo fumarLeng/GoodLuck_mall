@@ -26,7 +26,7 @@ public interface OrderMapper {
 
 
 
-    List<OrderVO> queryOrderVoByUid(Integer oid);
+    List<OrderVO> queryOrderVoByUid(Integer uid);
 
 
 
