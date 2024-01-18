@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>租你好運商城</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!--核心文件-->
+    <script src="../bootstrap3/js/holder.js"></script>
+    <link href="../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <script src="../bootstrap3/jquery-1.9.1.min.js"></script>
+    <script src="../bootstrap3/js/bootstrap.js"></script>
+    <script src="../bootstrap3/js/jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+    <!-- 字體跟圖標 -->
+    <link rel="stylesheet" href="../bootstrap3/font-awesome-4.7.0/css/font-awesome.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/layout.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/top.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/footer.css"/>
+</head>
+
+<body>
+<!--頭部-->
+<header class="header">
+    <!--LOGO-->
+    <div class="row">
+        <div class="col-md-3">
+            <a href="index.html">
+                <img src="../images/index/pro1.jpg"/>
+            </a>
+        </div>
+        <!--導航選項-->
+        <div class="col-md-9 top-item">
+            <ul class="list-inline pull-right">
+                <li><a href="favorites.html"><span class="fa fa-heart"></span>&nbsp;收藏</a></li>
+                <li class="li-split">|</li>
+                <li><a href="orders.html"><span class="fa fa-file-text"></span>&nbsp;訂單</a></li>
+                <li class="li-split">|</li>
+                <li><a href="cart.html"><span class="fa fa-cart-plus"></span>&nbsp;購物車</a></li>
+                <li class="li-split">|</li>
+                <li>
+                    <!--下拉列表:管理-->
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+                            <span id="top-dropdown-btn"><span class="fa fa-gears"></span>&nbsp;管理 <span
+                                    class="caret"></span></span>
+                        </button>
+                        <ul class="dropdown-menu top-dropdown-ul" role="menu">
+                            <li><a href="password.html">修改密碼</a></li>
+                            <li><a href="userdata.html">個人資料</a></li>
+                            <li><a href="upload.html">上傳頭像</a></li>
+                            <li><a href="address.html">收貨管理</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="li-split">|</li>
+                <li><a href="login.html"><span class="fa fa-user"></span> 登錄</a></li>
+            </ul>
+        </div>
+    </div>
+</header>
+<!--導航-->
+<!--分割導航列跟頂部-->
+<div class="row top-nav">
+    <div class="col-md-6">
+        <ul class="nav nav-pills">
+            <li>
+                <a href="#"></a>
+            </li>
+            <li class="active"><a href="index.html">回到首頁 <span class="fa fa-home"></span></a></li>
+            <li><a href="#">@@</a></li>
+            <li><a href="#">@@</a></li>
+            <li><a href="#">@@</a></li>
+            <li><a href="#">@@</a></li>
+            <li><a href="#">@@</a></li>
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <form action="search.html" class="form-inline pull-right" role="form">
+            <div class="form-group">
+                <input type="text" class="form-control" id="search" name="search" placeholder="請輸入商品名稱">
+            </div>
+            <button type="submit" class="btn btn-default btn-sm"><span class="fa fa-search"></span></button>
+        </form>
+    </div>
+</div>
+<!--頭部結束-->
+<!--導行列結束-->
+<div class="container">
+    <div class="col-md-2">
+        <!--左側導行列開始-->
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <!--主選項:我的訂單-->
+                    <p class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">我的訂單</a>
+                    </p>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div><a href="orders.html">全部訂單</a></div>
+                        <div><a href="orders.html">待付款</a></div>
+                        <div><a href="orders.html">待收貨</a></div>
+                        <div><a href="orders.html">待評價</a></div>
+                        <div><a href="orders.html">退貨</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <!--主選項資料更改-->
+                    <p class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">修改資料</a>
+                    </p>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <div><a href="password.html">修改密碼</a></div>
+                        <div><a href="userdata.html">個人資料</a></div>
+                        <div><a href="upload.html"><b>上傳頭像</b></a></div>
+                        <div><a href="address.html">收貨管理</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--左邊導行列結束-->
+    </div>
+    <div class="col-md-10	">
+        <div class="panel panel-default">
+            <ul class="nav nav-tabs">
+                <li><a href="password.html">修改密碼</a></li>
+                <li><a href="userdata.html">個人資料</a></li>
+                <li class="active"><a href="#">上傳頭像</a></li>
+                <li><a href="address.html">收貨管理</a></li>
+            </ul>
+            <div class="panel-body">
+                <!--上傳頭像表單開始-->
+                <form id="form-change-avatar" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">選擇頭像:</label>
+                        <div class="col-md-5">
+                            <img id="img-avatar" src="../images/index/user.jpg" class="img-responsive"/>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="col-md-offset-2 col-md-4">
+                            <input type="file" name="file">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <input id="btn-change-avatar" type="button" class="btn btn-primary" value="上傳"/>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--footer開始-->
+<div class="clearfix"></div>
+<footer class="footer">
+    <!-- 私人訂製等-->
+    <div class="text-center rights container">
+        <div class="col-md-offset-2 col-md-2">
+            <span class="fa fa-thumbs-o-up"></span>
+            <p>品質保障</p>
+        </div>
+        <div class="col-md-2">
+            <span class="fa fa-address-card-o"></span>
+            <p>專屬商品</p>
+        </div>
+        <div class="col-md-2">
+            <span class="fa fa-graduation-cap"></span>
+            <p>會員專用</p>
+        </div>
+        <div class="col-md-2">
+            <span class="fa fa-bitcoin"></span>
+            <p>@@@@</p>
+        </div>
+    </div>
+    <!--聯繫我們-->
+    <div class="container beforeBottom">
+        <div class="col-md-offset-1 col-md-3">
+            <div><img src="../images/index/pro1.jpg" alt="" class="footLogo"/></div>
+        </div>
+        <div class="col-md-4 callus text-center">
+            <div class="col-md-4">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <p>買家幫助</p>
+                        </a>
+                    </li>
+                    <li><a href="#">新手指南</a></li>
+                    <li><a href="#">服務保障</a></li>
+                    <li><a href="#">常見問題</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <ul>
+                    <li>
+                        <a href="#">
+                            <p>關於我們</p>
+                        </a>
+                    </li>
+
+                    <li><a href="#">聯繫我們</a></li>
+
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-md-12 text-center bottom">
+        中壢 A.K.A <a target="_blank" href="https://www.tibame.com/">Tibame公司</a>
+        版權所有
+    </div>
+<!--    <img id="user-avatar" src="" alt="User Avatar" style="display: none;"/>-->
+<!--    $("#user-avatar").attr("src", 'data:image/png;base64,' + json.data.avatar).show();-->
+<!--    上面兩段是測試頭像有沒有拿到,下面那行要放到ajax裡面-->
+</footer>
+<!--footer結束-->
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+            url: "/users/get_by_uid",
+            type: "POST",
+            dataType: "JSON",
+            success: function (json) {
+                // 檢查 avatar 存不存在或null
+                if (json.data && json.data.avatar) {
+                    // 替換 <img> 的 src 属性
+                    $("#img-avatar").attr("src", 'data:image/png;base64,' + json.data.avatar);
+                } else {
+                    // 如果 avatar 是 null，保持 <img> 的默認圖片
+                    $("#img-avatar").attr("src", "../images/index/user.jpg");
+                }
+            },
+        });
+
+    });
+
+
+    $("#btn-change-avatar").click(function () {
+        $.ajax({
+            url: "/users/change_avatar",
+            type: "POST",
+            // new FormData($("form-change-avatar")[0])
+            // ajax用來傳送檔案 [0]表示綁定表單裡面$("form-change-avatar")
+            // 傳送的第一個數據
+            data: new FormData($("#form-change-avatar")[0]),
+            dataType: "json",
+            processData: false, //處理檔案的型式,關閉預設
+            contentType: false, //提交數據的型式,關閉預設
+            success: function (json) {
+                if (json.state === 200) {
+                    alert("更改頭像成功");
+                    // 把後端傳來的頭像地址放到img的src屬性裡面
+                    // attr(屬性, 給屬性的值)
+                    $("#img-avatar").attr("src", 'data:image/png;base64,' + json.data);
+                    //把頭像存在cookie中
+                    $.cookie("avatar", 'data:image/png;base64,' + json.data, {expires: 7});
+                } else {
+                    alert("更改頭像失敗");
+                }
+            },
+            error: function (json) {
+                alert("更改頭像時產生未知的異常" + json.message);
+            }
+
+
+        })
+
+    })
+
+</script>
+</body>
+
+</html>
