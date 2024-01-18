@@ -10,6 +10,7 @@ public class Address extends BaseEntity implements Serializable {
     private String name;
 
     private String provinceName;
+
     private String provinceCode;
     private String cityName;
     private String cityCode;
