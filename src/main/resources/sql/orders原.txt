@@ -129,8 +129,45 @@
     </div>
     <!--左側導航結束-->
     <div class="col-md-10">
-        <div id="orders">
-            <!-- 訂單數據將在這裡顯示 -->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <p class="panel-title">
+                    訂單編號：1101000001，下單時間：2023-12-1 17:50:30 ，收貨人：老王
+                </p>
+            </div>
+            <div class="panel-body">
+                <table class="orders-table" width="100%">
+                    <thead>
+                    <tr>
+                        <th width="15%"></th>
+                        <th width="30%">商品</th>
+                        <th width="8%">單價</th>
+                        <th width="8%">數量</th>
+                        <th width="9%">小計</th>
+                        <th width="10%">狀態</th>
+                        <th width="10%">確認</th>
+                    </tr>
+                    </thead>
+                    <tbody class="orders-body">
+                    <tr>
+                        <td><img src="../images/portal/13LenovoIdeaPad310_black/collect.png" class="img-responsive"/>
+                        </td>
+                        <td>(DELL)15MF Pro-R2505TSS</td>
+                        <td>$<span>25999</span></td>
+                        <td>1件</td>
+                        <td>$<span>25999</span></td>
+                        <td>
+                            <div>已出貨</div>
+                            <div><a href="orderInfo.html">訂單詳情</a></div>
+                        </td>
+                        <td><a href="#" class="btn btn-default btn-xs">確認收貨</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div>
+                    <span class="pull-right">訂單總金額：25999</span>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -186,55 +223,6 @@
         版權所有
     </div>
 </footer>
-
-<script>
-    function displayOrders(orders) {
-        var ordersContainer = $('#orders');
-
-        orders.forEach(function(order) {
-            var imageUrl = '..' + order.image + 'collect.png'; // 拼接路徑
-            var orderDiv = `
-                    <div class="order-container">
-                        <h3>訂單編號: ${order.oid}</h3>
-                        <p>總價: ${order.totalPrice}</p>
-                        <p>狀態: ${order.status}</p>
-                        <p>下訂單時間: ${order.orderTime}</p>
-                        <p>付款時間: ${order.payTime || '未付款'}</p>
-                        <div>
-                            <img src="${imageUrl}" alt="${order.title}" style="width: 100px;">
-                            <p>${order.title}</p>
-                            <p>價格: ${order.price}</p>
-                            <p>數量: ${order.num}</p>
-                        </div>
-                    </div>
-                `;
-            ordersContainer.append(orderDiv);
-        });
-    }
-
-    function fetchOrders() {
-        $.ajax({
-            url: '/orders/queryOrderVo',
-            type: 'GET',
-            success: function(json) {
-                if (json.state == 200) {
-                    displayOrders(json.data);
-                } else {
-                    console.error('Failed to fetch orders:', json.message);
-                }
-            },
-            error: function(xhr, status, error) {
-                console.error('An error occurred:', error);
-            }
-        });
-    }
-
-    $(document).ready(function() {
-        fetchOrders();
-    });
-</script>
-
-
 </body>
 
 </html>

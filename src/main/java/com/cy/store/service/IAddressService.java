@@ -33,8 +33,8 @@ public interface IAddressService {
 
 
     /**
-     * 訂單需要透過這個方法拿到商品資料
-     * @param aid 商品id
+     * 訂單需要透過這個方法拿到地址
+     * @param aid 地址id
      * @param uid uid用來確認資料
      * @return
      */
