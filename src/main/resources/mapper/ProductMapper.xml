@@ -21,7 +21,7 @@
         WHERE status = 1
         ORDER BY
             priority DESC
-            LIMIT 0,4
+            LIMIT 0,9
     </select>
 
 
