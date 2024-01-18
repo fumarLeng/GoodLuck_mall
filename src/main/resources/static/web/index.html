@@ -18,18 +18,146 @@
     <link rel="stylesheet" type="text/css" href="../css/webindex.css"/>
     <link rel="stylesheet" type="text/css" href="../css/footer.css"/>
     <link rel="stylesheet" type="text/css" href="../css/top.css"/>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            text-decoration: none !important;
+        }
+
+        /* 商城文字 logo */
+        #shop-b {
+            color: red;
+        }
+
+        #logo-img,
+        #header-left-b,
+        #header-right-b,
+        #shop-b {
+            font-style: oblique;
+            margin-left: .1em;
+            transition: .3s;
+        }
+
+        #header-left-b {
+            color: green;
+        }
+
+        #header-right-b {
+            color: yellowgreen;
+        }
+
+        #logo-a:hover #header-left-b {
+            /*transition: .3s;*/
+            transform: translateX(2.1em);
+        }
+
+        #logo-a:hover #shop-b {
+            transform: scale(1.5);
+            margin-left: .5em;
+        }
+
+        #logo-a:hover #header-right-b {
+            /*transition: .3s;*/
+            transform: translateX(-2.1em);
+        }
+
+        #logo-a:hover #logo-img {
+            transform: scale(1.5);
+            margin-right: 1em;
+            animation: shake 0.5s ease infinite;
+        }
+
+        @keyframes shake {
+            0% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-5px);
+            }
+            50% {
+                transform: translateX(5px);
+            }
+            75% {
+                transform: translateX(-5px);
+            }
+            100% {
+                transform: translateX(5px);
+            }
+        }
+
+        /* 商城文字 logo */
+
+        #logo-div a {
+            display: flex;
+
+        }
+
+        #logo-div b {
+            font-size: 2em;
+        }
+
+        #logo-img {
+            width: 30px;
+        }
+
+        #hot_list {
+            width: 100%;
+            text-align: center;
+        }
+
+        #hot-list{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            /*border: 1px dotted #000000;*/
+            background: #f5f5f5;
+        }
+
+        .list-sub{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+            margin: 1em;
+            /*border: 1px dotted #000000;*/
+        }
+
+        .list-sub img {
+            width: 260px;
+            height: 180px;
+        }
+
+        .fron-div{
+            display: flex;
+            flex-wrap: wrap;
+            width: 20em;
+            /*text-align: center;*/
+        }
+        .fron-div a{
+            width: 100%;
+        }
+
+    </style>
+
 </head>
 
 <body>
 <!--頭部-->
 <header class="header">
-    <!--logo-->
+
+    <!--商城文字 logo-->
     <div class="row">
-        <div class="col-md-3">
-            <a href="index.html">
-                <img src="../images/index/loogo-fotor-2024011212725.jpg" alt=""/>
+        <div class="col-md-3" id="logo-div">
+            <a id="logo-a" href="index.html"><img src="../images/index/logo.png" id="logo-img" alt=""/>
+                <b id="header-left-b">租你</b>
+                <b id="header-right-b">好運</b>
+                <b id="shop-b">商城</b>
             </a>
         </div>
+        <!--商城文字 logo-->
+
         <!--導航選項-->
         <div class="col-md-9 top-item">
             <ul class="list-inline pull-right">
@@ -69,11 +197,11 @@
                 <a href="#"></a>
             </li>
             <li class="active"><a href="index.html">回到首頁 <span class="fa fa-home"></span></a></li>
-            <li><a href="#">@@</a></li>
-            <li><a href="#">@@</a></li>
-            <li><a href="#">@@</a></li>
-            <li><a href="#">@@</a></li>
-            <li><a href="#">@@</a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
+            <li><a href="#"></a></li>
         </ul>
     </div>
     <div class="col-md-6">
@@ -86,6 +214,7 @@
     </div>
 </div>
 <!--header結束-->
+
 <!--導覽結束-->
 <div class="container">
     <div class="row">
@@ -102,6 +231,8 @@
                 </ul>
             </div>
         </div>
+
+<!--        輪播圖-->
         <div class="col-md-10">
             <div id="myCarousel" class="carousel slide">
                 <!-- 輪播圖按鈕-->
@@ -142,58 +273,23 @@
             </div>
         </div>
     </div>
+    <!--        輪播圖-->
 
-    <!--推薦-->
-    <div class="row">
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <p class="panel-title">新到好貨</p>
-                </div>
-                <div class="panel-body panel-item">
-                    <div class="col-md-12">
-                        <div class="col-md-7 text-row-2"><a href="product.html">
-                            A5商務筆記本記是本日記本122張</a></div>
-                        <div class="col-md-2">$182</div>
-                        <div class="col-md-3"><img src="../images/portal/02COMIXC5902A5122blue/collect.png"
-                                                   class="img-responsive"/></div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="col-md-7  text-row-2"><a href="product.html">Tibame商務辦公計算機太陽能電池</a></div>
-                        <div class="col-md-2">$5050</div>
-                        <div class="col-md-3"><img src="../images/portal/004/collect.png"
-                                                   class="img-responsive"/></div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="col-md-7 text-row-2"><a href="product.html">Tibame  13.3 筆記型電腦</a>
-                        </div>
-                        <div class="col-md-2">$36299</div>
-                        <div class="col-md-3"><img src="../images/portal/12(DELL)XPS13gold/collect.png"
-                                                   class="img-responsive"/></div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="col-md-7 text-row-2"><a href="product.html">（Lenovo）IdeaPad310</a></div>
-                        <div class="col-md-2">$5298</div>
-                        <div class="col-md-3"><img src="../images/portal/13LenovoIdeaPad310_black/collect.png"
-                                                   class="img-responsive"/></div>
-                    </div>
-                </div>
+
+    <!--  熱銷排行  -->
+    <div class="col-md-6" id="hot_list">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <p class="panel-title">熱銷排行</p>
             </div>
-        </div>
-        <!--  熱銷排行  -->
-        <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <p class="panel-title">熱銷排行</p>
-                </div>
-                <div id="hot-list" class="panel-body panel-item">
-<!--                    JS加入熱銷商品-->
-
-
-                </div>
+            <div id="hot-list" class="panel-body panel-item">
+                <!--                    JS加入熱銷商品-->
             </div>
         </div>
     </div>
+
+
+</div>
 </div>
 <!--footer開始-->
 <footer class="footer">
@@ -212,39 +308,20 @@
         </div>
         <div class="col-md-2">
             <span class="fa fa-bitcoin"></span>
-            <p>@@@@</p>
+            <p>帶你發財</p>
         </div>
     </div>
     <!--聯繫我們-->
-    <div class="container beforeBottom">
-        <div class="col-md-offset-1 col-md-3">
-            <div><img src="../images/index/loogo-fotor-2024011212725.jpg" alt="" class="footLogo"/></div>
-        </div>
-        <div class="col-md-4 callus text-center">
-            <div class="col-md-4">
-                <ul>
-                    <li><a href="#"><p>買家幫助</p></a></li>
-                    <li><a href="#">新手指南</a></li>
-                    <li><a href="#">服務保障</a></li>
-                    <li><a href="#">常見問題</a></li>
-                </ul>
-            </div>
 
-            <div class="col-md-4">
-                <ul>
-                    <li><a href="#"><p>關於我們</p></a></li>
-                    <li><a href="#">關於租你好運</a></li>
-                    <li><a href="#">聯繫我們</a></li>
-                    <li>
 
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="col-md-12 text-center bottom">
-        中壢 A.K.A <a target="_blank" href="https://www.tibame.com/">Tibame公司</a>
-        版權所有
+    <div class="col-md-12 text-center bottom" id="aboutMe-div">
+        <ul>
+            <li><a href="#">關於我們</a></li>
+            <li><a href="#">關於租你好運</a></li>
+            <li><a href="#">聯繫我們</a></li>
+        </ul>
+        <a target="_blank" href="https://www.tibame.com/">中壢 A.K.ATibame公司版權所有</a>
+
     </div>
 </footer>
 <!--footer-->
@@ -265,10 +342,21 @@
                 console.log("count=" + list.length);
                 for (let i = 0; i < list.length; i++) {
                     console.log(list[i].title);
-                    let hot = '<div class="col-md-12">'
-                        + '<div class="col-md-7 text-row-2"><a href="product.html?id=#{id}">#{title}</a></div>'
-                        + '<div class="col-md-2">$#{price}</div>'
-                        + '<div class="col-md-3"><img src="..#{image}collect.png" class="img-responsive" /></div>'
+                    // let hot =
+                    //     '<div class="col-md-12">'
+                    //     + '<div class="col-md-7 text-row-2"><a href="product.html?id=#{id}">#{title}</a></div>'
+                    //     + '<div class="col-md-2">$#{price}</div>'
+                    //     + '<div class="col-md-3"><img src="..#{image}collect.png" class="img-responsive" /></div>'
+                    //     + '</div>';
+                    let hot =
+                        '<div class="">'
+                        +'<div class="list-sub">'
+                        + '<img src="..#{image}collect.png" class="" />'
+                        + '<div class="fron-div">' +
+                            '<a href="product.html?id=#{id}" class="product-title-a">#{title}</a>' +
+                        '</div>'
+                        + '<div class="">$#{price}</div>'
+                        + '</div>'
                         + '</div>';
 
                     hot = hot.replace(/#{id}/g, list[i].id);
@@ -280,7 +368,21 @@
                 }
             }
         });
+
+        // countProductTitleFont();
     }
+
+    function countProductTitleFont() {
+        let fonts = document.querySelectorAll('.product-title-a');
+
+        fonts.forEach(font => {
+            if (font.innerText.length > 10) {
+                font.innerHTML += '<br>';
+            }
+            console.log(font.innerText.length);
+        });
+    }
+
 </script>
 </body>
 
