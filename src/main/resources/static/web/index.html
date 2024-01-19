@@ -139,6 +139,13 @@
             width: 100%;
         }
 
+        .panel-item>div {
+            /* padding: 1em; */
+            border-bottom: 1px solid #f5f5f5;
+            margin: 1em;
+        }
+
+
     </style>
 
 </head>
@@ -350,11 +357,11 @@
                     //     + '</div>';
                     let hot =
                         '<div class="">'
-                        +'<div class="list-sub">'
+                        + '<div class="list-sub">'
+                        + '<a href="product.html?id=#{id}" class="product-title-a">'
                         + '<img src="..#{image}collect.png" class="" />'
-                        + '<div class="fron-div">' +
-                            '<a href="product.html?id=#{id}" class="product-title-a">#{title}</a>' +
-                        '</div>'
+                        + '<p>#{title}</p>'
+                        + '</a>'
                         + '<div class="">$#{price}</div>'
                         + '</div>'
                         + '</div>';
