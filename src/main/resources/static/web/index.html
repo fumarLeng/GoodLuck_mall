@@ -19,182 +19,21 @@
     <link rel="stylesheet" type="text/css" href="../css/footer.css"/>
     <link rel="stylesheet" type="text/css" href="../css/top.css"/>
 
-    <style>
-        * {
-            padding: 0;
-            margin: 0;
-            list-style: none;
-            text-decoration: none !important;
-        }
-
-        body{
-            display: flex;
-            flex-direction: column;
-        }
-
-
-
-        /* 商城文字 logo */
-        #shop-b {
-            color: red;
-        }
-
-        #logo-img,
-        #header-left-b,
-        #header-right-b,
-        #shop-b {
-            font-style: oblique;
-            margin-left: .1em;
-            transition: .3s;
-        }
-
-        #header-left-b {
-            color: green;
-        }
-
-        #header-right-b {
-            color: yellowgreen;
-        }
-
-        #logo-a:hover #header-left-b {
-            /*transition: .3s;*/
-            transform: translateX(2.1em);
-        }
-
-        #logo-a:hover #shop-b {
-            transform: scale(1.5);
-            margin-left: .5em;
-        }
-
-        #logo-a:hover #header-right-b {
-            /*transition: .3s;*/
-            transform: translateX(-2.1em);
-        }
-
-        #logo-a:hover #logo-img {
-            transform: scale(1.5);
-            margin-right: 1em;
-            animation: shake 0.5s ease infinite;
-        }
-
-        @keyframes shake {
-            0% {
-                transform: translateX(0);
-            }
-            25% {
-                transform: translateX(-5px);
-            }
-            50% {
-                transform: translateX(5px);
-            }
-            75% {
-                transform: translateX(-5px);
-            }
-            100% {
-                transform: translateX(5px);
-            }
-        }
-
-        /* 商城文字 logo */
-
-        #logo-div a {
-            display: flex;
-
-        }
-
-        #logo-div b {
-            font-size: 2em;
-        }
-
-        #logo-img {
-            width: 30px;
-        }
-
-        #hot_list {
-            width: 100%;
-            text-align: center;
-        }
-
-        #hot-list{
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            /*border: 1px dotted #000000;*/
-            background: #f5f5f5;
-        }
-
-        .list-sub{
-            display: flex;
-            flex-wrap: wrap;
-            flex-direction: column;
-            margin: 1em;
-            /*border: 1px dotted #000000;*/
-        }
-
-        .list-sub img {
-            width: 260px;
-            height: 180px;
-        }
-
-        .fron-div{
-            display: flex;
-            flex-wrap: wrap;
-            width: 20em;
-            /*text-align: center;*/
-        }
-        .fron-div a{
-            width: 100%;
-        }
-
-    </style>
+<!--  自訂CSS  -->
+    <link rel="stylesheet" type="text/css" href="../css/com/nav/shopLogo.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/index.css"/>
 
 </head>
 
 <body>
 <!--頭部-->
-<header class="header">
+    <header class="header">
 
-    <!--商城文字 logo-->
-    <div class="row" id="logo-position">
-<!--        <div class="col-md-3" id="logo-div">-->
-<!--            <a id="logo-a" href="index.html"><img src="../images/index/logo.png" id="logo-img" alt=""/>-->
-<!--                <b id="header-left-b">租你</b>-->
-<!--                <b id="header-right-b">好運</b>-->
-<!--                <b id="shop-b">商城</b>-->
-<!--            </a>-->
-<!--        </div>-->
-<!--        &lt;!&ndash;商城文字 logo&ndash;&gt;-->
+        <!--商城文字 logo-->
+        <div class="row" id="logo-position">
+        </div>
 
-<!--        &lt;!&ndash;導航選項&ndash;&gt;-->
-<!--        <div class="col-md-9 top-item">-->
-<!--            <ul class="list-inline pull-right">-->
-<!--                <li><a href="favorites.html"><span class="fa fa-heart"></span>&nbsp;收藏</a></li>-->
-<!--                <li class="li-split">|</li>-->
-<!--                <li><a href="orders.html"><span class="fa fa-file-text"></span>&nbsp;訂單</a></li>-->
-<!--                <li class="li-split">|</li>-->
-<!--                <li><a href="cart.html"><span class="fa fa-cart-plus"></span>&nbsp;購物車</a></li>-->
-<!--                <li class="li-split">|</li>-->
-<!--                <li>-->
-<!--                    &lt;!&ndash;下列列表按钮 ：管理&ndash;&gt;-->
-<!--                    <div class="btn-group">-->
-<!--                        <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">-->
-<!--                            <span id="top-dropdown-btn"><span class="fa fa-gears"></span>&nbsp;管理 <span-->
-<!--                                    class="caret"></span></span>-->
-<!--                        </button>-->
-<!--                        <ul class="dropdown-menu top-dropdown-ul" role="menu">-->
-<!--                            <li><a href="password.html">修改密碼</a></li>-->
-<!--                            <li><a href="userdata.html">個人資料</a></li>-->
-<!--                            <li><a href="upload.html">上傳頭像</a></li>-->
-<!--                            <li><a href="address.html">收貨管理</a></li>-->
-<!--                        </ul>-->
-<!--                    </div>-->
-<!--                </li>-->
-<!--                <li class="li-split">|</li>-->
-<!--                <li><a href="login.html"><span class="fa fa-user"></span>&nbsp;登錄</a></li>-->
-<!--            </ul>-->
-<!--        </div>-->
-<!--    </div>-->
-</header>
+    </header>
 <!--導航-->
 <!--分割導航列跟頂部-->
 <div class="row top-nav">
@@ -204,11 +43,11 @@
                 <a href="#"></a>
             </li>
             <li class="active"><a href="index.html">回到首頁 <span class="fa fa-home"></span></a></li>
-<!--            <li><a class="index-menu" href="#"></a></li>-->
-<!--            <li><a href="#"></a></li>-->
-<!--            <li><a href="#"></a></li>-->
-<!--            <li><a href="#"></a></li>-->
-<!--            <li><a href="#"></a></li>-->
+            <!--            <li><a class="index-menu" href="#"></a></li>-->
+            <!--            <li><a href="#"></a></li>-->
+            <!--            <li><a href="#"></a></li>-->
+            <!--            <li><a href="#"></a></li>-->
+            <!--            <li><a href="#"></a></li>-->
         </ul>
     </div>
     <div class="col-md-6">
@@ -240,7 +79,7 @@
             </div>
         </div>
 
-<!--        輪播圖-->
+        <!--        輪播圖-->
         <div class="col-md-10">
             <div id="myCarousel" class="carousel slide">
                 <!-- 輪播圖按鈕-->
@@ -334,106 +173,14 @@
 </footer>
 <!--footer-->
 
+<script src="../js/com/nav/showLogoDiv.js"></script>
+<script src="../js/com/nav/showHotList.js"></script>
+
 <script type="text/javascript">
     $(document).ready(function () {
-        showLogoImg();
+        showLogoDiv();
         showHotList();
     });
-    function showLogoImg(){
-        let logoHtml =
-            '<div class="row" id="logo-position">' +
-                '<div class="col-md-3" id="logo-div">' +
-                    '<a id="logo-a" href="index.html"><img src="../images/index/logo.png" id="logo-img" alt=""/>' +
-                    '<b id="header-left-b">租你</b>' +
-                    '<b id="header-right-b">好運</b>' +
-                    '<b id="shop-b">商城</b>' +
-                    '</a>' +
-                    '</div>' +
-                    '<div class="col-md-9 top-item">' +
-                    '<ul class="list-inline pull-right">' +
-                    '<li><a href="favorites.html"><span class="fa fa-heart"></span>&nbsp;收藏</a></li>' +
-                    '<li class="li-split">|</li>' +
-                    '<li><a href="orders.html"><span class="fa fa-file-text"></span>&nbsp;訂單</a></li>' +
-                    '<li class="li-split">|</li>' +
-                    '<li><a href="cart.html"><span class="fa fa-cart-plus"></span>&nbsp;購物車</a></li>' +
-                    '<li class="li-split">|</li>' +
-                    '<li>' +
-                    '<div class="btn-group">' +
-                    '<button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">' +
-                    '<span id="top-dropdown-btn"><span class="fa fa-gears"></span>&nbsp;管理 <span class="caret"></span></span>' +
-                    '</button>' +
-                    '<ul class="dropdown-menu top-dropdown-ul" role="menu">' +
-                    '<li><a href="password.html">修改密碼</a></li>' +
-                    '<li><a href="userdata.html">個人資料</a></li>' +
-                    '<li><a href="upload.html">上傳頭像</a></li>' +
-                    '<li><a href="address.html">收貨管理</a></li>' +
-                    '</ul>' +
-                    '</div>' +
-                    '</li>' +
-                    '<li class="li-split">|</li>' +
-                    '<li><a href="login.html"><span class="fa fa-user"></span>&nbsp;登錄</a></li>' +
-                    '</ul>' +
-                '</div>' +
-            '</div>';
-
-        let logoPosition = document.getElementById("logo-position");
-        logoPosition.innerHTML = logoHtml;
-    }
-    function showHotList() {
-        $("#hot-list").empty();
-        $.ajax({
-            url: "/products/hot_list",
-            type: "GET",
-            dataType: "JSON",
-            success: function (json) {
-                let list = json.data;
-                console.log("count=" + list.length);
-                for (let i = 0; i < list.length; i++) {
-                    console.log(list[i].title);
-                    // let hot =
-                    //     '<div class="col-md-12">'
-                    //     + '<div class="col-md-7 text-row-2"><a href="product.html?id=#{id}">#{title}</a></div>'
-                    //     + '<div class="col-md-2">$#{price}</div>'
-                    //     + '<div class="col-md-3"><img src="..#{image}collect.png" class="img-responsive" /></div>'
-                    //     + '</div>';
-                    let hot =
-                        '<div class="">'
-                        + '<div class="list-sub">'
-                        + '<a href="product.html?id=#{id}" class="product-title-a">'
-                        + '<img src="..#{image}collect.png" class="" />'
-                        + '<p>#{title}</p>'
-                        + '</a>'
-                        + '<div class="">$#{price}</div>'
-                        + '</div>'
-                        + '</div>';
-
-                    hot = hot.replace(/#{id}/g, list[i].id);
-                    hot = hot.replace(/#{title}/g, list[i].title);
-                    hot = hot.replace(/#{price}/g, list[i].price);
-                    hot = hot.replace(/#{image}/g, list[i].image);
-
-                    $("#hot-list").append(hot);
-                }
-            }
-        });
-
-        // countProductTitleFont();
-    }
-
-    function countProductTitleFont() {
-        let fonts = document.querySelectorAll('.product-title-a');
-
-        fonts.forEach(font => {
-            if (font.innerText.length > 10) {
-                font.innerHTML += '<br>';
-            }
-            console.log(font.innerText.length);
-        });
-    }
-
-
-
-
 </script>
 </body>
 

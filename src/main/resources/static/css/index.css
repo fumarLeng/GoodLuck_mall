@@ -70,3 +70,70 @@ small{
 	flex-direction: column;
 	align-items: center;
 }
+
+
+
+* {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	text-decoration: none !important;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+}
+
+
+
+#logo-div a {
+	display: flex;
+
+}
+
+#logo-div b {
+	font-size: 2em;
+}
+
+#logo-img {
+	width: 30px;
+}
+
+#hot_list {
+	width: 100%;
+	text-align: center;
+}
+
+#hot-list {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	/*border: 1px dotted #000000;*/
+	background: #f5f5f5;
+}
+
+.list-sub {
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	margin: 1em;
+	/*border: 1px dotted #000000;*/
+}
+
+.list-sub img {
+	width: 260px;
+	height: 180px;
+}
+
+.fron-div {
+	display: flex;
+	flex-wrap: wrap;
+	width: 20em;
+	/*text-align: center;*/
+}
+
+.fron-div a {
+	width: 100%;
+}
+
