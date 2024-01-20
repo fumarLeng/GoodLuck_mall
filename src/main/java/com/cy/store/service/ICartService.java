@@ -32,6 +32,6 @@ public interface ICartService {
     List<CartVO> getVOByCid(Integer uid, Integer[] cids);
 
     //根據cid刪除商品
-    int deleteCartByCid(Integer cid);
+    Integer deleteCartByCid(Integer cid);
 
 }

@@ -88,7 +88,7 @@ public class UserController extends BassController {
     }
 //-----------------------------更改個人資料-------------------------------------------//
 
-    //會員點擊更新按鈕可以送出數據的更新操作
+    //會員點擊更新資料按鈕連到這裡
     @RequestMapping("change_info")
     public JsonResult<Void> changeInfo(User user,
                                        HttpSession session) {
@@ -144,7 +144,7 @@ public class UserController extends BassController {
             Integer uid = getuidFromSession(session);
             String username = getUsernameFromSession(session);
 
-            // 呼叫服務層方法將圖片存儲到資料庫的 BLOB 欄位中
+            // 呼叫service將圖片存到資料庫的 BLOB 欄位
             userService.changeAvatar(uid, fileBytes, username);
 
             // 將圖片的資料轉換為 Base64 字串
@@ -164,7 +164,7 @@ public class UserController extends BassController {
 //
 //    //接到前端檔案的方法, MultipartFile file 對應到前端上傳表單的 name 屬性名稱要一致
 //    //  <input type="file" name="file">
-//    // 如果出現前後端不一致可以使用@RequestParam("")來解決 裡面放前端表單的name屬性名
+//    // 如果出現前後端不一致使用@RequestParam("")來解決 裡面放前端表單的name屬性名
 //
 //    //限制檔案上傳的大小
 //    public static final int AVATAR_MAX_SIZE = 10 * 1024 * 1024;

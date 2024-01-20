@@ -17,6 +17,7 @@ public class AddressController extends BassController {
     @Autowired
     private IAddressService addressService;
 
+    //新增會員地址
     @RequestMapping("add_new_address")
     public JsonResult<Void> addNewAddress(Address address, HttpSession session) {
         Integer uid = getuidFromSession(session);
@@ -34,7 +35,7 @@ public class AddressController extends BassController {
     }
 
     // 請求的參數如果一樣是 aid 會對應到方法參數 integer aid
-    //不一樣要用 @PathVariable("aid") "aid"裡面放請求的參數名稱
+    //不一樣可以用 @PathVariable("aid") "aid"裡面放請求的參數名稱,可以用來對應
     @RequestMapping("{aid}/set_default")
     public JsonResult<Void> setDefault(@PathVariable("aid") Integer aid,
                                        HttpSession session) {
@@ -44,6 +45,7 @@ public class AddressController extends BassController {
         addressService.setDefault(aid, uid, username);
         return new JsonResult<>(OK);
     }
+
 
     @RequestMapping("{aid}/delete")
     public JsonResult<Void> delete(@PathVariable("aid") Integer aid,

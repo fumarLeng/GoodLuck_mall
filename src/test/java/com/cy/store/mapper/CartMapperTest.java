@@ -61,7 +61,7 @@ public class CartMapperTest {
 
     @Test
     public void findByCid(){
-        Integer cid = 4;
+        Integer cid = 12;
         Cart result = cartMapper.findByCid(cid);
         System.out.println(result);
     }
