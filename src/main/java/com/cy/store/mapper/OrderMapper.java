@@ -25,7 +25,11 @@ public interface OrderMapper {
     Integer insertOrderItem(OrderItem orderItem);
 
 
-
+    /**
+     * 從uid查到所有訂單
+     * @param uid 會員uid
+     * @return 所有訂單資料
+     */
     List<OrderVO> queryOrderVoByUid(Integer uid);
 
 

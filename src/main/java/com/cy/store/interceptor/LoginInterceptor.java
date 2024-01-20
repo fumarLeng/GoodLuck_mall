@@ -16,7 +16,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     //在前端傳req到後端之前先執行攔截器的方法
 
     /**
-     * 檢查session裡面有沒有uid,有就通過,沒有就重導到登錄
+     * 檢查session裡面有沒有uid,有就通過,沒有就導到登錄
      *
      * @param request 前端的請求
      * @param response 後端的回應
@@ -28,7 +28,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response,
                              Object handler) throws Exception {
-        //可以透過 HttpServletRequest 來得到session
+        //先從 HttpServletRequest 來得到session
         Object obj = request.getSession().getAttribute("uid");
         //obj等於null表示會員沒有登錄過,就重導回去登錄頁面
         if (obj == null) {
@@ -40,4 +40,4 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 }
 
-//實作完攔截器方法要去註冊--> LoginInterceptorConfigurer
+//攔截器方法做完要去註冊--> LoginInterceptorConfigurer

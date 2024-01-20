@@ -17,7 +17,7 @@ public class AddressServiceTests {
     @Test
     public void addNewAddress(){
         Integer uid = 2;
-        String username = "網站管理者";
+        String username = "最高管理者";
         Address address = new Address();
         address.setName("小王");
         address.setPhone("0980808080");
@@ -28,13 +28,13 @@ public class AddressServiceTests {
 
     @Test
     public void setDefault(){
-        addressService.setDefault(9,2,"網站管理員");
+        addressService.setDefault(9,2,"最高管理者");
     }
 
 
     @Test
     public void delete(){
-        addressService.delete(9,2,"測試刪除");
+        addressService.delete(9,2,"刪除測試");
     }
 
 

@@ -6,11 +6,11 @@ package com.cy.store.util;
 import java.io.Serializable;
 
 public class JsonResult<E> implements Serializable {
-    //對應的狀態碼
+    //對應的狀態編號
     private  Integer state;
     //錯誤訊息
     private String message;
-    //數據
+    //回傳的資料
     private E data;
 
     public JsonResult() {

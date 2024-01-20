@@ -38,5 +38,6 @@ public class LoginInterceptorConfigurer implements WebMvcConfigurer {
         registry.addInterceptor(interceptor) //註冊
             .addPathPatterns("/**") //黑名單
             .excludePathPatterns(patterns); //他要的參數是一個list集合
+        // public InterceptorRegistration excludePathPatterns(List<String> patterns)
     }
 }

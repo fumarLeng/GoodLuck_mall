@@ -70,7 +70,7 @@ public class CartController extends BassController {
 
     }
 
-    //多選購物車商品的按鈕
+    //多選購物車商品
     @RequestMapping("list")
     public JsonResult<List<CartVO>> getVOByCid(Integer[] cids, HttpSession session) {
         //從session取uid出來
@@ -82,6 +82,7 @@ public class CartController extends BassController {
 
     }
 
+    //刪除購物車商品
     @RequestMapping("deleteCart")
     public JsonResult<Void> deleteCartByCid(Integer[] cids){
 

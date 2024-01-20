@@ -11,10 +11,9 @@ public interface UserMapper {
 //----------------------------------------------//
 
     /**
-     * 新增使用者數據
-     *
+     * 新增會員
      * @param user 會員
-     * @return 產生多少筆資料
+     * @return 有多少筆
      */
     Integer insert(User user);
 
@@ -22,18 +21,15 @@ public interface UserMapper {
 
     /**
      * 根據會員名稱查詢會員資料
-     *
      * @param username 會員名稱
      * @return 產生多少筆資料
      */
     User findByUsername(String username);
 
-
     //----------------------------------------------//
 
     /**
      * 根據會員uid來修改密碼
-     *
      * @param uid          會員id
      * @param password     會員輸入的新密碼
      * @param modifiedUser 修改人
@@ -60,7 +56,7 @@ public interface UserMapper {
     /**
      * 更新會員資料
      * @param user 會員的參數
-     * @return 回傳值是更新的筆數
+     * @return 回傳是幾筆被更新了
      */
    Integer updateInfoByUid(User user);
 
