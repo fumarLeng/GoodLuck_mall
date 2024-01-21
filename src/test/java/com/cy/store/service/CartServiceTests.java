@@ -22,7 +22,7 @@ public class CartServiceTests {
         cartService.addToCart(2,
                 10000001,
                 5,
-                "測試總數");
+                "測試加入購物車");
     }
 
     @Test

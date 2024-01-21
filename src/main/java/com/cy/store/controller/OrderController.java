@@ -23,7 +23,6 @@ public class OrderController extends BassController {
     //新增訂單
     @RequestMapping("create")
     public JsonResult<Order> create(Integer aid, Integer[] cids, HttpSession session) {
-        //Integer aid, Integer uid, String username, Integer[] cids
         Integer uid = getuidFromSession(session);
         String username = getUsernameFromSession(session);
         Order data = orderService.create(aid, uid, username, cids);
@@ -36,7 +35,6 @@ public class OrderController extends BassController {
     public JsonResult<List<OrderVO>> queryOrderVoByUid(HttpSession session) {
         Integer uid = getuidFromSession(session);
         List<OrderVO> orderVos = orderService.queryOrderVoByUid(uid);
-
         return new JsonResult<>(OK, orderVos);
     }
 

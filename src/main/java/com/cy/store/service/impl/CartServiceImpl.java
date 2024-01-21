@@ -19,7 +19,7 @@ public class CartServiceImpl implements ICartService {
 
     //購物車的service層依賴
     //購物車的mapper和商品的mapper
-    //把加入購物車當作加入商品,商品id交給商品mapper層去查詢
+    //把加入購物車當作加入商品,商品id交給商品mapper去查詢
 
     @Autowired
     private CartMapper cartMapper;
@@ -123,6 +123,7 @@ public class CartServiceImpl implements ICartService {
 //--------------------------------------------------------------------------------//
 
 
+
     @Override
     public List<CartVO> getVOByCid(Integer uid, Integer[] cids) {
         List<CartVO> list = cartMapper.findVOByCid(cids);
@@ -140,7 +141,7 @@ public class CartServiceImpl implements ICartService {
 
     //根據cid刪除商品
     @Override
-    public int deleteCartByCid(Integer cid) {
+    public Integer deleteCartByCid(Integer cid) {
         int result = cartMapper.deleteCartByCid(cid);
 
         if (result == 0){
