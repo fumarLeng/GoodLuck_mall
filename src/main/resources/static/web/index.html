@@ -10,7 +10,7 @@
     <link href="../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
     <script src="../bootstrap3/jquery-1.9.1.min.js"></script>
     <script src="../bootstrap3/js/bootstrap.js"></script>
-    <script src="../js/menu.js" type="text/javascript" charset="utf-8"></script>
+<!--    <script src="../js/menu.js" type="text/javascript" charset="utf-8"></script>-->
 
     <!-- 字體跟圖標 -->
     <link rel="stylesheet" href="../bootstrap3/font-awesome-4.7.0/css/font-awesome.css"/>
@@ -37,47 +37,52 @@
 <!--導航-->
 <!--分割導航列跟頂部-->
 <div class="row top-nav">
-    <div class="col-md-6">
+
         <ul class="nav nav-pills">
             <li>
                 <a href="#"></a>
             </li>
-            <li class="active"><a href="index.html">回到首頁 <span class="fa fa-home"></span></a></li>
-            <!--            <li><a class="index-menu" href="#"></a></li>-->
+            <li class="active"><a class="nav-li-a" href="index.html">回到首頁 <span class="fa fa-home"></span></a></li>
+            <li class="active"><a class="nav-li-a" href="index.html">文具 <span class="fa fa-home"></span></a></li>
+            <li class="active"><a class="nav-li-a" href="index.html">筆電 <span class="fa fa-home"></span></a></li>
+<!--            <li><a class="index-menu" href="#">文具</a></li><span class="fa fa-home"></span></a></li>-->
+<!--            <li><a class="index-menu" href="#">筆電</a></li><span class="fa fa-home"></span></a></li>-->
             <!--            <li><a href="#"></a></li>-->
             <!--            <li><a href="#"></a></li>-->
             <!--            <li><a href="#"></a></li>-->
             <!--            <li><a href="#"></a></li>-->
+            <form action="search.html" class="form-inline pull-right" role="form" id="search-form">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="search" name="search" placeholder="請輸入商品名稱">
+                </div>
+                <button type="submit" class="btn btn-default btn-sm"><span class="fa fa-search"></span></button>
+            </form>
         </ul>
+
     </div>
     <div class="col-md-6">
-        <form action="search.html" class="form-inline pull-right" role="form">
-            <div class="form-group">
-                <input type="text" class="form-control" id="search" name="search" placeholder="請輸入商品名稱">
-            </div>
-            <button type="submit" class="btn btn-default btn-sm"><span class="fa fa-search"></span></button>
-        </form>
+
     </div>
-</div>
+
 <!--header結束-->
 
 <!--導覽結束-->
-<div class="container">
-    <div class="row">
-        <div class="col-md-2" id="indexMenu">
-            <ul class="index-menu">
+<!--<div class="container">-->
+<!--    <div class="row">-->
+<!--        <div class="col-md-2" id="indexMenu">-->
+<!--            <ul class="index-menu">-->
 
-            </ul>
-            <div id="showIndex">
-                <ul class="second-menu">
-                    <li class="second-menu-li">####</li>
-                </ul>
-            </div>
-            <div id="showSecond">
-                <ul class="third-menu">
-                </ul>
-            </div>
-        </div>
+<!--            </ul>-->
+<!--            <div id="showIndex">-->
+<!--                <ul class="second-menu">-->
+<!--                    <li class="second-menu-li">####</li>-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--            <div id="showSecond">-->
+<!--                <ul class="third-menu">-->
+<!--                </ul>-->
+<!--            </div>-->
+<!--        </div>-->
 
         <!--        輪播圖-->
         <div class="col-md-10">
