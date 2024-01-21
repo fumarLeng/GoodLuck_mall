@@ -2,117 +2,117 @@
 var reqpath = "search.html"
 /*ajax獲得的json*/
 var typelist = [{
-    "id": "1",
-    "parentId": "0",
-    "name": "生活用品"
-}, {
-    "id": "2",
-    "parentId": "0",
-    "name": "家用電器"
-}, {
-    "id": "3",
-    "parentId": "0",
-    "name": "電腦辦公"
-}, {
-    "id": "4",
-    "parentId": "0",
-    "name": "化妝品"
-}, {
-    "id": "5",
-    "parentId": "0",
-    "name": "鐘錶"
-}, {
-    "id": "6",
-    "parentId": "0",
-    "name": "母嬰"
-}, {
-    "id": "7",
-    "parentId": "0",
-    "name": "食品飲料"
-}, {
-    "id": "8",
-    "parentId": "0",
-    "name": "汽車用品"
-}, {
-    "id": "9",
-    "parentId": "0",
-    "name": "玩具"
-}, {
-    "id": "10",
-    "parentId": "0",
-    "name": "手機"
-}, {
-    "id": "11",
-    "parentId": "0",
-    "name": "數位"
-}, {
-    "id": "12",
-    "parentId": "0",
-    "name": "家居"
-}, {
-    "id": "13",
-    "parentId": "0",
-    "name": "廚具"
-}, {
-    "id": "14",
-    "parentId": "0",
-    "name": "服飾內衣"
-}, {
-    "id": "15",
-    "parentId": "0",
-    "name": "鞋子"
-}, {
-    "id": "16",
-    "parentId": "0",
-    "name": "禮品"
-}, {
-    "id": "17",
-    "parentId": "0",
-    "name": "珠寶"
-}, {
-    "id": "18",
-    "parentId": "0",
-    "name": "運動"
-}, {
-    "id": "19",
-    "parentId": "0",
-    "name": "充值票务"
-}, {
-    "id": "20",
-    "parentId": "3",
-    "name": "電腦整機"
-}, {
-    "id": "21",
-    "parentId": "3",
-    "name": "電腦配件"
-}, {
-    "id": "22",
-    "parentId": "3",
-    "name": "顯示卡"
-}, {
-    "id": "23",
-    "parentId": "3",
-    "name": "網路用品"
-}, {
-    "id": "24",
-    "parentId": "3",
-    "name": "辦公設備"
-}, {
-    "id": "25",
-    "parentId": "3",
-    "name": "文具耗材"
-}, {
-    "id": "26",
-    "parentId": "1",
-    "name": "杯子"
-}, {
-    "id": "27",
-    "parentId": "1",
-    "name": "牙刷"
-}, {
-    "id": "28",
-    "parentId": "1",
-    "name": "垃圾袋"
+//     "id": "1",
+//     "parentId": "0",
+//     "name": "生活用品"
+// }, {
+//     "id": "2",
+//     "parentId": "0",
+//     "name": "家用電器"
+// }, {
+//     "id": "3",
+//     "parentId": "0",
+//     "name": "電腦辦公"
+// }, {
+//     "id": "4",
+//     "parentId": "0",
+//     "name": "化妝品"
+// }, {
+//     "id": "5",
+//     "parentId": "0",
+//     "name": "鐘錶"
+// }, {
+//     "id": "6",
+//     "parentId": "0",
+//     "name": "母嬰"
+// }, {
+//     "id": "7",
+//     "parentId": "0",
+//     "name": "食品飲料"
+// }, {
+//     "id": "8",
+//     "parentId": "0",
+//     "name": "汽車用品"
+// }, {
+//     "id": "9",
+//     "parentId": "0",
+//     "name": "玩具"
+// }, {
+//     "id": "10",
+//     "parentId": "0",
+//     "name": "手機"
+// }, {
+//     "id": "11",
+//     "parentId": "0",
+//     "name": "數位"
+// }, {
+//     "id": "12",
+//     "parentId": "0",
+//     "name": "家居"
+// }, {
+//     "id": "13",
+//     "parentId": "0",
+//     "name": "廚具"
+// }, {
+//     "id": "14",
+//     "parentId": "0",
+//     "name": "服飾內衣"
+// }, {
+//     "id": "15",
+//     "parentId": "0",
+//     "name": "鞋子"
+// }, {
+//     "id": "16",
+//     "parentId": "0",
+//     "name": "禮品"
+// }, {
+//     "id": "17",
+//     "parentId": "0",
+//     "name": "珠寶"
+// }, {
+//     "id": "18",
+//     "parentId": "0",
+//     "name": "運動"
+// }, {
+//     "id": "19",
+//     "parentId": "0",
+//     "name": "充值票务"
+// }, {
+//     "id": "20",
+//     "parentId": "3",
+//     "name": "電腦整機"
+// }, {
+//     "id": "21",
+//     "parentId": "3",
+//     "name": "電腦配件"
+// }, {
+//     "id": "22",
+//     "parentId": "3",
+//     "name": "顯示卡"
+// }, {
+//     "id": "23",
+//     "parentId": "3",
+//     "name": "網路用品"
+// }, {
+//     "id": "24",
+//     "parentId": "3",
+//     "name": "辦公設備"
+// }, {
+//     "id": "25",
+//     "parentId": "3",
+//     "name": "文具耗材"
+// }, {
+//     "id": "26",
+//     "parentId": "1",
+//     "name": "杯子"
+// }, {
+//     "id": "27",
+//     "parentId": "1",
+//     "name": "牙刷"
+// }, {
+//     "id": "28",
+//     "parentId": "1",
+//     "name": "垃圾袋"
 },]
 
 //載入json數據到分類
