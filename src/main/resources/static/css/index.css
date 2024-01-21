@@ -118,6 +118,7 @@ body {
 	flex-wrap: wrap;
 	flex-direction: column;
 	margin: 1em;
+	width: 250px;
 	/*border: 1px dotted #000000;*/
 }
 
@@ -137,3 +138,22 @@ body {
 	width: 100%;
 }
 
+.col-md-10{
+	margin: 0 auto;
+}
+
+#search-form{
+	margin-right: 11.5%;
+}
+
+.nav-li-a{
+	margin-right: 1em;
+}
+
+.active{
+	color: yellow;
+}
+
+.nav-li{
+	background: #2aabd2;
+}
