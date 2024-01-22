@@ -74,8 +74,7 @@
         FROM t_order od
                  LEFT JOIN t_order_item orm
                            ON od.`oid` = orm.`oid`
-        WHERE od.uid = #{uid}
-        ORDER BY orm.`price` DESC;
+        WHERE od.uid = #{uid};
     </select>
 
 

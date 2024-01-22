@@ -95,14 +95,10 @@ public class OrderServiceImpl implements IOrderService {
     //---------------------訂單----------------------//
 
 
-
-
-
     @Override
     public List<OrderVO> queryOrderVoByUid(Integer uid) {
 
         List<OrderVO> orderVos = orderMapper.queryOrderVoByUid(uid);
-
 
         return orderVos;
     }
