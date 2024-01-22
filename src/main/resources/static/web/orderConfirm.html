@@ -228,21 +228,22 @@
         showCartList();
     });
 
-    $("#btn-create-order").click(function() {
+    $("#btn-create-order").click(function () {
         $.ajax({
             url: "/orders/create",
             data: $("#form-create-order").serialize(),
             type: "POST",
             dataType: "JSON",
-            success: function(json) {
+            success: function (json) {
                 if (json.state == 200) {
                     alert("訂單成立!");
+                    window.location.href = 'index.html';
                     console.log(json.data);
                 } else {
                     alert("新增訂單失敗" + json.message);
                 }
             },
-            error: function(xhr) {
+            error: function (xhr) {
                 alert("遇到問題" + xhr.status);
                 location.href = "login.html";
             }
