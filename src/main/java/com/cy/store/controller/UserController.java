@@ -62,6 +62,18 @@ public class UserController extends BassController {
 
         return new JsonResult<User>(OK, data);
     }
+
+
+//------------------------------登出------------------------------------------//
+
+
+    @RequestMapping("logout")
+    public JsonResult<Void> logout(HttpSession session){
+        session.invalidate();
+        return new JsonResult<Void>(OK);
+    }
+
+
 //------------------------------更改密碼------------------------------------------//
 
     @RequestMapping("change_password")
