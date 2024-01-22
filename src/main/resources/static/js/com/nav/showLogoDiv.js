@@ -30,11 +30,31 @@ function showLogoDiv(){
         '</div>' +
         '</li>' +
         '<li class="li-split">|</li>' +
-        '<li><a href="login.html"><span class="fa fa-user"></span>&nbsp;登錄</a></li>' +
+        '<li><a href="login.html"><span class="fa fa-user"></span>&nbsp;登入</a></li>' +
+        '<li><a href="login.html" onclick="Logout();"><span class="fa fa-sign-out"></span>&nbsp;登出</a></li>' +
         '</ul>' +
         '</div>' +
         '</div>';
 
     let logoPosition = document.getElementById("logo-position");
     logoPosition.innerHTML = logoHtml;
+}
+
+function Logout() {
+
+    if (confirm('確定要登出嗎')){
+    $.ajax({
+        url: "/users/logout", //
+        type: 'GET',
+        success: function(json) {
+            alert("登出成功!");
+            window.location.href = 'login.html';
+        },
+        error: function(xhr) {
+
+            console.error('登出失敗',+ xhr.message);
+        }
+    });
+
+    }
 }
