@@ -22,12 +22,12 @@
         .content-panel {
             display: none;
         }
-        .content-panel.active {
+        .content-panel.activePage {
             display: block;
         }
 
         #nav-container{
-            margin: 5em;
+            margin-top: 5em;
             border: 3px solid;
         }
 
@@ -46,6 +46,46 @@
             justify-content: center;
             height: 400px;
         }
+
+        .pagebox-container p{
+            color: black !important;
+        }
+
+        .memberList-div{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+
+            border: 1px solid;
+        }
+
+        .memlist{
+            border-right: 1px solid;
+        }
+
+
+
+        .member-list-th{
+            text-align: center;
+        }
+
+        th,tr,td {
+            border-right: 1px solid #ccc;
+        }
+
+        .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+            /* padding: 8px; */
+            line-height: 1.42857143;
+            /* vertical-align: top; */
+            border-top: 1px solid #ddd;
+        }
+        .table {
+
+             margin-bottom: 0px;
+        }
     </style>
 </head>
 <body>
@@ -59,7 +99,7 @@
 <div class="row top-nav" id="nav-container">
     <!-- Tab 切換 -->
     <ul class="nav nav-pills" id="nav-ul">
-        <li class="active"><a class="nav-li-a" href="#home">回到首頁 <span class="fa fa-home"></span></a></li>
+        <li class="activePage"><a class="nav-li-a" href="#home">回到首頁 <span class="fa fa-home"></span></a></li>
         <li><a class="nav-li-a" href="#member">會員管理<span class="fa fa-users"></span></a></li>
         <li><a class="nav-li-a" href="#orders">訂單管理<span class="fa fa-list-alt"></span></a></li>
         <li><a class="nav-li-a" href="#products">商品管理<span class="fa fa-tags"></span></a></li>
@@ -75,7 +115,7 @@
     </ul>
         <!-- 内容 -->
 
-        <div class="content-panel active" id="Backhome">回到首頁</div>
+        <div class="content-panel activePage" id="Backhome">回到首頁</div>
         <div class="content-panel" id="member">會員管理...</div>
         <div class="content-panel" id="orders">訂單管理...</div>
         <div class="content-panel" id="products">商品管理...</div>
@@ -97,34 +137,68 @@
         $('.nav-li-a').on('click', function(e) {
             e.preventDefault();
             let targetPanel = $(this).attr('href').substring(1);
-            $('.content-panel').removeClass('active');
-            $('#' + targetPanel).addClass('active');
-            $('.nav-pills li').removeClass('active');
-            $(this).parent('li').addClass('active');
+            $('.content-panel').removeClass('activePage');
+            $('#' + targetPanel).addClass('activePage');
+            $('.nav-pills li').removeClass('activePage');
+            $(this).parent('li').addClass('activePage');
         });
     });
     function getUserData() {
-
         $.ajax({
-            url: '/BackStage/user', // 替换为您的后端 URL
+            url: '/BackStage/user',
             type: 'GET',
-            dataType: 'json', // 假设后端返回 JSON 数据
+            dataType: 'json',
             success: function (data) {
-                // 这里的 'data' 是从服务器返回的用户列表
                 let userList = data;
-                let userContainer = $('#member');
-                userContainer.empty(); // 清空容器
+                let memberContainer = $('#member');
+                memberContainer.empty();
 
+                let table = $('<table></table>').addClass('table');
 
+                let thead = $('<thead></thead>');
+                thead.append('<tr>' +
+                    '<th class="member-list-th">ID</th>' +
+                    '<th class="member-list-th">名稱</th>' +
+                    '<th class="member-list-th">密碼</th>' +
+                    '<th class="member-list-th">鹽值</th>' +
+                    '<th class="member-list-th">電話</th>' +
+                    '<th class="member-list-th">郵件</th>' +
+                    '<th class="member-list-th">性別</th>' +
+                    '<th class="member-list-th">頭像</th>' +
+                    '<th class="member-list-th">狀態</th>' +
+                    '<th class="member-list-th">操作</th>' +
+                    '</tr>');
+                table.append(thead);
+
+                let tbody = $('<tbody></tbody>');
                 $.each(userList, function (index, user) {
-                    userContainer.append('<p>User ID: ' + user.uid + '</p>');
+                    let tr = $('<tr></tr>');
+                    tr.append('<td>' + user.uid + '</td>');
+                    tr.append('<td>' + user.username + '</td>');
+                    tr.append('<td>' + user.password + '</td>');
+                    tr.append('<td>' + user.salt + '</td>');
+                    tr.append('<td>' + user.phone + '</td>');
+                    tr.append('<td>' + user.email + '</td>');
+                    tr.append('<td>' + user.gender + '</td>');
+                    tr.append('<td><img src="data:image/png;base64,' + user.avatar + '" alt="User Avatar" style="width:50px;height:50px;"></td>');
+                    tr.append('<td>' + (user.isDelete ? '是' : '否') + '</td>');
+                    tr.append('<td>' +
+                        '<button class="btn btn-success btn-sm">修改</button>' +
+                        '<button class="btn btn-warning btn-sm">刪除</button>' +
+                        '</td>');
+                    tbody.append(tr);
                 });
+                table.append(tbody);
+
+                memberContainer.append(table);
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                console.log('AJAX request failed: ' + textStatus + ', ' + errorThrown);
+                console.log('AJAX請求失敗：' + textStatus + ', ' + errorThrown);
             }
         });
     }
+
+
 </script>
 </body>
 </html>

@@ -19,7 +19,7 @@ public class UserRowMapper implements RowMapper<User> {
         user.setEmail(rs.getString("email"));
         user.setGender(rs.getInt("gender"));
         user.setAvatar(rs.getBytes("avatar"));
-//        user.setIsDelete(rs.getInt("isDelete"));
+        user.setIsDelete(rs.getInt("is_delete"));
 
         return user;
     }
