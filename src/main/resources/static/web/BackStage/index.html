@@ -73,8 +73,8 @@
             <button type="submit" class="btn btn-default btn-sm"><span class="fa fa-search"></span></button>
         </form>
     </ul>
-    <div class="pagebox-container">
         <!-- 内容 -->
+
         <div class="content-panel active" id="Backhome">回到首頁</div>
         <div class="content-panel" id="member">會員管理...</div>
         <div class="content-panel" id="orders">訂單管理...</div>
@@ -92,15 +92,39 @@
         showLogoDiv();
         showHotList();
 
+        getUserData();
+        // 分頁切換
         $('.nav-li-a').on('click', function(e) {
             e.preventDefault();
-            var targetPanel = $(this).attr('href').substring(1);
+            let targetPanel = $(this).attr('href').substring(1);
             $('.content-panel').removeClass('active');
             $('#' + targetPanel).addClass('active');
             $('.nav-pills li').removeClass('active');
             $(this).parent('li').addClass('active');
         });
     });
+    function getUserData() {
+
+        $.ajax({
+            url: '/BackStage/user', // 替换为您的后端 URL
+            type: 'GET',
+            dataType: 'json', // 假设后端返回 JSON 数据
+            success: function (data) {
+                // 这里的 'data' 是从服务器返回的用户列表
+                let userList = data;
+                let userContainer = $('#member');
+                userContainer.empty(); // 清空容器
+
+
+                $.each(userList, function (index, user) {
+                    userContainer.append('<p>User ID: ' + user.uid + '</p>');
+                });
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log('AJAX request failed: ' + textStatus + ', ' + errorThrown);
+            }
+        });
+    }
 </script>
 </body>
 </html>
