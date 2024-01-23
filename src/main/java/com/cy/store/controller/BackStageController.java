@@ -27,6 +27,7 @@ public class BackStageController {
     @GetMapping("/user")
     public ResponseEntity<List<User>> getAllUserData() {
         List<User> userList = productService.getAllUserData();
+        System.out.println("Avatar: " + userList.get(1).getAvatar());
         return ResponseEntity.ok(userList);
     }
 
