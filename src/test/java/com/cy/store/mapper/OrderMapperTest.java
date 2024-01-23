@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.Date;
+
 // @RunWith(SpringRunner.class)注解是一个測試啟動器，
 // 可以載入Springboot測試的註解
 @RunWith(SpringRunner.class)
@@ -48,6 +50,19 @@ public class OrderMapperTest {
     public void queryOrderVoStatusByUid() {
 
         System.out.println(orderMapper.queryOrderVoStatusByUid(2,1));
+    }
+
+    @Test
+    public void queryOrderVoByOid() {
+
+        System.out.println(orderMapper.queryOrderVoByOid(2));
+    }
+
+
+    @Test
+    public void  updateStatusByOid() {
+
+        System.out.println(orderMapper.updateStatusByOid(2,1,new Date()));
     }
 
 }

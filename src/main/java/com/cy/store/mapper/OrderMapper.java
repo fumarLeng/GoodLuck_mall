@@ -4,6 +4,7 @@ import com.cy.store.entity.Order;
 import com.cy.store.entity.OrderItem;
 import com.cy.store.vo.OrderVO;
 
+import java.util.Date;
 import java.util.List;
 
 public interface OrderMapper {
@@ -34,11 +35,28 @@ public interface OrderMapper {
 
 
     /**
+     * 從oid找到訂單
+     * @param oid
+     * @return
+     */
+    Order queryOrderVoByOid(Integer oid);
+
+    /**
      * 透過uid找到各個狀態的訂單
      * @param uid  會員uid
      * @param status 訂單狀態
      * @return
      */
     List<OrderVO> queryOrderVoStatusByUid(Integer uid, Integer status);
+
+
+    /**
+     * 根據oid修改訂單狀態,付款之後更改時間
+     * @param oid 訂單oid
+     * @param status 要更改的狀態
+     * @param payTime 付款時間
+     * @return
+     */
+    int updateStatusByOid(Integer oid, Integer status, Date payTime);
 
 }

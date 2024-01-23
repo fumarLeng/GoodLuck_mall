@@ -77,6 +77,28 @@
         WHERE od.uid = #{uid};
     </select>
 
+    <!--    List<OrderVo> queryOrderVoByOid(Integer oid);-->
+    <select id="queryOrderVoByOid" resultType="com.cy.store.vo.OrderVO">
+        SELECT od.`oid`,
+               od.`recv_name`   AS recvName,
+               od.`total_price` AS totalPrice,
+               od.`status`,
+               od.`order_time`  AS orderTime,
+               od.`pay_time`    AS payTime,
+               orm.`image`,
+               orm.`title`,
+               orm.`price`,
+               orm.`num`
+        FROM t_order od
+                 LEFT JOIN t_order_item orm
+                           ON od.`oid` = orm.`oid`
+        WHERE od.oid = #{oid};
+    </select>
+
+
+
+
+
     <!--    List<OrderVo> queryOrderVoStatusByUid(Integer uid,Integer status);-->
     <select id="queryOrderVoStatusByUid" resultType="com.cy.store.vo.OrderVO">
         SELECT od.`oid`,
@@ -95,6 +117,14 @@
         WHERE od.uid = #{uid}
           AND od.status = #{status};
     </select>
+
+
+    <!--int updateStatusByOidInt(Integer oid, Integer status, Date payTime);-->
+    <update id="updateStatusByOid">
+        update t_order set status = #{status},pay_time = #{payTime} where oid = #{oid}
+    </update>
+
+
 
 
 
