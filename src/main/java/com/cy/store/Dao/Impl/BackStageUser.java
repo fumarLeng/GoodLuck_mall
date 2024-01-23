@@ -2,6 +2,7 @@ package com.cy.store.Dao.Impl;
 
 import com.cy.store.entity.Order;
 import com.cy.store.entity.User;
+import com.cy.store.mapper.SpringJDBCMapper.OrderListRowMapper;
 import com.cy.store.mapper.SpringJDBCMapper.UserRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -33,9 +34,8 @@ public class BackStageUser implements com.cy.store.Dao.BackStageUser {
         String sql = "SELECT * FROM t_order";
         Map<String, Object> map = new HashMap<>();
 
-//        List<User> OrderList = namedParameterJdbcTemplate.query(sql, map, new OrderListRowMapper());
+        List<Order> OrderList = namedParameterJdbcTemplate.query(sql, map, new OrderListRowMapper());
 
-//        return OrderList;
-        return null;
+        return OrderList;
     }
 }
