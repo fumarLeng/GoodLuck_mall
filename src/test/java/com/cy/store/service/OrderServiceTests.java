@@ -1,6 +1,7 @@
 package com.cy.store.service;
 
 import com.cy.store.entity.Order;
+import com.cy.store.service.ex.OrderNotFoundException;
 import com.cy.store.vo.CartVO;
 import com.cy.store.vo.OrderVO;
 import org.junit.Test;
@@ -31,6 +32,24 @@ public class OrderServiceTests {
     public void queryOrderVoByUid() {
         List<OrderVO> orderVO =  orderService.queryOrderVoByUid(2);
         System.out.println(orderVO);
+    }
+
+
+    @Test
+    public void queryOrderVoStatusByUid() {
+        List<OrderVO> orderVos = orderService.queryOrderVoStatusByUid(2, 1);
+        if (orderVos.isEmpty()) {
+            throw new OrderNotFoundException("沒有訂單");
+        }
+        System.out.println(orderVos);
+    }
+
+
+    @Test
+    public void updateStatusByOid() {
+        int result = orderService.updateStatusByOid(2, 2,2);
+
+        System.out.println(result);
     }
 
 }

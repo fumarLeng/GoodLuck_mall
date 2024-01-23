@@ -1,6 +1,6 @@
 package com.cy.store.service.ex;
 
-/*業務層異常的子類: throws new ServiceException("業務層產生未知的異常")  */
+/*service異常的子類: throws new ServiceException("service層產生的異常")  */
 public class ServiceException extends RuntimeException {
     public ServiceException() {
         super();
