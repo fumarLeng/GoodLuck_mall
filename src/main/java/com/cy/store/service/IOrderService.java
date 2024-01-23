@@ -24,4 +24,6 @@ public interface IOrderService {
      */
     List<OrderVO> queryOrderVoByUid(Integer uid);
 
+
+    List<OrderVO> queryOrderVoStatusByUid(Integer uid,Integer status);
 }

@@ -38,4 +38,12 @@ public class OrderController extends BassController {
         return new JsonResult<>(OK, orderVos);
     }
 
+    @RequestMapping("/uidOrderVoStatus")
+    public JsonResult<List<OrderVO>>  queryOrderVoStatusByUid(HttpSession session,Integer status){
+        Integer uid = getuidFromSession(session);
+        List<OrderVO> orderVoStatus = orderService.queryOrderVoStatusByUid(uid,status);
+
+        return new JsonResult<>(OK,orderVoStatus);
+    }
+
 }

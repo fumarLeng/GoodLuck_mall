@@ -44,5 +44,11 @@ public class OrderMapperTest {
     }
 
 
+    @Test
+    public void queryOrderVoStatusByUid() {
+
+        System.out.println(orderMapper.queryOrderVoStatusByUid(2,1));
+    }
+
 }
 

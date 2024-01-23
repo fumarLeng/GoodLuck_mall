@@ -33,5 +33,12 @@ public interface OrderMapper {
     List<OrderVO> queryOrderVoByUid(Integer uid);
 
 
+    /**
+     * 透過uid找到各個狀態的訂單
+     * @param uid  會員uid
+     * @param status 訂單狀態
+     * @return
+     */
+    List<OrderVO> queryOrderVoStatusByUid(Integer uid, Integer status);
 
 }

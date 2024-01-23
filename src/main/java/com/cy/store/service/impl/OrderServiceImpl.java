@@ -8,6 +8,7 @@ import com.cy.store.service.IAddressService;
 import com.cy.store.service.ICartService;
 import com.cy.store.service.IOrderService;
 import com.cy.store.service.ex.InsertException;
+import com.cy.store.service.ex.OrderNotFoundException;
 import com.cy.store.vo.CartVO;
 import com.cy.store.vo.OrderVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,6 +104,15 @@ public class OrderServiceImpl implements IOrderService {
         return orderVos;
     }
 
+
+    @Override
+    public List<OrderVO> queryOrderVoStatusByUid(Integer uid, Integer status) {
+        List<OrderVO> orderVos = orderMapper.queryOrderVoStatusByUid(uid, status);
+        if (orderVos.isEmpty()) {
+            throw new OrderNotFoundException("沒有訂單");
+        }
+        return orderVos;
+    }
 
 
 }

@@ -25,19 +25,20 @@
     <link rel="stylesheet" type="text/css" href="../css/index.css"/>
 
     <style>
-        table{
+        table {
             border: 1px solid #000000;
             margin: 1em;
         }
 
-        #orders{
+        #orders {
             display: flex;
         }
 
-        .tr-head{
+        .tr-head {
             background: #ccc;
         }
-        .tr-img{
+
+        .tr-img {
             background: #f5f5f5;
         }
 
@@ -139,10 +140,10 @@
                 <div id="collapseOne" class="panel-collapse collapse in">
                     <div class="panel-body">
                         <div><a href="orders.html"><b>全部訂單</b></a></div>
-                        <div><a href="orders.html">待付款</a></div>
-                        <div><a href="orders.html">待收貨</a></div>
-<!--                        <div><a href="orders.html">待評價</a></div>-->
-<!--                        <div><a href="orders.html">退貨</a></div>-->
+                        <div><a href="javascript:void(0);" onclick="fetchOrdersByStatus(1)">待付款</a></div>
+                        <div><a href="javascript:void(0);" onclick="fetchOrdersByStatus(2)">待收貨</a></div>
+                        <!--                        <div><a href="orders.html">待評價</a></div>-->
+                        <!--                        <div><a href="orders.html">退貨</a></div>-->
                     </div>
                 </div>
             </div>
@@ -194,7 +195,7 @@
     <!--聯繫我們-->
     <div class="container beforeBottom">
         <div class="col-md-offset-1 col-md-3">
-<!--            <div><img src="../images/index/loogo-fotor-2024011212725.jpg" alt="" class="footLogo"/></div>-->
+            <!--            <div><img src="../images/index/loogo-fotor-2024011212725.jpg" alt="" class="footLogo"/></div>-->
         </div>
         <div class="col-md-4 callus text-center">
             <div class="col-md-4">
@@ -234,7 +235,7 @@
         let groupedOrders = {};
 
         // 先分組相同
-        orders.forEach(function(order) {
+        orders.forEach(function (order) {
             if (!groupedOrders[order.oid]) {
                 groupedOrders[order.oid] = {
                     oid: order.oid,
@@ -250,7 +251,7 @@
         });
 
         // 渲染每個分組後的訂單
-        Object.values(groupedOrders).forEach(function(groupedOrder) {
+        Object.values(groupedOrders).forEach(function (groupedOrder) {
             let orderDiv = `
                 <table border="1">
                     <tr class="tr-head">
@@ -275,7 +276,7 @@
                     </tr>
         `;
             // 添加訂單中的每個項目
-            groupedOrder.items.forEach(function(item) {
+            groupedOrder.items.forEach(function (item) {
                 let imageUrl = '..' + item.image + 'collect.png';
                 orderDiv += `
                         <tr class="tr-img">
@@ -308,20 +309,44 @@
         $.ajax({
             url: '/orders/queryOrderVo',
             type: 'GET',
-            success: function(json) {
+            success: function (json) {
                 if (json.state == 200) {
                     displayOrders(json.data);
                 } else {
                     console.error('Failed to fetch orders:', json.message);
                 }
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.error('An error occurred:', error);
             }
         });
     }
 
-    $(document).ready(function() {
+
+    //靠狀態搜尋訂單
+    //----------------------------------------------------------------------------------
+    function fetchOrdersByStatus(status) {
+        $.ajax({
+            url: '/orders/uidOrderVoStatus?status=' + status,
+            type: 'GET',
+            success: function (json) {
+                if (json.state == 200) {
+                    $('#orders').empty();
+                    displayOrders(json.data);
+                } else {
+                    console.error('Failed to fetch orders:', json.message);
+                }
+            },
+            error: function (xhr) {
+                console.error('An error occurred:', xhr.message);
+            }
+        });
+    }
+
+    //-------------------------------------------------------------------------------
+
+
+    $(document).ready(function () {
         fetchOrders();
         showLogoDiv();
         showHotList();

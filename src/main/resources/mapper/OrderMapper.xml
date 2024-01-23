@@ -77,8 +77,24 @@
         WHERE od.uid = #{uid};
     </select>
 
-
-
+    <!--    List<OrderVo> queryOrderVoStatusByUid(Integer uid,Integer status);-->
+    <select id="queryOrderVoStatusByUid" resultType="com.cy.store.vo.OrderVO">
+        SELECT od.`oid`,
+               od.`recv_name`   AS recvName,
+               od.`total_price` AS totalPrice,
+               od.`status`,
+               od.`order_time`  AS orderTime,
+               od.`pay_time`    AS payTime,
+               orm.`image`,
+               orm.`title`,
+               orm.`price`,
+               orm.`num`
+        FROM t_order od
+                 LEFT JOIN t_order_item orm
+                           ON od.`oid` = orm.`oid`
+        WHERE od.uid = #{uid}
+          AND od.status = #{status};
+    </select>
 
 
 
