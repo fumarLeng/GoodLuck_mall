@@ -27,7 +27,7 @@
         }
 
         #nav-container{
-            margin: 5em;
+            margin-top: 5em;
             border: 3px solid;
         }
 
@@ -65,7 +65,27 @@
         .memlist{
             border-right: 1px solid;
         }
-        
+
+
+
+        .member-list-th{
+            text-align: center;
+        }
+
+        th,tr,td {
+            border-right: 1px solid #ccc;
+        }
+
+        .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+            /* padding: 8px; */
+            line-height: 1.42857143;
+            /* vertical-align: top; */
+            border-top: 1px solid #ddd;
+        }
+        .table {
+
+             margin-bottom: 0px;
+        }
     </style>
 </head>
 <body>
@@ -124,46 +144,60 @@
         });
     });
     function getUserData() {
-
         $.ajax({
             url: '/BackStage/user',
             type: 'GET',
             dataType: 'json',
             success: function (data) {
-
                 let userList = data;
                 let memberContainer = $('#member');
                 memberContainer.empty();
 
+                let table = $('<table></table>').addClass('table');
+
+                let thead = $('<thead></thead>');
+                thead.append('<tr>' +
+                    '<th class="member-list-th">ID</th>' +
+                    '<th class="member-list-th">名稱</th>' +
+                    '<th class="member-list-th">密碼</th>' +
+                    '<th class="member-list-th">鹽值</th>' +
+                    '<th class="member-list-th">電話</th>' +
+                    '<th class="member-list-th">郵件</th>' +
+                    '<th class="member-list-th">性別</th>' +
+                    '<th class="member-list-th">頭像</th>' +
+                    '<th class="member-list-th">狀態</th>' +
+                    '<th class="member-list-th">操作</th>' +
+                    '</tr>');
+                table.append(thead);
+
+                let tbody = $('<tbody></tbody>');
                 $.each(userList, function (index, user) {
-                    // 創建一個新的div元素來包含用戶信息
-                    let userDiv = $('<div class="memberList-div"></div>');
-
-                    // 向這個新div添加用戶信息
-                    userDiv.append('<hr>');
-                    userDiv.append('<p class="memlist">使用者ID: ' + user.uid + '</p>');
-                    userDiv.append('<p class="memlist">使用者名稱: ' + user.username + '</p>');
-                    userDiv.append('<p class="memlist">使用者密碼(已加密): ' + user.password + '</p>');
-                    userDiv.append('<p class="memlist">使用者鹽值(已加密): ' + user.salt + '</p>');
-                    userDiv.append('<p class="memlist">使用者電話號碼: ' + user.phone + '</p>');
-                    userDiv.append('<p class="memlist">使用者電子郵件: ' + user.email + '</p>');
-                    userDiv.append('<p class="memlist">使用者性別: ' + user.gender + '</p>');
-                    userDiv.append('<img src="data:image/png;base64, ' + user.avatar + '" alt="User Avatar" style="max-width: 100px; max-height: 100px;">'); // 添加圖片尺寸限制
-                    userDiv.append('<p>使用者是否刪除(狀態): ' + user.isDelete + '</p>');
-                    userDiv.append('<div class="btn-group" role="group">' +
-                        '<button class="btn-sm btn btn-success">修改</button>' +
-                        '<button class="btn-sm btn btn-warning">刪除</button>' +
-                        '</div>');
-
-                    // 最後將包含用戶信息的div添加到主容器中
-                    memberContainer.append(userDiv);
+                    let tr = $('<tr></tr>');
+                    tr.append('<td>' + user.uid + '</td>');
+                    tr.append('<td>' + user.username + '</td>');
+                    tr.append('<td>' + user.password + '</td>');
+                    tr.append('<td>' + user.salt + '</td>');
+                    tr.append('<td>' + user.phone + '</td>');
+                    tr.append('<td>' + user.email + '</td>');
+                    tr.append('<td>' + user.gender + '</td>');
+                    tr.append('<td><img src="data:image/png;base64,' + user.avatar + '" alt="User Avatar" style="width:50px;height:50px;"></td>');
+                    tr.append('<td>' + (user.isDelete ? '是' : '否') + '</td>');
+                    tr.append('<td>' +
+                        '<button class="btn btn-success btn-sm">修改</button>' +
+                        '<button class="btn btn-warning btn-sm">刪除</button>' +
+                        '</td>');
+                    tbody.append(tr);
                 });
+                table.append(tbody);
+
+                memberContainer.append(table);
             },
             error: function (jqXHR, textStatus, errorThrown) {
-                console.log('AJAX request failed: ' + textStatus + ', ' + errorThrown);
+                console.log('AJAX請求失敗：' + textStatus + ', ' + errorThrown);
             }
         });
     }
+
 
 </script>
 </body>
