@@ -50,7 +50,21 @@
         .pagebox-container p{
             color: black !important;
         }
-        
+
+        .memberList-div{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+
+            border: 1px solid;
+        }
+
+        .memlist{
+            border-right: 1px solid;
+        }
         
     </style>
 </head>
@@ -121,33 +135,28 @@
                 let memberContainer = $('#member');
                 memberContainer.empty();
 
-                const userCount = 7;
-                let count = 0;
                 $.each(userList, function (index, user) {
-                    if (count % 2 != 0){
-                        memberContainer.append('<hr>');
-                        memberContainer.append('<p>使用者ID: ' + user.uid + '</p>');
+                    // 創建一個新的div元素來包含用戶信息
+                    let userDiv = $('<div class="memberList-div"></div>');
 
-                        // count++;
-                    }else{
-                        memberContainer.append('<hr>');
-                        memberContainer.append('<p>使用者ID: ' + user.uid + '</p>');
-                    }
-                    // memberContainer.append('<p>使用者ID: ' + user.uid + '</p>');
-                    memberContainer.append('<p>使用者名稱: ' + user.username + '</p>');
-                    memberContainer.append('<p>使用者密碼(已加密): ' + user.password + '</p>');
-                    memberContainer.append('<p>使用者鹽值(已加密): ' + user.salt + '</p>');
-                    memberContainer.append('<p>使用者電話號碼: ' + user.phone + '</p>');
-                    memberContainer.append('<p>使用者電子郵件: ' + user.email + '</p>');
-                    memberContainer.append('<p>使用者性別: ' + user.gender + '</p>');
-                    memberContainer.append('<img src="data:image/png;base64,  ' + user.avatar + '"  alt="User Avatar">');
-                    memberContainer.append('<p>使用者是否刪除(狀態): ' + user.isDelete + '</p>');
-                    memberContainer.append('<div class="btn-group" role="group">\n' +
-                        '                        <button class="btn-sm btn btn-success">修改</button>\n' +
-                        '                        <button class="btn-sm btn btn-warning">刪除</button>\n' +
-                        '                    </div>');
+                    // 向這個新div添加用戶信息
+                    userDiv.append('<hr>');
+                    userDiv.append('<p class="memlist">使用者ID: ' + user.uid + '</p>');
+                    userDiv.append('<p class="memlist">使用者名稱: ' + user.username + '</p>');
+                    userDiv.append('<p class="memlist">使用者密碼(已加密): ' + user.password + '</p>');
+                    userDiv.append('<p class="memlist">使用者鹽值(已加密): ' + user.salt + '</p>');
+                    userDiv.append('<p class="memlist">使用者電話號碼: ' + user.phone + '</p>');
+                    userDiv.append('<p class="memlist">使用者電子郵件: ' + user.email + '</p>');
+                    userDiv.append('<p class="memlist">使用者性別: ' + user.gender + '</p>');
+                    userDiv.append('<img src="data:image/png;base64, ' + user.avatar + '" alt="User Avatar" style="max-width: 100px; max-height: 100px;">'); // 添加圖片尺寸限制
+                    userDiv.append('<p>使用者是否刪除(狀態): ' + user.isDelete + '</p>');
+                    userDiv.append('<div class="btn-group" role="group">' +
+                        '<button class="btn-sm btn btn-success">修改</button>' +
+                        '<button class="btn-sm btn btn-warning">刪除</button>' +
+                        '</div>');
 
-                        count++;
+                    // 最後將包含用戶信息的div添加到主容器中
+                    memberContainer.append(userDiv);
                 });
             },
             error: function (jqXHR, textStatus, errorThrown) {
@@ -155,6 +164,7 @@
             }
         });
     }
+
 </script>
 </body>
 </html>
