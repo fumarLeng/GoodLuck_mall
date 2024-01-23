@@ -1,4 +1,4 @@
-package com.cy.store.mapper;
+package com.cy.store.mapper.SpringJDBCMapper;
 
 import com.cy.store.entity.User;
 import org.springframework.jdbc.core.RowMapper;
