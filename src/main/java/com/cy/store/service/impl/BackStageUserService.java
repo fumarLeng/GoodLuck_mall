@@ -1,6 +1,8 @@
 package com.cy.store.service.impl;
 
 import com.cy.store.Dao.Impl.BackStageUser;
+import com.cy.store.entity.Order;
+import com.cy.store.entity.Product;
 import com.cy.store.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,4 +20,16 @@ public class BackStageUserService implements com.cy.store.service.BackStageUserS
     public List<User> getAllUserData() {
         return backStageUserDao.getAllUserData();
     }
+
+    @Override
+    public List<Order> getAllOrderData() {
+        return backStageUserDao.getAllOrderData();
+    }
+
+    @Override
+    public List<Product> getAllProductData() {
+        return backStageUserDao.getAllProductData();
+    }
+
+
 }

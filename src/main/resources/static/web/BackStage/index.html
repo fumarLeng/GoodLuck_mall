@@ -19,39 +19,41 @@
             margin-right: 0px;
             margin-left: 0px;
         }
+
         .content-panel {
             display: none;
         }
+
         .content-panel.activePage {
             display: block;
         }
 
-        #nav-container{
+        #nav-container {
             margin-top: 5em;
             border: 3px solid;
         }
 
-        #nav-ul{
+        #nav-ul {
             border-bottom: 3px solid;
             background-color: #F2F2F2;
         }
 
-        .nav-li-a{
+        .nav-li-a {
             background: #ccc;
         }
 
-        .pagebox-container{
+        .pagebox-container {
             display: flex;
             align-items: center;
             justify-content: center;
             height: 400px;
         }
 
-        .pagebox-container p{
+        .pagebox-container p {
             color: black !important;
         }
 
-        .memberList-div{
+        .memberList-div {
             display: flex;
             flex-direction: row;
             flex-wrap: nowrap;
@@ -62,17 +64,16 @@
             border: 1px solid;
         }
 
-        .memlist{
+        .memlist {
             border-right: 1px solid;
         }
 
 
-
-        .member-list-th{
+        .member-list-th {
             text-align: center;
         }
 
-        th,tr,td {
+        th, tr, td {
             border-right: 1px solid #ccc;
         }
 
@@ -82,9 +83,10 @@
             /* vertical-align: top; */
             border-top: 1px solid #ddd;
         }
+
         .table {
 
-             margin-bottom: 0px;
+            margin-bottom: 0px;
         }
     </style>
 </head>
@@ -102,9 +104,9 @@
         <li class="activePage"><a class="nav-li-a" href="#home">回到首頁 <span class="fa fa-home"></span></a></li>
         <li><a class="nav-li-a" href="#member">會員管理<span class="fa fa-users"></span></a></li>
         <li><a class="nav-li-a" href="#orders">訂單管理<span class="fa fa-list-alt"></span></a></li>
-        <li><a class="nav-li-a" href="#products">商品管理<span class="fa fa-tags"></span></a></li>
-<!--        <li><a class="nav-li-a" href="#cart">購物車管理<span class="fa fa-shopping-cart"></span></a></li>-->
-<!--        <li><a class="nav-li-a" href="#regions">行政區劃管理<span class="fa fa-map-marker"></span></a></li>-->
+        <li><a class="nav-li-a" href="#product">商品管理<span class="fa fa-tags"></span></a></li>
+        <!--        <li><a class="nav-li-a" href="#cart">購物車管理<span class="fa fa-shopping-cart"></span></a></li>-->
+        <!--        <li><a class="nav-li-a" href="#regions">行政區劃管理<span class="fa fa-map-marker"></span></a></li>-->
         <!-- 搜索表单 -->
         <form action="search.html" class="form-inline pull-right" role="form" id="search-form">
             <div class="form-group">
@@ -113,28 +115,35 @@
             <button type="submit" class="btn btn-default btn-sm"><span class="fa fa-search"></span></button>
         </form>
     </ul>
-        <!-- 内容 -->
+    <!-- 内容 -->
 
-        <div class="content-panel activePage" id="Backhome">回到首頁</div>
-        <div class="content-panel" id="member">會員管理...</div>
-        <div class="content-panel" id="orders">訂單管理...</div>
-        <div class="content-panel" id="products">商品管理...</div>
-<!--        <div class="content-panel" id="cart">購物車管理...</div>-->
-<!--        <div class="content-panel" id="regions">行政區劃管理...</div>-->
-    </div>
+    <div class="content-panel activePage" id="Backhome">回到首頁</div>
+    <div class="content-panel" id="member">會員管理...</div>
+    <div class="content-panel" id="orders">訂單管理...</div>
+    <div class="content-panel" id="product">商品管理...</div>
+    <!--        <div class="content-panel" id="cart">購物車管理...</div>-->
+    <!--        <div class="content-panel" id="regions">行政區劃管理...</div>-->
+</div>
 </div>
 
 <script src="../../js/com/nav/showLogoDiv.js"></script>
 <script src="../../js/com/nav/showHotList.js"></script>
+<!--Data-->
+<script src="../../js/backStage/getUserData.js"></script>
+<script src="../../js/backStage/getOrderData.js"></script>
+<script src="../../js/backStage/getProductData.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
         showLogoDiv();
         showHotList();
-
+        // Data
         getUserData();
+        getOrderData();
+        getProductData();
+
         // 分頁切換
-        $('.nav-li-a').on('click', function(e) {
+        $('.nav-li-a').on('click', function (e) {
             e.preventDefault();
             let targetPanel = $(this).attr('href').substring(1);
             $('.content-panel').removeClass('activePage');
@@ -143,60 +152,6 @@
             $(this).parent('li').addClass('activePage');
         });
     });
-    function getUserData() {
-        $.ajax({
-            url: '/BackStage/user',
-            type: 'GET',
-            dataType: 'json',
-            success: function (data) {
-                let userList = data;
-                let memberContainer = $('#member');
-                memberContainer.empty();
-
-                let table = $('<table></table>').addClass('table');
-
-                let thead = $('<thead></thead>');
-                thead.append('<tr>' +
-                    '<th class="member-list-th">ID</th>' +
-                    '<th class="member-list-th">名稱</th>' +
-                    '<th class="member-list-th">密碼</th>' +
-                    '<th class="member-list-th">鹽值</th>' +
-                    '<th class="member-list-th">電話</th>' +
-                    '<th class="member-list-th">郵件</th>' +
-                    '<th class="member-list-th">性別</th>' +
-                    '<th class="member-list-th">頭像</th>' +
-                    '<th class="member-list-th">狀態</th>' +
-                    '<th class="member-list-th">操作</th>' +
-                    '</tr>');
-                table.append(thead);
-
-                let tbody = $('<tbody></tbody>');
-                $.each(userList, function (index, user) {
-                    let tr = $('<tr></tr>');
-                    tr.append('<td>' + user.uid + '</td>');
-                    tr.append('<td>' + user.username + '</td>');
-                    tr.append('<td>' + user.password + '</td>');
-                    tr.append('<td>' + user.salt + '</td>');
-                    tr.append('<td>' + user.phone + '</td>');
-                    tr.append('<td>' + user.email + '</td>');
-                    tr.append('<td>' + user.gender + '</td>');
-                    tr.append('<td><img src="data:image/png;base64,' + user.avatar + '" alt="User Avatar" style="width:50px;height:50px;"></td>');
-                    tr.append('<td>' + (user.isDelete ? '是' : '否') + '</td>');
-                    tr.append('<td>' +
-                        '<button class="btn btn-success btn-sm">修改</button>' +
-                        '<button class="btn btn-warning btn-sm">刪除</button>' +
-                        '</td>');
-                    tbody.append(tr);
-                });
-                table.append(tbody);
-
-                memberContainer.append(table);
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.log('AJAX請求失敗：' + textStatus + ', ' + errorThrown);
-            }
-        });
-    }
 
 
 </script>
