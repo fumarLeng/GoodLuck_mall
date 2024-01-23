@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("backStage")
+@RequestMapping("BackStage")
 public class BackStageController {
 
-    @GetMapping("/index")
+    @GetMapping("")
     public String getAllUserData() {
 
         return "forward:/web/BackStage/index.html";
