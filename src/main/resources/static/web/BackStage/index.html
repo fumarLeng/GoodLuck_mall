@@ -102,7 +102,7 @@
         <li class="activePage"><a class="nav-li-a" href="#home">回到首頁 <span class="fa fa-home"></span></a></li>
         <li><a class="nav-li-a" href="#member">會員管理<span class="fa fa-users"></span></a></li>
         <li><a class="nav-li-a" href="#orders">訂單管理<span class="fa fa-list-alt"></span></a></li>
-        <li><a class="nav-li-a" href="#products">商品管理<span class="fa fa-tags"></span></a></li>
+        <li><a class="nav-li-a" href="#product">商品管理<span class="fa fa-tags"></span></a></li>
 <!--        <li><a class="nav-li-a" href="#cart">購物車管理<span class="fa fa-shopping-cart"></span></a></li>-->
 <!--        <li><a class="nav-li-a" href="#regions">行政區劃管理<span class="fa fa-map-marker"></span></a></li>-->
         <!-- 搜索表单 -->
@@ -118,7 +118,7 @@
         <div class="content-panel activePage" id="Backhome">回到首頁</div>
         <div class="content-panel" id="member">會員管理...</div>
         <div class="content-panel" id="orders">訂單管理...</div>
-        <div class="content-panel" id="products">商品管理...</div>
+        <div class="content-panel" id="product">商品管理...</div>
 <!--        <div class="content-panel" id="cart">購物車管理...</div>-->
 <!--        <div class="content-panel" id="regions">行政區劃管理...</div>-->
     </div>
@@ -137,7 +137,7 @@
         // Data
         getUserData();
         getOrderData();
-        getOrderData();
+        getProductData();
 
         // 分頁切換
         $('.nav-li-a').on('click', function(e) {
@@ -149,67 +149,67 @@
             $(this).parent('li').addClass('activePage');
         });
     });
-    // function getOrderData() {
-    //     $.ajax({
-    //         url: '/BackStage/order',
-    //         type: 'GET',
-    //         dataType: 'json',
-    //         success: function (data) {
-    //             let orderList = data;
-    //             let ordersContainer = $('#orders');
-    //             ordersContainer.empty();
-    //
-    //             let table = $('<table></table>').addClass('table');
-    //
-    //             let thead = $('<thead></thead>');
-    //             thead.append('<tr>' +
-    //                 '<th class="member-list-th">訂單id</th>' +
-    //                 '<th class="member-list-th">會員id</th>' +
-    //                 '<th class="member-list-th">收貨人姓名</th>' +
-    //                 '<th class="member-list-th">收貨人電話</th>' +
-    //                 '<th class="member-list-th">收貨人國家</th>' +
-    //                 '<th class="member-list-th">收貨人市</th>' +
-    //                 '<th class="member-list-th">收貨人區</th>' +
-    //                 '<th class="member-list-th">收貨詳細地址</th>' +
-    //                 '<th class="member-list-th">總價</th>' +
-    //                 '<th class="member-list-th">狀態</th>' +
-    //                 '<th class="member-list-th">下單時間</th>' +
-    //                 '<th class="member-list-th">付款時間</th>' +
-    //                 '<th class="member-list-th">操作</th>' +
-    //                 '</tr>');
-    //             table.append(thead);
-    //
-    //             let tbody = $('<tbody></tbody>');
-    //             $.each(orderList, function (index, order) {
-    //                 let tr = $('<tr></tr>');
-    //                 tr.append('<td>' + order.oid + '</td>');
-    //                 tr.append('<td>' + order.uid + '</td>');
-    //                 tr.append('<td>' + order.recvName + '</td>');
-    //                 tr.append('<td>' + order.recvPhone + '</td>');
-    //                 tr.append('<td>' + order.recvProvince + '</td>');
-    //                 tr.append('<td>' + order.recvCity + '</td>');
-    //                 tr.append('<td>' + order.recvArea + '</td>');
-    //                 tr.append('<td>' + order.recvAddress + '</td>');
-    //                 tr.append('<td>' + order.totalPrice + '</td>');
-    //                 tr.append('<td>' + order.status + '</td>');
-    //                 tr.append('<td>' + order.orderTime + '</td>');
-    //                 tr.append('<td>' + order.payTime + '</td>');
-    //
-    //                 tr.append('<td>' +
-    //                     '<button class="btn btn-success btn-sm">修改</button>' +
-    //                     '<button class="btn btn-warning btn-sm">刪除</button>' +
-    //                     '</td>');
-    //                 tbody.append(tr);
-    //             });
-    //             table.append(tbody);
-    //
-    //             ordersContainer.append(table);
-    //         },
-    //         error: function (jqXHR, textStatus, errorThrown) {
-    //             console.log('AJAX請求失敗：' + textStatus + ', ' + errorThrown);
-    //         }
-    //     });
-    // }
+    function getProductData() {
+        $.ajax({
+            url: '/BackStage/product',
+            type: 'GET',
+            dataType: 'json',
+            success: function (data) {
+                let productList = data;
+                let productContainer = $('#product');
+                productContainer.empty();
+
+                let table = $('<table></table>').addClass('table');
+
+                let thead = $('<thead></thead>');
+                thead.append('<tr>' +
+                    '<th class="member-list-th">訂單id</th>' +
+                    '<th class="member-list-th">會員id</th>' +
+                    '<th class="member-list-th">收貨人姓名</th>' +
+                    '<th class="member-list-th">收貨人電話</th>' +
+                    '<th class="member-list-th">收貨人國家</th>' +
+                    '<th class="member-list-th">收貨人市</th>' +
+                    '<th class="member-list-th">收貨人區</th>' +
+                    '<th class="member-list-th">收貨詳細地址</th>' +
+                    '<th class="member-list-th">總價</th>' +
+                    '<th class="member-list-th">狀態</th>' +
+                    '<th class="member-list-th">下單時間</th>' +
+                    '<th class="member-list-th">付款時間</th>' +
+                    '<th class="member-list-th">操作</th>' +
+                    '</tr>');
+                table.append(thead);
+
+                let tbody = $('<tbody></tbody>');
+                $.each(productList, function (index, product) {
+                    let tr = $('<tr></tr>');
+                    tr.append('<td>' + product.id + '</td>');
+                    tr.append('<td>' + product.categoryId + '</td>');
+                    tr.append('<td>' + product.itemType + '</td>');
+                    tr.append('<td>' + product.title + '</td>');
+                    // tr.append('<td>' + product.recvProvince + '</td>');
+                    // tr.append('<td>' + product.recvCity + '</td>');
+                    // tr.append('<td>' + product.recvArea + '</td>');
+                    // tr.append('<td>' + product.recvAddress + '</td>');
+                    // tr.append('<td>' + product.totalPrice + '</td>');
+                    // tr.append('<td>' + product.status + '</td>');
+                    // tr.append('<td>' + product.orderTime + '</td>');
+                    // tr.append('<td>' + product.payTime + '</td>');
+
+                    tr.append('<td>' +
+                        '<button class="btn btn-success btn-sm">修改</button>' +
+                        '<button class="btn btn-warning btn-sm">刪除</button>' +
+                        '</td>');
+                    tbody.append(tr);
+                });
+                table.append(tbody);
+
+                productContainer.append(table);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log('AJAX請求失敗：' + textStatus + ', ' + errorThrown);
+            }
+        });
+    }
 
 
 </script>

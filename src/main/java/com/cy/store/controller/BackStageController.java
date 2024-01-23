@@ -1,6 +1,7 @@
 package com.cy.store.controller;
 
 import com.cy.store.entity.Order;
+import com.cy.store.entity.Product;
 import com.cy.store.entity.User;
 import com.cy.store.service.impl.BackStageUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,12 @@ public class BackStageController {
         List<Order> orderList = productService.getAllOrderData();
         System.out.println("getOid: " + orderList.get(0).getRecvPhone());
         return ResponseEntity.ok(orderList);
+    }
+    @GetMapping("/product")
+    public ResponseEntity<List<Product>> getAllProductData() {
+        List<Product> productList = productService.getAllProductData();
+        System.out.println("getOid: " + productList.get(0).getId());
+        return ResponseEntity.ok(productList);
     }
 
 }
