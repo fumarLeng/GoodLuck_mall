@@ -19,39 +19,41 @@
             margin-right: 0px;
             margin-left: 0px;
         }
+
         .content-panel {
             display: none;
         }
+
         .content-panel.activePage {
             display: block;
         }
 
-        #nav-container{
+        #nav-container {
             margin-top: 5em;
             border: 3px solid;
         }
 
-        #nav-ul{
+        #nav-ul {
             border-bottom: 3px solid;
             background-color: #F2F2F2;
         }
 
-        .nav-li-a{
+        .nav-li-a {
             background: #ccc;
         }
 
-        .pagebox-container{
+        .pagebox-container {
             display: flex;
             align-items: center;
             justify-content: center;
             height: 400px;
         }
 
-        .pagebox-container p{
+        .pagebox-container p {
             color: black !important;
         }
 
-        .memberList-div{
+        .memberList-div {
             display: flex;
             flex-direction: row;
             flex-wrap: nowrap;
@@ -62,17 +64,16 @@
             border: 1px solid;
         }
 
-        .memlist{
+        .memlist {
             border-right: 1px solid;
         }
 
 
-
-        .member-list-th{
+        .member-list-th {
             text-align: center;
         }
 
-        th,tr,td {
+        th, tr, td {
             border-right: 1px solid #ccc;
         }
 
@@ -82,9 +83,10 @@
             /* vertical-align: top; */
             border-top: 1px solid #ddd;
         }
+
         .table {
 
-             margin-bottom: 0px;
+            margin-bottom: 0px;
         }
     </style>
 </head>
@@ -103,8 +105,8 @@
         <li><a class="nav-li-a" href="#member">會員管理<span class="fa fa-users"></span></a></li>
         <li><a class="nav-li-a" href="#orders">訂單管理<span class="fa fa-list-alt"></span></a></li>
         <li><a class="nav-li-a" href="#product">商品管理<span class="fa fa-tags"></span></a></li>
-<!--        <li><a class="nav-li-a" href="#cart">購物車管理<span class="fa fa-shopping-cart"></span></a></li>-->
-<!--        <li><a class="nav-li-a" href="#regions">行政區劃管理<span class="fa fa-map-marker"></span></a></li>-->
+        <!--        <li><a class="nav-li-a" href="#cart">購物車管理<span class="fa fa-shopping-cart"></span></a></li>-->
+        <!--        <li><a class="nav-li-a" href="#regions">行政區劃管理<span class="fa fa-map-marker"></span></a></li>-->
         <!-- 搜索表单 -->
         <form action="search.html" class="form-inline pull-right" role="form" id="search-form">
             <div class="form-group">
@@ -113,15 +115,15 @@
             <button type="submit" class="btn btn-default btn-sm"><span class="fa fa-search"></span></button>
         </form>
     </ul>
-        <!-- 内容 -->
+    <!-- 内容 -->
 
-        <div class="content-panel activePage" id="Backhome">回到首頁</div>
-        <div class="content-panel" id="member">會員管理...</div>
-        <div class="content-panel" id="orders">訂單管理...</div>
-        <div class="content-panel" id="product">商品管理...</div>
-<!--        <div class="content-panel" id="cart">購物車管理...</div>-->
-<!--        <div class="content-panel" id="regions">行政區劃管理...</div>-->
-    </div>
+    <div class="content-panel activePage" id="Backhome">回到首頁</div>
+    <div class="content-panel" id="member">會員管理...</div>
+    <div class="content-panel" id="orders">訂單管理...</div>
+    <div class="content-panel" id="product">商品管理...</div>
+    <!--        <div class="content-panel" id="cart">購物車管理...</div>-->
+    <!--        <div class="content-panel" id="regions">行政區劃管理...</div>-->
+</div>
 </div>
 
 <script src="../../js/com/nav/showLogoDiv.js"></script>
@@ -129,6 +131,7 @@
 <!--Data-->
 <script src="../../js/backStage/getUserData.js"></script>
 <script src="../../js/backStage/getOrderData.js"></script>
+<script src="../../js/backStage/getProductData.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -140,7 +143,7 @@
         getProductData();
 
         // 分頁切換
-        $('.nav-li-a').on('click', function(e) {
+        $('.nav-li-a').on('click', function (e) {
             e.preventDefault();
             let targetPanel = $(this).attr('href').substring(1);
             $('.content-panel').removeClass('activePage');
@@ -149,67 +152,6 @@
             $(this).parent('li').addClass('activePage');
         });
     });
-    function getProductData() {
-        $.ajax({
-            url: '/BackStage/product',
-            type: 'GET',
-            dataType: 'json',
-            success: function (data) {
-                let productList = data;
-                let productContainer = $('#product');
-                productContainer.empty();
-
-                let table = $('<table></table>').addClass('table');
-
-                let thead = $('<thead></thead>');
-                thead.append('<tr>' +
-                    '<th class="member-list-th">訂單id</th>' +
-                    '<th class="member-list-th">會員id</th>' +
-                    '<th class="member-list-th">收貨人姓名</th>' +
-                    '<th class="member-list-th">收貨人電話</th>' +
-                    '<th class="member-list-th">收貨人國家</th>' +
-                    '<th class="member-list-th">收貨人市</th>' +
-                    '<th class="member-list-th">收貨人區</th>' +
-                    '<th class="member-list-th">收貨詳細地址</th>' +
-                    '<th class="member-list-th">總價</th>' +
-                    '<th class="member-list-th">狀態</th>' +
-                    '<th class="member-list-th">下單時間</th>' +
-                    '<th class="member-list-th">付款時間</th>' +
-                    '<th class="member-list-th">操作</th>' +
-                    '</tr>');
-                table.append(thead);
-
-                let tbody = $('<tbody></tbody>');
-                $.each(productList, function (index, product) {
-                    let tr = $('<tr></tr>');
-                    tr.append('<td>' + product.id + '</td>');
-                    tr.append('<td>' + product.categoryId + '</td>');
-                    tr.append('<td>' + product.itemType + '</td>');
-                    tr.append('<td>' + product.title + '</td>');
-                    // tr.append('<td>' + product.recvProvince + '</td>');
-                    // tr.append('<td>' + product.recvCity + '</td>');
-                    // tr.append('<td>' + product.recvArea + '</td>');
-                    // tr.append('<td>' + product.recvAddress + '</td>');
-                    // tr.append('<td>' + product.totalPrice + '</td>');
-                    // tr.append('<td>' + product.status + '</td>');
-                    // tr.append('<td>' + product.orderTime + '</td>');
-                    // tr.append('<td>' + product.payTime + '</td>');
-
-                    tr.append('<td>' +
-                        '<button class="btn btn-success btn-sm">修改</button>' +
-                        '<button class="btn btn-warning btn-sm">刪除</button>' +
-                        '</td>');
-                    tbody.append(tr);
-                });
-                table.append(tbody);
-
-                productContainer.append(table);
-            },
-            error: function (jqXHR, textStatus, errorThrown) {
-                console.log('AJAX請求失敗：' + textStatus + ', ' + errorThrown);
-            }
-        });
-    }
 
 
 </script>
