@@ -25,5 +25,24 @@ public interface IOrderService {
     List<OrderVO> queryOrderVoByUid(Integer uid);
 
 
+//    根据訂單oid查訂單
+//    List<OrderVO> queryOrderVoByOid(Integer oid);
+
+    /**
+     * 透過uid跟訂單狀態找到對應的訂單
+     * @param uid 會員id
+     * @param status 訂單狀態
+     * @return
+     */
     List<OrderVO> queryOrderVoStatusByUid(Integer uid,Integer status);
+
+
+    /**
+     * 透過oid修改oid訂單狀態
+     * @param oid 訂單id
+     * @param uid 會員id
+     * @param status 修改的狀態
+     * @return
+     */
+    int updateStatusByOid(Integer oid,Integer uid,Integer status);
 }

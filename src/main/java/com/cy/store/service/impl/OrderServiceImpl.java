@@ -9,6 +9,7 @@ import com.cy.store.service.ICartService;
 import com.cy.store.service.IOrderService;
 import com.cy.store.service.ex.InsertException;
 import com.cy.store.service.ex.OrderNotFoundException;
+import com.cy.store.service.ex.UpdateException;
 import com.cy.store.vo.CartVO;
 import com.cy.store.vo.OrderVO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,7 +96,6 @@ public class OrderServiceImpl implements IOrderService {
 
     //---------------------訂單----------------------//
 
-
     @Override
     public List<OrderVO> queryOrderVoByUid(Integer uid) {
 
@@ -104,6 +104,7 @@ public class OrderServiceImpl implements IOrderService {
         return orderVos;
     }
 
+    //---------------------訂單----------------------//
 
     @Override
     public List<OrderVO> queryOrderVoStatusByUid(Integer uid, Integer status) {
@@ -115,5 +116,21 @@ public class OrderServiceImpl implements IOrderService {
     }
 
 
+    //---------------------更改訂單狀態----------------------//
+    @Override
+    public int updateStatusByOid(Integer oid, Integer uid, Integer status) {
+        int result = 0;
+        //修改狀態
+        result = orderMapper.updateStatusByOid(oid, status, new Date());
+        if (result == 0) {
+            throw new UpdateException("修改失敗");
+        }
+        return result;
+    }
+
+
 }
+
+
+
 

@@ -44,6 +44,14 @@ public class OrderServiceTests {
         System.out.println(orderVos);
     }
 
+
+    @Test
+    public void updateStatusByOid() {
+        int result = orderService.updateStatusByOid(2, 2,2);
+
+        System.out.println(result);
+    }
+
 }
 
 
