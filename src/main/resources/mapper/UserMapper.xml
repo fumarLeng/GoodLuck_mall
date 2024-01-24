@@ -5,10 +5,15 @@
 
 
 <mapper namespace="com.cy.store.mapper.UserMapper">
-
-
     <resultMap id="UserEntityMap" type="com.cy.store.entity.User">
         <id column="uid" property="uid"/>
+        <result column="username" property="username"/>
+        <result column="password" property="password"/>
+        <result column="salt" property="salt"/>
+        <result column="phone" property="phone"/>
+        <result column="email" property="email"/>
+        <result column="gender" property="gender"/>
+        <result column="avatar" property="avatar"/>
         <result column="is_delete" property="isDelete"/>
         <result column="created_user" property="createdUser"/>
         <result column="created_time" property="createdTime"/>
@@ -47,7 +52,6 @@
         SELECT *
         FROM t_user
         WHERE uid = #{uid}
-
     </select>
 
     <update id="updateInfoByUid">

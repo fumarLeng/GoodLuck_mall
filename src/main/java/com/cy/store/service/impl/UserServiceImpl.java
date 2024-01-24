@@ -105,6 +105,7 @@ public class UserServiceImpl implements IUserService {
         user.setUsername(result.getUsername());
         //回傳用戶頭像
         user.setAvatar(result.getAvatar());
+        user.setGender(result.getGender());
 
         //在把資料回傳給user, 為了之後數據能帶到其他頁面使用
         return user;
@@ -149,6 +150,7 @@ public void changePassword(Integer uid,
         user.setUsername(result.getUsername());
         user.setPhone(result.getPhone());
         user.setEmail(result.getEmail());
+        user.setGender(result.getGender());
 //----------------------圖片------------------------------------
         user.setAvatar(result.getAvatar());
 //--------------------------------圖片---------------------------------------
