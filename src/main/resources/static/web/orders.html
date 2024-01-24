@@ -86,6 +86,15 @@
             border-radius: 4px;
             overflow: hidden;
         }
+
+        #orders{
+            display: flex;
+            flex-direction: column;
+        }
+        td{
+            width: 60px;
+            text-align: center;
+        }
     </style>
 
 </head>
@@ -242,7 +251,7 @@
                     totalPrice: 0,
                     status: order.status,
                     orderTime: order.orderTime,
-                    payTime: order.payTime || '未付款',
+                    payTime: order.payTime || '已付款',
                     items: []
                 };
             }
@@ -262,12 +271,13 @@
             <th>下訂單時間:</th>
             <th>付款時間:</th>
             <th colspan="4">商品信息</th>
+
         </tr>
 
         <tr>
             <td rowspan="${groupedOrder.items.length + 1}">${groupedOrder.oid}</td>
             <td rowspan="${groupedOrder.items.length + 1}">${groupedOrder.totalPrice}</td>
-            <td rowspan="${groupedOrder.items.length + 1}">${groupedOrder.status}</td>
+            <td rowspan="${groupedOrder.items.length + 1}"><button class="checkShop" onclick="checkShopEvent(${groupedOrder.oid})">確認收貨</button></td>
             <td rowspan="${groupedOrder.items.length + 1}">${groupedOrder.orderTime}</td>
             <td rowspan="${groupedOrder.items.length + 1}">${groupedOrder.payTime}</td>
         </tr>`;
@@ -281,6 +291,7 @@
             <td>${item.title}</td>
             <td>${item.price}</td>
             <td>${item.num}</td>
+
         </tr>
         `;
             });
@@ -331,6 +342,29 @@
     }
 
     //-------------------------------------------------------------------------------
+    function checkShopEvent(oid) {
+
+        $.ajax({
+            url: '/orders/updateStatus?' + 'oid=' + oid  + '&status=1',
+            type: 'GET',
+            success: function (json) {
+                if (json.state == 200) {
+                    $('#orders').empty();
+                    displayOrders(json.data);
+                    // window.location("/orders.html");
+                } else {
+                    console.error('Failed to fetch orders:', json.message);
+                }
+            },
+            error: function (xhr) {
+                console.error('An error occurred:', xhr.message);
+            }
+        });
+
+    }
+
+
+
 
 
     $(document).ready(function () {
