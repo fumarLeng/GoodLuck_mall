@@ -56,6 +56,7 @@ function getUserData() {
 function userUpdataEvent(clickedButton){
     const userUpdata_btnList = document.querySelectorAll(".userUpdata");
     const index = Array.prototype.indexOf.call(userUpdata_btnList, clickedButton) + 1;
-    alert("您點擊的是第 " + (index) + " 個按鈕");
+    // alert("您點擊的是第 " + (index) + " 個按鈕");
+
 
 }
