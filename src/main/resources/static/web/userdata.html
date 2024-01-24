@@ -249,7 +249,7 @@
                     let radio = json.data.gender === 0 ? $("#gender-male") : $("#gender-female");
                     // prop() 給某個元素增加屬性跟值 ,
                     // 這邊是給性別的input標籤後面增加 checked 的屬性
-                    radio.prop("checked", "checked");
+                    radio.prop("checked");
                 } else {
                     alert("會員不存在");
                 }
