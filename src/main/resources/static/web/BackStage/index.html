@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
     <!-- 核心文件 -->
-    <script src="../bootstrap3/js/holder.js"></script>
+<!--    <script src="../bootstrap3/js/holder.js"></script>-->
     <link href="../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
     <script src="../bootstrap3/jquery-1.9.1.min.js"></script>
-    <script src="../bootstrap3/js/bootstrap.js"></script>
+<!--    <script src="../bootstrap3/js/bootstrap.js"></script>-->
 
     <!-- 自訂CSS -->
     <link rel="stylesheet" type="text/css" href="../../css/com/nav/shopLogo.css"/>
@@ -15,6 +15,10 @@
     <title>後台</title>
 
     <style>
+        .body{
+            font-size: 1em !important;
+        }
+
         .row {
             margin-right: 0px;
             margin-left: 0px;
@@ -78,15 +82,18 @@
         }
 
         .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
-            /* padding: 8px; */
-            line-height: 1.42857143;
+             padding: 4px;
+            line-height: 1.5;
             /* vertical-align: top; */
             border-top: 1px solid #ddd;
         }
 
         .table {
-
             margin-bottom: 0px;
+        }
+
+        .btn-success{
+            margin-right:.5em;
         }
     </style>
 </head>
@@ -123,7 +130,6 @@
     <div class="content-panel" id="product">商品管理...</div>
     <!--        <div class="content-panel" id="cart">購物車管理...</div>-->
     <!--        <div class="content-panel" id="regions">行政區劃管理...</div>-->
-</div>
 </div>
 
 <script src="../../js/com/nav/showLogoDiv.js"></script>
