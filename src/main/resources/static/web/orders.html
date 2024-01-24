@@ -253,59 +253,46 @@
         // 渲染每個分組後的訂單
         Object.values(groupedOrders).forEach(function (groupedOrder) {
             let orderDiv = `
-                <table border="1">
-                    <tr class="tr-head">
-                        <th>訂單編號:</th>
-                        <td>${groupedOrder.oid}</td>
-                    </tr>
-                    <tr>
-                        <th>總價:</th>
-                        <td>${groupedOrder.totalPrice}</td>
-                    </tr>
-                    <tr>
-                        <th>狀態:</th>
-                        <td>${groupedOrder.status}</td>
-                    </tr>
-                    <tr>
-                        <th>下訂單時間:</th>
-                        <td>${groupedOrder.orderTime}</td>
-                    </tr>
-                    <tr>
-                        <th>付款時間:</th>
-                        <td>${groupedOrder.payTime}</td>
-                    </tr>
-        `;
+<div class="ord-table"> <!-- 添加一个包裹div -->
+    <table border="1">
+        <tr class="tr-head">
+            <th>訂單編號:</th>
+            <th>總價:</th>
+            <th>狀態:</th>
+            <th>下訂單時間:</th>
+            <th>付款時間:</th>
+            <th colspan="4">商品信息</th>
+        </tr>
+
+        <tr>
+            <td rowspan="${groupedOrder.items.length + 1}">${groupedOrder.oid}</td>
+            <td rowspan="${groupedOrder.items.length + 1}">${groupedOrder.totalPrice}</td>
+            <td rowspan="${groupedOrder.items.length + 1}">${groupedOrder.status}</td>
+            <td rowspan="${groupedOrder.items.length + 1}">${groupedOrder.orderTime}</td>
+            <td rowspan="${groupedOrder.items.length + 1}">${groupedOrder.payTime}</td>
+        </tr>`;
+
             // 添加訂單中的每個項目
-            groupedOrder.items.forEach(function (item) {
+            groupedOrder.items.forEach(function (item, index) {
                 let imageUrl = '..' + item.image + 'collect.png';
                 orderDiv += `
-                        <tr class="tr-img">
-                            <th>圖片:</th>
-                            <td colspan="2" id="ord-img-div">
-                                <img src="${imageUrl}" alt="${item.title}" style="width: 100px;">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>訂單名:</th>
-                            <td>${item.title}</td>
-                        </tr>
-                        <tr>
-                            <th>價格:</th>
-                            <td>${item.price}</td>
-                        </tr>
-                        <tr>
-                            <th>數量:</th>
-                            <td>${item.num}</td>
-                        </tr>
-            `;
+        <tr>
+            <td><img src="${imageUrl}" alt="${item.title}" style="width: 100px;"></td>
+            <td>${item.title}</td>
+            <td>${item.price}</td>
+            <td>${item.num}</td>
+        </tr>
+        `;
             });
-            orderDiv += `</table>`;
+
+            orderDiv += `</table></div>`; // 關閉外部div
             ordersContainer.append(orderDiv);
         });
     }
 
 
-    function fetchOrders() {
+
+        function fetchOrders() {
         $.ajax({
             url: '/orders/queryOrderVo',
             type: 'GET',
