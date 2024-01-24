@@ -30,9 +30,6 @@
             margin: 1em;
         }
 
-        #orders {
-            display: flex;
-        }
 
         .tr-head {
             background: #ccc;
@@ -148,9 +145,9 @@
                 </div>
                 <div id="collapseOne" class="panel-collapse collapse in">
                     <div class="panel-body">
-                        <div><a href="orders.html"><b>全部訂單</b></a></div>
-                        <div><a href="javascript:void(0);" onclick="fetchOrdersByStatus(1)">待付款</a></div>
-                        <div><a href="javascript:void(0);" onclick="fetchOrdersByStatus(2)">待收貨</a></div>
+                        <div><a href="orders.html">全部訂單</a></div>
+                        <div><a id="NoPay" href="javascript:void(0);" onclick="fetchOrdersByStatus(0)">待付款</a></div>
+                        <div><a id="NoGet" href="javascript:void(0);" onclick="fetchOrdersByStatus(1)">待收貨</a></div>
                         <!--                        <div><a href="orders.html">待評價</a></div>-->
                         <!--                        <div><a href="orders.html">退貨</a></div>-->
                     </div>
@@ -175,6 +172,7 @@
         </div>
     </div>
     <!--左側導航結束-->
+    <h1 id="queryS">全部訂單</h1>
     <div class="col-md-10">
         <div id="orders">
             <!-- 訂單數據將在這裡顯示 -->
@@ -324,21 +322,29 @@
     //靠狀態搜尋訂單
     //----------------------------------------------------------------------------------
     function fetchOrdersByStatus(status) {
+        changeQuerySName();
         $.ajax({
             url: '/orders/uidOrderVoStatus?status=' + status,
             type: 'GET',
             success: function (json) {
-                if (json.state == 200) {
+
                     $('#orders').empty();
+
+                if (json.state == 200) {
                     displayOrders(json.data);
+
                 } else {
                     console.error('Failed to fetch orders:', json.message);
+                    // alert("沒有任何訂單唷~!");
+                    // changeQuerySName();
                 }
             },
             error: function (xhr) {
                 console.error('An error occurred:', xhr.message);
             }
         });
+        // changeQuerySName();
+
     }
 
     //-------------------------------------------------------------------------------
@@ -348,10 +354,13 @@
             url: '/orders/updateStatus?' + 'oid=' + oid  + '&status=1',
             type: 'GET',
             success: function (json) {
+
                 if (json.state == 200) {
                     $('#orders').empty();
-                    displayOrders(json.data);
-                    // window.location("/orders.html");
+                    // displayOrders(json.data);
+
+                    fetchOrders();
+                    console.log("ok");
                 } else {
                     console.error('Failed to fetch orders:', json.message);
                 }
@@ -363,7 +372,21 @@
 
     }
 
+    function changeQuerySName(){
+        const queryS =  document.getElementById('queryS');
+        const NoPay =  document.getElementById('NoPay');
+        const NoGet =  document.getElementById('NoGet');
+        NoPay.addEventListener("click",(e)=>{
+            let Name = NoPay.innerText;
 
+            queryS.innerText = Name;
+        });
+
+        NoGet.addEventListener("click",(e)=>{
+            let Name = NoGet.innerText;
+            queryS.innerText = Name;
+        });
+    }
 
 
 
@@ -371,6 +394,7 @@
         fetchOrders();
         showLogoDiv();
         showHotList();
+        changeQuerySName();
     });
 </script>
 
