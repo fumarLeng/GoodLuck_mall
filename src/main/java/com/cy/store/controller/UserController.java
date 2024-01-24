@@ -55,6 +55,7 @@ public class UserController extends BassController {
         session.setAttribute("uid", data.getUid());
         session.setAttribute("username", data.getUsername());
         session.setAttribute("avatar",data.getAvatar());
+        session.setAttribute("gender",data.getGender());
 
         //測試拿不拿的到session裡面的數據
 //        System.out.println(getuidFromSession(session));

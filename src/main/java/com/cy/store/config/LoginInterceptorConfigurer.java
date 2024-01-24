@@ -37,7 +37,6 @@ public class LoginInterceptorConfigurer implements WebMvcConfigurer {
         patterns.add("/products/**");
 
 
-
         registry.addInterceptor(interceptor) //註冊
             .addPathPatterns("/**") //黑名單
             .excludePathPatterns(patterns); //他要的參數是一個list集合

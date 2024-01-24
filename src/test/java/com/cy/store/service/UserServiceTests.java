@@ -58,7 +58,7 @@ public class UserServiceTests {
 //        Integer uid = 7;
 //        User user = userService.getByUid(uid);
 //        System.out.println(user);
-        System.out.println(userService.getByUid(7));
+        System.out.println(userService.getByUid(2));
     }
 
     //----------------------------------------------//
