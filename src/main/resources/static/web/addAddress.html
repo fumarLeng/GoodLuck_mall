@@ -19,47 +19,20 @@
     <link rel="stylesheet" type="text/css" href="../css/top.css"/>
     <link rel="stylesheet" type="text/css" href="../css/footer.css"/>
 
+    <!--  自訂CSS  -->
+    <link rel="stylesheet" type="text/css" href="../css/com/nav/shopLogo.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/index.css"/>
+
 </head>
 
 <body>
 <!--頭部-->
 <header class="header">
-    <!--LOGO-->
-    <div class="row">
-        <div class="col-md-3">
-            <a href="index.html">
-                <img src="../images/index/loogo-fotor-2024011212725.jpg"/>
-            </a>
-        </div>
-        <!--導航選項-->
-        <div class="col-md-9 top-item">
-            <ul class="list-inline pull-right">
-                <li><a href="favorites.html"><span class="fa fa-heart"></span>&nbsp;收藏</a></li>
-                <li class="li-split">|</li>
-                <li><a href="orders.html"><span class="fa fa-file-text"></span>&nbsp;訂單</a></li>
-                <li class="li-split">|</li>
-                <li><a href="cart.html"><span class="fa fa-cart-plus"></span>&nbsp;購物車</a></li>
-                <li class="li-split">|</li>
-                <li>
-                    <!--下拉列表:管理-->
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">
-                            <span id="top-dropdown-btn"><span class="fa fa-gears"></span>&nbsp;管理 <span
-                                    class="caret"></span></span>
-                        </button>
-                        <ul class="dropdown-menu top-dropdown-ul" role="menu">
-                            <li><a href="password.html">修改密碼</a></li>
-                            <li><a href="userdata.html">個人資料</a></li>
-                            <li><a href="upload.html">上傳頭像</a></li>
-                            <li><a href="address.html">收貨管理</a></li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="li-split">|</li>
-                <li><a href="login.html"><span class="fa fa-user"></span> 登錄</a></li>
-            </ul>
-        </div>
+
+    <!--商城文字 logo-->
+    <div class="row" id="logo-position">
     </div>
+
 </header>
 <!--導航-->
 <!--分割導航列跟頂部-->
@@ -268,11 +241,17 @@
     </div>
 </footer>
 
+
+<script src="../js/com/nav/showLogoDiv.js"></script>
+<script src="../js/com/nav/showHotList.js"></script>
+
 <script type="text/javascript">
     //value的值表示當前這個區域的code
     let defaultOption = "<option value='0'>---- 請選擇 ----</option>";
 
     $(document).ready(function () {
+        showLogoDiv();
+        showHotList();
         showProvinceList();
         //設定默認的值
         $("#province-list").append(defaultOption);
@@ -280,15 +259,15 @@
         $("#area-list").append(defaultOption);
     });
 
-//---------------------------城市----------------------------------------
-    $("#province-list").change(function(){
+    //---------------------------城市----------------------------------------
+    $("#province-list").change(function () {
         //先拿到父代號
         let parent = $("#province-list").val();
         //先清空select下拉列表的option元素 然後設定默認
         $("#city-list").empty().append(defaultOption);
         $("#area-list").empty().append(defaultOption);
 
-        if(parent === 0){
+        if (parent === 0) {
             return;
         }
 
@@ -307,20 +286,20 @@
                             "<option value='" + list[i].code + "'>" + list[i].name + "</option>";
                         $("#city-list").append(opt);
                     }
-                }else{
+                } else {
                     alert("欄位載入失敗");
                 }
             }
         });
     });
-//---------------------------區----------------------------------------
-    $("#city-list").change(function(){
+    //---------------------------區----------------------------------------
+    $("#city-list").change(function () {
         //先拿到父代號
         let parent = $("#city-list").val();
         //先清空select下拉列表的option元素 然後設定默認
         $("#area-list").empty().append(defaultOption);
 
-        if(parent === 0){
+        if (parent === 0) {
             return;
         }
 
@@ -339,7 +318,7 @@
                             "<option value='" + list[i].code + "'>" + list[i].name + "</option>";
                         $("#area-list").append(opt);
                     }
-                }else{
+                } else {
                     alert("欄位載入失敗");
                 }
             }
@@ -347,7 +326,7 @@
     });
 
 
-//---------------------------國家----------------------------------------
+    //---------------------------國家----------------------------------------
     function showProvinceList() {
         $.ajax({
             url: "/districts",
@@ -366,7 +345,7 @@
 
                     }
 
-                }else{
+                } else {
                     alert("欄位載入失敗");
                 }
             }
