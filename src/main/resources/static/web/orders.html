@@ -30,9 +30,6 @@
             margin: 1em;
         }
 
-        #orders {
-            display: flex;
-        }
 
         .tr-head {
             background: #ccc;
@@ -85,6 +82,15 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 4px;
             overflow: hidden;
+        }
+
+        #orders{
+            display: flex;
+            flex-direction: column;
+        }
+        td{
+            width: 60px;
+            text-align: center;
         }
     </style>
 
@@ -139,9 +145,9 @@
                 </div>
                 <div id="collapseOne" class="panel-collapse collapse in">
                     <div class="panel-body">
-                        <div><a href="orders.html"><b>全部訂單</b></a></div>
-                        <div><a href="javascript:void(0);" onclick="fetchOrdersByStatus(1)">待付款</a></div>
-                        <div><a href="javascript:void(0);" onclick="fetchOrdersByStatus(2)">待收貨</a></div>
+                        <div><a href="orders.html">全部訂單</a></div>
+                        <div><a id="NoPay" href="javascript:void(0);" onclick="fetchOrdersByStatus(0)">待付款</a></div>
+                        <div><a id="NoGet" href="javascript:void(0);" onclick="fetchOrdersByStatus(1)">待收貨</a></div>
                         <!--                        <div><a href="orders.html">待評價</a></div>-->
                         <!--                        <div><a href="orders.html">退貨</a></div>-->
                     </div>
@@ -166,6 +172,7 @@
         </div>
     </div>
     <!--左側導航結束-->
+    <h1 id="queryS">全部訂單</h1>
     <div class="col-md-10">
         <div id="orders">
             <!-- 訂單數據將在這裡顯示 -->
@@ -242,7 +249,7 @@
                     totalPrice: 0,
                     status: order.status,
                     orderTime: order.orderTime,
-                    payTime: order.payTime || '未付款',
+                    payTime: order.payTime || '已付款',
                     items: []
                 };
             }
@@ -253,59 +260,48 @@
         // 渲染每個分組後的訂單
         Object.values(groupedOrders).forEach(function (groupedOrder) {
             let orderDiv = `
-                <table border="1">
-                    <tr class="tr-head">
-                        <th>訂單編號:</th>
-                        <td>${groupedOrder.oid}</td>
-                    </tr>
-                    <tr>
-                        <th>總價:</th>
-                        <td>${groupedOrder.totalPrice}</td>
-                    </tr>
-                    <tr>
-                        <th>狀態:</th>
-                        <td>${groupedOrder.status}</td>
-                    </tr>
-                    <tr>
-                        <th>下訂單時間:</th>
-                        <td>${groupedOrder.orderTime}</td>
-                    </tr>
-                    <tr>
-                        <th>付款時間:</th>
-                        <td>${groupedOrder.payTime}</td>
-                    </tr>
-        `;
+<div class="ord-table"> <!-- 添加一个包裹div -->
+    <table border="1">
+        <tr class="tr-head">
+            <th>訂單編號:</th>
+            <th>總價:</th>
+            <th>狀態:</th>
+            <th>下訂單時間:</th>
+            <th>付款時間:</th>
+            <th colspan="4">商品信息</th>
+
+        </tr>
+
+        <tr>
+            <td rowspan="${groupedOrder.items.length + 1}">${groupedOrder.oid}</td>
+            <td rowspan="${groupedOrder.items.length + 1}">${groupedOrder.totalPrice}</td>
+            <td rowspan="${groupedOrder.items.length + 1}"><button class="checkShop" onclick="checkShopEvent(${groupedOrder.oid})">確認收貨</button></td>
+            <td rowspan="${groupedOrder.items.length + 1}">${groupedOrder.orderTime}</td>
+            <td rowspan="${groupedOrder.items.length + 1}">${groupedOrder.payTime}</td>
+        </tr>`;
+
             // 添加訂單中的每個項目
-            groupedOrder.items.forEach(function (item) {
+            groupedOrder.items.forEach(function (item, index) {
                 let imageUrl = '..' + item.image + 'collect.png';
                 orderDiv += `
-                        <tr class="tr-img">
-                            <th>圖片:</th>
-                            <td colspan="2" id="ord-img-div">
-                                <img src="${imageUrl}" alt="${item.title}" style="width: 100px;">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>訂單名:</th>
-                            <td>${item.title}</td>
-                        </tr>
-                        <tr>
-                            <th>價格:</th>
-                            <td>${item.price}</td>
-                        </tr>
-                        <tr>
-                            <th>數量:</th>
-                            <td>${item.num}</td>
-                        </tr>
-            `;
+        <tr>
+            <td><img src="${imageUrl}" alt="${item.title}" style="width: 100px;"></td>
+            <td>${item.title}</td>
+            <td>${item.price}</td>
+            <td>${item.num}</td>
+
+        </tr>
+        `;
             });
-            orderDiv += `</table>`;
+
+            orderDiv += `</table></div>`; // 關閉外部div
             ordersContainer.append(orderDiv);
         });
     }
 
 
-    function fetchOrders() {
+
+        function fetchOrders() {
         $.ajax({
             url: '/orders/queryOrderVo',
             type: 'GET',
@@ -326,13 +322,45 @@
     //靠狀態搜尋訂單
     //----------------------------------------------------------------------------------
     function fetchOrdersByStatus(status) {
+        changeQuerySName();
         $.ajax({
             url: '/orders/uidOrderVoStatus?status=' + status,
             type: 'GET',
             success: function (json) {
+
+                    $('#orders').empty();
+
+                if (json.state == 200) {
+                    displayOrders(json.data);
+
+                } else {
+                    console.error('Failed to fetch orders:', json.message);
+                    // alert("沒有任何訂單唷~!");
+                    // changeQuerySName();
+                }
+            },
+            error: function (xhr) {
+                console.error('An error occurred:', xhr.message);
+            }
+        });
+        // changeQuerySName();
+
+    }
+
+    //-------------------------------------------------------------------------------
+    function checkShopEvent(oid) {
+
+        $.ajax({
+            url: '/orders/updateStatus?' + 'oid=' + oid  + '&status=1',
+            type: 'GET',
+            success: function (json) {
+
                 if (json.state == 200) {
                     $('#orders').empty();
-                    displayOrders(json.data);
+                    // displayOrders(json.data);
+
+                    fetchOrders();
+                    console.log("ok");
                 } else {
                     console.error('Failed to fetch orders:', json.message);
                 }
@@ -341,15 +369,32 @@
                 console.error('An error occurred:', xhr.message);
             }
         });
+
     }
 
-    //-------------------------------------------------------------------------------
+    function changeQuerySName(){
+        const queryS =  document.getElementById('queryS');
+        const NoPay =  document.getElementById('NoPay');
+        const NoGet =  document.getElementById('NoGet');
+        NoPay.addEventListener("click",(e)=>{
+            let Name = NoPay.innerText;
+
+            queryS.innerText = Name;
+        });
+
+        NoGet.addEventListener("click",(e)=>{
+            let Name = NoGet.innerText;
+            queryS.innerText = Name;
+        });
+    }
+
 
 
     $(document).ready(function () {
         fetchOrders();
         showLogoDiv();
         showHotList();
+        changeQuerySName();
     });
 </script>
 
