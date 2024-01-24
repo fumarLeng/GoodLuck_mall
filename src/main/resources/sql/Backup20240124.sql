@@ -74,7 +74,7 @@ CREATE TABLE `t_cart` (
   `modified_user` varchar(20) DEFAULT NULL COMMENT '修改人',
   `modified_time` datetime DEFAULT NULL COMMENT '修改時間',
   PRIMARY KEY (`cid`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -83,7 +83,7 @@ CREATE TABLE `t_cart` (
 
 LOCK TABLES `t_cart` WRITE;
 /*!40000 ALTER TABLE `t_cart` DISABLE KEYS */;
-INSERT INTO `t_cart` VALUES (6,2,10000001,23,3,'test02','2024-01-15 14:33:24','test02','2024-01-22 15:26:58'),(10,3,10000001,23,2,'test03','2024-01-17 14:43:40','test03','2024-01-17 15:06:38'),(11,3,10000003,13,1,'test03','2024-01-17 14:44:17','test03','2024-01-17 14:44:17'),(14,2,10000002,46,1,'test02','2024-01-22 15:38:10','test02','2024-01-22 15:38:10');
+INSERT INTO `t_cart` VALUES (10,3,10000001,23,2,'test03','2024-01-17 14:43:40','test03','2024-01-17 15:06:38'),(11,3,10000003,13,1,'test03','2024-01-17 14:44:17','test03','2024-01-17 14:44:17'),(17,2,10000006,28,1,'test02','2024-01-24 14:03:25','test02','2024-01-24 14:03:25');
 /*!40000 ALTER TABLE `t_cart` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -138,7 +138,7 @@ CREATE TABLE `t_order` (
   `modified_user` varchar(20) DEFAULT NULL COMMENT '修改人',
   `modified_time` datetime DEFAULT NULL COMMENT '修改時間',
   PRIMARY KEY (`oid`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147,7 +147,7 @@ CREATE TABLE `t_order` (
 
 LOCK TABLES `t_order` WRITE;
 /*!40000 ALTER TABLE `t_order` DISABLE KEYS */;
-INSERT INTO `t_order` VALUES (2,2,'小王','0980808080','8860000','8864000','8864001','小王村3號',33055,0,'2024-01-15 13:51:05',NULL,'test02','2024-01-15 13:51:05','test02','2024-01-15 13:51:05'),(18,2,'測試地址','0966666666','8860000','8861200','8861202','測試路1號',115,1,'2024-01-22 15:33:28',NULL,'test02','2024-01-22 15:33:28','test02','2024-01-22 15:33:28'),(21,2,'測試地址','0966666666','8860000','8861200','8861202','測試路1號',115,2,'2024-01-22 15:38:21',NULL,'test02','2024-01-22 15:38:21','test02','2024-01-22 15:38:21');
+INSERT INTO `t_order` VALUES (2,2,'小王','0980808080','台灣','桃園市','桃園區','小王村3號',33055,1,'2024-01-15 13:51:05','2024-01-24 13:44:35','test02','2024-01-15 13:51:05','test02','2024-01-15 13:51:05'),(18,2,'測試地址','0966666666','台灣','雲林縣','斗南鎮','測試路1號',115,2,'2024-01-22 15:33:28',NULL,'test02','2024-01-22 15:33:28','test02','2024-01-22 15:33:28'),(22,2,'小王','0980808080','台灣','桃園市','桃園區','小王村3號',87,2,'2024-01-24 13:46:27',NULL,'test02','2024-01-24 13:46:27','test02','2024-01-24 13:46:27');
 /*!40000 ALTER TABLE `t_order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -171,7 +171,7 @@ CREATE TABLE `t_order_item` (
   `modified_user` varchar(20) DEFAULT NULL COMMENT '修改人',
   `modified_time` datetime DEFAULT NULL COMMENT '修改時間',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -180,7 +180,7 @@ CREATE TABLE `t_order_item` (
 
 LOCK TABLES `t_order_item` WRITE;
 /*!40000 ALTER TABLE `t_order_item` DISABLE KEYS */;
-INSERT INTO `t_order_item` VALUES (2,2,10000007,'Dell 700R經典版金色','/images/portal/11DELLran7000gold/',32999,1,'test02','2024-01-15 13:51:05','test02','2024-01-15 13:51:05'),(3,2,10000006,'三木 C4523 網格夾鏈袋/文件帶12個裝顏色隨機','/images/portal/005/',28,2,'test02','2024-01-15 13:51:05','test02','2024-01-15 13:51:05'),(32,18,10000002,'(GuangBo)皮質日程筆記本,計畫筆記本米色FB60322','/images/portal/002/',46,1,'test02','2024-01-22 15:33:28','test02','2024-01-22 15:33:28'),(33,18,10000001,'測試筆記本','/images/portal/001/',23,3,'test02','2024-01-22 15:33:28','test02','2024-01-22 15:33:28'),(38,21,10000002,'(GuangBo)皮質日程筆記本,計畫筆記本米色FB60322','/images/portal/002/',46,1,'test02','2024-01-22 15:38:21','test02','2024-01-22 15:38:21'),(39,21,10000001,'測試筆記本','/images/portal/001/',23,3,'test02','2024-01-22 15:38:21','test02','2024-01-22 15:38:21');
+INSERT INTO `t_order_item` VALUES (2,2,10000007,'Dell 700R經典版金色','/images/portal/11DELLran7000gold/',32999,1,'test02','2024-01-15 13:51:05','test02','2024-01-15 13:51:05'),(3,2,10000006,'三木 C4523 網格夾鏈袋/文件帶12個裝顏色隨機','/images/portal/005/',28,2,'test02','2024-01-15 13:51:05','test02','2024-01-15 13:51:05'),(32,18,10000002,'(GuangBo)皮質日程筆記本,計畫筆記本米色FB60322','/images/portal/002/',46,1,'test02','2024-01-22 15:33:28','test02','2024-01-22 15:33:28'),(33,18,10000001,'測試筆記本','/images/portal/001/',23,3,'test02','2024-01-22 15:33:28','test02','2024-01-22 15:33:28'),(40,22,10000004,'(deli）1548A商務辦公計算機,太陽能雙電源','/images/portal/004/',58,1,'test02','2024-01-24 13:46:27','test02','2024-01-24 13:46:27'),(41,22,10000005,'(Schneider） K15 經典款滾珠筆(5之混裝)','/images/portal/03SchneiderK15/',29,1,'test02','2024-01-24 13:46:27','test02','2024-01-24 13:46:27');
 /*!40000 ALTER TABLE `t_order_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -265,4 +265,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-01-23 15:22:44
+-- Dump completed on 2024-01-24 14:06:06
