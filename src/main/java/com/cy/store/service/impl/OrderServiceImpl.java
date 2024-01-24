@@ -50,10 +50,19 @@ public class OrderServiceImpl implements IOrderService {
         //把address的收貨地址放到order裡面
         order.setRecvName(address.getName());
         order.setRecvPhone(address.getPhone());
-        order.setRecvProvince(address.getProvinceCode());
-        order.setRecvCity(address.getCityCode());
-        order.setRecvArea(address.getAreaCode());
+        order.setRecvProvince(address.getProvinceName());
+        order.setRecvCity(address.getCityName());
+        order.setRecvArea(address.getAreaName());
         order.setRecvAddress(address.getAddress());
+
+//        order.setRecvName(address.getName());
+//        order.setRecvPhone(address.getPhone());
+//        order.setRecvProvince(address.getProvinceCode());
+//        order.setRecvCity(address.getCityCode());
+//        order.setRecvArea(address.getAreaCode());
+//        order.setRecvAddress(address.getAddress());
+
+
         //狀態跟總價格跟訂單付款時間
         order.setStatus(0);
         order.setTotalPrice(totalPrice);
