@@ -38,7 +38,7 @@ function getUserData() {
                 tr.append('<td><img src="data:image/png;base64,' + user.avatar + '" alt="User Avatar" style="width:50px;height:50px;"></td>');
                 tr.append('<td>' + (user.isDelete ? '是' : '否') + '</td>');
                 tr.append('<td>' +
-                    '<button class="btn btn-success btn-sm">修改</button>' +
+                    '<button class="btn btn-success btn-sm userUpdata" onclick="userUpdataEvent(this)">修改</button>' +
                     '<button class="btn btn-warning btn-sm">刪除</button>' +
                     '</td>');
                 tbody.append(tr);
@@ -51,4 +51,12 @@ function getUserData() {
             console.log('AJAX請求失敗：' + textStatus + ', ' + errorThrown);
         }
     });
+}
+
+function userUpdataEvent(clickedButton){
+    const userUpdata_btnList = document.querySelectorAll(".userUpdata");
+    const index = Array.prototype.indexOf.call(userUpdata_btnList, clickedButton) + 1;
+    // alert("您點擊的是第 " + (index) + " 個按鈕");
+
+
 }

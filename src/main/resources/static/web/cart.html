@@ -73,7 +73,7 @@
                         <thead>
                         <tr>
                             <th width="8%">
-                                <input type="checkbox" class="ckall" onclick="checkall(this)"/>全選
+                                <input type="checkbox" class="ckall" id="allSelectChecked" onclick="checkAllSelect(this)"/>全選
                             </th>
                             <th width="110"></th>
                             <th width="29%">商品</th>
@@ -91,7 +91,7 @@
                         </tbody>
                     </table>
                     <div class="total-bar">
-                        <a href="javascript:selDelCart()" class="cart-del-sel btn btn-default btn-xs">刪除所選商品</a>
+<!--                        <a href="javascript:selDelCart()" class="cart-del-sel btn btn-default btn-xs">刪除所選商品</a>-->
                         <span class="pull-right">已選商品
 								<span id="selectCount">0</span>件 總價$
 								<span id="selectTotal">0</span>元
@@ -125,7 +125,7 @@
         </div>
         <div class="col-md-2">
             <span class="fa fa-bitcoin"></span>
-            <p>@@@@</p>
+            <p>帶你發財</p>
         </div>
     </div>
     <!--聯繫我們-->
@@ -164,9 +164,11 @@
         版權所有
     </div>
 </footer>
-
+<!--    nav-->
     <script src="../js/com/nav/showLogoDiv.js"></script>
     <script src="../js/com/nav/showHotList.js"></script>
+<!--self cart -->
+    <script src="../js/frontEnd/cart/checkAllSelect.js"></script>
 <!--footer結束-->
 <script type="text/javascript">
     $(function () {
@@ -180,6 +182,7 @@
         showCartList();
         showLogoDiv();
         showHotList();
+
     })
 
     function showCartList() {
@@ -196,7 +199,7 @@
                 for (let i = 0; i < list.length; i++) {
                     let tr = '<tr>'
                         + '<td>'
-                        + '<input name="cids" value="#{cid}" type="checkbox" class="ckitem" />'
+                        + '<input name="cids" value="#{cid}" type="checkbox" class="ckitem" onclick=""/>'
                         + '</td>'
                         + '<td><img src="..#{image}collect.png" class="img-responsive" /></td>'
                         + '<td>#{title}</td>'
@@ -296,7 +299,16 @@
             })
         }
     }
-
+    // function checkAllSelect(btn){
+    //     const checkList = document.querySelectorAll(".ckitem");
+    //     for(let i = 0 ; i < checkList.length ; i++){
+    //         if(btn.checked === true){
+    //             checkList[i].checked = true;
+    //         }else{
+    //             checkList[i].checked = false;
+    //         }
+    //     }
+    // }
 
 </script>
 </body>
