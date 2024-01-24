@@ -146,8 +146,8 @@
                 <div id="collapseOne" class="panel-collapse collapse in">
                     <div class="panel-body">
                         <div><a href="orders.html">全部訂單</a></div>
-                        <div><a id="NoPay" href="javascript:void(0);" onclick="fetchOrdersByStatus(0)">待付款</a></div>
-                        <div><a id="NoGet" href="javascript:void(0);" onclick="fetchOrdersByStatus(1)">待收貨</a></div>
+                        <div><a id="NoPay" href="javascript:void(0);" onclick="fetchOrdersByStatus(0)">已付款</a></div>
+                        <div><a id="NoGet" href="javascript:void(0);" onclick="fetchOrdersByStatus(1)">已收貨</a></div>
                         <!--                        <div><a href="orders.html">待評價</a></div>-->
                         <!--                        <div><a href="orders.html">退貨</a></div>-->
                     </div>
@@ -249,7 +249,7 @@
                     totalPrice: 0,
                     status: order.status,
                     orderTime: order.orderTime,
-                    payTime: order.payTime || '已付款',
+                    payTime: order.payTime ,
                     items: []
                 };
             }
