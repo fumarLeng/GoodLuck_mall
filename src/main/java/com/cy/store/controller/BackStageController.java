@@ -5,6 +5,7 @@ import com.cy.store.entity.Product;
 import com.cy.store.entity.User;
 import com.cy.store.service.impl.BackStageUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,9 +26,10 @@ public class BackStageController {
     @GetMapping("")
     public String getAllUserData(HttpServletRequest request) {
         List<User> userList = UserService.getAllUserData();
-        request.setAttribute("userList",userList);
+        request.setAttribute("userList", userList);
         return "forward:/web/BackStage/index.html";
     }
+
     @GetMapping("/user")
     public ResponseEntity<List<User>> getAllUserData() {
         List<User> userList = UserService.getAllUserData();
@@ -35,15 +37,29 @@ public class BackStageController {
         return ResponseEntity.ok(userList);
     }
 
-//    修改
-//	@PutMapping("/user/{uid}")
-//    public ResponseEntity<User> updateUser(@PathVariable Integer User){
-//        //    	判斷數據是否存在
-//
-//        //    		修改數據
-//
-//        return ResponseEntity.ok(userList);
-//    }
+    //    修改
+    @PutMapping("/user/{uid}")
+    public ResponseEntity<?> updateUser(@PathVariable Integer uid) {
+        List<User> userList = UserService.getAllUserData();
+        User updatedUser = null;
+        for (User user : userList) {
+            if (uid.equals(user.getUid())) {
+                updatedUser = user;
+                //找到
+                System.out.println("ok");
+                break;
+            }
+        }
+
+        if (updatedUser != null) {
+
+            return ResponseEntity.ok(updatedUser);
+        } else {
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found with id: " + uid);
+        }
+    }
+
 
     @GetMapping("/order")
     public ResponseEntity<List<Order>> getAllOrderData() {
@@ -51,6 +67,7 @@ public class BackStageController {
         System.out.println("getOid: " + orderList.get(0).getRecvPhone());
         return ResponseEntity.ok(orderList);
     }
+
     @GetMapping("/product")
     public ResponseEntity<List<Product>> getAllProductData() {
         List<Product> productList = UserService.getAllProductData();
