@@ -89,15 +89,18 @@ function userUpdataEvent(clickedButton) {
             let tbody = $('<tbody></tbody>');
             // $.each(userList, function (index, user) {
                 let tr = $('<tr></tr>');
-                tr.append('<td>' + userList.uid + '</td>');
-                tr.append('<td>' + userList.username + '</td>');
-                tr.append('<td>' + userList.password + '</td>');
-                tr.append('<td>' + userList.salt + '</td>');
-                tr.append('<td>' + userList.phone + '</td>');
-                tr.append('<td>' + userList.email + '</td>');
-                // tr.append('<td>' + user.gender + '</td>');
-                tr.append("<td>" + (userList.gender == 0 ? "女生" : "男生") + "</td>");
-                // tr.append('<td><img src="data:image/png;base64,' + user.avatar + '" alt="User Avatar" style="width:50px;height:50px;"></td>');
+                // tr.append('<input>' + userList.uid + '</input>');
+                tr.append('<td><input value="' + userList.uid + '"></td>');
+                tr.append('<td><input value="' + userList.username + '"></td>');
+                tr.append('<td><input value="' + userList.password + '"></td>');
+                tr.append('<td><input value="' + userList.salt + '"></td>');
+                tr.append('<td><input value="' + userList.phone + '"></td>');
+                tr.append('<td><input value="' + userList.email + '"></td>');
+                tr.append('<td><input value="' + (userList.gender == 0 ? '女生' : '男生') + '"></td>');
+
+
+                tr.append('<td><img src="data:image/png;base64,' + userList.avatar + '" alt="User Avatar" style="width:50px;height:50px;"></td>');
+
                 tr.append('<td>' + (userList.isDelete ? '是' : '否') + '</td>');
                 tr.append('<td>' +
                     '<button class="btn btn-success btn-sm userUpdata" onclick="userUpdataEvent(this)">修改</button>' +
