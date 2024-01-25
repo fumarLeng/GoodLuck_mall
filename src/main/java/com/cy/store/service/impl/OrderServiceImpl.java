@@ -67,6 +67,7 @@ public class OrderServiceImpl implements IOrderService {
         order.setStatus(0);
         order.setTotalPrice(totalPrice);
         order.setOrderTime(new Date());
+        order.setPayTime(new Date());
         //創建人時間修改人時間
         order.setCreatedUser(username);
         order.setCreatedTime(new Date());

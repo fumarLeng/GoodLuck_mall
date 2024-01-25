@@ -44,14 +44,17 @@
         SET password      = #{password},
             modified_user = #{modifiedUser},
             modified_time = #{modifiedTime}
-        WHERE uid = ${uid}
+        WHERE uid = #{uid}
 
     </update>
 
     <select id="findByUid" resultMap="UserEntityMap">
-        SELECT *
-        FROM t_user
-        WHERE uid = #{uid}
+        SELECT
+            *
+        FROM
+            t_user
+        WHERE
+            uid = #{uid}
     </select>
 
     <update id="updateInfoByUid">

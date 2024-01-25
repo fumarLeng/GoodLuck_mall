@@ -41,7 +41,7 @@ public class UserServiceTests {
     @Test
     public void login() {
 
-        User user = userService.login("test01", "123");
+        User user = userService.login("test02", "123");
         System.out.println(user);
     }
 
