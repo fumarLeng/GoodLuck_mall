@@ -35,7 +35,7 @@ public class UserMapperTests {
 
     @Test
     public void findByUsername() {
-        String username = "user06";
+        String username = "test02";
         User user = userMapper.findByUsername(username);
         System.out.println(user);
     }
