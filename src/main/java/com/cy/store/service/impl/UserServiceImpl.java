@@ -98,14 +98,15 @@ public class UserServiceImpl implements IUserService {
         }
 
 
-        //這樣把一層到一層之間傳輸的數據變少了
-        //例如登錄之後的頁面上方顯示只需要這些數據
+
+        //登錄之後的頁面需要多少放多少
         User user = new User();
         user.setUid(result.getUid());
         user.setUsername(result.getUsername());
         //回傳用戶頭像
         user.setAvatar(result.getAvatar());
         user.setGender(result.getGender());
+
 
         //在把資料回傳給user, 為了之後數據能帶到其他頁面使用
         return user;
