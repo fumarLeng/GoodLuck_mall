@@ -96,10 +96,12 @@ function userUpdataEvent(clickedButton) {
                 tr.append('<td><input value="' + userList.salt + '"></td>');
                 tr.append('<td><input value="' + userList.phone + '"></td>');
                 tr.append('<td><input value="' + userList.email + '"></td>');
-                tr.append('<td><input value="' + (userList.gender == 0 ? '女生' : '男生') + '"></td>');
+                // tr.append('<td><input value="' + (userList.gender == 0 ? '女生' : '男生') + '"></td>');
+                tr.append('<td><input type="radio" name="gender" value="0" ' + (userList.gender == 0 ? 'checked' : '') + '>女生 <input type="radio" name="gender" value="1" ' + (userList.gender == 1 ? 'checked' : '') + '>男生</td>');
 
 
-                tr.append('<td><img src="data:image/png;base64,' + userList.avatar + '" alt="User Avatar" style="width:50px;height:50px;"></td>');
+
+            tr.append('<td><img src="data:image/png;base64,' + userList.avatar + '" alt="User Avatar" style="width:50px;height:50px;"></td>');
 
                 tr.append('<td>' + (userList.isDelete ? '是' : '否') + '</td>');
                 tr.append('<td>' +
