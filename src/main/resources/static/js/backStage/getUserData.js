@@ -15,12 +15,12 @@ function getUserData() {
                 '<th class="member-list-th">ID</th>' +
                 '<th class="member-list-th">名稱</th>' +
                 '<th class="member-list-th">密碼</th>' +
-                '<th class="member-list-th">鹽值</th>' +
+                '<th class="member-list-th">加密(鹽值)</th>' +
                 '<th class="member-list-th">電話</th>' +
                 '<th class="member-list-th">郵件</th>' +
                 '<th class="member-list-th">性別</th>' +
                 '<th class="member-list-th">頭像</th>' +
-                '<th class="member-list-th">狀態</th>' +
+                '<th class="member-list-th">是否刪除</th>' +
                 '<th class="member-list-th">操作</th>' +
                 '</tr>');
             table.append(thead);
@@ -34,7 +34,8 @@ function getUserData() {
                 tr.append('<td>' + user.salt + '</td>');
                 tr.append('<td>' + user.phone + '</td>');
                 tr.append('<td>' + user.email + '</td>');
-                tr.append('<td>' + user.gender + '</td>');
+                // tr.append('<td>' + user.gender + '</td>');
+                tr.append("<td>" + (user.gender == 0 ? "女生" : "男生") + "</td>");
                 tr.append('<td><img src="data:image/png;base64,' + user.avatar + '" alt="User Avatar" style="width:50px;height:50px;"></td>');
                 tr.append('<td>' + (user.isDelete ? '是' : '否') + '</td>');
                 tr.append('<td>' +
