@@ -123,8 +123,10 @@ function userUpdataEvent(clickedButton) {
 function userUpdataEventFinish(clickedButton) {
     const userUpdata_btnList = document.querySelectorAll(".userUpdata");
     const index = Array.prototype.indexOf.call(userUpdata_btnList, clickedButton) + 1;
+    // const userNameValue = $('td[name="username"]').text();
     const uidValue = $('td[name="uid"]').text();
-    const userNameValue = $('td[name="username"]').text();
+    const phone = $('input[name="phone"]').val();
+    const email = $('input[name="email"]').val();
     const userGender = $('input[name="gender"]:checked').val();
     const userIsDelete = $('input[name="isDelete"]:checked').val();
     // const userGender = $('input[name="gender"]:checked').val();
@@ -141,17 +143,17 @@ function userUpdataEventFinish(clickedButton) {
         contentType: 'application/json',
         data: JSON.stringify({
             "uid": uidValue,
-            "username": userNameValue,
+            // "username": userNameValue,
+            "phone" : phone,
+            "email" : email,
             "gender": userGender,
             "isDelete": userIsDelete
         }),
         success: function(result) {
-            // 請求成功時的回調函數
             console.log(result);
             getUserData();
         },
         error: function(xhr, status, error) {
-            // 請求失敗時的回調函數
             console.error(error);
         }
     });

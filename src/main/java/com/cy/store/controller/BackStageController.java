@@ -71,9 +71,10 @@ public class BackStageController {
             existingUser.setEmail(updatedUser.getEmail());
             existingUser.setGender(updatedUser.getGender());
             existingUser.setIsDelete(updatedUser.getIsDelete());
+
             System.out.println("uid: " + updatedUser.getUid());
-            System.out.println("Gender: " + updatedUser.getGender());
-            System.out.println("IsDelete: " + updatedUser.getIsDelete());
+            System.out.println("Gender: " + updatedUser.getPhone());
+            System.out.println("IsDelete: " + updatedUser.getEmail());
             // 保存更新後的用戶資訊
             UserService.saveUser(existingUser);
 

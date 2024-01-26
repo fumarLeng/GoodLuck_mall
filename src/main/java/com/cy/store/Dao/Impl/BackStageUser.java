@@ -67,11 +67,16 @@ public class BackStageUser implements com.cy.store.Dao.BackStageUser {
     }
 
     public void saveUser(User existingUser){
-        String sql = "UPDATE `t_user` SET username= :username WHERE uid = :uid";
+        String sql = "UPDATE `t_user` SET phone = :phone , email = :email , gender = :gender , is_delete= :is_delete WHERE uid = :uid";
 
         Map<String, Object> map = new HashMap<>();
         map.put("uid", existingUser.getUid());
-        map.put("username", existingUser.getUsername());
+
+//        map.put("username", existingUser.getUsername());
+        map.put("phone", existingUser.getPhone());
+        map.put("email", existingUser.getEmail());
+        map.put("gender", existingUser.getGender());
+        map.put("is_delete", existingUser.getIsDelete());
 
         namedParameterJdbcTemplate.update(sql, map);
     }
