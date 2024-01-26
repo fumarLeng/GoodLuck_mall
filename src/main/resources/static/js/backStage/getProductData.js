@@ -177,7 +177,7 @@ function productUpdataEventFinish(clickedButton) {
         contentType: 'application/json',
         data: JSON.stringify({
             "id": idValue,
-            "getCategoryId" : category_id
+            "categoryId" : category_id
 
         }),
         success: function(result) {

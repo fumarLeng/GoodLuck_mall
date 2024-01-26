@@ -143,13 +143,12 @@ public class BackStageController {
 //            existingProduct.setGender(updatedProduct.getGender());
 //            existingProduct.setIsDelete(updatedProduct.getIsDelete());
 
-            System.out.println("id: " + updatedProduct.getId());
-            System.out.println("id: " + updatedProduct.getCategoryId());
+            System.out.println("getId: " + updatedProduct.getId());
+            System.out.println("getCategoryId: " + updatedProduct.getCategoryId());
 //            System.out.println("Gender: " + updatedProduct.getPhone());
 //            System.out.println("IsDelete: " + updatedProduct.getEmail());
             // 保存更新後的用戶資訊
-//            UserService.saveProduct(updatedProduct);
-
+            UserService.saveProdcut(updatedProduct);
             return new ResponseEntity<>("用戶更新成功", HttpStatus.OK);
         }
 //        } else {
