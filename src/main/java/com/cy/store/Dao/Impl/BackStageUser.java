@@ -84,13 +84,23 @@ public class BackStageUser implements com.cy.store.Dao.BackStageUser {
     @Override
     public void saveProdcut(Product existingProdcut){
 
-//        String sql = "UPDATE `t_product` SET category_id = :category_id , title = :title , sell_point = :sell_point , price= :price , num= :num +" +
-//                "WHERE id = :id";
 //        String sql = "UPDATE `t_product` SET category_id = :getCategoryId WHERE id = :id";
-            String sql = "UPDATE `t_product` SET category_id = :getCategoryId WHERE id = :id";
+        String sql = "UPDATE `t_product` SET category_id = :category_id , item_type := item_type , title = :title , " +
+                "sell_point = :sell_point ,price= :price , num = :num , " +
+                "image = :image ,status = :status , priority = :priority " +
+                " WHERE id = :id";
+
         Map<String, Object> map = new HashMap<>();
         map.put("id", existingProdcut.getId());
-        map.put("getCategoryId", existingProdcut.getCategoryId());
+        map.put("category_id", existingProdcut.getCategoryId());
+        map.put("item_type", existingProdcut.getItemType());
+        map.put("title", existingProdcut.getTitle());
+        map.put("sell_point", existingProdcut.getSellPoint());
+        map.put("price", existingProdcut.getPrice());
+        map.put("num", existingProdcut.getNum());
+        map.put("image", existingProdcut.getImage());
+        map.put("status", existingProdcut.getStatus());
+        map.put("priority", existingProdcut.getPriority());
 
 //        System.out.println("getCategoryId " + existingProdcut.getCategoryId());
 //

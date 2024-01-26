@@ -136,6 +136,13 @@ public class BackStageController {
             // 更新用戶資訊
 
             existingProduct.setCategoryId(updatedProduct.getCategoryId());
+            existingProduct.setItemType(updatedProduct.getItemType());
+            existingProduct.setTitle(updatedProduct.getTitle());
+            existingProduct.setSellPoint(updatedProduct.getSellPoint());
+            existingProduct.setPrice(updatedProduct.getPrice());
+            existingProduct.setNum(updatedProduct.getNum());
+            existingProduct.setImage(updatedProduct.getImage());
+            existingProduct.setStatus(updatedProduct.getStatus());
 //            existingProduct.setUsername(updatedProduct.getUsername());
 
 //            existingProduct.setPhone(updatedProduct.getPhone());

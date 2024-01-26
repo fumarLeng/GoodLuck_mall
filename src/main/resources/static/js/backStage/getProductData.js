@@ -110,14 +110,14 @@ function productUpdataEvent(clickedButton) {
                 tr.append('<td name="id" >' + productList.id + '</td>');
 
                 tr.append('<td><input class="user-input" name="category_id" value="' + productList.categoryId + '"></td>');
-                tr.append('<td><input class="user-input" name="categoryId" value="' + productList.item_type + '"></td>');
-                tr.append('<td><input class="user-input" name="categoryId" value="' + productList.title + '"></td>');
-                tr.append('<td><input class="user-input" name="categoryId" value="' + productList.sell_point + '"></td>');
-                tr.append('<td><input class="user-input" name="categoryId" value="' + productList.price + '"></td>');
-                tr.append('<td><input class="user-input" name="categoryId" value="' + productList.num + '"></td>');
-                tr.append('<td><input class="user-input" name="categoryId" value="' + productList.image + '"></td>');
-                tr.append('<td><input class="user-input" name="categoryId" value="' + productList.status + '"></td>');
-                tr.append('<td><input class="user-input" name="categoryId" value="' + productList.priority + '"></td>');
+                tr.append('<td><input class="user-input" name="item_type" value="' + productList.item_type + '"></td>');
+                tr.append('<td><input class="user-input" name="title" value="' + productList.title + '"></td>');
+                tr.append('<td><input class="user-input" name="sell_point" value="' + productList.sell_point + '"></td>');
+                tr.append('<td><input class="user-input" name="price" value="' + productList.price + '"></td>');
+                tr.append('<td><input class="user-input" name="num" value="' + productList.num + '"></td>');
+                tr.append('<td><input class="user-input" name="image" value="' + productList.image + '"></td>');
+                tr.append('<td><input class="user-input" name="status" value="' + productList.status + '"></td>');
+                tr.append('<td><input class="user-input" name="priority" value="' + productList.priority + '"></td>');
 
 
                 // tr.append('<td name="id" >' + productList.categoryId + '</td>');
@@ -155,7 +155,15 @@ function productUpdataEvent(clickedButton) {
 function productUpdataEventFinish(clickedButton) {
     const productUpData_btnList = document.querySelectorAll(".producUpData");
     const idValue = $('td[name="id"]').text();
-    const category_id = $('input[name="category_id"]').val();
+    const categoryId = $('input[name="category_id"]').val();
+    const ItemType = $('input[name="item_type"]').val();
+    const title = $('input[name="title"]').val();
+    const sellPoint = $('input[name="sell_point"]').val();
+    const price = $('input[name="price"]').val();
+    const num = $('input[name="num"]').val();
+    const image = $('input[name="image"]').val();
+    const status = $('input[name="status"]').val();
+    const priority = $('input[name="priority"]').val();
     // const index = Array.prototype.indexOf.call(productUpData_btnList, clickedButton) + 1;
     // const userNameValue = $('td[name="username"]').text();
     // const phone = $('input[name="phone"]').val();
@@ -177,8 +185,16 @@ function productUpdataEventFinish(clickedButton) {
         contentType: 'application/json',
         data: JSON.stringify({
             "id": idValue,
-            "categoryId" : category_id
-
+            "categoryId" : categoryId,
+            // "category_id" : category_id,
+            "ItemType" : ItemType,
+            "title" : title,
+            "SellPoint" : sellPoint,
+            "price" : price,
+            "num" : num,
+            "image" : image,
+            "status" : status,
+            "priority" : priority
         }),
         success: function(result) {
             console.log(result);
