@@ -110,9 +110,9 @@ function productUpdataEvent(clickedButton) {
                 tr.append('<td name="id" >' + productList.id + '</td>');
 
                 tr.append('<td><input class="user-input" name="category_id" value="' + productList.categoryId + '"></td>');
-                tr.append('<td><input class="user-input" name="item_type" value="' + productList.item_type + '"></td>');
+                tr.append('<td><input class="user-input" name="item_type" value="' + productList.itemType + '"></td>');
                 tr.append('<td><input class="user-input" name="title" value="' + productList.title + '"></td>');
-                tr.append('<td><input class="user-input" name="sell_point" value="' + productList.sell_point + '"></td>');
+                tr.append('<td><input class="user-input" name="sell_point" value="' + productList.sellPoint + '"></td>');
                 tr.append('<td><input class="user-input" name="price" value="' + productList.price + '"></td>');
                 tr.append('<td><input class="user-input" name="num" value="' + productList.num + '"></td>');
                 tr.append('<td><input class="user-input" name="image" value="' + productList.image + '"></td>');

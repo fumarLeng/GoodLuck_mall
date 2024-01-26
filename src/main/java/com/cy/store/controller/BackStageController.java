@@ -134,7 +134,7 @@ public class BackStageController {
         System.out.println("existingProduct: " + existingProduct);
         if (existingProduct != null) {
             // 更新用戶資訊
-
+            System.out.println("updatedProduct.getItemType(): " +  updatedProduct.getItemType());
             existingProduct.setCategoryId(updatedProduct.getCategoryId());
             existingProduct.setItemType(updatedProduct.getItemType());
             existingProduct.setTitle(updatedProduct.getTitle());

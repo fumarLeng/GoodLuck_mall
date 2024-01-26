@@ -85,7 +85,7 @@ public class BackStageUser implements com.cy.store.Dao.BackStageUser {
     public void saveProdcut(Product existingProdcut){
 
 //        String sql = "UPDATE `t_product` SET category_id = :getCategoryId WHERE id = :id";
-        String sql = "UPDATE `t_product` SET category_id = :category_id , item_type := item_type , title = :title , " +
+        String sql = "UPDATE `t_product` SET category_id = :category_id , item_type = :item_type , title = :title , " +
                 "sell_point = :sell_point ,price= :price , num = :num , " +
                 "image = :image ,status = :status , priority = :priority " +
                 " WHERE id = :id";
@@ -118,9 +118,10 @@ public class BackStageUser implements com.cy.store.Dao.BackStageUser {
         String sql = "SELECT * FROM `t_product` WHERE id =:id";
         Map<String, Object> map = new HashMap<>();
         map.put("id", id);
-        System.out.println("id: " + id);
+
         List<Product> ProductList = namedParameterJdbcTemplate.query(sql, map, new ProductListRowMapper());
-        System.out.println("ProductList.get(0): " + ProductList.get(0));
+        System.out.println("DaoProductList.get(0): " + ProductList.get(0));
+
         if (ProductList.size() > 0) {
             return ProductList.get(0);
         } else {
