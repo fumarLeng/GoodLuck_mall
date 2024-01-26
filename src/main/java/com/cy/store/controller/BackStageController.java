@@ -37,8 +37,31 @@ public class BackStageController {
         return ResponseEntity.ok(userList);
     }
 
+    //單筆查詢
+    @GetMapping("/user/{uid}")
+    public ResponseEntity<?> GetOneUser(@PathVariable Integer uid) {
+        List<User> userList = UserService.getAllUserData();
+        User updatedUser = null;
+        for (User user : userList) {
+            if (uid.equals(user.getUid())) {
+                updatedUser = user;
+                //找到
+                System.out.println("ok");
+                break;
+            }
+        }
+
+        if (updatedUser != null) {
+
+            return ResponseEntity.ok(updatedUser);
+        } else {
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found with id: " + uid);
+        }
+    }
+
     //    修改
-    @PutMapping("/user/{uid}")
+    @PutMapping("/user/modify/{uid}")
     public ResponseEntity<?> updateUser(@PathVariable Integer uid) {
         List<User> userList = UserService.getAllUserData();
         User updatedUser = null;
