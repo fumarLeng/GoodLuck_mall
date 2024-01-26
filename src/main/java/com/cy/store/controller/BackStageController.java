@@ -19,14 +19,14 @@ public class BackStageController {
 
     @Autowired
     private BackStageUserService UserService;
-
+    //頁面返回
     @GetMapping("")
     public String getAllUserData(HttpServletRequest request) {
         List<User> userList = UserService.getAllUserData();
         request.setAttribute("userList", userList);
         return "forward:/web/BackStage/index.html";
     }
-
+    //頁面資料
     @GetMapping("/user")
     public ResponseEntity<List<User>> getAllUserData() {
         List<User> userList = UserService.getAllUserData();
@@ -57,7 +57,7 @@ public class BackStageController {
         }
     }
 
-    //    修改
+    //修改
     @PutMapping("/user/modify/{uid}")
     public ResponseEntity<?> updateUser(@PathVariable Integer uid,
                                         @RequestBody User updatedUser) {
@@ -92,7 +92,7 @@ public class BackStageController {
         System.out.println("getOid: " + orderList.get(0).getRecvPhone());
         return ResponseEntity.ok(orderList);
     }
-
+    //頁面資料product
     @GetMapping("/product")
     public ResponseEntity<List<Product>> getAllProductData() {
         List<Product> productList = UserService.getAllProductData();
@@ -100,4 +100,26 @@ public class BackStageController {
         return ResponseEntity.ok(productList);
     }
 
+    //單筆查詢product
+    @GetMapping("/product/{id}")
+    public ResponseEntity<?> GetOneProduct(@PathVariable Integer id) {
+        List<Product> userList = UserService.getAllProductData();
+        Product updatedProduct = null;
+        for (Product product : userList) {
+            if (id.equals(product.getId())){
+                updatedProduct = product;
+                //找到
+                System.out.println("ok");
+                break;
+            }
+        }
+
+        if (updatedProduct != null) {
+
+            return ResponseEntity.ok(updatedProduct);
+        } else {
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found with id: " + id);
+        }
+    }
 }

@@ -34,7 +34,7 @@ function getProductData() {
             let tbody = $('<tbody></tbody>');
             $.each(productList, function (index, product) {
                 let tr = $('<tr></tr>');
-                tr.append('<td>' + product.id + '</td>');
+                tr.append('<td name="productId" id="productId">' + product.id + '</td>');
                 tr.append('<td>' + product.categoryId + '</td>');
                 tr.append('<td>' + product.itemType + '</td>');
                 tr.append('<td>' + product.title + '</td>');
@@ -68,12 +68,13 @@ function getProductData() {
 function productUpdataEvent(clickedButton) {
     const producUpData_btnList = document.querySelectorAll(".producUpData");
     const index = Array.prototype.indexOf.call(producUpData_btnList, clickedButton) + 1;
+    const productId = $('#productId').text();
     alert("您點擊的是第 " + (index) + " 個按鈕");
 
 
     $.ajax({
 
-        url: '/BackStage/product/' + index,
+        url: '/BackStage/product/' + productId,
         type: 'get',
         dataType: 'json',
         success: function (data) {
