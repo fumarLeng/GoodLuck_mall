@@ -21,4 +21,5 @@ public interface BackStageUserService {
 
 
     public void saveUser(User existingUser);
+    public void saveProdcut(Product existingUser);
 }

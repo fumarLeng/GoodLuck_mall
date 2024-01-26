@@ -130,25 +130,32 @@ public class BackStageController {
                                         @RequestBody Product updatedProduct) {
         // 根據uid查找用戶，然後更新用戶資訊
         Product existingProduct = UserService.findProductById(id);
-        System.out.println("existingUser: " + existingProduct);
-//        if (existingUser != null) {
-//            // 更新用戶資訊
-//            existingUser.setUsername(updatedProduct.getUsername());
-//            existingUser.setPhone(updatedProduct.getPhone());
-//            existingUser.setEmail(updatedProduct.getEmail());
-//            existingUser.setGender(updatedProduct.getGender());
-//            existingUser.setIsDelete(updatedProduct.getIsDelete());
-//
-//            System.out.println("uid: " + updatedProduct.getUid());
+        System.out.println("existingProduct: " + existingProduct);
+        if (existingProduct != null) {
+            // 更新用戶資訊
+
+            existingProduct.setCategoryId(updatedProduct.getCategoryId());
+//            existingProduct.setUsername(updatedProduct.getUsername());
+
+//            existingProduct.setPhone(updatedProduct.getPhone());
+//            existingProduct.setEmail(updatedProduct.getEmail());
+//            existingProduct.setGender(updatedProduct.getGender());
+//            existingProduct.setIsDelete(updatedProduct.getIsDelete());
+
+            System.out.println("id: " + updatedProduct.getCategoryId());
 //            System.out.println("Gender: " + updatedProduct.getPhone());
 //            System.out.println("IsDelete: " + updatedProduct.getEmail());
-//            // 保存更新後的用戶資訊
-//            UserService.saveUser(existingUser);
+            // 保存更新後的用戶資訊
+//            UserService.saveProduct(updatedProduct);
 
-//            return new ResponseEntity<>("用戶更新成功", HttpStatus.OK);
-            return ResponseEntity.ok(HttpStatus.OK);
+            return new ResponseEntity<>("用戶更新成功", HttpStatus.OK);
+        }
 //        } else {
 //            return new ResponseEntity<>("找不到該用戶", HttpStatus.NOT_FOUND);
 //        }
+        return ResponseEntity.ok(HttpStatus.OK);
     }
-}
+    }
+
+
+

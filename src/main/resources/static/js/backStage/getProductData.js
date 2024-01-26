@@ -129,10 +129,10 @@ function productUpdataEvent(clickedButton) {
                 // tr.append('<td name="id" >' + productList.image + '</td>');
                 // tr.append('<td name="id" >' + productList.status + '</td>');
                 // tr.append('<td name="id" >' + productList.priority + '</td>');
-                tr.append('<td name="id" >' + productList.createdTime + '</td>');
-                tr.append('<td name="id" >' + productList.modifiedTime + '</td>');
-                tr.append('<td name="id" >' + productList.createdUser + '</td>');
-                tr.append('<td name="id" >' + productList.modifiedUser + '</td>');
+                tr.append('<td name="id2" >' + productList.createdTime + '</td>');
+                tr.append('<td name="id2" >' + productList.modifiedTime + '</td>');
+                tr.append('<td name="id2" >' + productList.createdUser + '</td>');
+                tr.append('<td name="id2" >' + productList.modifiedUser + '</td>');
 
             // tr.append('<td><input type="radio" name="isDelete" value="0" ' + (userList.isDelete == 0 ? 'checked' : '') + '>否 <input type="radio" name="isDelete" value="1" ' + (userList.isDelete == 1 ? 'checked' : '') + '>是</td>');
             // // tr.append('<td>' + (userList.isDelete ? '是' : '否') + '</td>');
@@ -154,9 +154,10 @@ function productUpdataEvent(clickedButton) {
 
 function productUpdataEventFinish(clickedButton) {
     const productUpData_btnList = document.querySelectorAll(".producUpData");
+    const idValue = $('td[name="id"]').text();
+    const category_id = $('input[name="category_id"]').val();
     // const index = Array.prototype.indexOf.call(productUpData_btnList, clickedButton) + 1;
     // const userNameValue = $('td[name="username"]').text();
-    const uidValue = $('td[name="id"]').text();
     // const phone = $('input[name="phone"]').val();
     // const email = $('input[name="email"]').val();
     // const userGender = $('input[name="gender"]:checked').val();
@@ -167,21 +168,17 @@ function productUpdataEventFinish(clickedButton) {
 
 
 
-    alert("您點擊的是第 " + (uidValue) + " 個按鈕");
+    alert("您點擊的是第 " + (idValue) + " 個按鈕");
 
 
     $.ajax({
-        url: '/BackStage/product/modify/' + uidValue,
+        url: '/BackStage/product/modify/' + idValue,
         type: 'PUT',
         contentType: 'application/json',
         data: JSON.stringify({
-            "id": uidValue
-            // ,
-            // "username": userNameValue,
-            // "phone" : phone,
-            // "email" : email,
-            // "gender": userGender,
-            // "isDelete": userIsDelete
+            "id": idValue,
+            "category_id" : category_id ,
+
         }),
         success: function(result) {
             console.log(result);

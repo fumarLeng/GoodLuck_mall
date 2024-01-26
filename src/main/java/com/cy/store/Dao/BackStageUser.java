@@ -19,5 +19,7 @@ public interface BackStageUser {
 //  修改
     public void saveUser(User existingUser);
 
+    public void saveProdcut(Product existingProdcut);
+
     public Product findProductById(Integer id);
 }
