@@ -126,6 +126,7 @@ function userUpdataEventFinish(clickedButton) {
     const uidValue = $('td[name="uid"]').text();
     const userNameValue = $('td[name="username"]').text();
     const userGender = $('input[name="gender"]:checked').val();
+    const userIsDelete = $('input[name="isDelete"]:checked').val();
     // const userGender = $('input[name="gender"]:checked').val();
     // const userGender = $('input[name="phone"]').text();
 
@@ -142,7 +143,7 @@ function userUpdataEventFinish(clickedButton) {
             "uid": uidValue,
             "username": userNameValue,
             "gender": userGender,
-            "isDelete": 0
+            "isDelete": userIsDelete
         }),
         success: function(result) {
             // 請求成功時的回調函數
