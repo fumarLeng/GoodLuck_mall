@@ -78,8 +78,8 @@ function productUpdataEvent(clickedButton) {
         dataType: 'json',
         success: function (data) {
             let userList = data;
-            let memberContainer = $('#member');
-            memberContainer.empty();
+            let productContainer = $('#product');
+            productContainer.empty();
 
             let table = $('<table></table>').addClass('table');
 
@@ -103,10 +103,6 @@ function productUpdataEvent(clickedButton) {
             let tbody = $('<tbody></tbody>');
             // $.each(userList, function (index, user) {
             let tr = $('<tr></tr>');
-            // tr.append('<td><input class="user-input" name="uid" value="' + userList.uid + '"></td>');
-            // tr.append('<td><input class="user-input" name="username" value="' + userList.username + '"></td>');
-            // tr.append('<td><input value="' + userList.password + '"></td>');
-            // tr.append('<td><input value="' + userList.salt + '"></td>');
             tr.append('<td name="uid" >' + userList.uid + '</td>');
             tr.append('<td name="username" >' + userList.username + '</td>');
             tr.append('<td><input class="user-input" name="phone" value="' + userList.phone + '"></td>');
@@ -126,7 +122,7 @@ function productUpdataEvent(clickedButton) {
             // });
             table.append(tbody);
 
-            memberContainer.append(table);
+            productContainer.append(table);
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log('AJAX請求失敗：' + textStatus + ', ' + errorThrown);
