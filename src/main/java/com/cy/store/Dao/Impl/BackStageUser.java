@@ -84,11 +84,15 @@ public class BackStageUser implements com.cy.store.Dao.BackStageUser {
     @Override
     public void saveProdcut(Product existingProdcut){
 
-        String sql = "UPDATE `t_product` SET category_id = :category_id , title = :title , sell_point = :sell_point , price= :price , num= :num +" +
-                "WHERE id = :id";
-
+//        String sql = "UPDATE `t_product` SET category_id = :category_id , title = :title , sell_point = :sell_point , price= :price , num= :num +" +
+//                "WHERE id = :id";
+//        String sql = "UPDATE `t_product` SET category_id = :getCategoryId WHERE id = :id";
+            String sql = "UPDATE `t_product` SET category_id = :getCategoryId WHERE id = :id";
         Map<String, Object> map = new HashMap<>();
-//        map.put("uid", existingUser.getUid());
+        map.put("id", existingProdcut.getId());
+        map.put("getCategoryId", existingProdcut.getCategoryId());
+
+        System.out.println("getCategoryId " + existingProdcut.getCategoryId());
 //
 ////        map.put("username", existingUser.getUsername());
 //        map.put("phone", existingUser.getPhone());

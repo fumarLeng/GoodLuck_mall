@@ -43,7 +43,7 @@ public class BackStageController {
             if (uid.equals(user.getUid())) {
                 updatedUser = user;
                 //找到
-                System.out.println("ok");
+//                System.out.println("ok");
                 break;
             }
         }
@@ -72,9 +72,9 @@ public class BackStageController {
             existingUser.setGender(updatedUser.getGender());
             existingUser.setIsDelete(updatedUser.getIsDelete());
 
-            System.out.println("uid: " + updatedUser.getUid());
-            System.out.println("Gender: " + updatedUser.getPhone());
-            System.out.println("IsDelete: " + updatedUser.getEmail());
+//            System.out.println("uid: " + updatedUser.getUid());
+//            System.out.println("Gender: " + updatedUser.getPhone());
+//            System.out.println("IsDelete: " + updatedUser.getEmail());
             // 保存更新後的用戶資訊
             UserService.saveUser(existingUser);
 
@@ -89,7 +89,7 @@ public class BackStageController {
     @GetMapping("/order")
     public ResponseEntity<List<Order>> getAllOrderData() {
         List<Order> orderList = UserService.getAllOrderData();
-        System.out.println("getOid: " + orderList.get(0).getRecvPhone());
+//        System.out.println("getOid: " + orderList.get(0).getRecvPhone());
         return ResponseEntity.ok(orderList);
     }
     //頁面資料product

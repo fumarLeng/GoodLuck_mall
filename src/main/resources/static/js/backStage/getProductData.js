@@ -109,7 +109,7 @@ function productUpdataEvent(clickedButton) {
             let tr = $('<tr></tr>');
                 tr.append('<td name="id" >' + productList.id + '</td>');
 
-                tr.append('<td><input class="user-input" name="categoryId" value="' + productList.categoryId + '"></td>');
+                tr.append('<td><input class="user-input" name="category_id" value="' + productList.categoryId + '"></td>');
                 tr.append('<td><input class="user-input" name="categoryId" value="' + productList.item_type + '"></td>');
                 tr.append('<td><input class="user-input" name="categoryId" value="' + productList.title + '"></td>');
                 tr.append('<td><input class="user-input" name="categoryId" value="' + productList.sell_point + '"></td>');
@@ -177,7 +177,7 @@ function productUpdataEventFinish(clickedButton) {
         contentType: 'application/json',
         data: JSON.stringify({
             "id": idValue,
-            "category_id" : category_id ,
+            "category_id" : getCategoryId
 
         }),
         success: function(result) {
