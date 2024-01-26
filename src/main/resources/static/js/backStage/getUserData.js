@@ -14,8 +14,8 @@ function getUserData() {
             thead.append('<tr>' +
                 '<th class="member-list-th">ID</th>' +
                 '<th class="member-list-th">名稱</th>' +
-                '<th class="member-list-th">密碼</th>' +
-                '<th class="member-list-th">加密(鹽值)</th>' +
+                // '<th class="member-list-th">密碼</th>' +
+                // '<th class="member-list-th">加密(鹽值)</th>' +
                 '<th class="member-list-th">電話</th>' +
                 '<th class="member-list-th">郵件</th>' +
                 '<th class="member-list-th">性別</th>' +
@@ -30,8 +30,8 @@ function getUserData() {
                 let tr = $('<tr></tr>');
                 tr.append('<td>' + user.uid + '</td>');
                 tr.append('<td>' + user.username + '</td>');
-                tr.append('<td>' + user.password + '</td>');
-                tr.append('<td>' + user.salt + '</td>');
+                // tr.append('<td>' + user.password + '</td>');
+                // tr.append('<td>' + user.salt + '</td>');
                 tr.append('<td>' + user.phone + '</td>');
                 tr.append('<td>' + user.email + '</td>');
                 // tr.append('<td>' + user.gender + '</td>');
@@ -75,8 +75,8 @@ function userUpdataEvent(clickedButton) {
             thead.append('<tr>' +
                 '<th class="member-list-th">ID</th>' +
                 '<th class="member-list-th">名稱</th>' +
-                '<th class="member-list-th">密碼</th>' +
-                '<th class="member-list-th">加密(鹽值)</th>' +
+                // '<th class="member-list-th">密碼</th>' +
+                // '<th class="member-list-th">加密(鹽值)</th>' +
                 '<th class="member-list-th">電話</th>' +
                 '<th class="member-list-th">郵件</th>' +
                 '<th class="member-list-th">性別</th>' +
@@ -92,19 +92,17 @@ function userUpdataEvent(clickedButton) {
                 // tr.append('<input>' + userList.uid + '</input>');
                 tr.append('<td><input value="' + userList.uid + '"></td>');
                 tr.append('<td><input value="' + userList.username + '"></td>');
-                tr.append('<td><input value="' + userList.password + '"></td>');
-                tr.append('<td><input value="' + userList.salt + '"></td>');
+                // tr.append('<td><input value="' + userList.password + '"></td>');
+                // tr.append('<td><input value="' + userList.salt + '"></td>');
                 tr.append('<td><input value="' + userList.phone + '"></td>');
                 tr.append('<td><input value="' + userList.email + '"></td>');
                 // tr.append('<td><input value="' + (userList.gender == 0 ? '女生' : '男生') + '"></td>');
                 tr.append('<td><input type="radio" name="gender" value="0" ' + (userList.gender == 0 ? 'checked' : '') + '>女生 <input type="radio" name="gender" value="1" ' + (userList.gender == 1 ? 'checked' : '') + '>男生</td>');
 
-
-
             tr.append('<td><img src="data:image/png;base64,' + userList.avatar + '" alt="User Avatar" style="width:50px;height:50px;"></td>');
 
-                
-                // tr.append('<td>' + (userList.isDelete ? '是' : '否') + '</td>');
+            tr.append('<td><input type="radio" name="isDelete" value="0" ' + (userList.isDelete == 0 ? 'checked' : '') + '>否 <input type="radio" name="isDelete" value="1" ' + (userList.isDelete == 1 ? 'checked' : '') + '>是</td>');
+            // tr.append('<td>' + (userList.isDelete ? '是' : '否') + '</td>');
                 tr.append('<td>' +
                     '<button class="btn btn-success btn-sm userUpdata" onclick="userUpdataEvent(this)">修改</button>' +
                     '<button class="btn btn-warning btn-sm">刪除</button>' +
