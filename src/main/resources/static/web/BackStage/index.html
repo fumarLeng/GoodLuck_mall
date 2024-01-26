@@ -17,6 +17,15 @@
         .col-md-10 {
             width: 100% ;
         }
+
+        .user-input{
+            text-align: center;
+            width: 100%;
+        }
+
+        td{
+            width: 100px ;
+        }
     </style>
 
 </head>
@@ -71,7 +80,7 @@
         getOrderData();
         getProductData();
 
-        // 分頁切換
+        // 主頁分頁切換
         $('.nav-li-a').on('click', function (e) {
             e.preventDefault();
             let targetPanel = $(this).attr('href').substring(1);
