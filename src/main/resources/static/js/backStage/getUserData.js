@@ -103,7 +103,8 @@ function userUpdataEvent(clickedButton) {
 
             tr.append('<td><img src="data:image/png;base64,' + userList.avatar + '" alt="User Avatar" style="width:50px;height:50px;"></td>');
 
-                tr.append('<td>' + (userList.isDelete ? '是' : '否') + '</td>');
+                
+                // tr.append('<td>' + (userList.isDelete ? '是' : '否') + '</td>');
                 tr.append('<td>' +
                     '<button class="btn btn-success btn-sm userUpdata" onclick="userUpdataEvent(this)">修改</button>' +
                     '<button class="btn btn-warning btn-sm">刪除</button>' +
