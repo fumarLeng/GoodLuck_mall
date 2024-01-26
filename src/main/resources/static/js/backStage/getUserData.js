@@ -40,7 +40,7 @@ function getUserData() {
                 tr.append('<td>' + (user.isDelete ? '是' : '否') + '</td>');
                 tr.append('<td>' +
                     '<button class="btn btn-success btn-sm userUpdata" onclick="userUpdataEvent(this)">修改</button>' +
-                    '<button class="btn btn-warning btn-sm">刪除</button>' +
+                    // '<button class="btn btn-warning btn-sm">刪除</button>' +
                     '</td>');
                 tbody.append(tr);
             });
@@ -89,23 +89,24 @@ function userUpdataEvent(clickedButton) {
             let tbody = $('<tbody></tbody>');
             // $.each(userList, function (index, user) {
                 let tr = $('<tr></tr>');
-                // tr.append('<input>' + userList.uid + '</input>');
-                tr.append('<td><input value="' + userList.uid + '"></td>');
-                tr.append('<td><input value="' + userList.username + '"></td>');
+                tr.append('<td name="uid" >' + userList.uid + '</td>');
+                tr.append('<td name="username" >' + userList.username + '</td>');
+                // tr.append('<td><input class="user-input" name="uid" value="' + userList.uid + '"></td>');
+                // tr.append('<td><input class="user-input" name="username" value="' + userList.username + '"></td>');
                 // tr.append('<td><input value="' + userList.password + '"></td>');
                 // tr.append('<td><input value="' + userList.salt + '"></td>');
-                tr.append('<td><input value="' + userList.phone + '"></td>');
-                tr.append('<td><input value="' + userList.email + '"></td>');
+                tr.append('<td><input class="user-input" name="phone" value="' + userList.phone + '"></td>');
+                tr.append('<td><input class="user-input" name="email" value="' + userList.email + '"></td>');
                 // tr.append('<td><input value="' + (userList.gender == 0 ? '女生' : '男生') + '"></td>');
-                tr.append('<td><input type="radio" name="gender" value="0" ' + (userList.gender == 0 ? 'checked' : '') + '>女生 <input type="radio" name="gender" value="1" ' + (userList.gender == 1 ? 'checked' : '') + '>男生</td>');
+                tr.append('<td><input name="gender" type="radio" name="gender" value="0" ' + (userList.gender == 0 ? 'checked' : '') + '>女生 <input type="radio" name="gender" value="1" ' + (userList.gender == 1 ? 'checked' : '') + '>男生</td>');
 
             tr.append('<td><img src="data:image/png;base64,' + userList.avatar + '" alt="User Avatar" style="width:50px;height:50px;"></td>');
 
             tr.append('<td><input type="radio" name="isDelete" value="0" ' + (userList.isDelete == 0 ? 'checked' : '') + '>否 <input type="radio" name="isDelete" value="1" ' + (userList.isDelete == 1 ? 'checked' : '') + '>是</td>');
             // tr.append('<td>' + (userList.isDelete ? '是' : '否') + '</td>');
                 tr.append('<td>' +
-                    '<button class="btn btn-success btn-sm userUpdata" onclick="userUpdataEvent(this)">修改</button>' +
-                    '<button class="btn btn-warning btn-sm">刪除</button>' +
+                    '<button class="btn btn-success btn-sm userUpdata" onclick="userUpdataEvent(this)">確定</button>' +
+                    '<button class="btn btn-warning btn-sm" onclick="getUserData()">取消</button>' +
                     '</td>');
                 tbody.append(tr);
             // });
