@@ -186,10 +186,9 @@ function productUpdataEventFinish(clickedButton) {
         data: JSON.stringify({
             "id": idValue,
             "categoryId" : categoryId,
-            // "category_id" : category_id,
-            "ItemType" : ItemType,
+            "itemType" : ItemType,
             "title" : title,
-            "SellPoint" : sellPoint,
+            "sellPoint" : sellPoint,
             "price" : price,
             "num" : num,
             "image" : image,

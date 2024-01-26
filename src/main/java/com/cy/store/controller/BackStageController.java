@@ -151,7 +151,7 @@ public class BackStageController {
 //            existingProduct.setIsDelete(updatedProduct.getIsDelete());
 
             System.out.println("getId: " + updatedProduct.getId());
-            System.out.println("getCategoryId: " + updatedProduct.getCategoryId());
+            System.out.println("getItemType: " + updatedProduct.getItemType());
 //            System.out.println("Gender: " + updatedProduct.getPhone());
 //            System.out.println("IsDelete: " + updatedProduct.getEmail());
             // 保存更新後的用戶資訊
