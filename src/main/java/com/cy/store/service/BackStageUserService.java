@@ -17,5 +17,8 @@ public interface BackStageUserService {
 //  修改
     public User findUserById(Integer uid);
 
+    public Product findProductById(Integer id);
+
+
     public void saveUser(User existingUser);
 }

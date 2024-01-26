@@ -67,8 +67,8 @@ function getProductData() {
 
 
 function productUpdataEvent(clickedButton) {
-    const producUpData_btnList = document.querySelectorAll(".producUpData");
-    const index = Array.prototype.indexOf.call(producUpData_btnList, clickedButton) + 1;
+    const productUpData_btnList = document.querySelectorAll(".producUpData");
+    const index = Array.prototype.indexOf.call(productUpData_btnList, clickedButton) + 1;
     const productId = $('#productId').text();
     alert("您點擊的是第 " + (index) + " 個按鈕");
 
@@ -108,15 +108,27 @@ function productUpdataEvent(clickedButton) {
             let tbody = $('<tbody></tbody>');
             let tr = $('<tr></tr>');
                 tr.append('<td name="id" >' + productList.id + '</td>');
-                tr.append('<td name="id" >' + productList.categoryId + '</td>');
-                tr.append('<td name="id" >' + productList.itemType + '</td>');
-                tr.append('<td name="id" >' + productList.title + '</td>');
-                tr.append('<td name="id" >' + productList.sellPoint + '</td>');
-                tr.append('<td name="id" >' + productList.price + '</td>');
-                tr.append('<td name="id" >' + productList.num + '</td>');
-                tr.append('<td name="id" >' + productList.image + '</td>');
-                tr.append('<td name="id" >' + productList.status + '</td>');
-                tr.append('<td name="id" >' + productList.priority + '</td>');
+
+                tr.append('<td><input class="user-input" name="categoryId" value="' + productList.categoryId + '"></td>');
+                tr.append('<td><input class="user-input" name="categoryId" value="' + productList.item_type + '"></td>');
+                tr.append('<td><input class="user-input" name="categoryId" value="' + productList.title + '"></td>');
+                tr.append('<td><input class="user-input" name="categoryId" value="' + productList.sell_point + '"></td>');
+                tr.append('<td><input class="user-input" name="categoryId" value="' + productList.price + '"></td>');
+                tr.append('<td><input class="user-input" name="categoryId" value="' + productList.num + '"></td>');
+                tr.append('<td><input class="user-input" name="categoryId" value="' + productList.image + '"></td>');
+                tr.append('<td><input class="user-input" name="categoryId" value="' + productList.status + '"></td>');
+                tr.append('<td><input class="user-input" name="categoryId" value="' + productList.priority + '"></td>');
+
+
+                // tr.append('<td name="id" >' + productList.categoryId + '</td>');
+                // tr.append('<td name="id" >' + productList.itemType + '</td>');
+                // tr.append('<td name="id" >' + productList.title + '</td>');
+                // tr.append('<td name="id" >' + productList.sellPoint + '</td>');
+                // tr.append('<td name="id" >' + productList.price + '</td>');
+                // tr.append('<td name="id" >' + productList.num + '</td>');
+                // tr.append('<td name="id" >' + productList.image + '</td>');
+                // tr.append('<td name="id" >' + productList.status + '</td>');
+                // tr.append('<td name="id" >' + productList.priority + '</td>');
                 tr.append('<td name="id" >' + productList.createdTime + '</td>');
                 tr.append('<td name="id" >' + productList.modifiedTime + '</td>');
                 tr.append('<td name="id" >' + productList.createdUser + '</td>');
@@ -138,4 +150,46 @@ function productUpdataEvent(clickedButton) {
             console.log('AJAX請求失敗：' + textStatus + ', ' + errorThrown);
         }
     });
+}
+
+function productUpdataEventFinish(clickedButton) {
+    const productUpData_btnList = document.querySelectorAll(".producUpData");
+    // const index = Array.prototype.indexOf.call(productUpData_btnList, clickedButton) + 1;
+    // const userNameValue = $('td[name="username"]').text();
+    const uidValue = $('td[name="id"]').text();
+    // const phone = $('input[name="phone"]').val();
+    // const email = $('input[name="email"]').val();
+    // const userGender = $('input[name="gender"]:checked').val();
+    // const userIsDelete = $('input[name="isDelete"]:checked').val();
+
+    // const userGender = $('input[name="gender"]:checked').val();
+    // const userGender = $('input[name="phone"]').text();
+
+
+
+    alert("您點擊的是第 " + (uidValue) + " 個按鈕");
+
+
+    $.ajax({
+        url: '/BackStage/product/modify/' + uidValue,
+        type: 'PUT',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            "id": uidValue
+            // ,
+            // "username": userNameValue,
+            // "phone" : phone,
+            // "email" : email,
+            // "gender": userGender,
+            // "isDelete": userIsDelete
+        }),
+        success: function(result) {
+            console.log(result);
+            getProductData();
+        },
+        error: function(xhr, status, error) {
+            console.error(error);
+        }
+    });
+
 }

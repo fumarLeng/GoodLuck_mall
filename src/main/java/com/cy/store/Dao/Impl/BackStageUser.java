@@ -80,4 +80,19 @@ public class BackStageUser implements com.cy.store.Dao.BackStageUser {
 
         namedParameterJdbcTemplate.update(sql, map);
     }
+
+    @Override
+    public Product findProductById(Integer id) {
+        String sql = "SELECT * FROM t_product WHERE id =:id";
+        Map<String, Object> map = new HashMap<>();
+        map.put("id", id);
+
+        List<Product> ProductList = namedParameterJdbcTemplate.query(sql, map, new ProductListRowMapper());
+
+        if (ProductList.size() > 0) {
+            return ProductList.get(0);
+        } else {
+            return null;
+        }
+    }
 }
