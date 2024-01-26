@@ -65,4 +65,14 @@ public class BackStageUser implements com.cy.store.Dao.BackStageUser {
             return null;
         }
     }
+
+    public void saveUser(User existingUser){
+        String sql = "UPDATE `t_user` SET username= :username WHERE uid = :uid";
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("uid", existingUser.getUid());
+        map.put("username", existingUser.getUsername());
+
+        namedParameterJdbcTemplate.update(sql, map);
+    }
 }

@@ -35,4 +35,8 @@ public class BackStageUserService implements com.cy.store.service.BackStageUserS
     public User findUserById(Integer uid) {
         return backStageUserDao.findUserById(uid);
     }
+
+    public void saveUser(User existingUser){
+        backStageUserDao.saveUser(existingUser);
+    };
 }

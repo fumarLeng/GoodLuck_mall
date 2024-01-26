@@ -75,7 +75,7 @@ public class BackStageController {
             System.out.println("Gender: " + updatedUser.getGender());
             System.out.println("IsDelete: " + updatedUser.getIsDelete());
             // 保存更新後的用戶資訊
-//            UserService.saveUser(existingUser);
+            UserService.saveUser(existingUser);
 
 //            return new ResponseEntity<>("用戶更新成功", HttpStatus.OK);
             return ResponseEntity.ok(HttpStatus.OK);
