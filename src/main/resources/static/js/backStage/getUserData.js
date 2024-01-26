@@ -57,12 +57,13 @@ function getUserData() {
 function userUpdataEvent(clickedButton) {
     const userUpdata_btnList = document.querySelectorAll(".userUpdata");
     const index = Array.prototype.indexOf.call(userUpdata_btnList, clickedButton) + 1;
-    alert("您點擊的是第 " + (index) + " 個按鈕");
+    // alert("您點擊的是第 " + (index) + " 個按鈕");
 
 
     $.ajax({
+
         url: '/BackStage/user/' + index,
-        type: 'PUT',
+        type: 'get',
         dataType: 'json',
         success: function (data) {
             let userList = data;
@@ -105,7 +106,7 @@ function userUpdataEvent(clickedButton) {
                 tr.append('<td><input type="radio" name="isDelete" value="0" ' + (userList.isDelete == 0 ? 'checked' : '') + '>否 <input type="radio" name="isDelete" value="1" ' + (userList.isDelete == 1 ? 'checked' : '') + '>是</td>');
                 // tr.append('<td>' + (userList.isDelete ? '是' : '否') + '</td>');
                 tr.append('<td>' +
-                    '<button class="btn btn-success btn-sm userUpdata" onclick="userUpdataEvent(this)">確定</button>' +
+                    '<button class="btn btn-success btn-sm userUpdata" onclick="userUpdataEventFinish(this)">確定</button>' +
                     '<button class="btn btn-warning btn-sm" onclick="getUserData()">取消</button>' +
                     '</td>');
                 tbody.append(tr);
@@ -118,4 +119,40 @@ function userUpdataEvent(clickedButton) {
             console.log('AJAX請求失敗：' + textStatus + ', ' + errorThrown);
         }
     });
+}
+function userUpdataEventFinish(clickedButton) {
+    const userUpdata_btnList = document.querySelectorAll(".userUpdata");
+    const index = Array.prototype.indexOf.call(userUpdata_btnList, clickedButton) + 1;
+    const uidValue = $('td[name="uid"]').text();
+    const userNameValue = $('td[name="username"]').text();
+    const userGender = $('input[name="gender"]:checked').val();
+    // const userGender = $('input[name="gender"]:checked').val();
+    // const userGender = $('input[name="phone"]').text();
+
+
+
+    alert("您點擊的是第 " + (index) + " 個按鈕");
+
+
+    $.ajax({
+        url: '/BackStage/user/modify/' + index,
+        type: 'PUT',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            "uid": uidValue,
+            "username": userNameValue,
+            "gender": userGender,
+            "isDelete": 0
+        }),
+        success: function(result) {
+            // 請求成功時的回調函數
+            console.log(result);
+            getUserData();
+        },
+        error: function(xhr, status, error) {
+            // 請求失敗時的回調函數
+            console.error(error);
+        }
+    });
+
 }

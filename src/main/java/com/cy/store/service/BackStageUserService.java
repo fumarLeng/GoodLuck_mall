@@ -13,4 +13,7 @@ public interface BackStageUserService {
     public List<Order> getAllOrderData();
 
     public List<Product> getAllProductData();
+
+//  修改
+    public User findUserById(Integer uid);
 }

@@ -13,4 +13,6 @@ public interface BackStageUser {
     List<Order> getAllOrderData();
 
     List<Product> getAllProductData();
+
+    User findUserById(Integer uid);
 }

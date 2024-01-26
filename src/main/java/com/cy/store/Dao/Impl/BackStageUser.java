@@ -40,7 +40,7 @@ public class BackStageUser implements com.cy.store.Dao.BackStageUser {
 
         return OrderList;
     }
-
+    @Override
     public List<Product> getAllProductData() {
         String sql = "SELECT * FROM t_product";
         Map<String, Object> map = new HashMap<>();
@@ -48,5 +48,21 @@ public class BackStageUser implements com.cy.store.Dao.BackStageUser {
         List<Product> ProductList = namedParameterJdbcTemplate.query(sql, map, new ProductListRowMapper());
 
         return ProductList;
+    }
+
+    @Override
+    public User findUserById(Integer uid) {
+        String sql = "SELECT * FROM t_user WHERE uid =:uid";
+
+        Map<String, Object> map = new HashMap<>();
+        map.put("uid", uid);
+
+        List<User> UserList = namedParameterJdbcTemplate.query(sql, map, new UserRowMapper());
+
+        if (UserList.size() > 0) {
+            return UserList.get(0);
+        } else {
+            return null;
+        }
     }
 }
