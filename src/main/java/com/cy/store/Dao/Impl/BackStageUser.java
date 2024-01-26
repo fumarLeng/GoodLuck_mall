@@ -92,7 +92,7 @@ public class BackStageUser implements com.cy.store.Dao.BackStageUser {
         map.put("id", existingProdcut.getId());
         map.put("getCategoryId", existingProdcut.getCategoryId());
 
-        System.out.println("getCategoryId " + existingProdcut.getCategoryId());
+//        System.out.println("getCategoryId " + existingProdcut.getCategoryId());
 //
 ////        map.put("username", existingUser.getUsername());
 //        map.put("phone", existingUser.getPhone());
@@ -105,12 +105,12 @@ public class BackStageUser implements com.cy.store.Dao.BackStageUser {
 
     @Override
     public Product findProductById(Integer id) {
-        String sql = "SELECT * FROM t_product WHERE id =:id";
+        String sql = "SELECT * FROM `t_product` WHERE id =:id";
         Map<String, Object> map = new HashMap<>();
         map.put("id", id);
-
+        System.out.println("id: " + id);
         List<Product> ProductList = namedParameterJdbcTemplate.query(sql, map, new ProductListRowMapper());
-
+        System.out.println("ProductList.get(0): " + ProductList.get(0));
         if (ProductList.size() > 0) {
             return ProductList.get(0);
         } else {

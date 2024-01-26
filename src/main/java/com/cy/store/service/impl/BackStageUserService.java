@@ -52,6 +52,6 @@ public class BackStageUserService implements com.cy.store.service.BackStageUserS
 
     @Override
     public Product findProductById(Integer id) {
-        return null;
+        return backStageUserDao.findProductById(id);
     }
 }
