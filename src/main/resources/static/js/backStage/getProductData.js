@@ -45,8 +45,8 @@ function getProductData() {
                 tr.append('<td>' + product.priority + '</td>');
                 tr.append('<td name="id" >' + product.createdTime + '</td>');
                 tr.append('<td name="id" >' + product.modifiedTime + '</td>');
-                tr.append('<td>' + product.createdTime + '</td>');
-                tr.append('<td>' + product.modifiedTime + '</td>');
+                tr.append('<td>' + product.createdUser + '</td>');
+                tr.append('<td>' + product.modifiedUser + '</td>');
 
                 tr.append('<td>' +
                     '<button class="btn btn-success btn-sm producUpData" onclick="productUpdataEvent(this)">修改</button>' +
