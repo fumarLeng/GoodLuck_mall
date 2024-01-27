@@ -36,7 +36,7 @@ public class BackStageController {
         return ResponseEntity.ok(userList);
     }
 
-    //單筆查詢
+    //單筆查詢user
     @GetMapping("/user/{uid}")
     public ResponseEntity<?> GetOneUser(@PathVariable Integer uid) {
         List<User> userList = UserService.getAllUserData();
@@ -171,20 +171,20 @@ public class BackStageController {
     //單筆查詢order
     @GetMapping("/order/{id}")
     public ResponseEntity<?> GetOneOrder(@PathVariable Integer id) {
-        List<Product> userList = UserService.getAllProductData();
-        Product updatedProduct = null;
-        for (Product product : userList) {
-            if (id.equals(product.getId())) {
-                updatedProduct = product;
+        List<Order> orderList = UserService.getAllOrderData();
+        Order updatedOrder = null;
+
+        for (Order order : orderList) {
+            if (id.equals(order.getUid())) {
+                updatedOrder = order;
                 //找到
-                System.out.println("ok");
+                System.out.println("order: " + order );
                 break;
             }
         }
+        if (updatedOrder != null) {
 
-        if (updatedProduct != null) {
-
-            return ResponseEntity.ok(updatedProduct);
+            return ResponseEntity.ok(updatedOrder);
         } else {
 
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found with id: " + id);

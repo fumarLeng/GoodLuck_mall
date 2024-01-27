@@ -16,6 +16,7 @@ public interface BackStageUser {
 
     User findUserById(Integer uid);
 
+    public Order findOrderById(Integer id);
 //  修改
     public void saveUser(User existingUser);
 

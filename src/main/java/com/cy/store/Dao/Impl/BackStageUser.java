@@ -66,6 +66,21 @@ public class BackStageUser implements com.cy.store.Dao.BackStageUser {
         }
     }
 
+    @Override
+    public Order findOrderById(Integer id) {
+        String sql = "SELECT * FROM t_order WHERE oid =:oid";
+        Map<String, Object> map = new HashMap<>();
+        map.put("oid" , id);
+
+        List<Order> OrderList = namedParameterJdbcTemplate.query(sql, map, new OrderListRowMapper());
+
+        if (OrderList.size() > 0) {
+            return OrderList.get(0);
+        } else {
+            return null;
+        }
+    }
+
     public void saveUser(User existingUser){
         String sql = "UPDATE `t_user` SET phone = :phone , email = :email , gender = :gender , is_delete= :is_delete WHERE uid = :uid";
 
