@@ -122,7 +122,7 @@ function userUpdataEvent(clickedButton) {
 }
 function userUpdataEventFinish(clickedButton) {
     const userUpdata_btnList = document.querySelectorAll(".userUpdata");
-    const index = Array.prototype.indexOf.call(userUpdata_btnList, clickedButton) + 1;
+    // const index = Array.prototype.indexOf.call(userUpdata_btnList, clickedButton) + 1;
     // const userNameValue = $('td[name="username"]').text();
     const uidValue = $('td[name="uid"]').text();
     const phone = $('input[name="phone"]').val();
@@ -134,11 +134,11 @@ function userUpdataEventFinish(clickedButton) {
 
 
 
-    alert("您點擊的是第 " + (index) + " 個按鈕");
+    alert("您點擊的是第 " + (uidValue) + " 個按鈕");
 
 
     $.ajax({
-        url: '/BackStage/user/modify/' + index,
+        url: '/BackStage/user/modify/' + uidValue,
         type: 'PUT',
         contentType: 'application/json',
         data: JSON.stringify({
