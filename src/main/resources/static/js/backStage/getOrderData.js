@@ -112,22 +112,21 @@ function OrderUpdataEvent(clickedButton) {
             tr.append('<td name="oid" >' + ordersList.oid + '</td>');
             tr.append('<td name="uid" >' + ordersList.uid + '</td>');
 
+            tr.append('<td><input class="user-input" name="recv_name" value="' + ordersList.recvName + '"></td>');
+            tr.append('<td><input class="user-input" name="recv_phone" value="' + ordersList.recvPhone + '"></td>');
+            tr.append('<td><input class="user-input" name="recv_province" value="' + ordersList.recvProvince + '"></td>');
+            tr.append('<td><input class="user-input" name="recv_city" value="' + ordersList.recvCity + '"></td>');
+            tr.append('<td><input class="user-input" name="recv_area" value="' + ordersList.recvArea + '"></td>');
+            tr.append('<td><input class="user-input" name="recv_address" value="' + ordersList.recvAddress + '"></td>');
 
-            tr.append('<td><input class="user-input" name="recv_name" value="' + ordersList.categoryId + '"></td>');
-            tr.append('<td><input class="user-input" name="recv_phone" value="' + ordersList.itemType + '"></td>');
-            tr.append('<td><input class="user-input" name="recv_province" value="' + ordersList.title + '"></td>');
-            tr.append('<td><input class="user-input" name="recv_city" value="' + ordersList.sellPoint + '"></td>');
-            tr.append('<td><input class="user-input" name="recv_area" value="' + ordersList.price + '"></td>');
-            tr.append('<td><input class="user-input" name="recv_address" value="' + ordersList.num + '"></td>');
-
-            tr.append('<td name="uid" >' + ordersList.uid + '</td>');
-            tr.append('<td name="uid" >' + ordersList.uid + '</td>');
-            tr.append('<td name="uid" >' + ordersList.uid + '</td>');
-            tr.append('<td name="uid" >' + ordersList.uid + '</td>');
-            tr.append('<td name="uid" >' + ordersList.uid + '</td>');
-            tr.append('<td name="uid" >' + ordersList.uid + '</td>');
-            tr.append('<td name="uid" >' + ordersList.uid + '</td>');
-            tr.append('<td name="uid" >' + ordersList.uid + '</td>');
+            tr.append('<td name="uid" >' + ordersList.totalPrice + '</td>');
+            tr.append('<td name="uid" >' + ordersList.status + '</td>');
+            tr.append('<td name="uid" >' + ordersList.orderTime + '</td>');
+            tr.append('<td name="uid" >' + ordersList.payTime + '</td>');
+            tr.append('<td name="uid" >' + ordersList.createdUser + '</td>');
+            tr.append('<td name="uid" >' + ordersList.createdTime + '</td>');
+            tr.append('<td name="uid" >' + ordersList.modifiedUser + '</td>');
+            tr.append('<td name="uid" >' + ordersList.modifiedTime + '</td>');
 
             // tr.append('<td><input type="radio" name="isDelete" value="0" ' + (userList.isDelete == 0 ? 'checked' : '') + '>否 <input type="radio" name="isDelete" value="1" ' + (userList.isDelete == 1 ? 'checked' : '') + '>是</td>');
             // // tr.append('<td>' + (userList.isDelete ? '是' : '否') + '</td>');
