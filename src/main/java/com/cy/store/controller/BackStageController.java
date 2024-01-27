@@ -169,19 +169,21 @@ public class BackStageController {
 
 
     //單筆查詢order
-    @GetMapping("/order/{id}")
-    public ResponseEntity<?> GetOneOrder(@PathVariable Integer id) {
-        List<Order> orderList = UserService.getAllOrderData();
+    @GetMapping("/order/{id}/{index}")
+    public ResponseEntity<?> GetOneOrder(@PathVariable Integer id,
+                                         @PathVariable Integer index) {
+//        List<Order> orderList = UserService.findOrderById(id);
+        Order orderList = UserService.findOrderById(id , index);
         Order updatedOrder = null;
-
-        for (Order order : orderList) {
-            if (id.equals(order.getUid())) {
-                updatedOrder = order;
+        System.out.println("id: " + id);
+//        for (Order order : orderList) {
+//            if (id.equals(orderList.getUid())) {
+                updatedOrder = orderList;
                 //找到
-                System.out.println("order: " + order );
-                break;
-            }
-        }
+                System.out.println("order: " + orderList );
+
+//            }
+//        }
         if (updatedOrder != null) {
 
             return ResponseEntity.ok(updatedOrder);

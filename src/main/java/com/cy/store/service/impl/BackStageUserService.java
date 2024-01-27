@@ -37,8 +37,8 @@ public class BackStageUserService implements com.cy.store.service.BackStageUserS
     }
 
     @Override
-    public Order findOrderById(Integer id) {
-        return backStageUserDao.findOrderById(id);
+    public Order findOrderById(Integer id , Integer index) {
+        return backStageUserDao.findOrderById(id , index);
     }
 
     public void saveUser(User existingUser){

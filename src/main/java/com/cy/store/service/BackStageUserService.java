@@ -17,7 +17,7 @@ public interface BackStageUserService {
 //  修改
     public User findUserById(Integer uid);
 
-    public Order findOrderById(Integer id);
+    public Order findOrderById(Integer id  , Integer index);
 
     public Product findProductById(Integer id);
 

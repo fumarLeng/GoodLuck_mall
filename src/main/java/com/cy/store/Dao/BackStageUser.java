@@ -14,9 +14,9 @@ public interface BackStageUser {
 
     List<Product> getAllProductData();
 
-    User findUserById(Integer uid);
+    public User findUserById(Integer uid);
 
-    public Order findOrderById(Integer id);
+    public Order findOrderById(Integer id , Integer index);
 //  修改
     public void saveUser(User existingUser);
 

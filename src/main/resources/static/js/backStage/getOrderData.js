@@ -75,7 +75,7 @@ function OrderUpdataEvent(clickedButton) {
 
     $.ajax({
 
-        url: '/BackStage/order/' + orderOid,
+        url: '/BackStage/order/' + orderOid + "/" + index,
         type: 'get',
         dataType: 'json',
         success: function (data) {
