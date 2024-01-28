@@ -16,11 +16,12 @@ public interface BackStageUser {
 
     public User findUserById(Integer uid);
 
-    public Order findOrderById(Integer id , Integer index);
+    public Order findOrderById(Integer id);
 //  修改
     public void saveUser(User existingUser);
 
     public void saveProdcut(Product existingProdcut);
+    public void saveOrder(Order existingOrder);
 
     public Product findProductById(Integer id);
 }

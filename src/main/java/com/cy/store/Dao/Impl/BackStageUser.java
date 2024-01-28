@@ -67,7 +67,7 @@ public class BackStageUser implements com.cy.store.Dao.BackStageUser {
     }
 
     @Override
-    public Order findOrderById(Integer id ,Integer index) {
+    public Order findOrderById(Integer id) {
         String sql = "SELECT oid, uid, recv_name, recv_phone, recv_province, recv_city, recv_area, recv_address, total_price, status, order_time, pay_time, created_user, created_time, modified_user, modified_time FROM t_order WHERE oid = :oid";
         Map<String, Object> map = new HashMap<>();
         map.put("oid" , id);
@@ -99,6 +99,26 @@ public class BackStageUser implements com.cy.store.Dao.BackStageUser {
 
         namedParameterJdbcTemplate.update(sql, map);
     }
+    public void saveOrder(Order existingOrder){
+        String sql = "UPDATE `t_order` SET recv_name = :recv_name , recv_phone = :recv_phone , recv_province = :recv_province , recv_city= :recv_city , recv_area = :recv_area , recv_address = :recv_address WHERE oid = :oid";
+
+        System.out.println("sql: " + sql);
+        Map<String, Object> map = new HashMap<>();
+        map.put("oid", existingOrder.getOid());
+        map.put("recv_name", existingOrder.getRecvName());
+        map.put("recv_phone", existingOrder.getRecvPhone());
+        map.put("recv_province", existingOrder.getRecvProvince());
+        map.put("recv_city", existingOrder.getRecvCity());
+        map.put("recv_area", existingOrder.getRecvArea());
+        map.put("recv_address", existingOrder.getRecvAddress());
+
+        System.out.println("sql: " + existingOrder.getRecvName());
+
+        namedParameterJdbcTemplate.update(sql, map);
+    }
+
+
+
 
     @Override
     public void saveProdcut(Product existingProdcut){

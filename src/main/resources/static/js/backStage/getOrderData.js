@@ -131,7 +131,7 @@ function OrderUpdataEvent(clickedButton) {
             // tr.append('<td><input type="radio" name="isDelete" value="0" ' + (userList.isDelete == 0 ? 'checked' : '') + '>否 <input type="radio" name="isDelete" value="1" ' + (userList.isDelete == 1 ? 'checked' : '') + '>是</td>');
             // // tr.append('<td>' + (userList.isDelete ? '是' : '否') + '</td>');
             tr.append('<td>' +
-                '<button class="btn btn-success btn-sm userUpdata" onclick="OrderUpdataEventFinish(this)">確定</button>' +
+                '<button class="btn btn-success btn-sm ordersUpdata" onclick="OrderUpdataEventFinish(this)">確定</button>' +
                 '<button class="btn btn-warning btn-sm" onclick="getOrderData()">取消</button>' +
                 '</td>');
             tbody.append(tr);
@@ -147,27 +147,14 @@ function OrderUpdataEvent(clickedButton) {
 }
 
 function OrderUpdataEventFinish(clickedButton) {
-    const productUpData_btnList = document.querySelectorAll(".producUpData");
-    const idValue = $('td[name="id"]').text();
-    const categoryId = $('input[name="category_id"]').val();
-    const ItemType = $('input[name="item_type"]').val();
-    const title = $('input[name="title"]').val();
-    const sellPoint = $('input[name="sell_point"]').val();
-    const price = $('input[name="price"]').val();
-    const num = $('input[name="num"]').val();
-    const image = $('input[name="image"]').val();
-    const status = $('input[name="status"]').val();
-    const priority = $('input[name="priority"]').val();
-    // const index = Array.prototype.indexOf.call(productUpData_btnList, clickedButton) + 1;
-    // const userNameValue = $('td[name="username"]').text();
-    // const phone = $('input[name="phone"]').val();
-    // const email = $('input[name="email"]').val();
-    // const userGender = $('input[name="gender"]:checked').val();
-    // const userIsDelete = $('input[name="isDelete"]:checked').val();
-
-    // const userGender = $('input[name="gender"]:checked').val();
-    // const userGender = $('input[name="phone"]').text();
-
+    const productUpData_btnList = document.querySelectorAll(".ordersUpdata");
+    const idValue = $('td[name="oid"]').text();
+    const recv_name = $('input[name="recv_name"]').val();
+    const recv_phone = $('input[name="recv_phone"]').val();
+    const recv_province = $('input[name="recv_province"]').val();
+    const recv_city = $('input[name="recv_city"]').val();
+    const recv_area = $('input[name="recv_area"]').val();
+    const recv_address = $('input[name="recv_address"]').val();
 
 
     alert("您點擊的是第 " + (idValue) + " 個按鈕");
@@ -178,20 +165,17 @@ function OrderUpdataEventFinish(clickedButton) {
         type: 'PUT',
         contentType: 'application/json',
         data: JSON.stringify({
-            "id": idValue,
-            "categoryId" : categoryId,
-            "itemType" : ItemType,
-            "title" : title,
-            "sellPoint" : sellPoint,
-            "price" : price,
-            "num" : num,
-            "image" : image,
-            "status" : status,
-            "priority" : priority
+            "idValue" : idValue,
+            "recvName" : recv_name,
+            "recvPhone" : recv_phone,
+            "recvProvince" : recv_province,
+            "recvCity" : recv_city,
+            "recvArea" : recv_area,
+            "recvAddress" : recv_address
         }),
         success: function(result) {
             console.log(result);
-            getProductData();
+            getOrderData();
         },
         error: function(xhr, status, error) {
             console.error(error);

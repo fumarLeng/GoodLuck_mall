@@ -173,7 +173,7 @@ public class BackStageController {
     public ResponseEntity<?> GetOneOrder(@PathVariable Integer id,
                                          @PathVariable Integer index) {
 //        List<Order> orderList = UserService.findOrderById(id);
-        Order orderList = UserService.findOrderById(id , index);
+        Order orderList = UserService.findOrderById(id);
         Order updatedOrder = null;
         System.out.println("id: " + id);
 //        for (Order order : orderList) {
@@ -197,35 +197,33 @@ public class BackStageController {
     //修改
     @PutMapping("/order/modify/{id}")
     public ResponseEntity<?> updateOrder(@PathVariable Integer id,
-                                           @RequestBody Product updatedProduct) {
+                                           @RequestBody Order updatedOrder) {
         // 根據uid查找用戶，然後更新用戶資訊
         System.out.println("findProductById: " + id);
-        Product existingProduct = UserService.findProductById(id);
-        System.out.println("existingProduct: " + existingProduct);
-        if (existingProduct != null) {
+        Order existingOrder = UserService.findOrderById(id);
+        System.out.println("existingProduct: " + existingOrder);
+        if (existingOrder != null) {
             // 更新用戶資訊
-            System.out.println("updatedProduct.getItemType(): " + updatedProduct.getItemType());
-            existingProduct.setCategoryId(updatedProduct.getCategoryId());
-            existingProduct.setItemType(updatedProduct.getItemType());
-            existingProduct.setTitle(updatedProduct.getTitle());
-            existingProduct.setSellPoint(updatedProduct.getSellPoint());
-            existingProduct.setPrice(updatedProduct.getPrice());
-            existingProduct.setNum(updatedProduct.getNum());
-            existingProduct.setImage(updatedProduct.getImage());
-            existingProduct.setStatus(updatedProduct.getStatus());
-//            existingProduct.setUsername(updatedProduct.getUsername());
+            System.out.println("updatedOrder: " + updatedOrder.getOid());
+//            existingOrder.setCategoryId(updatedProduct.getCategoryId());
+            existingOrder.setOid(updatedOrder.getOid());
+            existingOrder.setUid(updatedOrder.getUid());
+            existingOrder.setRecvName(updatedOrder.getRecvName());
+            existingOrder.setRecvPhone(updatedOrder.getRecvPhone());
+            existingOrder.setRecvProvince(updatedOrder.getRecvProvince());
+            existingOrder.setRecvArea(updatedOrder.getRecvArea());
+            existingOrder.setRecvAddress(updatedOrder.getRecvAddress());
 
-//            existingProduct.setPhone(updatedProduct.getPhone());
-//            existingProduct.setEmail(updatedProduct.getEmail());
-//            existingProduct.setGender(updatedProduct.getGender());
-//            existingProduct.setIsDelete(updatedProduct.getIsDelete());
-
-            System.out.println("getId: " + updatedProduct.getId());
-            System.out.println("getItemType: " + updatedProduct.getItemType());
-//            System.out.println("Gender: " + updatedProduct.getPhone());
-//            System.out.println("IsDelete: " + updatedProduct.getEmail());
+//            existingOrder.setTotalPrice(updatedOrder.getTotalPrice());
+//            existingOrder.setStatus(updatedOrder.getStatus());
+//            existingOrder.setPayTime(updatedOrder.getPayTime());
+//
+//            existingOrder.setCreatedUser(updatedOrder.getCreatedUser());
+//            existingOrder.setCreatedTime(updatedOrder.getCreatedTime());
+//            existingOrder.setModifiedUser(updatedOrder.getModifiedUser());
+//            existingOrder.setModifiedTime(updatedOrder.getModifiedTime());
             // 保存更新後的用戶資訊
-            UserService.saveProdcut(updatedProduct);
+            UserService.saveOrder(existingOrder);
             return new ResponseEntity<>("用戶更新成功", HttpStatus.OK);
         }
 //        } else {
