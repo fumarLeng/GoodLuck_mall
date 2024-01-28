@@ -112,7 +112,8 @@ public class BackStageUser implements com.cy.store.Dao.BackStageUser {
         map.put("recv_area", existingOrder.getRecvArea());
         map.put("recv_address", existingOrder.getRecvAddress());
 
-        System.out.println("sql: " + existingOrder.getRecvName());
+        System.out.println("sqlRecvName: " + existingOrder.getRecvName());
+        System.out.println("sqlOid: " + existingOrder.getOid());
 
         namedParameterJdbcTemplate.update(sql, map);
     }

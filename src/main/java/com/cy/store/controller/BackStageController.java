@@ -205,12 +205,12 @@ public class BackStageController {
         if (existingOrder != null) {
             // 更新用戶資訊
             System.out.println("updatedOrder: " + updatedOrder.getOid());
-//            existingOrder.setCategoryId(updatedProduct.getCategoryId());
+
             existingOrder.setOid(updatedOrder.getOid());
-            existingOrder.setUid(updatedOrder.getUid());
             existingOrder.setRecvName(updatedOrder.getRecvName());
             existingOrder.setRecvPhone(updatedOrder.getRecvPhone());
             existingOrder.setRecvProvince(updatedOrder.getRecvProvince());
+            existingOrder.setRecvCity(updatedOrder.getRecvCity());
             existingOrder.setRecvArea(updatedOrder.getRecvArea());
             existingOrder.setRecvAddress(updatedOrder.getRecvAddress());
 

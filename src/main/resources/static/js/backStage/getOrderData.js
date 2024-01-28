@@ -148,7 +148,7 @@ function OrderUpdataEvent(clickedButton) {
 
 function OrderUpdataEventFinish(clickedButton) {
     const productUpData_btnList = document.querySelectorAll(".ordersUpdata");
-    const idValue = $('td[name="oid"]').text();
+    const Oid = $('td[name="oid"]').text();
     const recv_name = $('input[name="recv_name"]').val();
     const recv_phone = $('input[name="recv_phone"]').val();
     const recv_province = $('input[name="recv_province"]').val();
@@ -157,15 +157,15 @@ function OrderUpdataEventFinish(clickedButton) {
     const recv_address = $('input[name="recv_address"]').val();
 
 
-    alert("您點擊的是第 " + (idValue) + " 個按鈕");
+    alert("您點擊的是第 " + (Oid) + " 個按鈕");
 
 
     $.ajax({
-        url: '/BackStage/order/modify/' + idValue,
+        url: '/BackStage/order/modify/' + Oid,
         type: 'PUT',
         contentType: 'application/json',
         data: JSON.stringify({
-            "idValue" : idValue,
+            "oid" : Oid,
             "recvName" : recv_name,
             "recvPhone" : recv_phone,
             "recvProvince" : recv_province,
