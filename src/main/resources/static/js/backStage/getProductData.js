@@ -269,6 +269,8 @@ function getProductData(){
             table.append(tbody);
 
             productContainer.append(table);
+
+            updatePaginationControls();
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log('AJAX請求失敗：' + textStatus + ', ' + errorThrown);
@@ -278,17 +280,22 @@ function getProductData(){
 
 // 更新分页控件的函数
 function updatePaginationControls() {
-    let paginationContainer = $('#pagination');
-    paginationContainer.empty();
+    let paginationContainer = document.getElementById("pagination");
+    if (!paginationContainer) {
+        paginationContainer = document.createElement("div");
+        paginationContainer.id = "pagination";
+        document.body.appendChild(paginationContainer);
+    }
+    paginationContainer.innerHTML = ''; // 清空已有的分页内容
 
     // 添加上一页按钮
     if (currentPage > 1) {
-        paginationContainer.append(`<button onclick="getProductData(${currentPage - 1}, ${pageSize})">上一页</button>`);
+        paginationContainer.insertAdjacentHTML('beforeend', `<button class="previousPage" onclick="getProductData(${currentPage - 1}, ${pageSize})">上一页</button>`);
     }
 
     // 添加下一页按钮
     // 注意：这里您需要知道总页数，或者在服务器端判断是否还有下一页
-    paginationContainer.append(`<button onclick="getProductData(${currentPage + 1}, ${pageSize})">下一页</button>`);
+    paginationContainer.insertAdjacentHTML('beforeend', `<button class="nextPage" onclick="getProductData(${currentPage + 1}, ${pageSize})">下一页</button>`);
 }
 
 // 页面加载完成时获取第一页的数据
