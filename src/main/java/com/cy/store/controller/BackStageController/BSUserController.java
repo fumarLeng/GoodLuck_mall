@@ -1,7 +1,8 @@
 package com.cy.store.controller.BackStageController;
 
 import com.cy.store.entity.User;
-import com.cy.store.service.impl.BackStageUserService;
+import com.cy.store.service.impl.BackStageServiceImpl.BSUserServiceImpl;
+import com.cy.store.service.impl.BackStageServiceImpl.BackStageUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,17 +17,18 @@ public class BSUserController {
     //頁面資料
 
     @Autowired
-    private BackStageUserService UserService;
+    private BSUserServiceImpl UserServiceImpl;
+    
     @GetMapping("/user")
     public ResponseEntity<List<User>> getAllUserData() {
-        List<User> userList = UserService.getAllUserData();
+        List<User> userList = UserServiceImpl.getAllUserData();
         return ResponseEntity.ok(userList);
     }
 
     //單筆查詢user
     @GetMapping("/user/{uid}")
     public ResponseEntity<?> GetOneUser(@PathVariable Integer uid) {
-        List<User> userList = UserService.getAllUserData();
+        List<User> userList = UserServiceImpl.getAllUserData();
         User updatedUser = null;
         for (User user : userList) {
             if (uid.equals(user.getUid())) {
@@ -49,7 +51,7 @@ public class BSUserController {
     public ResponseEntity<?> updateUser(@PathVariable Integer uid,
                                         @RequestBody User updatedUser) {
         // 根據uid查找用戶，然後更新用戶資訊
-        User existingUser = UserService.findUserById(uid);
+        User existingUser = UserServiceImpl.findUserById(uid);
         System.out.println("existingUser: " + existingUser);
         if (existingUser != null) {
             // 更新用戶資訊
@@ -60,11 +62,13 @@ public class BSUserController {
             existingUser.setIsDelete(updatedUser.getIsDelete());
 
             // 保存更新後的用戶資訊
-            UserService.saveUser(existingUser);
+            UserServiceImpl.saveUser(existingUser);
 
             return ResponseEntity.ok(HttpStatus.OK);
         } else {
             return new ResponseEntity<>("找不到該用戶", HttpStatus.NOT_FOUND);
         }
     }
+
+
 }
