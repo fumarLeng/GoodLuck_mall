@@ -1,4 +1,4 @@
-package com.cy.store.service.impl;
+package com.cy.store.service.impl.BackStageServiceImpl;
 
 import com.cy.store.Dao.Impl.BackStageUser;
 import com.cy.store.entity.Order;
@@ -11,16 +11,13 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class BackStageUserService implements com.cy.store.service.BackStageUserService {
+public class BackStageUserService implements com.cy.store.service.BackStageService.BackStageUserService {
 
     @Autowired
     BackStageUser backStageUserDao;
 
 
-    @Override
-    public List<User> getAllUserData() {
-        return backStageUserDao.getAllUserData();
-    }
+
 
     @Override
     public List<Order> getAllOrderData() {
@@ -33,17 +30,8 @@ public class BackStageUserService implements com.cy.store.service.BackStageUserS
     }
 
     @Override
-    public User findUserById(Integer uid) {
-        return backStageUserDao.findUserById(uid);
-    }
-
-    @Override
     public Order findOrderById(Integer id ) {
         return backStageUserDao.findOrderById(id);
-    }
-
-    public void saveUser(User existingUser){
-        backStageUserDao.saveUser(existingUser);
     }
 
     @Override
