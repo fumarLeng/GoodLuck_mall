@@ -232,6 +232,24 @@ public class BackStageController {
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
+//  分頁
+@GetMapping("/product/page")
+public ResponseEntity<List<Product>> getProductsByPage(
+        @RequestParam(name = "page", defaultValue = "1") Integer page,
+        @RequestParam(name = "pageSize", defaultValue = "5") Integer pageSize) {
+
+    System.out.println("page: " + page + " pageSize: " + pageSize);
+
+    // 确保页码从1开始
+    page = Math.max(page, 1);
+
+    // 获取分页的产品列表
+    List<Product> productList = UserService.getProductsByPage(page, pageSize);
+
+    return ResponseEntity.ok(productList);
+}
+
+
 }
 
 

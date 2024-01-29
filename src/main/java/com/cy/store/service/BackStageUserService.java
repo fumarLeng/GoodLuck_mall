@@ -26,4 +26,6 @@ public interface BackStageUserService {
     public void saveUser(User existingUser);
     public void saveOrder(Order existingOrder);
     public void saveProdcut(Product existingUser);
+
+    public List<Product> getProductsByPage(int page, int pageSize);
 }

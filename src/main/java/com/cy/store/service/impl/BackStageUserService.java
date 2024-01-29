@@ -4,6 +4,7 @@ import com.cy.store.Dao.Impl.BackStageUser;
 import com.cy.store.entity.Order;
 import com.cy.store.entity.Product;
 import com.cy.store.entity.User;
+//import com.ibm.dtfj.corereaders.PageCache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,11 +58,13 @@ public class BackStageUserService implements com.cy.store.service.BackStageUserS
 
     ;
 
-
-
-
     @Override
     public Product findProductById(Integer id) {
         return backStageUserDao.findProductById(id);
+    }
+
+    @Override
+    public List<Product> getProductsByPage(int page, int pageSize) {
+        return backStageUserDao.getProductsByPage(page , pageSize);
     }
 }
