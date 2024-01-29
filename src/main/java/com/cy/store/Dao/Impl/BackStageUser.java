@@ -169,6 +169,7 @@ public class BackStageUser implements com.cy.store.Dao.BackStageUser {
         }
     }
 
+    //分頁Product
     @Override
     public List<Product> getProductsByPage(int page, int pageSize) {
 
