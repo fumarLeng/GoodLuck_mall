@@ -1,7 +1,7 @@
 function productUpdataEvent(clickedButton) {
     const productUpData_btnList = document.querySelectorAll(".producUpData");
     const index = Array.prototype.indexOf.call(productUpData_btnList, clickedButton) + 1;
-    const productId = $('#productId').text();
+    let productId = $('.productId').eq(index - 1).text();
     // alert("您點擊的是第 " + (index) + " 個按鈕");
 
 
@@ -51,16 +51,6 @@ function productUpdataEvent(clickedButton) {
                 tr.append('<td><input class="user-input" name="status" value="' + productList.status + '"></td>');
                 tr.append('<td><input class="user-input" name="priority" value="' + productList.priority + '"></td>');
 
-
-                // tr.append('<td name="id" >' + productList.categoryId + '</td>');
-                // tr.append('<td name="id" >' + productList.itemType + '</td>');
-                // tr.append('<td name="id" >' + productList.title + '</td>');
-                // tr.append('<td name="id" >' + productList.sellPoint + '</td>');
-                // tr.append('<td name="id" >' + productList.price + '</td>');
-                // tr.append('<td name="id" >' + productList.num + '</td>');
-                // tr.append('<td name="id" >' + productList.image + '</td>');
-                // tr.append('<td name="id" >' + productList.status + '</td>');
-                // tr.append('<td name="id" >' + productList.priority + '</td>');
                 tr.append('<td name="id2" >' + productList.createdTime + '</td>');
                 tr.append('<td name="id2" >' + productList.modifiedTime + '</td>');
                 tr.append('<td name="id2" >' + productList.createdUser + '</td>');
@@ -99,7 +89,7 @@ function productUpdataEventFinish(clickedButton) {
 
     // alert("您點擊的是第 " + (idValue) + " 個按鈕");
 
-    //Sweetalart2
+    //SweetAlart2
     const Toast = Swal.mixin({
         toast: true,
         position: 'top-center',
@@ -193,7 +183,7 @@ function getProductData(){
             let tbody = $('<tbody></tbody>');
             $.each(productList, function (index, product) {
                 let tr = $('<tr></tr>');
-                tr.append('<td name="productId" id="productId">' + product.id + '</td>');
+                tr.append('<td name="productId" class="productId">' + product.id + '</td>');
                 tr.append('<td>' + product.categoryId + '</td>');
                 tr.append('<td>' + product.itemType + '</td>');
                 tr.append('<td>' + product.title + '</td>');

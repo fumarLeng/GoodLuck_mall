@@ -1,0 +1,8 @@
+/*  sweetAlert2  */
+
+.my-swal-popup {
+    text-align: center;
+    font-size: 24px;
+    padding: 20px;
+    display: flex;
+}

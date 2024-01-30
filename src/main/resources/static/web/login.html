@@ -11,6 +11,10 @@
     <link href="../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
     <script src="../bootstrap3/jquery-1.9.1.min.js"></script>
     <script src="../bootstrap3/js/bootstrap.js"></script>
+
+    <!--  sweetAlert2 -->
+    <link rel="stylesheet" type="text/css" href="../../css/com.sweetAlert2/sweetAlert2.css"/>
+
     <!-- 字體跟圖標 -->
     <link rel="stylesheet" href="../bootstrap3/font-awesome-4.7.0/css/font-awesome.css"/>
     <link rel="stylesheet" type="text/css" href="../css/top.css"/>
@@ -62,8 +66,6 @@
                 </div>
             </div>
             <!--提交的按紐-->
-
-            </div>
         </form>
     </div>
 </div>
@@ -102,28 +104,19 @@
 <!--    上面兩段是測試登入的時候頭像有沒有拿到,下面那行要放到ajax裡面-->
 
 
+
+<!--sweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.2/dist/sweetalert2.all.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.2/dist/sweetalert2.min.css" rel="stylesheet">
+<script src="../../js/sweetalert/comSweetAlert2.js"></script>
+
+
 <!--footer結束-->
 <script type="text/javascript">
-    $("#btn-login").click(function () {
-        $.ajax({
-            url: "/users/login",
-            type: "POST",
-            data: $("#form-login").serialize(),
-            dataType: "json",
-            success: function (json) {
-                if (json.state === 200) {
-                    alert("歡迎");
-                    //成功要跳轉到首頁index.
-                    //相對路徑設定
-                    location.href = "index.html";
+    $(document).ready(function() {
+        comSweetAlert2();
+    });
 
-                } else {
-                    alert("登錄失敗");
-                }
-            },
-
-        })
-    })
 </script>
 </body>
 </html>
