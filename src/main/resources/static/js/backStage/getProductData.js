@@ -99,6 +99,21 @@ function productUpdataEventFinish(clickedButton) {
 
     // alert("您點擊的是第 " + (idValue) + " 個按鈕");
 
+    //Sweetalart2
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-center',
+        showConfirmButton: true,
+        timer: 10000,
+        customClass: {
+            popup: 'my-swal-popup',
+        },
+        onOpen: toast => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    });
+
 
     $.ajax({
         url: '/BackStage/product/modify/' + idValue,
@@ -121,11 +136,16 @@ function productUpdataEventFinish(clickedButton) {
             getProductData();
         },
         error: function(xhr, status, error) {
-            console.error(error);
+            // console.error(error);
+            Toast.fire("數據格式錯誤" ,"數據格式錯誤","warning");
         }
     });
 
 }
+
+
+
+
 
 //分頁
 
