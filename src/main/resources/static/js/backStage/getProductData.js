@@ -1,7 +1,7 @@
 function productUpdataEvent(clickedButton) {
     const productUpData_btnList = document.querySelectorAll(".producUpData");
     const index = Array.prototype.indexOf.call(productUpData_btnList, clickedButton) + 1;
-    const productId = $('#productId').text();
+    let productId = $('.productId').eq(index - 1).text();
     // alert("您點擊的是第 " + (index) + " 個按鈕");
 
 
@@ -193,7 +193,7 @@ function getProductData(){
             let tbody = $('<tbody></tbody>');
             $.each(productList, function (index, product) {
                 let tr = $('<tr></tr>');
-                tr.append('<td name="productId" id="productId">' + product.id + '</td>');
+                tr.append('<td name="productId" class="productId">' + product.id + '</td>');
                 tr.append('<td>' + product.categoryId + '</td>');
                 tr.append('<td>' + product.itemType + '</td>');
                 tr.append('<td>' + product.title + '</td>');
