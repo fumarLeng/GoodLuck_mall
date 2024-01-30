@@ -96,19 +96,8 @@ function productUpdataEventFinish(clickedButton) {
     const image = $('input[name="image"]').val();
     const status = $('input[name="status"]').val();
     const priority = $('input[name="priority"]').val();
-    // const index = Array.prototype.indexOf.call(productUpData_btnList, clickedButton) + 1;
-    // const userNameValue = $('td[name="username"]').text();
-    // const phone = $('input[name="phone"]').val();
-    // const email = $('input[name="email"]').val();
-    // const userGender = $('input[name="gender"]:checked').val();
-    // const userIsDelete = $('input[name="isDelete"]:checked').val();
 
-    // const userGender = $('input[name="gender"]:checked').val();
-    // const userGender = $('input[name="phone"]').text();
-
-
-
-    alert("您點擊的是第 " + (idValue) + " 個按鈕");
+    // alert("您點擊的是第 " + (idValue) + " 個按鈕");
 
 
     $.ajax({
@@ -142,7 +131,7 @@ function productUpdataEventFinish(clickedButton) {
 
 let currentPage = 1; // 第一頁
 let pageSize = 5; // 頁數據
-
+let productCount; // 總筆數
 function updatePaginationControls() {
     // 實現分頁控制的邏輯
     // 可使用 currentPage 和 pageSize 來擷取適當的資料
@@ -226,12 +215,16 @@ function handlePaginationButtonClick(page) {
 }
 
 function initializePage() {
-    // fetchDataForCurrentPage();
 
+    pageBtnEvent();
 
     // 添加分頁控制的事件監聽器（例如，上一頁和下一頁按鈕）
     $('#prev-button').click(function () {
         handlePaginationButtonClick(currentPage - 1);
+
+        getProductCount();
+        console.log("getProductCount: " + productCount);
+        pageBtnEvent();
 
         $("#current-page").text(currentPage);
         getProductData();
@@ -240,12 +233,27 @@ function initializePage() {
     $('#next-button').click(function () {
         handlePaginationButtonClick(currentPage + 1);
 
+        getProductCount();
+        console.log("getProductCount: " + productCount);
+        pageBtnEvent();
+
         $("#current-page").text(currentPage);
         getProductData();
     });
 }
 
 initializePage();
+
+function pageBtnEvent(){
+    if (currentPage === 1) {
+        $('#prev-button').prop('disabled', true);
+        $('#prev-button').addClass('btn-disabled');
+    } else {
+        $('#prev-button').prop('disabled', false);
+        $('#prev-button').removeClass('btn-disabled');
+    }
+
+}
 
 
 // 更新分页控件的函数
@@ -264,3 +272,20 @@ function updatePaginationControls() {
 $(document).ready(function() {
     getProductData(1, 5);
 });
+
+function getProductCount(){
+    $.ajax({
+        url: '/BackStage/product/page/count',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+            productCount = data / pageSize;
+            // return productCount;
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('AJAX請求失敗：' + textStatus + ', ' + errorThrown);
+        }
+    });
+}
+
+
