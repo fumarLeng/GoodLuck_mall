@@ -42,11 +42,11 @@
                 <a href="#"></a>
             </li>
             <li class="active"><a href="index.html">回到首頁 <span class="fa fa-home"></span></a></li>
-            <li><a href="#">@@</a></li>
-            <li><a href="#">@@</a></li>
-            <li><a href="#">@@</a></li>
-            <li><a href="#">@@</a></li>
-            <li><a href="#">@@</a></li>
+<!--            <li><a href="#">@@</a></li>-->
+<!--            <li><a href="#">@@</a></li>-->
+<!--            <li><a href="#">@@</a></li>-->
+<!--            <li><a href="#">@@</a></li>-->
+<!--            <li><a href="#">@@</a></li>-->
         </ul>
     </div>
     <div class="col-md-6">
@@ -141,7 +141,7 @@
     <script src="../js/com/nav/showLogoDiv.js"></script>
     <script src="../js/com/nav/showHotList.js"></script>
 <!--self cart -->
-    <script src="../js/frontEnd/cart/checkAllSelect.js"></script>
+    <script src="../js/frontend/cart/checkAllSelect.js"></script>
 <!--footer結束-->
 <script type="text/javascript">
     $(function () {
@@ -213,7 +213,7 @@
             type: "POST",
             dataType: "JSON",
             success: function (json) {
-                if (json.state == 200) {
+                if (json.state === 200) {
                     $("#num-" + cid).val(json.data);
                     let price = $("#price-" + cid).html();
                     let totalPrice = price * json.data;
@@ -237,7 +237,7 @@
             type: "POST",
             dataType: "JSON",
             success: function (json) {
-                if (json.state == 200) {
+                if (json.state === 200) {
                     $("#num-" + cida).val(json.data);
                     let price = $("#price-" + cida).html();
                     let totalPrice = price * json.data;

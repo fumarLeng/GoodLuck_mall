@@ -30,7 +30,7 @@ function showLogoDiv(){
         '</div>' +
         '</li>' +
         '<li class="li-split">|</li>' +
-        '<li><a href="login.html"><span class="fa fa-user"></span>&nbsp;登入</a></li>' +
+        // '<li><a href="login.html"><span class="fa fa-user"></span>&nbsp;登入</a></li>' +
         '<li><a href="login.html" onclick="Logout();"><span class="fa fa-sign-out"></span>&nbsp;登出</a></li>' +
         '</ul>' +
         '</div>' +
