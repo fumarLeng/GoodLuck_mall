@@ -7,7 +7,7 @@ const Toast = Swal.mixin({
     toast: true,
     position: 'top-center',
     showConfirmButton: true,
-    timer: 3000,
+    timer: 1000,
     customClass: {
         popup: 'my-swal-popup',
     },
@@ -30,8 +30,11 @@ function setupLogin() {
                     Toast.fire({
                         icon: 'success',
                         title: '登入成功~',
+                    }).then(() => {
+                        setTimeout(() => {
+                            window.location.href = "index.html";
+                        }, 100);
                     });
-                    window.location.href = "index.html";
 
                 } else {
 
