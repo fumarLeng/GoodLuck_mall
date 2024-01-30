@@ -199,6 +199,11 @@ public ResponseEntity<List<Product>> getProductsByPage(
     return ResponseEntity.ok(productList);
 }
 
+    @GetMapping("/product/page/count")
+    public ResponseEntity<Integer> getProductsByPage(){
+        Integer productsCount = UserService.getProductCount();
+        return ResponseEntity.ok(productsCount);
+    }
 
 }
 
