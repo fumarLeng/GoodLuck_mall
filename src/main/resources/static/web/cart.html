@@ -23,6 +23,41 @@
     <link rel="stylesheet" type="text/css" href="../css/com/nav/shopLogo.css"/>
     <link rel="stylesheet" type="text/css" href="../css/index.css"/>
 
+    <style>
+        .col-md-offset-1,
+        .container {
+            width: 100%;
+        }
+
+        .total-bar {
+            font-size: 2em;
+            display: flex;
+            /* align-content: center; */
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .btn btn-primary btn-lg link-account{
+            margin-top: 1em;
+        }
+
+        .cart-del{
+            padding: 10px 16px;
+            font-size: 18px;
+            line-height: 1.33;
+            border-radius: 6px;
+            background: palevioletred;
+        }
+
+        .cart-body{
+            font-size: 1.5em;
+        }
+
+
+    </style>
+
+
 </head>
 
 <body>
@@ -42,11 +77,6 @@
                 <a href="#"></a>
             </li>
             <li class="active"><a href="index.html">回到首頁 <span class="fa fa-home"></span></a></li>
-<!--            <li><a href="#">@@</a></li>-->
-<!--            <li><a href="#">@@</a></li>-->
-<!--            <li><a href="#">@@</a></li>-->
-<!--            <li><a href="#">@@</a></li>-->
-<!--            <li><a href="#">@@</a></li>-->
         </ul>
     </div>
     <div class="col-md-6">
@@ -73,7 +103,8 @@
                         <thead>
                         <tr>
                             <th width="8%">
-                                <input type="checkbox" class="ckall" id="allSelectChecked" onclick="checkAllSelect(this)"/>全選
+                                <input type="checkbox" class="ckall" id="allSelectChecked"
+                                       onclick="checkAllSelect(this)"/>全選
                             </th>
                             <th width="110"></th>
                             <th width="29%">商品</th>
@@ -84,21 +115,18 @@
                         </tr>
                         </thead>
                         <tbody id="cart-list" class="cart-body">
-<!--                        放購物車商品-->
-
+                        <!--                        放購物車商品-->
 
 
                         </tbody>
                     </table>
                     <div class="total-bar">
-<!--                        <a href="javascript:selDelCart()" class="cart-del-sel btn btn-default btn-xs">刪除所選商品</a>-->
+                        <!--                        <a href="javascript:selDelCart()" class="cart-del-sel btn btn-default btn-xs">刪除所選商品</a>-->
                         <span class="pull-right">已選商品
 								<span id="selectCount">0</span>件 總價$
 								<span id="selectTotal">0</span>元
 								</span>
-                    </div>
-                    <div>
-								<span class="pull-right">
+                        <span class="pull-right">
 								<input type="submit" value="  結  算  " class="btn btn-primary btn-lg link-account"/>
 							</span>
                     </div>
@@ -138,10 +166,10 @@
 
 </footer>
 <!--    nav-->
-    <script src="../js/com/nav/showLogoDiv.js"></script>
-    <script src="../js/com/nav/showHotList.js"></script>
+<script src="../js/com/nav/showLogoDiv.js"></script>
+<script src="../js/com/nav/showHotList.js"></script>
 <!--self cart -->
-    <script src="../js/frontend/cart/checkAllSelect.js"></script>
+<script src="../js/frontEnd/cart/checkAllSelect.js"></script>
 <!--footer結束-->
 <script type="text/javascript">
     $(function () {
@@ -213,7 +241,7 @@
             type: "POST",
             dataType: "JSON",
             success: function (json) {
-                if (json.state === 200) {
+                if (json.state == 200) {
                     $("#num-" + cid).val(json.data);
                     let price = $("#price-" + cid).html();
                     let totalPrice = price * json.data;
@@ -237,7 +265,7 @@
             type: "POST",
             dataType: "JSON",
             success: function (json) {
-                if (json.state === 200) {
+                if (json.state == 200) {
                     $("#num-" + cida).val(json.data);
                     let price = $("#price-" + cida).html();
                     let totalPrice = price * json.data;
@@ -258,7 +286,7 @@
         console.log(deleteCid);
         if (confirm("確定要刪除嗎?")) {
             $.ajax({
-                url: "/carts/deleteCart" ,
+                url: "/carts/deleteCart",
                 type: "POST",
                 data: "cids=" + deleteCid,
                 dataType: "json",
@@ -272,6 +300,7 @@
             })
         }
     }
+
     // function checkAllSelect(btn){
     //     const checkList = document.querySelectorAll(".ckitem");
     //     for(let i = 0 ; i < checkList.length ; i++){

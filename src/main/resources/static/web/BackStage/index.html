@@ -71,6 +71,14 @@
         }
 
         #current-page{    padding: 1em;}
+    /*  sweetAlert2  */
+
+        .my-swal-popup {
+            text-align: center;
+            font-size: 24px;
+            padding: 20px;
+            display: flex;
+        }
 
     </style>
 
@@ -109,8 +117,8 @@
     <!--        <div class="content-panel" id="cart">購物車管理...</div>-->
     <!--        <div class="content-panel" id="regions">行政區劃管理...</div>-->
     <div id="page-content-div">
-        <div id="content"></div>
-        <div id="pagination"></div>
+<!--        <div id="content"></div>-->
+<!--        <div id="pagination"></div>-->
         <div id="prev-next-buttons">
             <button id="prev-button">上一頁</button>
             <div id="current-page">1</div>
@@ -127,6 +135,9 @@
 <script src="../../js/backStage/getOrderData.js"></script>
 <script src="../../js/backStage/getProductData.js"></script>
 <script src="../../js/backStage/ProductPage.js"></script>
+<!--switch case -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.2/dist/sweetalert2.all.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.2/dist/sweetalert2.min.css" rel="stylesheet">
 
 <script type="text/javascript">
     $(document).ready(function () {
