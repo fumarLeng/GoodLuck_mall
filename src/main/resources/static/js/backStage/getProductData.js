@@ -1,71 +1,3 @@
-// function getProductData() {
-//     $.ajax({
-//         url: '/BackStage/product',
-//         type: 'GET',
-//         dataType: 'json',
-//         success: function (data) {
-//             let productList = data;
-//             let productContainer = $('#product');
-//             productContainer.empty();
-//
-//             let table = $('<table></table>').addClass('table');
-//
-//             let thead = $('<thead></thead>');
-//             thead.append('<tr>' +
-//                 '<th class="member-list-th">商品id</th>' +
-//                 '<th class="member-list-th">分類id</th>' +
-//                 '<th class="member-list-th">商品系列</th>' +
-//                 '<th class="member-list-th">商品標題</th>' +
-//                 '<th class="member-list-th">商品賣點</th>' +
-//                 '<th class="member-list-th">商品單價</th>' +
-//                 '<th class="member-list-th">庫存數</th>' +
-//                 '<th class="member-list-th">圖片存放路徑</th>' +
-//                 '<th class="member-list-th">商品狀態</th>' +
-//                 '<th class="member-list-th">優先級</th>' +
-//                 '<th class="member-list-th">創建時間</th>' +
-//                 '<th class="member-list-th">最後修改時間</th>' +
-//                 '<th class="member-list-th">創建人</th>' +
-//                 '<th class="member-list-th">最後修改人</th>' +
-//                 '<th class="member-list-th">操作</th>' +
-//                 '</tr>');
-//             table.append(thead);
-//
-//             let tbody = $('<tbody></tbody>');
-//             $.each(productList, function (index, product) {
-//                 let tr = $('<tr></tr>');
-//                 tr.append('<td name="productId" id="productId">' + product.id + '</td>');
-//                 tr.append('<td>' + product.categoryId + '</td>');
-//                 tr.append('<td>' + product.itemType + '</td>');
-//                 tr.append('<td>' + product.title + '</td>');
-//                 tr.append('<td>' + product.sellPoint + '</td>');
-//                 tr.append('<td>' + product.price + '</td>');
-//                 tr.append('<td>' + product.num + '</td>');
-//                 tr.append('<td>' + product.image + '</td>');
-//                 tr.append('<td>' + product.status + '</td>');
-//                 tr.append('<td>' + product.priority + '</td>');
-//                 tr.append('<td name="id" >' + product.createdTime + '</td>');
-//                 tr.append('<td name="id" >' + product.modifiedTime + '</td>');
-//                 tr.append('<td>' + product.createdUser + '</td>');
-//                 tr.append('<td>' + product.modifiedUser + '</td>');
-//
-//                 tr.append('<td>' +
-//                     '<button class="btn btn-success btn-sm producUpData" onclick="productUpdataEvent(this)">修改</button>' +
-//                     // '<button class="btn btn-warning btn-sm">刪除</button>' +
-//                     '</td>');
-//                 tbody.append(tr);
-//             });
-//             table.append(tbody);
-//
-//             productContainer.append(table);
-//         },
-//         error: function (jqXHR, textStatus, errorThrown) {
-//             console.log('AJAX請求失敗：' + textStatus + ', ' + errorThrown);
-//         }
-//     });
-// }
-
-
-
 function productUpdataEvent(clickedButton) {
     const productUpData_btnList = document.querySelectorAll(".producUpData");
     const index = Array.prototype.indexOf.call(productUpData_btnList, clickedButton) + 1;
@@ -296,14 +228,19 @@ function handlePaginationButtonClick(page) {
 function initializePage() {
     // fetchDataForCurrentPage();
 
+
     // 添加分頁控制的事件監聽器（例如，上一頁和下一頁按鈕）
     $('#prev-button').click(function () {
         handlePaginationButtonClick(currentPage - 1);
+
+        $("#current-page").text(currentPage);
         getProductData();
     });
 
     $('#next-button').click(function () {
         handlePaginationButtonClick(currentPage + 1);
+
+        $("#current-page").text(currentPage);
         getProductData();
     });
 }
@@ -321,14 +258,6 @@ function updatePaginationControls() {
     }
     paginationContainer.innerHTML = ''; // 清空已有的分页内容
 
-    // 添加上一页按钮
-    if (currentPage > 1) {
-        // paginationContainer.insertAdjacentHTML('beforeend', `<button class="previousPage" onclick="getProductData(${currentPage - 1}, ${pageSize})">上一页</button>`);
-    }
-
-    // 添加下一页按钮
-    // 注意：这里您需要知道总页数，或者在服务器端判断是否还有下一页
-    // paginationContainer.insertAdjacentHTML('beforeend', `<button class="nextPage" onclick="getProductData(${currentPage + 1}, ${pageSize})">下一页</button>`);
 }
 
 // 页面加载完成时获取第一页的数据
