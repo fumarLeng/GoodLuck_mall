@@ -70,7 +70,7 @@ function productUpdataEvent(clickedButton) {
     const productUpData_btnList = document.querySelectorAll(".producUpData");
     const index = Array.prototype.indexOf.call(productUpData_btnList, clickedButton) + 1;
     const productId = $('#productId').text();
-    alert("您點擊的是第 " + (index) + " 個按鈕");
+    // alert("您點擊的是第 " + (index) + " 個按鈕");
 
 
     $.ajax({
@@ -207,8 +207,15 @@ function productUpdataEventFinish(clickedButton) {
 }
 
 //分頁
+
 let currentPage = 1; // 第一頁
 let pageSize = 5; // 頁數據
+
+function updatePaginationControls() {
+    // 實現分頁控制的邏輯
+    // 可使用 currentPage 和 pageSize 來擷取適當的資料
+    // 並根據需求更新使用者介面
+}
 function getProductData(){
 // function getProductDataPage() {
     $.ajax({
@@ -278,6 +285,32 @@ function getProductData(){
     });
 }
 
+function handlePaginationButtonClick(page) {
+    if (page >= 1) {
+        currentPage = page;
+        // fetchDataForCurrentPage();
+
+    }
+}
+
+function initializePage() {
+    // fetchDataForCurrentPage();
+
+    // 添加分頁控制的事件監聽器（例如，上一頁和下一頁按鈕）
+    $('#prev-button').click(function () {
+        handlePaginationButtonClick(currentPage - 1);
+        getProductData();
+    });
+
+    $('#next-button').click(function () {
+        handlePaginationButtonClick(currentPage + 1);
+        getProductData();
+    });
+}
+
+initializePage();
+
+
 // 更新分页控件的函数
 function updatePaginationControls() {
     let paginationContainer = document.getElementById("pagination");
@@ -290,12 +323,12 @@ function updatePaginationControls() {
 
     // 添加上一页按钮
     if (currentPage > 1) {
-        paginationContainer.insertAdjacentHTML('beforeend', `<button class="previousPage" onclick="getProductData(${currentPage - 1}, ${pageSize})">上一页</button>`);
+        // paginationContainer.insertAdjacentHTML('beforeend', `<button class="previousPage" onclick="getProductData(${currentPage - 1}, ${pageSize})">上一页</button>`);
     }
 
     // 添加下一页按钮
     // 注意：这里您需要知道总页数，或者在服务器端判断是否还有下一页
-    paginationContainer.insertAdjacentHTML('beforeend', `<button class="nextPage" onclick="getProductData(${currentPage + 1}, ${pageSize})">下一页</button>`);
+    // paginationContainer.insertAdjacentHTML('beforeend', `<button class="nextPage" onclick="getProductData(${currentPage + 1}, ${pageSize})">下一页</button>`);
 }
 
 // 页面加载完成时获取第一页的数据

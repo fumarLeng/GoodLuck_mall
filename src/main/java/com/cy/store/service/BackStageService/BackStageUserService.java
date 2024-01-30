@@ -24,4 +24,6 @@ public interface BackStageUserService {
     public void saveProdcut(Product existingUser);
 
     public List<Product> getProductsByPage(int page, int pageSize);
+
+    public Integer getProductCount();
 }

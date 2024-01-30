@@ -55,4 +55,9 @@ public class BackStageUserService implements com.cy.store.service.BackStageServi
     public List<Product> getProductsByPage(int page, int pageSize) {
         return backStageUserDao.getProductsByPage(page , pageSize);
     }
+
+    @Override
+    public Integer getProductCount() {
+        return backStageUserDao.getProductCount();
+    }
 }

@@ -26,4 +26,6 @@ public interface BackStageUser {
     public Product findProductById(Integer id);
 
     public List<Product> getProductsByPage(int page, int pageSize);
+
+    public Integer getProductCount();
 }

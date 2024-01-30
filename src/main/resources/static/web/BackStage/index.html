@@ -15,21 +15,34 @@
 
     <style>
         .col-md-10 {
-            width: 100% ;
+            width: 100%;
         }
 
-        .user-input{
+        .user-input {
             text-align: center;
             width: 100%;
         }
 
-        td{
-            width: 100px ;
+        td {
+            width: 100px;
         }
 
-        .previousPage,.nextPage{
+        .previousPage, .nextPage {
             width: 50px;
 
+        }
+
+        /*  分頁  */
+        #pagination {
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 5px 10px;
+            margin: 5px;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
         }
     </style>
 
@@ -67,6 +80,13 @@
     <div class="content-panel" id="product">商品管理...</div>
     <!--        <div class="content-panel" id="cart">購物車管理...</div>-->
     <!--        <div class="content-panel" id="regions">行政區劃管理...</div>-->
+    <div id="content"></div>
+    <div id="pagination"></div>
+    <div id="prev-next-buttons">
+        <button id="prev-button">上一頁</button>
+        <button id="next-button">下一頁</button>
+    </div>
+    <div id="current-page">目前頁碼：1</div>
 </div>
 
 <script src="../../js/com/nav/showLogoDiv.js"></script>
@@ -75,6 +95,7 @@
 <script src="../../js/backStage/getUserData.js"></script>
 <script src="../../js/backStage/getOrderData.js"></script>
 <script src="../../js/backStage/getProductData.js"></script>
+<script src="../../js/backStage/ProductPage.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -84,7 +105,7 @@
         getUserData();
         getOrderData();
         getProductData();
-
+        // ProductPage();
         // 主頁分頁切換
         $('.nav-li-a').on('click', function (e) {
             e.preventDefault();

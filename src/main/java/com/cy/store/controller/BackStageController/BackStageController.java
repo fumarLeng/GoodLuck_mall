@@ -191,12 +191,11 @@ public ResponseEntity<List<Product>> getProductsByPage(
 
     System.out.println("page: " + page + " pageSize: " + pageSize);
 
-    // 确保页码从1开始
     page = Math.max(page, 1);
 
-    // 获取分页的产品列表
     List<Product> productList = UserService.getProductsByPage(page, pageSize);
-
+    Integer productCount = UserService.getProductCount();
+    System.out.println("productCount: " + productCount);
     return ResponseEntity.ok(productList);
 }
 
