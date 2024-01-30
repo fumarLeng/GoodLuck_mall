@@ -114,11 +114,11 @@
                 <a href="#"></a>
             </li>
             <li class="active"><a href="index.html">回到首頁 <span class="fa fa-home"></span></a></li>
-            <li><a href="#">@@</a></li>
-            <li><a href="#">@@</a></li>
-            <li><a href="#">@@</a></li>
-            <li><a href="#">@@</a></li>
-            <li><a href="#">@@</a></li>
+<!--            <li><a href="#">@@</a></li>-->
+<!--            <li><a href="#">@@</a></li>-->
+<!--            <li><a href="#">@@</a></li>-->
+<!--            <li><a href="#">@@</a></li>-->
+<!--            <li><a href="#">@@</a></li>-->
         </ul>
     </div>
     <div class="col-md-6">
@@ -230,13 +230,13 @@
                 };
             }
             groupedOrders[order.oid].totalPrice += order.price * order.num; // 計算總價
-            groupedOrders[order.oid].items.push(order); // 添加到項目列表
+            groupedOrders[order.oid].items.push(order); // 添加到列表
         });
 
         // 渲染每個分組後的訂單
         Object.values(groupedOrders).forEach(function (groupedOrder) {
             let orderDiv = `
-<div class="ord-table"> <!-- 添加一个包裹div -->
+<div class="ord-table"> <!-- 加一个div -->
     <table border="1">
         <tr class="tr-head">
             <th>訂單編號:</th>
@@ -282,7 +282,7 @@
             url: '/orders/queryOrderVo',
             type: 'GET',
             success: function (json) {
-                if (json.state == 200) {
+                if (json.state === 200) {
                     displayOrders(json.data);
                 } else {
                     console.error('Failed to fetch orders:', json.message);
@@ -306,7 +306,7 @@
 
                     $('#orders').empty();
 
-                if (json.state == 200) {
+                if (json.state === 200) {
                     displayOrders(json.data);
 
                 } else {
@@ -331,7 +331,7 @@
             type: 'GET',
             success: function (json) {
 
-                if (json.state == 200) {
+                if (json.state === 200) {
                     $('#orders').empty();
                     // displayOrders(json.data);
 
