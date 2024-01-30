@@ -169,4 +169,32 @@ public class BackStageUser implements com.cy.store.Dao.BackStageUser {
         }
     }
 
+    //分頁Product
+    @Override
+    public List<Product> getProductsByPage(int page, int pageSize) {
+
+//        String sql = "SELECT * FROM t_product LIMIT :offset, :pageSize";
+        String sql = "SELECT * FROM t_product LIMIT :offset, :pageSize";
+
+        int offset = (page - 1) * pageSize;
+
+        System.out.println("offset: " + offset + " pageSize: " + pageSize);
+
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("offset", offset);
+        paramMap.put("pageSize", pageSize);
+
+        List<Product> productList = namedParameterJdbcTemplate.query(sql, paramMap, new ProductListRowMapper());
+
+        return productList;
+    }
+
+    @Autowired
+    public Integer getProductCount(){
+        String sql = "SELECT COUNT(*) FROM t_product";
+        Map<String, Object> map = new HashMap<>();
+        Integer productCount = namedParameterJdbcTemplate.queryForObject(sql,map,Integer.class);
+
+        return productCount;
+    }
 }

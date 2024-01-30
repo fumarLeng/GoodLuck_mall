@@ -1,9 +1,10 @@
-package com.cy.store.controller;
+package com.cy.store.controller.BackStageController;
 
 import com.cy.store.entity.Order;
 import com.cy.store.entity.Product;
 import com.cy.store.entity.User;
-import com.cy.store.service.impl.BackStageUserService;
+import com.cy.store.service.BackStageService.BSUserService;
+import com.cy.store.service.impl.BackStageServiceImpl.BackStageUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,81 +21,24 @@ public class BackStageController {
     @Autowired
     private BackStageUserService UserService;
 
-    //頁面返回
+    @Autowired
+    private BSUserService UserServiceImpl;
+
+    //頁面返回user
     @GetMapping("")
     public String getAllUserData(HttpServletRequest request) {
-        List<User> userList = UserService.getAllUserData();
+        List<User> userList = UserServiceImpl.getAllUserData();
         request.setAttribute("userList", userList);
         return "forward:/web/BackStage/index.html";
     }
-
-    //頁面資料
-    @GetMapping("/user")
-    public ResponseEntity<List<User>> getAllUserData() {
-        List<User> userList = UserService.getAllUserData();
-//        System.out.println("Avatar: " + userList.get(1).getAvatar());
-        return ResponseEntity.ok(userList);
-    }
-
-    //單筆查詢user
-    @GetMapping("/user/{uid}")
-    public ResponseEntity<?> GetOneUser(@PathVariable Integer uid) {
-        List<User> userList = UserService.getAllUserData();
-        User updatedUser = null;
-        for (User user : userList) {
-            if (uid.equals(user.getUid())) {
-                updatedUser = user;
-                //找到
-//                System.out.println("ok");
-                break;
-            }
-        }
-
-        if (updatedUser != null) {
-
-            return ResponseEntity.ok(updatedUser);
-        } else {
-
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found with id: " + uid);
-        }
-    }
-
-    //修改
-    @PutMapping("/user/modify/{uid}")
-    public ResponseEntity<?> updateUser(@PathVariable Integer uid,
-                                        @RequestBody User updatedUser) {
-        // 根據uid查找用戶，然後更新用戶資訊
-        User existingUser = UserService.findUserById(uid);
-        System.out.println("existingUser: " + existingUser);
-        if (existingUser != null) {
-            // 更新用戶資訊
-            existingUser.setUsername(updatedUser.getUsername());
-            existingUser.setPhone(updatedUser.getPhone());
-            existingUser.setEmail(updatedUser.getEmail());
-            existingUser.setGender(updatedUser.getGender());
-            existingUser.setIsDelete(updatedUser.getIsDelete());
-
-//            System.out.println("uid: " + updatedUser.getUid());
-//            System.out.println("Gender: " + updatedUser.getPhone());
-//            System.out.println("IsDelete: " + updatedUser.getEmail());
-            // 保存更新後的用戶資訊
-            UserService.saveUser(existingUser);
-
-//            return new ResponseEntity<>("用戶更新成功", HttpStatus.OK);
-            return ResponseEntity.ok(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>("找不到該用戶", HttpStatus.NOT_FOUND);
-        }
-    }
-
-
+    //頁面返回order
     @GetMapping("/order")
     public ResponseEntity<List<Order>> getAllOrderData() {
         List<Order> orderList = UserService.getAllOrderData();
 //        System.out.println("getOid: " + orderList.get(0).getRecvPhone());
         return ResponseEntity.ok(orderList);
     }
-
+    //頁面返回product
     //頁面資料product
     @GetMapping("/product")
     public ResponseEntity<List<Product>> getAllProductData() {
@@ -102,6 +46,13 @@ public class BackStageController {
         System.out.println("getOid: " + productList.get(0).getId());
         return ResponseEntity.ok(productList);
     }
+
+
+
+
+
+
+
 
     //單筆查詢product
     @GetMapping("/product/{id}")
@@ -230,6 +181,28 @@ public class BackStageController {
 //            return new ResponseEntity<>("找不到該用戶", HttpStatus.NOT_FOUND);
 //        }
         return ResponseEntity.ok(HttpStatus.OK);
+    }
+
+//  分頁
+@GetMapping("/product/page")
+public ResponseEntity<List<Product>> getProductsByPage(
+        @RequestParam(name = "page", defaultValue = "1") Integer page,
+        @RequestParam(name = "pageSize", defaultValue = "5") Integer pageSize) {
+
+    System.out.println("page: " + page + " pageSize: " + pageSize);
+
+    page = Math.max(page, 1);
+
+    List<Product> productList = UserService.getProductsByPage(page, pageSize);
+    Integer productCount = UserService.getProductCount();
+    System.out.println("productCount: " + productCount);
+    return ResponseEntity.ok(productList);
+}
+
+    @GetMapping("/product/page/count")
+    public ResponseEntity<Integer> getProductsByPage(){
+        Integer productsCount = UserService.getProductCount();
+        return ResponseEntity.ok(productsCount);
     }
 
 }

@@ -15,17 +15,63 @@
 
     <style>
         .col-md-10 {
-            width: 100% ;
+            width: 100%;
         }
 
-        .user-input{
+        .user-input {
             text-align: center;
             width: 100%;
         }
 
-        td{
-            width: 100px ;
+        td {
+            width-max: 100px;
+            height-max : 100px;
+            border-bottom: 1px solid #ccc;
         }
+
+        .previousPage, .nextPage {
+            width: 50px;
+
+        }
+
+        /*  分頁  */
+        #page-content-div{
+            display: none;
+        }
+
+        #pagination {
+            margin-top: 10px;
+        }
+
+       #prev-button,
+       #next-button
+       {
+           border-radius: 25px;
+            padding: 5px 10px;
+            margin: 5px;
+            cursor: pointer;
+            width: 80px;
+            height: 50px;
+        }
+
+        #current-page{
+            font-size: 1.5em;
+        }
+        #current-page:after {
+            content: " 頁";
+
+        }
+        #prev-next-buttons{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        #current-page{    padding: 1em;}
+
     </style>
 
 </head>
@@ -62,6 +108,16 @@
     <div class="content-panel" id="product">商品管理...</div>
     <!--        <div class="content-panel" id="cart">購物車管理...</div>-->
     <!--        <div class="content-panel" id="regions">行政區劃管理...</div>-->
+    <div id="page-content-div">
+        <div id="content"></div>
+        <div id="pagination"></div>
+        <div id="prev-next-buttons">
+            <button id="prev-button">上一頁</button>
+            <div id="current-page">1</div>
+            <button id="next-button">下一頁</button>
+        </div>
+    </div>
+
 </div>
 
 <script src="../../js/com/nav/showLogoDiv.js"></script>
@@ -70,6 +126,7 @@
 <script src="../../js/backStage/getUserData.js"></script>
 <script src="../../js/backStage/getOrderData.js"></script>
 <script src="../../js/backStage/getProductData.js"></script>
+<script src="../../js/backStage/ProductPage.js"></script>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -79,7 +136,7 @@
         getUserData();
         getOrderData();
         getProductData();
-
+        // ProductPage();
         // 主頁分頁切換
         $('.nav-li-a').on('click', function (e) {
             e.preventDefault();
@@ -88,6 +145,12 @@
             $('#' + targetPanel).addClass('activePage');
             $('.nav-pills li').removeClass('activePage');
             $(this).parent('li').addClass('activePage');
+
+            if (targetPanel === 'product') {
+                $('#page-content-div').css('display', 'block');
+            } else {
+                $('#page-content-div').css('display', 'none');
+            }
         });
     });
 

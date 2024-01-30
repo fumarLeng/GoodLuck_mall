@@ -24,4 +24,8 @@ public interface BackStageUser {
     public void saveOrder(Order existingOrder);
 
     public Product findProductById(Integer id);
+
+    public List<Product> getProductsByPage(int page, int pageSize);
+
+    public Integer getProductCount();
 }
