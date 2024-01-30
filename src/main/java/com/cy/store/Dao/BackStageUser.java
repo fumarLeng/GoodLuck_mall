@@ -14,12 +14,14 @@ public interface BackStageUser {
 
     List<Product> getAllProductData();
 
-    User findUserById(Integer uid);
+    public User findUserById(Integer uid);
 
+    public Order findOrderById(Integer id);
 //  修改
     public void saveUser(User existingUser);
 
     public void saveProdcut(Product existingProdcut);
+    public void saveOrder(Order existingOrder);
 
     public Product findProductById(Integer id);
 }
