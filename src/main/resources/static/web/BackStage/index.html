@@ -24,7 +24,8 @@
         }
 
         td {
-            width: 100px;
+            width-max: 100px;
+            height-max : 100px;
         }
 
         .previousPage, .nextPage {
@@ -37,12 +38,23 @@
             margin-top: 10px;
         }
 
-        button {
+       #prev-button,
+       #next-button
+       {
+
             padding: 5px 10px;
             margin: 5px;
             cursor: pointer;
-            width: 50px;
+            width: 80px;
             height: 50px;
+        }
+
+        #current-page{
+            font-size: 1.5em;
+        }
+        #current-page:after {
+            content: " 頁";
+
         }
     </style>
 
@@ -86,7 +98,7 @@
         <button id="prev-button">上一頁</button>
         <button id="next-button">下一頁</button>
     </div>
-    <div id="current-page">目前頁碼：1</div>
+    <div id="current-page">1頁</div>
 </div>
 
 <script src="../../js/com/nav/showLogoDiv.js"></script>

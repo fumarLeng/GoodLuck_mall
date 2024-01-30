@@ -222,8 +222,8 @@ function initializePage() {
     $('#prev-button').click(function () {
         handlePaginationButtonClick(currentPage - 1);
 
-        getProductCount();
-        console.log("getProductCount: " + productCount);
+        // getProductCount();
+        // console.log("getProductCount: " + productCount);
         pageBtnEvent();
 
         $("#current-page").text(currentPage);
@@ -233,8 +233,8 @@ function initializePage() {
     $('#next-button').click(function () {
         handlePaginationButtonClick(currentPage + 1);
 
-        getProductCount();
-        console.log("getProductCount: " + productCount);
+        // getProductCount();
+        // console.log("getProductCount: " + productCount);
         pageBtnEvent();
 
         $("#current-page").text(currentPage);
@@ -245,12 +245,22 @@ function initializePage() {
 initializePage();
 
 function pageBtnEvent(){
+    getProductCount();
+    console.log("getProductCount: " + productCount);
     if (currentPage === 1) {
         $('#prev-button').prop('disabled', true);
         $('#prev-button').addClass('btn-disabled');
     } else {
         $('#prev-button').prop('disabled', false);
         $('#prev-button').removeClass('btn-disabled');
+    }
+
+    if(currentPage >= productCount){
+        $('#next-button').prop('disabled', true);
+        $('#next-button').addClass('btn-disabled');
+    } else {
+        $('#next-button').prop('disabled', false);
+        $('#next-button').removeClass('btn-disabled');
     }
 
 }
