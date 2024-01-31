@@ -94,7 +94,7 @@ function productUpdataEventFinish(clickedButton) {
         toast: true,
         position: 'top-center',
         showConfirmButton: true,
-        timer: 10000,
+        timer: 2000,
         customClass: {
             popup: 'my-swal-popup',
         },
@@ -122,8 +122,17 @@ function productUpdataEventFinish(clickedButton) {
             "priority" : priority
         }),
         success: function(result) {
-            console.log(result);
-            getProductData();
+            Toast.fire({
+                icon: 'success',
+                title: '資料更新成功~',
+            }).then(() => {
+                setTimeout(() => {
+                    // window.location.href = "index.html";
+                    getProductData();
+                }, 100);
+            });
+
+
         },
         error: function(xhr, status, error) {
             // console.error(error);
