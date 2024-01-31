@@ -78,3 +78,109 @@ th, tr, td {
 .btn-success{
     margin-right:.5em;
 }
+
+
+* {
+    box-sizing: border-box;
+}
+
+.col-md-10 {
+    width: 100%;
+}
+
+.user-input {
+    text-align: center;
+    width: 100%;
+    /*border-radius: 25px;*/
+}
+
+td, th {
+    /*line-height: 5em;*/
+    padding: 2em;
+
+}
+td{
+    padding: 2em;
+}
+
+input {
+    height: 100%;
+    border-radius: 25px;
+}
+
+td {
+    width-max: 100px;
+    height-max: 100px;
+    border-bottom: 1px solid #ccc;
+}
+
+.previousPage, .nextPage {
+    width: 50px;
+
+}
+
+/*  分頁  */
+#page-content-div {
+    display: none;
+}
+
+#pagination {
+    margin-top: 10px;
+}
+
+#prev-button,
+#next-button {
+    border-radius: 25px;
+    padding: 5px 10px;
+    margin: 5px;
+    cursor: pointer;
+    width: 80px;
+    height: 50px;
+}
+
+#current-page {
+    font-size: 1.5em;
+}
+
+#current-page:after {
+    content: " 頁";
+
+}
+
+#prev-next-buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+
+}
+
+#current-page {
+    padding: 1em;
+}
+/* 格子預設格式刪除 */
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+    padding: 0;
+    line-height: normal;
+    vertical-align: baseline;
+    border-top: none;
+}
+
+.table > thead > tr > th,
+.table > tbody > tr > th,
+.table > tfoot > tr > th,
+.table > thead > tr > td,
+.table > tbody > tr > td,
+.table > tfoot > tr > td {
+    padding: 0;
+    line-height: normal;
+    vertical-align: baseline;
+    /*border-top: none;*/
+    /*border: none;*/
+}
