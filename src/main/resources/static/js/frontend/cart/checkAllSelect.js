@@ -8,5 +8,6 @@ function checkAllSelect(btn){
             checkList[i].checked = false;
         }
     }
+
 }
 
