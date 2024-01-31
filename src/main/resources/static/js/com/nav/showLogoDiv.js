@@ -10,8 +10,8 @@ function showLogoDiv(){
         '</div>' +
         '<div class="col-md-9 top-item">' +
         '<ul class="list-inline pull-right">' +
-        '<li><a href="favorites.html"><span class="fa fa-heart"></span>&nbsp;收藏</a></li>' +
-        '<li class="li-split">|</li>' +
+        // '<li><a href="favorites.html"><span class="fa fa-heart"></span>&nbsp;收藏</a></li>' +
+        // '<li class="li-split">|</li>' +
         '<li><a href="orders.html"><span class="fa fa-file-text"></span>&nbsp;訂單</a></li>' +
         '<li class="li-split">|</li>' +
         '<li><a href="cart.html"><span class="fa fa-cart-plus"></span>&nbsp;購物車</a></li>' +
