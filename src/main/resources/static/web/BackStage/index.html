@@ -18,6 +18,10 @@
     <title>後台</title>
 
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         .col-md-10 {
             width: 100%;
         }
@@ -25,11 +29,21 @@
         .user-input {
             text-align: center;
             width: 100%;
+            /*border-radius: 25px;*/
+        }
+
+        td, th {
+            line-height: 5em;
+        }
+
+        input {
+            height: 100%;
+            border-radius: 25px;
         }
 
         td {
             width-max: 100px;
-            height-max : 100px;
+            height-max: 100px;
             border-bottom: 1px solid #ccc;
         }
 
@@ -39,7 +53,7 @@
         }
 
         /*  分頁  */
-        #page-content-div{
+        #page-content-div {
             display: none;
         }
 
@@ -47,10 +61,9 @@
             margin-top: 10px;
         }
 
-       #prev-button,
-       #next-button
-       {
-           border-radius: 25px;
+        #prev-button,
+        #next-button {
+            border-radius: 25px;
             padding: 5px 10px;
             margin: 5px;
             cursor: pointer;
@@ -58,14 +71,16 @@
             height: 50px;
         }
 
-        #current-page{
+        #current-page {
             font-size: 1.5em;
         }
+
         #current-page:after {
             content: " 頁";
 
         }
-        #prev-next-buttons{
+
+        #prev-next-buttons {
             display: flex;
             flex-direction: row;
             flex-wrap: nowrap;
@@ -74,7 +89,35 @@
 
         }
 
-        #current-page{    padding: 1em;}
+        #current-page {
+            padding: 1em;
+        }
+        /* 格子預設格式刪除 */
+        .table > thead > tr > th,
+        .table > tbody > tr > th,
+        .table > tfoot > tr > th,
+        .table > thead > tr > td,
+        .table > tbody > tr > td,
+        .table > tfoot > tr > td {
+            padding: 0;
+            line-height: normal;
+            vertical-align: baseline;
+            border-top: none;
+        }
+
+        .table > thead > tr > th,
+        .table > tbody > tr > th,
+        .table > tfoot > tr > th,
+        .table > thead > tr > td,
+        .table > tbody > tr > td,
+        .table > tfoot > tr > td {
+            padding: 0;
+            line-height: normal;
+            vertical-align: baseline;
+            /*border-top: none;*/
+            /*border: none;*/
+        }
+
 
 
     </style>
@@ -114,8 +157,8 @@
     <!--        <div class="content-panel" id="cart">購物車管理...</div>-->
     <!--        <div class="content-panel" id="regions">行政區劃管理...</div>-->
     <div id="page-content-div">
-<!--        <div id="content"></div>-->
-<!--        <div id="pagination"></div>-->
+        <!--        <div id="content"></div>-->
+        <!--        <div id="pagination"></div>-->
         <div id="prev-next-buttons">
             <button id="prev-button">上一頁</button>
             <div id="current-page">1</div>
