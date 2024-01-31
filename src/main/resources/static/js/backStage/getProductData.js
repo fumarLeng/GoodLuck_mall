@@ -94,7 +94,7 @@ function productUpdataEventFinish(clickedButton) {
         toast: true,
         position: 'top-center',
         showConfirmButton: true,
-        timer: 2000,
+        timer: 1000,
         customClass: {
             popup: 'my-swal-popup',
         },
@@ -121,16 +121,16 @@ function productUpdataEventFinish(clickedButton) {
             "status" : status,
             "priority" : priority
         }),
-        success: function(result) {
-            Toast.fire({
-                icon: 'success',
-                title: '資料更新成功~',
-            }).then(() => {
-                setTimeout(() => {
-                    // window.location.href = "index.html";
-                    getProductData();
-                }, 100);
-            });
+            success: function(result) {
+                Toast.fire({
+                    icon: 'success',
+                    title: '資料更新成功~',
+                }).then(() => {
+                    setTimeout(() => {
+                        // window.location.href = "index.html";
+                        getProductData();
+                    }, 100); // 延遲時間更改為1000毫秒
+                });
 
 
         },
