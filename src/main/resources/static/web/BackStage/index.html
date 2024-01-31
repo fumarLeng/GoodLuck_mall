@@ -18,7 +18,10 @@
     <title>後台</title>
 
     <style>
-
+        .nav > li > a:hover, .nav > li > a:focus {
+            text-decoration: none;
+            background-color: #bce8f1;
+        }
     </style>
 
 </head>
@@ -34,7 +37,7 @@
     <h1 id="TabName"></h1>
     <!-- Tab 切換 -->
     <ul class="nav nav-pills" id="nav-ul">
-        <li class="activePage"><a class="nav-li-a" href="#home">回到首頁 <span class="fa fa-home"></span></a></li>
+<!--        <li class="activePage"><a class="nav-li-a" href="#home">回到首頁 <span class="fa fa-home"></span></a></li>-->
         <li><a class="nav-li-a" href="#member">會員管理<span class="fa fa-users"></span></a></li>
         <li><a class="nav-li-a" href="#orders">訂單管理<span class="fa fa-list-alt"></span></a></li>
         <li><a class="nav-li-a" href="#product">商品管理<span class="fa fa-tags"></span></a></li>
@@ -50,7 +53,7 @@
     </ul>
     <!-- 内容 -->
 
-    <div class="content-panel activePage" id="Backhome">回到首頁</div>
+<!--    <div class="content-panel activePage" id="Backhome">回到首頁</div>-->
     <div class="content-panel" id="member">會員管理...</div>
     <div class="content-panel" id="orders">訂單管理...</div>
     <div class="content-panel" id="product">商品管理...</div>
