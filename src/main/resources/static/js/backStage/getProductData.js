@@ -1,78 +1,73 @@
 function productUpdataEvent(clickedButton) {
-    const productUpData_btnList = document.querySelectorAll(".producUpData");
-    const index = Array.prototype.indexOf.call(productUpData_btnList, clickedButton) + 1;
-    let productId = $('.productId').eq(index - 1).text();
-    // alert("您點擊的是第 " + (index) + " 個按鈕");
+    // 獲取所有更新按鈕並找出被點擊按鈕的索引
+    const productUpdateButtonList = document.querySelectorAll(".producUpData");
+    const index = Array.from(productUpdateButtonList).indexOf(clickedButton);
+    let productId = $('.productId').eq(index).text(); // 使用 jQuery 獲取對應的商品ID
 
-
+    // 發送 AJAX 請求以獲取商品數據
     $.ajax({
-
-        url: '/BackStage/product/' + productId,
-        type: 'get',
+        url: `/BackStage/product/${productId}`,
+        type: 'GET',
         dataType: 'json',
         success: function (data) {
-            let productList = data;
-            let productContainer = $('#product');
-            productContainer.empty();
+            const productList = data;
+            const productContainer = $('#product');
+            productContainer.empty(); // 清空容器
 
-            let table = $('<table></table>').addClass('table');
-
-            let thead = $('<thead></thead>');
-            thead.append('<tr>' +
-                '<th class="member-list-th">商品id</th>' +
-                '<th class="member-list-th">分類id</th>' +
-                '<th class="member-list-th">商品系列</th>' +
-                '<th class="member-list-th">商品標題</th>' +
-                '<th class="member-list-th">商品賣點</th>' +
-                '<th class="member-list-th">商品單價</th>' +
-                '<th class="member-list-th">庫存數</th>' +
-                '<th class="member-list-th">圖片存放路徑</th>' +
-                '<th class="member-list-th">商品狀態</th>' +
-                '<th class="member-list-th">優先級</th>' +
-                '<th class="member-list-th">創建時間</th>' +
-                '<th class="member-list-th">最後修改時間</th>' +
-                '<th class="member-list-th">創建人</th>' +
-                '<th class="member-list-th">最後修改人</th>' +
-                '<th class="member-list-th">操作</th>' +
-                '</tr>');
+            // 創建表格並添加表頭
+            const table = $('<table></table>').addClass('table');
+            const thead = $('<thead></thead>').append(`
+                <tr>
+                    <th class="member-list-th modify-td">商品id</th>
+                    <th class="member-list-th modify-td">分類id</th>
+                    <th class="member-list-th modify-td">商品系列</th>
+                    <th class="member-list-th modify-td">商品標題</th>
+                    <th class="member-list-th modify-td">商品賣點</th>
+                    <th class="member-list-th modify-td">商品單價</th>
+                    <th class="member-list-th modify-td">庫存數</th>
+                    <th class="member-list-th modify-td">圖片存放路徑</th>
+                    <th class="member-list-th modify-td">商品狀態</th>
+                    <th class="member-list-th modify-td">優先級</th>
+                    <th class="member-list-th modify-td">創建時間</th>
+                    <th class="member-list-th modify-td">最後修改時間</th>
+                    <th class="member-list-th modify-td">創建人</th>
+                    <th class="member-list-th modify-td">最後修改人</th>
+                    <th class="member-list-th modify-td">操作</th>
+                </tr>
+            `);
             table.append(thead);
 
-            let tbody = $('<tbody></tbody>');
-            let tr = $('<tr></tr>');
-                tr.append('<td name="id" >' + productList.id + '</td>');
-
-                tr.append('<td><input class="user-input" name="category_id" value="' + productList.categoryId + '"></td>');
-                tr.append('<td><input class="user-input" name="item_type" value="' + productList.itemType + '"></td>');
-                tr.append('<td><input class="user-input" name="title" value="' + productList.title + '"></td>');
-                tr.append('<td><input class="user-input" name="sell_point" value="' + productList.sellPoint + '"></td>');
-                tr.append('<td><input class="user-input" name="price" value="' + productList.price + '"></td>');
-                tr.append('<td><input class="user-input" name="num" value="' + productList.num + '"></td>');
-                tr.append('<td><input class="user-input" name="image" value="' + productList.image + '"></td>');
-                tr.append('<td><input class="user-input" name="status" value="' + productList.status + '"></td>');
-                tr.append('<td><input class="user-input" name="priority" value="' + productList.priority + '"></td>');
-
-                tr.append('<td name="id2" >' + productList.createdTime + '</td>');
-                tr.append('<td name="id2" >' + productList.modifiedTime + '</td>');
-                tr.append('<td name="id2" >' + productList.createdUser + '</td>');
-                tr.append('<td name="id2" >' + productList.modifiedUser + '</td>');
-
-            // tr.append('<td><input type="radio" name="isDelete" value="0" ' + (userList.isDelete == 0 ? 'checked' : '') + '>否 <input type="radio" name="isDelete" value="1" ' + (userList.isDelete == 1 ? 'checked' : '') + '>是</td>');
-            // // tr.append('<td>' + (userList.isDelete ? '是' : '否') + '</td>');
-            tr.append('<td>' +
-                '<button class="btn btn-success btn-sm userUpdata" onclick="productUpdataEventFinish(this)">確定</button>' +
-                '<button class="btn btn-warning btn-sm" onclick="getProductData()">取消</button>' +
-                '</td>');
+            // 創建表身並填充數據
+            const tbody = $('<tbody></tbody>');
+            const tr = $('<tr></tr>').append(`
+                <td><input class="user-input modify-input" name="category_id" value="${productList.categoryId}"></td>
+                <td><input class="user-input modify-input" name="item_type" value="${productList.itemType}"></td>
+                <td><input class="user-input modify-input" name="title" value="${productList.title}"></td>
+                <td><input class="user-input modify-input" name="sell_point" value="${productList.sellPoint}"></td>
+                <td><input class="user-input modify-input" name="price" value="${productList.price}"></td>
+                <td><input class="user-input modify-input" name="num" value="${productList.num}"></td>
+                <td><input class="user-input modify-input" name="image" value="${productList.image}"></td>
+                <td><input class="user-input modify-input" name="status" value="${productList.status}"></td>
+                <td><input class="user-input modify-input" name="priority" value="${productList.priority}"></td>
+                <td>${productList.createdTime}</td>
+                <td>${productList.modifiedTime}</td>
+                <td>${productList.createdUser}</td>
+                <td>${productList.modifiedUser}</td>
+                <td>
+                    <button class="btn btn-success btn-sm userUpdata" onclick="productUpdataEventFinish(this)">確定</button>
+                    <button class="btn btn-warning btn-sm" onclick="getProductData()">取消</button>
+                </td>
+            `);
             tbody.append(tr);
-
             table.append(tbody);
-
             productContainer.append(table);
         },
         error: function (jqXHR, textStatus, errorThrown) {
-            console.log('AJAX請求失敗：' + textStatus + ', ' + errorThrown);
+            console.error(`AJAX請求失敗：${textStatus}, ${errorThrown}`);
         }
     });
 }
+
 
 function productUpdataEventFinish(clickedButton) {
     const productUpData_btnList = document.querySelectorAll(".producUpData");
