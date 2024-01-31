@@ -49,9 +49,6 @@ public class OrderController extends BassController {
     }
 
 
-
-
-
 //    根據訂單oid 來更改狀態
     @RequestMapping("/updateStatus")
     public JsonResult<Void> updateStatusByOid(Integer oid,HttpSession session,Integer status){
