@@ -23,6 +23,12 @@ public class OrderListRowMapper implements RowMapper<Order> {
         order.setStatus(rs.getInt("status"));
         order.setOrderTime(rs.getDate("order_time"));
         order.setPayTime(rs.getDate("pay_time"));
+
+        order.setCreatedUser(rs.getString("created_user"));
+        order.setCreatedTime(rs.getDate("created_time"));
+        order.setModifiedUser(rs.getString("modified_user"));
+        order.setModifiedTime(rs.getDate("modified_time"));
+
         return order;
     }
 }
