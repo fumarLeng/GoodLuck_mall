@@ -31,6 +31,7 @@
 
 <!-- 導航 -->
 <div class="row top-nav" id="nav-container">
+    <h1 id="TabName"></h1>
     <!-- Tab 切換 -->
     <ul class="nav nav-pills" id="nav-ul">
         <li class="activePage"><a class="nav-li-a" href="#home">回到首頁 <span class="fa fa-home"></span></a></li>
@@ -87,6 +88,7 @@
         getOrderData();
         getProductData();
         // ProductPage();
+
         // 主頁分頁切換
         $('.nav-li-a').on('click', function (e) {
             e.preventDefault();
@@ -96,6 +98,10 @@
             $('.nav-pills li').removeClass('activePage');
             $(this).parent('li').addClass('activePage');
 
+            const TabName = document.querySelector("#TabName");
+            let CurActivePage = document.querySelector(".activePage");
+
+            TabName.innerText = CurActivePage.innerText;
             if (targetPanel === 'product') {
                 $('#page-content-div').css('display', 'block');
             } else {
