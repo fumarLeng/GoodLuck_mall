@@ -189,7 +189,7 @@ public class BackStageUser implements com.cy.store.Dao.BackStageUser {
         return productList;
     }
 
-    @Autowired
+    @Override
     public Integer getProductCount(){
         String sql = "SELECT COUNT(*) FROM t_product";
         Map<String, Object> map = new HashMap<>();
