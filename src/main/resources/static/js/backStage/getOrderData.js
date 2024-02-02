@@ -87,24 +87,24 @@ function OrderUpdataEvent(clickedButton) {
 
             let thead = $('<thead></thead>');
             thead.append('<tr>' +
-                '<th class="orders-list-th">訂單id</th>' +
-                '<th class="orders-list-th">會員id</th>' +
-                '<th class="orders-list-th">收貨人姓名</th>' +
-                '<th class="orders-list-th">收貨人電話</th>' +
-                '<th class="orders-list-th">收貨人國家</th>' +
-                '<th class="orders-list-th">收貨人市</th>' +
-                '<th class="orders-list-th">收貨人區</th>' +
-                '<th class="orders-list-th">收貨詳細地址</th>' +
-                '<th class="orders-list-th">總價</th>' +
-                '<th class="orders-list-th">狀態</th>' +
-                '<th class="orders-list-th">下單時間</th>' +
-                '<th class="orders-list-th">付款時間</th>' +
-                '<th class="orders-list-th">創建人</th>' +
-                '<th class="orders-list-th">創建時間</th>' +
-                '<th class="orders-list-th">修改人</th>' +
-                '<th class="orders-list-th">修改時間</th>' +
-                '<th class="orders-list-th">操作</th>' +
-                '</tr>');
+                `<th class="orders-list-th">訂單id</th>
+                <th class="orders-list-th">會員id</th>
+                <th class="orders-list-th">收貨人姓名</th>
+                <th class="orders-list-th">收貨人電話</th>
+                <th class="orders-list-th">收貨人國家</th>
+                <th class="orders-list-th">收貨人市</th>
+                <th class="orders-list-th">收貨人區</th>
+                <th class="orders-list-th">收貨詳細地址</th>
+                <th class="orders-list-th">總價</th>
+                <th class="orders-list-th">狀態</th>
+                <th class="orders-list-th">下單時間</th>
+                <th class="orders-list-th">付款時間</th>
+                <th class="orders-list-th">創建人</th>
+                <th class="orders-list-th">創建時間</th>
+                <th class="orders-list-th">修改人</th>
+                <th class="orders-list-th">修改時間</th>
+                <th class="orders-list-th">操作</th>
+                </tr>`)
             table.append(thead);
 
             let tbody = $('<tbody></tbody>');

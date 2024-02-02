@@ -17,7 +17,7 @@ public class Order extends BaseEntity implements Serializable {
     private Integer status;
     private Date orderTime;
     private Date payTime;
-
+    
     public Integer getOid() {
         return oid;
     }

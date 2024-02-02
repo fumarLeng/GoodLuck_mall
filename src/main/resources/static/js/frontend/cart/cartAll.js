@@ -1,5 +1,28 @@
 
 //選中購物車產品 會計算下面總數
+// function checkAllSelect(btn){
+//
+//     const checkList = document.querySelectorAll(".ckitem");
+//     for(let i = 0 ; i < checkList.length ; i++){
+//         if(btn.checked === true){
+//             checkList[i].checked = true;
+//         }else{
+//             checkList[i].checked = false;
+//         }
+//     }
+//
+//     const selectTotal = document.querySelectorAll(".num-text");
+//     let TotalPrice;
+//     const TotalPriceList = document.querySelectorAll("#total-price-12").values();
+//     for(let i = 0 ; i < TotalPriceList.length ; i++){
+//         TotalPrice += TotalPriceList[i];
+//     }
+//
+//     TotalPrice.innerText = TotalPrice;
+// }
+
+
+
 function updateTotal() {
     let totalNum = 0;
     let totalPrice = 0;
@@ -41,7 +64,7 @@ function showCartList() {
                     + '<td><img src="..#{image}collect.png" class="img-responsive" /></td>'
                     + '<td>#{title}</td>'
                     + '<td>$<span id="price-#{cid}">#{realPrice}</span></td>'
-                    + '<td>'
+                    + '<td id="ctrl-td">'
                     + '<input type="button" value="-" class="num-btn" onclick="reduceNum(#{cida})" />'
                     + '<input id="num-#{cid}" type="text" size="2" readonly="readonly" class="num-text" value="#{num}">'
                     + '<input class="num-btn" type="button" value="+" onclick="addNum(#{cid})" />'

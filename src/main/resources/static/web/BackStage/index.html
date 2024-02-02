@@ -18,119 +18,10 @@
     <title>後台</title>
 
     <style>
-        * {
-            box-sizing: border-box;
+        .nav > li > a:hover, .nav > li > a:focus {
+            text-decoration: none;
+            background-color: #bce8f1;
         }
-
-        .col-md-10 {
-            width: 100%;
-        }
-
-        .user-input {
-            text-align: center;
-            width: 100%;
-            /*border-radius: 25px;*/
-        }
-
-        td, th {
-            line-height: 5em;
-        }
-
-        input {
-            height: 100%;
-            border-radius: 25px;
-        }
-
-        td {
-            width-max: 100px;
-            height-max: 100px;
-            border-bottom: 1px solid #ccc;
-        }
-
-        .previousPage, .nextPage {
-            width: 50px;
-
-        }
-
-        /*  分頁  */
-        #page-content-div {
-            display: none;
-        }
-
-        #pagination {
-            margin-top: 10px;
-        }
-
-        #prev-button,
-        #next-button {
-            border-radius: 25px;
-            padding: 5px 10px;
-            margin: 5px;
-            cursor: pointer;
-            width: 80px;
-            height: 50px;
-        }
-
-        #current-page {
-            font-size: 1.5em;
-        }
-
-        #current-page:after {
-            content: " 頁";
-
-        }
-
-        #prev-next-buttons {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: nowrap;
-            justify-content: center;
-            align-items: center;
-
-        }
-
-        #current-page {
-            padding: 1em;
-        }
-        /* 格子預設格式刪除 */
-        .table > thead > tr > th,
-        .table > tbody > tr > th,
-        .table > tfoot > tr > th,
-        .table > thead > tr > td,
-        .table > tbody > tr > td,
-        .table > tfoot > tr > td {
-            padding: 0;
-            line-height: normal;
-            vertical-align: baseline;
-            border-top: none;
-        }
-
-        .table > thead > tr > th,
-        .table > tbody > tr > th,
-        .table > tfoot > tr > th,
-        .table > thead > tr > td,
-        .table > tbody > tr > td,
-        .table > tfoot > tr > td {
-            padding: 0;
-            line-height: normal;
-            vertical-align: baseline;
-            /*border-top: none;*/
-            /*border: none;*/
-        }
-/*========================================================*/
-/*       預覽圖框框*/
-        #previewImg {
-            max-width: 200px; /* 最大宽度，根据需要调整 */
-            max-height: 200px; /* 最大高度，根据需要调整 */
-            object-fit: contain; /* 保持图片的比例 */
-            border: 1px solid #ccc; /* 可选，为图片添加边框 */
-            padding: 5px; /* 可选，为图片添加内边距 */
-            background-color: #f9f9f9; /* 可选，为图片添加背景色 */
-        }
-        /*========================================================*/
-
-
-
     </style>
 
 </head>
@@ -143,13 +34,13 @@
 
 <!-- 導航 -->
 <div class="row top-nav" id="nav-container">
+    <h1 id="TabName"></h1>
     <!-- Tab 切換 -->
     <ul class="nav nav-pills" id="nav-ul">
-        <li class="activePage"><a class="nav-li-a" href="#home">回到首頁 <span class="fa fa-home"></span></a></li>
+<!--        <li class="activePage"><a class="nav-li-a" href="#home">回到首頁 <span class="fa fa-home"></span></a></li>-->
         <li><a class="nav-li-a" href="#member">會員管理<span class="fa fa-users"></span></a></li>
         <li><a class="nav-li-a" href="#orders">訂單管理<span class="fa fa-list-alt"></span></a></li>
         <li><a class="nav-li-a" href="#product">商品管理<span class="fa fa-tags"></span></a></li>
-        <li><a class="nav-li-a" href="#newProduct">新增商品<span class="fa fa-tags"></span></a></li>
         <!--        <li><a class="nav-li-a" href="#cart">購物車管理<span class="fa fa-shopping-cart"></span></a></li>-->
         <!--        <li><a class="nav-li-a" href="#regions">行政區劃管理<span class="fa fa-map-marker"></span></a></li>-->
         <!-- 搜索表单 -->
@@ -162,89 +53,10 @@
     </ul>
     <!-- 内容 -->
 
-    <div class="content-panel activePage" id="Backhome">回到首頁</div>
+<!--    <div class="content-panel activePage" id="Backhome">回到首頁</div>-->
     <div class="content-panel" id="member">會員管理...</div>
     <div class="content-panel" id="orders">訂單管理...</div>
     <div class="content-panel" id="product">商品管理...</div>
-    <!-- 新增商品tab -->
-    <div id="newProduct" class="content-panel">
-
-        <form id="addProductForm">
-            <table>
-                <tr>
-                    <td>商品狀態:</td>
-                    <td>
-                        <select name="categoryId">
-                            <option value="1">生活用品</option>
-                            <option value="2">3C產品</option>
-                        </select>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>商品種類:</td>
-                    <td>
-                        <select name="itemType">
-                            <option value="筆記本">筆記本</option>
-                            <option value="筆記型電腦">筆記型電腦</option>
-                            <option value="滾珠筆">滾珠筆</option>
-                        </select>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>商品標題:</td>
-                    <td><input name="title" type="text"></td>
-                </tr>
-
-                <tr>
-                    <td>商品促銷標題:</td>
-                    <td><input name="sellPoint" type="text"></td>
-                </tr>
-
-                <tr>
-                    <td>商品單價:</td>
-                    <td><input name="price" type="number"></td>
-                </tr>
-
-                <tr>
-                    <td>庫存:</td>
-                    <td><input name="num" type="number"></td>
-                </tr>
-
-                <tr>
-                    <td>商品圖片:</td>
-                    <td>
-                        <input id="productImg" name="image" type="file">
-                        <img id="previewImg" src="">
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>商品狀態:</td>
-                    <td>
-                        <select name="status">
-                            <option value="0">下架</option>
-                            <option value="1">上架</option>
-                        </select>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td>商品優先級:(1~10)</td>
-                    <td>
-                        <input name="priority" type="range" min="1" max="10">
-                        <span id="priority-value"></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td colspan="2"><button type="submit">保存</button></td>
-                </tr>
-            </table>
-        </form>
-
-    </div>
     <!--        <div class="content-panel" id="cart">購物車管理...</div>-->
     <!--        <div class="content-panel" id="regions">行政區劃管理...</div>-->
     <div id="page-content-div">
@@ -279,6 +91,7 @@
         getOrderData();
         getProductData();
         // ProductPage();
+
         // 主頁分頁切換
         $('.nav-li-a').on('click', function (e) {
             e.preventDefault();
@@ -288,6 +101,10 @@
             $('.nav-pills li').removeClass('activePage');
             $(this).parent('li').addClass('activePage');
 
+            const TabName = document.querySelector("#TabName");
+            let CurActivePage = document.querySelector(".activePage");
+
+            TabName.innerText = CurActivePage.innerText;
             if (targetPanel === 'product') {
                 $('#page-content-div').css('display', 'block');
             } else {
@@ -296,41 +113,6 @@
         });
     });
 
-
-
-    //==========================================================================
-    //優先級 滑動 JS
-    $('input[name="priority"]').change(function() {
-        var priority = $(this).val();
-    });
-
-    var input = $('input[name="priority"]');
-
-    input.change(function() {
-        $('#priority-value').text( $(this).val() );
-    });
-
-    //圖片預覽
-    //==========================================================================
-    // 文件上传输入框改变时触发
-    $('#productImg').change(function() {
-
-        // 获取选中的文件
-        var file = this.files[0];
-
-        // 使用FileReader读取文件
-        var reader = new FileReader();
-
-        // 读取成功完成后
-        reader.onload = function() {
-            // 设置预览图片的src为读取的DataURL
-            $('#previewImg').attr('src', reader.result);
-        };
-
-        // 读取文件内容
-        reader.readAsDataURL(file);
-
-    });
 
 </script>
 </body>
