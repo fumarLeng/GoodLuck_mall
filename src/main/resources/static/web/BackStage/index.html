@@ -18,6 +18,12 @@
     <title>後台</title>
 
     <style>
+
+        td th {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
         .nav > li > a:hover, .nav > li > a:focus {
             text-decoration: none;
             background-color: #bce8f1;
@@ -26,14 +32,66 @@
         /*========================================================*/
         /*       預覽圖框框*/
         #previewImg {
-            max-width: 200px; /* 最大宽度，根据需要调整 */
-            max-height: 200px; /* 最大高度，根据需要调整 */
-            object-fit: contain; /* 保持图片的比例 */
-            border: 1px solid #ccc; /* 可选，为图片添加边框 */
-            padding: 5px; /* 可选，为图片添加内边距 */
-            background-color: #f9f9f9; /* 可选，为图片添加背景色 */
+            max-width: 200px;
+            max-height: 200px;
+            object-fit: contain;
+            border: 1px solid #ccc;
+            padding: 5px;
+            background-color: #f9f9f9;
+
+
         }
 
+        td {
+            border: 1px solid #ccc;
+            /*font-size: 2em;*/
+            padding: 0.5em;
+
+        }
+        #addProductForm{
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: row;
+        }
+
+        #addProductForm table {
+            margin: 0 auto;
+            width: 50%;
+        }
+
+        #addProductForm img{
+            width: 100px;
+            height: 100px;
+        }
+
+        #tr-td-img{
+            display: flex;
+            flex-direction: row;
+            align-content: center;
+            align-items: center;
+        }
+
+        #addProductForm input,
+        #addProductForm select {
+            text-align: center;
+            width: 100%;
+            font-size: 2em;
+            border-radius: 25px;
+        }
+
+
+        #save-btn{
+            width: 100%;
+        }
+
+        #save-btn:hover{
+            background: #ccc;
+        }
+
+        #priority-value-div{
+            display: flex;
+
+        }
         /*========================================================*/
 
     </style>
@@ -119,13 +177,15 @@
                     <td>商品單價:</td>
                     <td><input name="price" type="number"></td>
                 </tr>
+            </table>
 
+            <table>
                 <tr>
                     <td>庫存:</td>
                     <td><input name="num" type="number"></td>
                 </tr>
 
-                <tr>
+                <tr id="tr-td-img">
                     <td>商品圖片:</td>
                     <td>
                         <input id="productImg" name="image" type="file">
@@ -137,8 +197,8 @@
                     <td>商品狀態:</td>
                     <td>
                         <select name="status">
-                            <option value="0">下架</option>
                             <option value="1">上架</option>
+                            <option value="0">下架</option>
                         </select>
                     </td>
                 </tr>
@@ -147,13 +207,17 @@
                     <td>商品優先級:(1~10)</td>
                     <td>
                         <input name="priority" type="range" min="1" max="10">
-                        <span id="priority-value"></span>
+                        <div id="priority-value-div">
+                            <span class="priority-value">1</span>
+                            <span id="priority-value"></span>
+                            <span class="priority-value">10</span>
+                        </div>
                     </td>
                 </tr>
 
                 <tr>
                     <td colspan="2">
-                        <button type="submit">保存</button>
+                        <button id="save-btn" type="submit">保存</button>
                     </td>
                 </tr>
             </table>
@@ -218,15 +282,15 @@
 
 
     //==========================================================================
-    //優先級 滑動 JS
-    $('input[name="priority"]').change(function () {
-        var priority = $(this).val();
-    });
+    document.addEventListener('DOMContentLoaded', function() {
+        let slider = document.querySelector('input[name="priority"]');
+        let output = document.getElementById('priority-value');
 
-    var input = $('input[name="priority"]');
-
-    input.change(function () {
-        $('#priority-value').text($(this).val());
+        output.innerText = slider.value;
+        
+        slider.addEventListener('input', function() {
+            output.innerText = `當前: ${this.value}`;
+        });
     });
 
     //圖片預覽
@@ -234,44 +298,44 @@
     // 圖片上傳
     $('#productImg').change(function () {
 
-        // 拿到選中的東西
-        var file = this.files[0];
+  
+        let file = this.files[0];
 
-        // 使用FileReader讀取文件
-        var reader = new FileReader();
 
-        // 读取成功完成后
+        let reader = new FileReader();
+
+
         reader.onload = function () {
-            // 设置预览图片的src为读取的DataURL
+
             $('#previewImg').attr('src', reader.result);
         };
 
-        // 读取文件内容
+
         reader.readAsDataURL(file);
 
     });
 
 
-    $('#addProductForm').submit(function(e) {
-        e.preventDefault(); // 防止表单自动提交
+    $('#addProductForm').submit(function (e) {
+        e.preventDefault();
 
-        var formData = new FormData(this); // 使用FormData对象包含文件数据
+        let formData = new FormData(this);
 
         $.ajax({
             url: '/product/add',
             type: 'POST',
             data: formData,
-            contentType: false, // 不设置内容类型
-            processData: false, // 不处理数据
-            success: function(json) {
-                if(json.status === 200){
-                    alert("产品新增成功");
+            contentType: false,
+            processData: false,
+            success: function (json) {
+                if (json.status === 200) {
+                    alert("產品新增成功");
                 }
                 // 请求成功处理
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 // 请求失败处理
-                alert("产品新增失败: " + error);
+                alert("產品新增失敗: " + error);
             }
         });
     });
