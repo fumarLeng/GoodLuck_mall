@@ -22,6 +22,20 @@
             text-decoration: none;
             background-color: #bce8f1;
         }
+
+        /*========================================================*/
+        /*       預覽圖框框*/
+        #previewImg {
+            max-width: 200px; /* 最大宽度，根据需要调整 */
+            max-height: 200px; /* 最大高度，根据需要调整 */
+            object-fit: contain; /* 保持图片的比例 */
+            border: 1px solid #ccc; /* 可选，为图片添加边框 */
+            padding: 5px; /* 可选，为图片添加内边距 */
+            background-color: #f9f9f9; /* 可选，为图片添加背景色 */
+        }
+
+        /*========================================================*/
+
     </style>
 
 </head>
@@ -37,10 +51,13 @@
     <h1 id="TabName"></h1>
     <!-- Tab 切換 -->
     <ul class="nav nav-pills" id="nav-ul">
-<!--        <li class="activePage"><a class="nav-li-a" href="#home">回到首頁 <span class="fa fa-home"></span></a></li>-->
+        <!--        <li class="activePage"><a class="nav-li-a" href="#home">回到首頁 <span class="fa fa-home"></span></a></li>-->
         <li><a class="nav-li-a" href="#member">會員管理<span class="fa fa-users"></span></a></li>
         <li><a class="nav-li-a" href="#orders">訂單管理<span class="fa fa-list-alt"></span></a></li>
         <li><a class="nav-li-a" href="#product">商品管理<span class="fa fa-tags"></span></a></li>
+        <li><a class="nav-li-a" href="#newProduct">新增商品<span class="fa fa-tags"></span></a></li>
+
+
         <!--        <li><a class="nav-li-a" href="#cart">購物車管理<span class="fa fa-shopping-cart"></span></a></li>-->
         <!--        <li><a class="nav-li-a" href="#regions">行政區劃管理<span class="fa fa-map-marker"></span></a></li>-->
         <!-- 搜索表单 -->
@@ -53,10 +70,96 @@
     </ul>
     <!-- 内容 -->
 
-<!--    <div class="content-panel activePage" id="Backhome">回到首頁</div>-->
+    <!--    <div class="content-panel activePage" id="Backhome">回到首頁</div>-->
     <div class="content-panel" id="member">會員管理...</div>
     <div class="content-panel" id="orders">訂單管理...</div>
     <div class="content-panel" id="product">商品管理...</div>
+    <!-- 新增商品tab -->
+    <div id="newProduct" class="content-panel">
+
+        <form id="addProductForm">
+            <table>
+                <tr>
+                    <td>商品區分:</td>
+                    <td>
+                        <select name="categoryId">
+                            <option value="1">生活用品</option>
+                            <option value="2">盥洗用品</option>
+                            <option value="3">家具</option>
+
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>商品種類:</td>
+                    <td>
+                        <select name="itemType">
+                            <option value="筆記本">筆記本</option>
+                            <option value="筆記型電腦">筆記型電腦</option>
+                            <option value="鍋具">鍋具</option>
+                            <option value="杯子">杯子</option>
+                            <option value="衣櫃">衣櫃</option>
+
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>商品標題:</td>
+                    <td><input name="title" type="text"></td>
+                </tr>
+
+                <tr>
+                    <td>商品促銷標題:</td>
+                    <td><input name="sellPoint" type="text"></td>
+                </tr>
+
+                <tr>
+                    <td>商品單價:</td>
+                    <td><input name="price" type="number"></td>
+                </tr>
+
+                <tr>
+                    <td>庫存:</td>
+                    <td><input name="num" type="number"></td>
+                </tr>
+
+                <tr>
+                    <td>商品圖片:</td>
+                    <td>
+                        <input id="productImg" name="image" type="file">
+                        <img id="previewImg" src="">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>商品狀態:</td>
+                    <td>
+                        <select name="status">
+                            <option value="0">下架</option>
+                            <option value="1">上架</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>商品優先級:(1~10)</td>
+                    <td>
+                        <input name="priority" type="range" min="1" max="10">
+                        <span id="priority-value"></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">
+                        <button type="submit">保存</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
     <!--        <div class="content-panel" id="cart">購物車管理...</div>-->
     <!--        <div class="content-panel" id="regions">行政區劃管理...</div>-->
     <div id="page-content-div">
@@ -109,6 +212,66 @@
                 $('#page-content-div').css('display', 'block');
             } else {
                 $('#page-content-div').css('display', 'none');
+            }
+        });
+    });
+
+
+    //==========================================================================
+    //優先級 滑動 JS
+    $('input[name="priority"]').change(function () {
+        var priority = $(this).val();
+    });
+
+    var input = $('input[name="priority"]');
+
+    input.change(function () {
+        $('#priority-value').text($(this).val());
+    });
+
+    //圖片預覽
+    //==========================================================================
+    // 圖片上傳
+    $('#productImg').change(function () {
+
+        // 拿到選中的東西
+        var file = this.files[0];
+
+        // 使用FileReader讀取文件
+        var reader = new FileReader();
+
+        // 读取成功完成后
+        reader.onload = function () {
+            // 设置预览图片的src为读取的DataURL
+            $('#previewImg').attr('src', reader.result);
+        };
+
+        // 读取文件内容
+        reader.readAsDataURL(file);
+
+    });
+
+
+    $('#addProductForm').submit(function(e) {
+        e.preventDefault(); // 防止表单自动提交
+
+        var formData = new FormData(this); // 使用FormData对象包含文件数据
+
+        $.ajax({
+            url: '/product/add',
+            type: 'POST',
+            data: formData,
+            contentType: false, // 不设置内容类型
+            processData: false, // 不处理数据
+            success: function(json) {
+                if(json.status === 200){
+                    alert("产品新增成功");
+                }
+                // 请求成功处理
+            },
+            error: function(xhr, status, error) {
+                // 请求失败处理
+                alert("产品新增失败: " + error);
             }
         });
     });

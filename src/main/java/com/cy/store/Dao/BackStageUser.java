@@ -20,7 +20,13 @@ public interface BackStageUser {
 //  修改
     public void saveUser(User existingUser);
 
+//    =============新增產品========================
+    public void addProduct(Product product);
+
+//    =============新增產品========================
+
     public void saveProdcut(Product existingProdcut);
+
     public void saveOrder(Order existingOrder);
 
     public Product findProductById(Integer id);
@@ -28,4 +34,6 @@ public interface BackStageUser {
     public List<Product> getProductsByPage(int page, int pageSize);
 
     public Integer getProductCount();
+
+
 }

@@ -76,7 +76,7 @@ public class FileUploadUtil  {
         }
 
         // 返回文件存储路径
-        return "/images/portal/" + randomDir + "/" + filename;
+        return "/images/portal/" + randomDir + "/";
     }
 
 }
