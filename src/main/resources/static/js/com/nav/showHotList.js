@@ -19,7 +19,7 @@ function showHotList() {
                     '<div class="">'
                     + '<div class="list-sub">'
                     + '<a href="product.html?id=#{id}" class="product-title-a">'
-                    + '<img src="..#{image}collect.jpg" class="" />'
+                    + '<img src="..#{image}collect.png" class="" />'
                     + '<p>#{title}</p>'
                     + '</a>'
                     + '<div class="">$#{price}</div>'
