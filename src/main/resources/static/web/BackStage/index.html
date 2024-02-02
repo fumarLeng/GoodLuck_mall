@@ -66,9 +66,14 @@
 
         #tr-td-img{
             display: flex;
-            flex-direction: row;
-            align-content: center;
-            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        #tr-td-img td input{
+            margin-left: 1em;
+            border-radius: 5px;
+            border: 0px solid #fff;
         }
 
         #addProductForm input,
@@ -90,6 +95,7 @@
 
         #priority-value-div{
             display: flex;
+            justify-content: space-between;
 
         }
         /*========================================================*/
@@ -185,9 +191,9 @@
                     <td><input name="num" type="number"></td>
                 </tr>
 
-                <tr id="tr-td-img">
+                <tr >
                     <td>商品圖片:</td>
-                    <td>
+                    <td id="tr-td-img">
                         <input id="productImg" name="image" type="file">
                         <img id="previewImg" src="">
                     </td>
