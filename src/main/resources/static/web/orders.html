@@ -284,6 +284,9 @@
             success: function (json) {
                 if (json.state === 200) {
                     displayOrders(json.data);
+
+
+
                 } else {
                     console.error('Failed to fetch orders:', json.message);
                 }
@@ -308,6 +311,11 @@
 
                 if (json.state === 200) {
                     displayOrders(json.data);
+
+                    const changeBtnName = document.querySelectorAll(".checkShop");
+                    for(let i = 0 ; i < changeBtnName.length ; i++){
+                        changeBtnName[i].innerText = `已收貨`;
+                    }
 
                 } else {
                     console.error('Failed to fetch orders:', json.message);
