@@ -92,6 +92,10 @@
             width: 60px;
             text-align: center;
         }
+
+        #accordion{
+            margin-top: 6em;
+        }
     </style>
 
 </head>
@@ -172,8 +176,8 @@
         </div>
     </div>
     <!--左側導航結束-->
-    <h1 id="queryS">全部訂單</h1>
     <div class="col-md-10">
+        <marquee><h1 id="queryS">全部訂單</h1></marquee>
         <div id="orders">
             <!-- 訂單數據將在這裡顯示 -->
         </div>
@@ -284,6 +288,9 @@
             success: function (json) {
                 if (json.state === 200) {
                     displayOrders(json.data);
+
+
+
                 } else {
                     console.error('Failed to fetch orders:', json.message);
                 }
@@ -308,6 +315,14 @@
 
                 if (json.state === 200) {
                     displayOrders(json.data);
+
+                    const changeBtnName = document.querySelectorAll(".checkShop");
+                    for(let i = 0 ; i < changeBtnName.length ; i++){
+                        changeBtnName[i].innerText = `已收貨`;
+                        changeBtnName[i].style.border = "0px";
+                        changeBtnName[i].onclick = "";
+                        changeBtnName[i].style.color = "gray";
+                    }
 
                 } else {
                     console.error('Failed to fetch orders:', json.message);
