@@ -181,7 +181,7 @@
 
                 <tr>
                     <td>商品單價:</td>
-                    <td><input name="price" type="number"></td>
+                    <td><input name="price" type="number" required></td>
                 </tr>
             </table>
 
@@ -244,7 +244,7 @@
 
 </div>
 
-<script src="../../js/com/nav/showLogoDiv.js"></script>
+<script src="../../js/backStage/showLogoDiv.js"></script>
 <script src="../../js/com/nav/showHotList.js"></script>
 <!--Data-->
 <script src="../../js/backStage/getUserData.js"></script>
@@ -334,10 +334,9 @@
             contentType: false,
             processData: false,
             success: function (json) {
-                if (json.status === 200) {
-                    alert("產品新增成功");
-                }
-                // 请求成功处理
+                // if (json.status == 200) {
+                // }
+                alert("產品新增成功");
             },
             error: function (xhr, status, error) {
                 // 请求失败处理
