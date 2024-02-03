@@ -177,7 +177,7 @@
     </div>
     <!--左側導航結束-->
     <div class="col-md-10">
-        <h1 id="queryS">全部訂單</h1>
+        <marquee><h1 id="queryS">全部訂單</h1></marquee>
         <div id="orders">
             <!-- 訂單數據將在這裡顯示 -->
         </div>
@@ -319,6 +319,9 @@
                     const changeBtnName = document.querySelectorAll(".checkShop");
                     for(let i = 0 ; i < changeBtnName.length ; i++){
                         changeBtnName[i].innerText = `已收貨`;
+                        changeBtnName[i].style.border = "0px";
+                        changeBtnName[i].onclick = "";
+                        changeBtnName[i].style.color = "gray";
                     }
 
                 } else {
