@@ -252,10 +252,18 @@
 
         </tr>
 
-        <tr>
+       <tr>
             <td rowspan="${groupedOrder.items.length + 1}">${groupedOrder.oid}</td>
             <td rowspan="${groupedOrder.items.length + 1}">${groupedOrder.totalPrice}</td>
-            <td rowspan="${groupedOrder.items.length + 1}"><button class="checkShop" onclick="checkShopEvent(${groupedOrder.oid})">確認收貨</button></td>
+            <td rowspan="${groupedOrder.items.length + 1}">`;
+
+            if(groupedOrder.status === 0) {
+                orderDiv += `<button class="checkShop" onclick="checkShopEvent(${groupedOrder.oid})">確認收貨</button>`;
+            } else if(groupedOrder.status === 1) {
+                orderDiv += `已收貨`;
+            }
+
+            orderDiv += `</td>
             <td rowspan="${groupedOrder.items.length + 1}">${groupedOrder.orderTime}</td>
             <td rowspan="${groupedOrder.items.length + 1}">${groupedOrder.payTime}</td>
         </tr>`;
@@ -315,13 +323,32 @@
 
                 if (json.state === 200) {
                     displayOrders(json.data);
-
+                    const title = document.querySelector("#queryS");
                     const changeBtnName = document.querySelectorAll(".checkShop");
                     for(let i = 0 ; i < changeBtnName.length ; i++){
-                        changeBtnName[i].innerText = `已收貨`;
-                        changeBtnName[i].style.border = "0px";
-                        changeBtnName[i].onclick = "";
-                        changeBtnName[i].style.color = "gray";
+
+                        switch(title.innerText){
+                            case "全部訂單":
+                                changeBtnName[i].innerText = `確認收貨`;
+                            case "已付款":
+                                changeBtnName[i].innerText = `確認收貨`;
+                                break;
+                                changeBtnName[i].innerText = `確認收貨`;
+                            case "已收貨":
+
+                                changeBtnName[i].innerText = `已付款`;
+                                changeBtnName[i].style.border = "0px";
+                                changeBtnName[i].style.color = "gray";
+
+                                changeBtnName[i].onclick = "";
+                                break;
+                        }
+
+
+
+
+
+
                     }
 
                 } else {
