@@ -2,7 +2,6 @@ package com.cy.store.config;
 
 
 import com.cy.store.interceptor.LoginInterceptor;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -30,6 +29,7 @@ public class LoginInterceptorConfigurer implements WebMvcConfigurer {
         patterns.add("/web/login.html");
         patterns.add("/web/index.html");
         patterns.add("/web/product.html");
+        patterns.add("/web/fileTest.html");
 //        patterns.add("/web/BackStage/index.html");
         patterns.add("/users/reg");
         patterns.add("/users/login");

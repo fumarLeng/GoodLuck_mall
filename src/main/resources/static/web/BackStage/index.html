@@ -18,14 +18,87 @@
     <title>後台</title>
 
     <style>
+
+        td th {
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
         .nav > li > a:hover, .nav > li > a:focus {
             text-decoration: none;
             background-color: #bce8f1;
         }
 
-        .modify-td,.modify-input {
-            width: 300px;
+        /*========================================================*/
+        /*       預覽圖框框*/
+        #previewImg {
+            max-width: 200px;
+            max-height: 200px;
+            object-fit: contain;
+            border: 1px solid #ccc;
+            padding: 5px;
+            background-color: #f9f9f9;
+
+
         }
+
+        td {
+            border: 1px solid #ccc;
+            /*font-size: 2em;*/
+            padding: 0.5em;
+
+        }
+        #addProductForm{
+            display: flex;
+            flex-wrap: nowrap;
+            flex-direction: row;
+        }
+
+        #addProductForm table {
+            margin: 0 auto;
+            width: 50%;
+        }
+
+        #addProductForm img{
+            width: 100px;
+            height: 100px;
+        }
+
+        #tr-td-img{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        #tr-td-img td input{
+            margin-left: 1em;
+            border-radius: 5px;
+            border: 0px solid #fff;
+        }
+
+        #addProductForm input,
+        #addProductForm select {
+            text-align: center;
+            width: 100%;
+            font-size: 2em;
+            border-radius: 25px;
+        }
+
+
+        #save-btn{
+            width: 100%;
+        }
+
+        #save-btn:hover{
+            background: #ccc;
+        }
+
+        #priority-value-div{
+            display: flex;
+            justify-content: space-between;
+
+        }
+        /*========================================================*/
 
     </style>
 
@@ -42,26 +115,121 @@
     <h1 id="TabName"></h1>
     <!-- Tab 切換 -->
     <ul class="nav nav-pills" id="nav-ul">
-<!--        <li class="activePage"><a class="nav-li-a" href="#home">回到首頁 <span class="fa fa-home"></span></a></li>-->
+        <!--        <li class="activePage"><a class="nav-li-a" href="#home">回到首頁 <span class="fa fa-home"></span></a></li>-->
         <li><a class="nav-li-a" href="#member">會員管理<span class="fa fa-users"></span></a></li>
         <li><a class="nav-li-a" href="#orders">訂單管理<span class="fa fa-list-alt"></span></a></li>
         <li><a class="nav-li-a" href="#product">商品管理<span class="fa fa-tags"></span></a></li>
+        <li><a class="nav-li-a" href="#newProduct">新增商品<span class="fa fa-tags"></span></a></li>
+
+
         <!--        <li><a class="nav-li-a" href="#cart">購物車管理<span class="fa fa-shopping-cart"></span></a></li>-->
         <!--        <li><a class="nav-li-a" href="#regions">行政區劃管理<span class="fa fa-map-marker"></span></a></li>-->
         <!-- 搜索表单 -->
-        <form action="search.html" class="form-inline pull-right" role="form" id="search-form">
-            <div class="form-group">
-                <input type="text" class="form-control" id="search" name="search" placeholder="請輸入商品名稱">
-            </div>
-            <button type="submit" class="btn btn-default btn-sm"><span class="fa fa-search"></span></button>
-        </form>
+<!--        <form action="search.html" class="form-inline pull-right" role="form" id="search-form">-->
+<!--            <div class="form-group">-->
+<!--                <input type="text" class="form-control" id="search" name="search" placeholder="請輸入商品名稱">-->
+<!--            </div>-->
+<!--            <button type="submit" class="btn btn-default btn-sm"><span class="fa fa-search"></span></button>-->
+<!--        </form>-->
     </ul>
     <!-- 内容 -->
 
-<!--    <div class="content-panel activePage" id="Backhome">回到首頁</div>-->
+    <!--    <div class="content-panel activePage" id="Backhome">回到首頁</div>-->
     <div class="content-panel" id="member">會員管理...</div>
     <div class="content-panel" id="orders">訂單管理...</div>
     <div class="content-panel" id="product">商品管理...</div>
+    <!-- 新增商品tab -->
+    <div id="newProduct" class="content-panel">
+
+        <form id="addProductForm">
+            <table>
+                <tr>
+                    <td>商品區分:</td>
+                    <td>
+                        <select name="categoryId">
+                            <option value="1">生活用品</option>
+                            <option value="2">盥洗用品</option>
+                            <option value="3">家具</option>
+
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>商品種類:</td>
+                    <td>
+                        <select name="itemType">
+                            <option value="筆記本">筆記本</option>
+                            <option value="筆記型電腦">筆記型電腦</option>
+                            <option value="鍋具">鍋具</option>
+                            <option value="杯子">杯子</option>
+                            <option value="衣櫃">衣櫃</option>
+
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>商品標題:</td>
+                    <td><input name="title" type="text"></td>
+                </tr>
+
+                <tr>
+                    <td>商品促銷標題:</td>
+                    <td><input name="sellPoint" type="text"></td>
+                </tr>
+
+                <tr>
+                    <td>商品單價:</td>
+                    <td><input name="price" type="number"></td>
+                </tr>
+            </table>
+
+            <table>
+                <tr>
+                    <td>庫存:</td>
+                    <td><input name="num" type="number"></td>
+                </tr>
+
+                <tr >
+                    <td>商品圖片:</td>
+                    <td id="tr-td-img">
+                        <input id="productImg" name="image" type="file">
+                        <img id="previewImg" src="">
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>商品狀態:</td>
+                    <td>
+                        <select name="status">
+                            <option value="1">上架</option>
+                            <option value="0">下架</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td>商品優先級:(1~10)</td>
+                    <td>
+                        <input name="priority" type="range" min="1" max="10">
+                        <div id="priority-value-div">
+                            <span class="priority-value">1</span>
+                            <span id="priority-value"></span>
+                            <span class="priority-value">10</span>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">
+                        <button id="save-btn" type="submit">保存</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+    </div>
     <!--        <div class="content-panel" id="cart">購物車管理...</div>-->
     <!--        <div class="content-panel" id="regions">行政區劃管理...</div>-->
     <div id="page-content-div">
@@ -114,6 +282,66 @@
                 $('#page-content-div').css('display', 'block');
             } else {
                 $('#page-content-div').css('display', 'none');
+            }
+        });
+    });
+
+
+    //==========================================================================
+    document.addEventListener('DOMContentLoaded', function() {
+        let slider = document.querySelector('input[name="priority"]');
+        let output = document.getElementById('priority-value');
+
+        output.innerText = slider.value;
+        
+        slider.addEventListener('input', function() {
+            output.innerText = `當前: ${this.value}`;
+        });
+    });
+
+    //圖片預覽
+    //==========================================================================
+    // 圖片上傳
+    $('#productImg').change(function () {
+
+  
+        let file = this.files[0];
+
+
+        let reader = new FileReader();
+
+
+        reader.onload = function () {
+
+            $('#previewImg').attr('src', reader.result);
+        };
+
+
+        reader.readAsDataURL(file);
+
+    });
+
+
+    $('#addProductForm').submit(function (e) {
+        e.preventDefault();
+
+        let formData = new FormData(this);
+
+        $.ajax({
+            url: '/product/add',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (json) {
+                if (json.status === 200) {
+                    alert("產品新增成功");
+                }
+                // 请求成功处理
+            },
+            error: function (xhr, status, error) {
+                // 请求失败处理
+                alert("產品新增失敗: " + error);
             }
         });
     });

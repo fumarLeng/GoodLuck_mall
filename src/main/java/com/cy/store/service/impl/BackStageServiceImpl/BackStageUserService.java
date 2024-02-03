@@ -17,8 +17,6 @@ public class BackStageUserService implements com.cy.store.service.BackStageServi
     BackStageUser backStageUserDao;
 
 
-
-
     @Override
     public List<Order> getAllOrderData() {
         return backStageUserDao.getAllOrderData();
@@ -44,7 +42,6 @@ public class BackStageUserService implements com.cy.store.service.BackStageServi
         backStageUserDao.saveProdcut(existingUser);
     }
 
-    ;
 
     @Override
     public Product findProductById(Integer id) {

@@ -65,7 +65,7 @@ Table t_order {
   recv_area varchar(15) [note: '收貨人區']
   recv_address varchar(50) [note: '收貨詳細地址']
   total_price bigint [note: '總價']
-  status int [note: '狀態: 0未付款, 1已付款, 2已取消, 3已關閉, 4已完成']
+  status int [note: '狀態: 0未付款, 1已付款, 2已到貨, 3審核中, 4已退貨']
   order_time timestamp [note: '下單時間']
   pay_time timestamp [note: '付款時間']
   created_user varchar(20) [note: '創建人']

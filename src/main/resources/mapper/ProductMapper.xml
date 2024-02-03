@@ -14,7 +14,7 @@
         <result column="modified_time" property="modifiedTime"/>
     </resultMap>
 
-<!--    查詢熱銷商品的前四名 priority優先級別-->
+<!--    查詢商品的前九個 priority優先級別-->
     <select id="findHotList" resultMap="ProductEntityMap">
         SELECT *
         FROM t_product

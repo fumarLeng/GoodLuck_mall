@@ -99,6 +99,33 @@ public class BackStageUser implements com.cy.store.Dao.BackStageUser {
 
         namedParameterJdbcTemplate.update(sql, map);
     }
+
+//=============新增產品======================================
+
+    public void addProduct(Product product) {
+        String sql = "INSERT INTO t_product (" +
+                "category_id, item_type, title, sell_point, price, " +
+                "num, image, status, priority) " +
+                "VALUES (:categoryId, :itemType, :title, :sellPoint, :price, " +
+                ":num, :image, :status, :priority)";
+
+
+        Map<String, Object> paramMap = new HashMap<>();
+        paramMap.put("categoryId", product.getCategoryId());
+        paramMap.put("itemType", product.getItemType());
+        paramMap.put("title", product.getTitle());
+        paramMap.put("sellPoint", product.getSellPoint());
+        paramMap.put("price", product.getPrice());
+        paramMap.put("num", product.getNum());
+        paramMap.put("image", product.getImage());
+        paramMap.put("status", product.getStatus());
+        paramMap.put("priority", product.getPriority());
+
+        namedParameterJdbcTemplate.update(sql,paramMap);
+
+
+    }
+//=============新增產品======================================
     public void saveOrder(Order existingOrder){
         String sql = "UPDATE `t_order` SET recv_name = :recv_name , recv_phone = :recv_phone , recv_province = :recv_province , recv_city= :recv_city , recv_area = :recv_area , recv_address = :recv_address WHERE oid = :oid";
 
@@ -189,7 +216,7 @@ public class BackStageUser implements com.cy.store.Dao.BackStageUser {
         return productList;
     }
 
-    @Autowired
+    @Override
     public Integer getProductCount(){
         String sql = "SELECT COUNT(*) FROM t_product";
         Map<String, Object> map = new HashMap<>();
