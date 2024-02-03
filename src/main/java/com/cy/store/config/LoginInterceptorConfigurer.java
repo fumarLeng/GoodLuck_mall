@@ -28,6 +28,7 @@ public class LoginInterceptorConfigurer implements WebMvcConfigurer {
         patterns.add("/web/register.html");
         patterns.add("/web/login.html");
         patterns.add("/web/index.html");
+        patterns.add("/index.html");
         patterns.add("/web/product.html");
         patterns.add("/web/fileTest.html");
 //        patterns.add("/web/BackStage/index.html");
@@ -37,8 +38,11 @@ public class LoginInterceptorConfigurer implements WebMvcConfigurer {
         patterns.add("/products/**");
 
 
+
         registry.addInterceptor(interceptor) //註冊
             .addPathPatterns("/**") //黑名單
+            .addPathPatterns("/BackStage/**") //黑名單
+
             .excludePathPatterns(patterns); //他要的參數是一個list集合
         // public InterceptorRegistration excludePathPatterns(List<String> patterns)
     }

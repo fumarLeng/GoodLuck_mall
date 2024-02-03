@@ -26,7 +26,18 @@
     <!--  自訂CSS  -->
     <link rel="stylesheet" type="text/css" href="../css/com/nav/shopLogo.css"/>
     <link rel="stylesheet" type="text/css" href="../css/index.css"/>
-
+    <style>
+        .cart-s{
+            border-radius: 25px;
+            background: #bbbbf0;
+            font-size: 3em;
+            color: #fff;
+        }
+        .cart-s:hover{
+            color: red;
+            transition: .3s;
+        }
+    </style>
 <!--    <link rel="stylesheet" type="text/css" href="../css/index.css"/>-->
 </head>
 
@@ -123,16 +134,19 @@
                     <p><small><b>租你好運商城</b>提供售後服務,今日下單,明日送達</small></p>
                 </div>
                 <div class="col-md-12 form-space">
-                    <input class="btn btn-primary btn-lg btn-block" type="button" value="馬上購買">
-                </div>
-                <div class="col-md-12 form-space">
-                    <button id="btn-add-to-cart" type="button" class="btn btn-default go-cart"><span
-                            class="fa fa-cart-plus"></span> 加入購物車
-                    </button>
-                    <button id="btn-add-to-collect" type="button" class="btn btn-default"><span
-                            class="fa fa-heart-o"></span> 加入收藏
+<!--                    <input class="btn btn-primary btn-lg btn-block" type="button" value="加入購物車">-->
+                    <button id="btn-add-to-cart" type="button" class="btn btn-default go-cart cart-s">
+                        加入購物車
                     </button>
                 </div>
+<!--                <div class="col-md-12 form-space">-->
+<!--                    <button id="btn-add-to-cart" type="button" class="btn btn-default go-cart"><span-->
+<!--                            class="fa fa-cart-plus"></span> 加入購物車-->
+<!--                    </button>-->
+<!--                    <button id="btn-add-to-collect" type="button" class="btn btn-default"><span-->
+<!--                            class="fa fa-heart-o"></span> 加入收藏-->
+<!--                    </button>-->
+<!--                </div>-->
             </form>
         </div>
     </div>
