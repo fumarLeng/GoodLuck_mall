@@ -28,7 +28,6 @@
 <!--頭部-->
 <header class="header">
     <!--logo-->
-    <!--商城文字 logo-->
     <div class="row" id="logo-position">
     </div>
 
@@ -42,21 +41,9 @@
                 <a href="#"></a>
             </li>
             <li class="active"><a href="index.html">回到首頁 <span class="fa fa-home"></span></a></li>
-<!--            <li><a href="#">@@</a></li>-->
-<!--            <li><a href="#">@@</a></li>-->
-<!--            <li><a href="#">@@</a></li>-->
-<!--            <li><a href="#">@@</a></li>-->
-<!--            <li><a href="#">@@</a></li>-->
         </ul>
     </div>
-    <div class="col-md-6">
-        <form action="search.html" class="form-inline pull-right" role="form">
-            <div class="form-group">
-                <input type="text" class="form-control" id="search" name="search" placeholder="請輸入商品名稱">
-            </div>
-            <button type="submit" class="btn btn-default btn-sm"><span class="fa fa-search"></span></button>
-        </form>
-    </div>
+
 </div>
 <!--頭部結束-->
 <!--導行列結束-->
@@ -88,22 +75,14 @@
                             </tr>
                             </thead>
                             <tbody id="cart-list" class="cart-body">
-                            <tr>
-                                <td><img src="../images/portal/001/collect.png" class="img-responsive"/>
-                                </td>
-                                <td>測試筆記本
-                                </td>
-                                <td>$<span>23</span></td>
-                                <td>1</td>
-                                <td><span>23</span></td>
-                            </tr>
+
                             </tbody>
                         </table>
                         <div class="total-bar">
                             &nbsp;
                             <span class="pull-right">已選商品
-										<span id="all-count">1</span>件 總價$
-										<span id="all-price">111</span>元
+										<span id="all-count"></span>件 總價$
+										<span id="all-price"></span>元
 									</span>
                         </div>
                     </div>
@@ -120,7 +99,6 @@
 <!--footer開始-->
 <div class="clearfix"></div>
 <footer class="footer">
-    <!-- 私人訂製等-->
     <div class="text-center rights container">
         <div class="col-md-offset-2 col-md-2">
             <span class="fa fa-thumbs-o-up"></span>
@@ -193,13 +171,13 @@
             dataType: "JSON",
             success: function (json) {
                 let list = json.data;
-                console.log("count=" + list.length);
+                // console.log("count=" + list.length);
                 let allCount = 0;
                 let allPrice = 0;
                 for (let i = 0; i < list.length; i++) {
                     console.log(list[i].title);
                     let tr = '<tr>'
-                        + '<td><img src="..#{image}collect.png" class="img-responsive" /></td>'
+                        + '<td><img src="data:image/jpeg;base64,#{image}" class="img-responsive" /></td>'
                         + '<td><input type="hidden" name="cids" value="#{cid}" />#{title}</td>'
                         + '<td>$<span>#{realPrice}</span></td>'
                         + '<td>#{num}</td>'

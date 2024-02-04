@@ -1,6 +1,7 @@
 package com.cy.store.entity;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class OrderItem extends BaseEntity implements Serializable {
@@ -8,7 +9,7 @@ public class OrderItem extends BaseEntity implements Serializable {
     private Integer oid;
     private Integer pid;
     private String title;
-    private String image;
+    private byte[] image;
     private Long price;
     private Integer num;
 
@@ -44,11 +45,11 @@ public class OrderItem extends BaseEntity implements Serializable {
         this.title = title;
     }
 
-    public String getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 
@@ -73,25 +74,14 @@ public class OrderItem extends BaseEntity implements Serializable {
         if (this == o) return true;
         if (!(o instanceof OrderItem)) return false;
         OrderItem orderItem = (OrderItem) o;
-        return Objects.equals(getId(), orderItem.getId()) && Objects.equals(getOid(), orderItem.getOid()) && Objects.equals(getPid(), orderItem.getPid()) && Objects.equals(getTitle(), orderItem.getTitle()) && Objects.equals(getImage(), orderItem.getImage()) && Objects.equals(getPrice(), orderItem.getPrice()) && Objects.equals(getNum(), orderItem.getNum());
+        return Objects.equals(getId(), orderItem.getId()) && Objects.equals(getOid(), orderItem.getOid()) && Objects.equals(getPid(), orderItem.getPid()) && Objects.equals(getTitle(), orderItem.getTitle()) && Arrays.equals(getImage(), orderItem.getImage()) && Objects.equals(getPrice(), orderItem.getPrice()) && Objects.equals(getNum(), orderItem.getNum());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getOid(), getPid(), getTitle(), getImage(), getPrice(), getNum());
-    }
-
-    @Override
-    public String toString() {
-        return "OrderItem{" +
-                "id=" + id +
-                ", oid=" + oid +
-                ", pid=" + pid +
-                ", title='" + title + '\'' +
-                ", image='" + image + '\'' +
-                ", price=" + price +
-                ", num=" + num +
-                '}';
+        int result = Objects.hash(getId(), getOid(), getPid(), getTitle(), getPrice(), getNum());
+        result = 31 * result + Arrays.hashCode(getImage());
+        return result;
     }
 }
 

@@ -61,7 +61,7 @@ function showCartList() {
                     + '<td>'
                     + '<input name="cids" value="#{cid}" type="checkbox" class="ckitem" onclick=""/>'
                     + '</td>'
-                    + '<td><img src="..#{image}collect.png" class="img-responsive" /></td>'
+                    + '<td><img src="data:image/png;base64,#{image}" class="img-responsive" /></td>'
                     + '<td>#{title}</td>'
                     + '<td>$<span id="price-#{cid}">#{realPrice}</span></td>'
                     + '<td id="ctrl-td">'

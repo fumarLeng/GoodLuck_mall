@@ -59,14 +59,7 @@
             <li class="active"><a href="index.html">回到首頁 <span class="fa fa-home"></span></a></li>
         </ul>
     </div>
-    <div class="col-md-6">
-        <form action="search.html" class="form-inline pull-right" role="form">
-            <div class="form-group">
-                <input type="text" class="form-control" id="search" name="search" placeholder="請輸入商品名稱">
-            </div>
-            <button type="submit" class="btn btn-default btn-sm"><span class="fa fa-search"></span></button>
-        </form>
-    </div>
+
 </div>
 <!--頭部結束-->
 <!--導行列結束-->
@@ -74,53 +67,19 @@
 <div class="container">
     <div class="col-md-offset-1 col-md-10">
         <div class="col-md-6">
-            <div data="1" class="img-big move-img col-md-12">
-                <img id="product-image-1-big" src="../images/portal/11DELLran7000R1605Ssilvery/1_big.png"
-                     class="img-responsive"/>
+            <div  class="img-big move-img col-md-12">
+                <img id="product-image" src=""  style="width: 100%; height: 300px;"/>
+<!--                <img id="product-image" src=""  style="width: 200px; height: 200px;"-->
+<!--                     class="img-responsive"/>-->
             </div>
-            <div data="2" class="img-big move-img col-md-12">
-                <img id="product-image-2-big" src="../images/portal/11DELLran7000R1605Ssilvery/2_big.png"
-                     class="img-responsive"/>
-            </div>
-            <div data="3" class="img-big move-img col-md-12">
-                <img id="product-image-3-big" src="../images/portal/11DELLran7000R1605Ssilvery/3_big.png"
-                     class="img-responsive"/>
-            </div>
-            <div data="4" class="img-big move-img col-md-12">
-                <img id="product-image-4-big" src="../images/portal/11DELLran7000R1605Ssilvery/4_big.png"
-                     class="img-responsive"/>
-            </div>
-            <div data="5" class="img-big move-img col-md-12">
-                <img id="product-image-5-big" src="../images/portal/11DELLran7000R1605Ssilvery/5_big.png"
-                     class="img-responsive"/>
-            </div>
-            <div data="1" class="col-md-2 img-small">
-                <img id="product-image-1" src="../images/portal/11DELLran7000R1605Ssilvery/1.jpg"
-                     class="img-responsive"/>
-            </div>
-            <div data="2" class="col-md-2 img-small">
-                <img id="product-image-2" src="../images/portal/11DELLran7000R1605Ssilvery/2.jpg"
-                     class="img-responsive"/>
-            </div>
-            <div data="3" class="col-md-2 img-small">
-                <img id="product-image-3" src="../images/portal/11DELLran7000R1605Ssilvery/3.jpg"
-                     class="img-responsive"/>
-            </div>
-            <div data="4" class="col-md-2 img-small">
-                <img id="product-image-4" src="../images/portal/11DELLran7000R1605Ssilvery/4.jpg"
-                     class="img-responsive"/>
-            </div>
-            <div data="5" class="col-md-2 img-small">
-                <img id="product-image-5" src="../images/portal/11DELLran7000R1605Ssilvery/5.jpg"
-                     class="img-responsive"/>
-            </div>
+
         </div>
         <div class="col-md-6">
-            <h3 id="product-title" class="col-md-12 title-row-1">Dell 700R1605银色</h3>
-            <p id="product-sell-point" class="col-md-12 text-row-1"><small>貨量少,速度要快!
+            <h3 id="product-title" class="col-md-12 title-row-1"></h3>
+            <p id="product-sell-point" class="col-md-12 text-row-1"><small>
             </small></p>
             <div class="col-md-12 price-bar">
-                <small>售價：</small>$<span id="product-price">24899.00</span>
+                <small>售價：</small>$<span id="product-price"></span>
                 <div><small>*7天保證退貨*</small></div>
             </div>
             <form class="form-inline product-form col-md-12" role="form">
@@ -134,19 +93,11 @@
                     <p><small><b>租你好運商城</b>提供售後服務,今日下單,明日送達</small></p>
                 </div>
                 <div class="col-md-12 form-space">
-<!--                    <input class="btn btn-primary btn-lg btn-block" type="button" value="加入購物車">-->
                     <button id="btn-add-to-cart" type="button" class="btn btn-default go-cart cart-s">
                         加入購物車
                     </button>
                 </div>
-<!--                <div class="col-md-12 form-space">-->
-<!--                    <button id="btn-add-to-cart" type="button" class="btn btn-default go-cart"><span-->
-<!--                            class="fa fa-cart-plus"></span> 加入購物車-->
-<!--                    </button>-->
-<!--                    <button id="btn-add-to-collect" type="button" class="btn btn-default"><span-->
-<!--                            class="fa fa-heart-o"></span> 加入收藏-->
-<!--                    </button>-->
-<!--                </div>-->
+
             </form>
         </div>
     </div>
@@ -198,18 +149,13 @@
             type: "GET",
             dataType: "JSON",
             success: function (json) {
-                if (json.state == 200) {
-                    console.log("title=" + json.data.title);
+                if (json.state === 200) {
+                    // console.log("title=" + json.data.title);
                     $("#product-title").html(json.data.title);
                     $("#product-sell-point").html(json.data.sellPoint);
                     $("#product-price").html(json.data.price);
+                    $("#product-image").attr("src", "data:image/png;base64," + json.data.image );
 
-                    for (let i = 1; i <= 5; i++) {
-                        $("#product-image-" + i + "-big").attr("src", ".." + json.data.image + i + "_big.png");
-                        $("#product-image-" + i).attr("src", ".." + json.data.image + i + ".jpg");
-                    }
-                } else if (json.state == 4006) { // 商品資料找不到的例外
-                    location.href = "index.html";
                 } else {
                     alert("取得商品訊息失敗！" + json.message);
                 }
@@ -227,7 +173,7 @@
             },
             dataType: "JSON",
             success: function (json) {
-                if (json.state == 200) {
+                if (json.state === 200) {
                     alert("加入購物車成功!");
                 } else {
                     alert("加入購物車失敗" + json.message);

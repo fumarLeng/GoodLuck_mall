@@ -2,6 +2,7 @@ package com.cy.store.entity;
 
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Objects;
 
 //商品VO
@@ -13,7 +14,7 @@ public class Product extends BaseEntity implements Serializable {
     private String sellPoint;
     private Long price;
     private Integer num;
-    private String image;
+    private byte[] image;
     private Integer status;
     private Integer priority;
 
@@ -73,11 +74,11 @@ public class Product extends BaseEntity implements Serializable {
         this.num = num;
     }
 
-    public String getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 
@@ -98,32 +99,19 @@ public class Product extends BaseEntity implements Serializable {
     }
 
     @Override
-    public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", categoryId=" + categoryId +
-                ", itemType='" + itemType + '\'' +
-                ", title='" + title + '\'' +
-                ", sellPoint='" + sellPoint + '\'' +
-                ", price=" + price +
-                ", num=" + num +
-                ", image='" + image + '\'' +
-                ", status=" + status +
-                ", priority=" + priority +
-                '}';
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Product)) return false;
         Product product = (Product) o;
-        return Objects.equals(getId(), product.getId()) && Objects.equals(getCategoryId(), product.getCategoryId()) && Objects.equals(getItemType(), product.getItemType()) && Objects.equals(getTitle(), product.getTitle()) && Objects.equals(getSellPoint(), product.getSellPoint()) && Objects.equals(getPrice(), product.getPrice()) && Objects.equals(getNum(), product.getNum()) && Objects.equals(getImage(), product.getImage()) && Objects.equals(getStatus(), product.getStatus()) && Objects.equals(getPriority(), product.getPriority());
+        return Objects.equals(getId(), product.getId()) && Objects.equals(getCategoryId(), product.getCategoryId()) && Objects.equals(getItemType(), product.getItemType()) && Objects.equals(getTitle(), product.getTitle()) && Objects.equals(getSellPoint(), product.getSellPoint()) && Objects.equals(getPrice(), product.getPrice()) && Objects.equals(getNum(), product.getNum()) && Arrays.equals(getImage(), product.getImage()) && Objects.equals(getStatus(), product.getStatus()) && Objects.equals(getPriority(), product.getPriority());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getCategoryId(), getItemType(), getTitle(), getSellPoint(), getPrice(), getNum(), getImage(), getStatus(), getPriority());
+        int result = Objects.hash(getId(), getCategoryId(), getItemType(), getTitle(), getSellPoint(), getPrice(), getNum(), getStatus(), getPriority());
+        result = 31 * result + Arrays.hashCode(getImage());
+        return result;
     }
+
 
 }

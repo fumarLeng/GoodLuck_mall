@@ -25,7 +25,7 @@ function productUpdataEvent(clickedButton) {
                     <th class="member-list-th modify-td">商品賣點</th>
                     <th class="member-list-th modify-td">商品單價</th>
                     <th class="member-list-th modify-td">庫存數</th>
-                    <th class="member-list-th modify-td">圖片存放路徑</th>
+                    <th class="member-list-th modify-td">圖片</th>
                     <th class="member-list-th modify-td">商品狀態</th>
                     <th class="member-list-th modify-td">優先級</th>
                     <th class="member-list-th modify-td">創建時間</th>
@@ -46,7 +46,16 @@ function productUpdataEvent(clickedButton) {
                 <td><input class="user-input modify-input" name="sell_point" value="${productList.sellPoint}"></td>
                 <td><input class="user-input modify-input" name="price" value="${productList.price}"></td>
                 <td><input class="user-input modify-input" name="num" value="${productList.num}"></td>
-                <td><input class="user-input modify-input" name="image" value="${productList.image}"></td>
+                
+                
+              
+                <td><img src="data:image/png;base64,${productList.image}" style="width: 100px; height: 100px;" /><br>
+                <label for="imageUpload" class="btn btn-primary btn-sm">更改圖片</label>
+                <input id="imageUpload" type="file" class="form-control-file" name="newImage" style="display: none;"  /></td>
+
+                  
+                
+                
                 <td><input class="user-input modify-input" name="status" value="${productList.status}"></td>
                 <td><input class="user-input modify-input" name="priority" value="${productList.priority}"></td>
                 <td>${productList.createdTime}</td>
@@ -173,7 +182,7 @@ function getProductData(){
                 '<th class="member-list-th">商品賣點</th>' +
                 '<th class="member-list-th">商品單價</th>' +
                 '<th class="member-list-th">庫存數</th>' +
-                '<th class="member-list-th">圖片存放路徑</th>' +
+                '<th class="member-list-th">圖片</th>' +
                 '<th class="member-list-th">商品狀態</th>' +
                 '<th class="member-list-th">優先級</th>' +
                 '<th class="member-list-th">創建時間</th>' +
@@ -194,7 +203,7 @@ function getProductData(){
                 tr.append('<td>' + product.sellPoint + '</td>');
                 tr.append('<td>' + product.price + '</td>');
                 tr.append('<td>' + product.num + '</td>');
-                tr.append('<td>' + product.image + '</td>');
+                tr.append('<td>' + '<img alt="" src="data:image/png;base64,' + product.image +   '"/></td>');
                 tr.append('<td>' + product.status + '</td>');
                 tr.append('<td>' + product.priority + '</td>');
                 tr.append('<td name="id" >' + product.createdTime + '</td>');

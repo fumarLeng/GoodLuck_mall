@@ -104,7 +104,6 @@
 <!--頭部-->
 <header class="header">
     <!--logo-->
-    <!--商城文字 logo-->
     <div class="row" id="logo-position">
     </div>
 
@@ -118,20 +117,7 @@
                 <a href="#"></a>
             </li>
             <li class="active"><a href="index.html">回到首頁 <span class="fa fa-home"></span></a></li>
-<!--            <li><a href="#">@@</a></li>-->
-<!--            <li><a href="#">@@</a></li>-->
-<!--            <li><a href="#">@@</a></li>-->
-<!--            <li><a href="#">@@</a></li>-->
-<!--            <li><a href="#">@@</a></li>-->
         </ul>
-    </div>
-    <div class="col-md-6">
-        <form action="search.html" class="form-inline pull-right" role="form">
-            <div class="form-group">
-                <input type="text" class="form-control" id="search" name="search" placeholder="請輸入商品名稱">
-            </div>
-            <button type="submit" class="btn btn-default btn-sm"><span class="fa fa-search"></span></button>
-        </form>
     </div>
 </div>
 <!--header結束-->
@@ -185,7 +171,6 @@
 </div>
 <!--footer開始-->
 <footer class="footer">
-    <!-- 私人訂製等-->
     <div class="text-center rights container">
         <div class="col-md-offset-2 col-md-2">
             <span class="fa fa-thumbs-o-up"></span>
@@ -204,7 +189,6 @@
             <p>帶你發財</p>
         </div>
     </div>
-
     <!-- #footer底部 -->
     <div class="col-md-12 text-center bottom">
         中壢 A.K.A <a target="_blank" href="https://www.tibame.com/">Tibame公司</a>
@@ -270,9 +254,10 @@
 
             // 添加訂單中的每個項目
             groupedOrder.items.forEach(function (item, index) {
-                let imageUrl = '..' + item.image + 'collect.png';
+                let imageUrl = 'data:image/png;base64,' + item.image;
                 orderDiv += `
         <tr>
+
             <td><img src="${imageUrl}" alt="${item.title}" style="width: 100px;"></td>
             <td>${item.title}</td>
             <td>${item.price}</td>
@@ -296,9 +281,6 @@
             success: function (json) {
                 if (json.state === 200) {
                     displayOrders(json.data);
-
-
-
                 } else {
                     console.error('Failed to fetch orders:', json.message);
                 }
