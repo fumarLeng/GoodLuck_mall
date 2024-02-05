@@ -3,13 +3,14 @@ package com.cy.store.controller.BackStageController;
 import com.cy.store.controller.BassController;
 import com.cy.store.entity.Product;
 import com.cy.store.service.BackStageService.BSaddProductService;
-import com.cy.store.util.FileUploadUtil;
 import com.cy.store.util.JsonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 
 @RestController
@@ -26,7 +27,7 @@ public class addProController extends BassController {
             @RequestParam("sellPoint") String sellPoint,
             @RequestParam("price") Long price,
             @RequestParam("num") Integer num,
-            @RequestParam("image") MultipartFile image,
+            @RequestParam("file") MultipartFile file,
             @RequestParam("status") Integer status,
             @RequestParam("priority") Integer priority) {
 
@@ -39,10 +40,16 @@ public class addProController extends BassController {
         product.setPrice(price);
         product.setNum(num);
 
-        String imagePath = FileUploadUtil.uploadFile(image);
+//        String imagePath = FileUploadUtil.uploadFile(image);
+//        System.out.println("拿到圖片路徑 " + imagePath);
 
-        System.out.println("拿到圖片路徑 " + imagePath);
-        product.setImage(imagePath);
+        try {
+            byte[] image = file.getBytes();
+            product.setImage(image);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         product.setStatus(status);
         product.setPriority(priority);
 

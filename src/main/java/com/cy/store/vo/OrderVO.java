@@ -1,6 +1,7 @@
 package com.cy.store.vo;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.Objects;
 
@@ -11,7 +12,7 @@ public class OrderVO implements Serializable {
     private Integer status;
     private Date orderTime;
     private Date payTime;
-    private String image;
+    private byte[] image;
     private String title;
     private Long price;
     private Integer num;
@@ -64,11 +65,11 @@ public class OrderVO implements Serializable {
         this.payTime = payTime;
     }
 
-    public String getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 
@@ -101,27 +102,13 @@ public class OrderVO implements Serializable {
         if (this == o) return true;
         if (!(o instanceof OrderVO)) return false;
         OrderVO orderVO = (OrderVO) o;
-        return Objects.equals(getOid(), orderVO.getOid()) && Objects.equals(getAid(), orderVO.getAid()) && Objects.equals(getTotalPrice(), orderVO.getTotalPrice()) && Objects.equals(getStatus(), orderVO.getStatus()) && Objects.equals(getOrderTime(), orderVO.getOrderTime()) && Objects.equals(getPayTime(), orderVO.getPayTime()) && Objects.equals(getImage(), orderVO.getImage()) && Objects.equals(getTitle(), orderVO.getTitle()) && Objects.equals(getPrice(), orderVO.getPrice()) && Objects.equals(getNum(), orderVO.getNum());
+        return Objects.equals(getOid(), orderVO.getOid()) && Objects.equals(getAid(), orderVO.getAid()) && Objects.equals(getTotalPrice(), orderVO.getTotalPrice()) && Objects.equals(getStatus(), orderVO.getStatus()) && Objects.equals(getOrderTime(), orderVO.getOrderTime()) && Objects.equals(getPayTime(), orderVO.getPayTime()) && Arrays.equals(getImage(), orderVO.getImage()) && Objects.equals(getTitle(), orderVO.getTitle()) && Objects.equals(getPrice(), orderVO.getPrice()) && Objects.equals(getNum(), orderVO.getNum());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getOid(), getAid(), getTotalPrice(), getStatus(), getOrderTime(), getPayTime(), getImage(), getTitle(), getPrice(), getNum());
-    }
-
-    @Override
-    public String toString() {
-        return "OrderVO{" +
-                "oid=" + oid +
-                ", aid=" + aid +
-                ", totalPrice=" + totalPrice +
-                ", status=" + status +
-                ", orderTime=" + orderTime +
-                ", payTime=" + payTime +
-                ", image='" + image + '\'' +
-                ", title='" + title + '\'' +
-                ", price=" + price +
-                ", num=" + num +
-                '}';
+        int result = Objects.hash(getOid(), getAid(), getTotalPrice(), getStatus(), getOrderTime(), getPayTime(), getTitle(), getPrice(), getNum());
+        result = 31 * result + Arrays.hashCode(getImage());
+        return result;
     }
 }

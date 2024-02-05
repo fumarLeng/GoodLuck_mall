@@ -18,7 +18,7 @@ public class BSUserController {
 
     @Autowired
     private BSUserServiceImpl UserServiceImpl;
-    
+
     @GetMapping("/user")
     public ResponseEntity<List<User>> getAllUserData() {
         List<User> userList = UserServiceImpl.getAllUserData();

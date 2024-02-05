@@ -48,12 +48,6 @@ public class BackStageController {
     }
 
 
-
-
-
-
-
-
     //單筆查詢product
     @GetMapping("/product/{id}")
     public ResponseEntity<?> GetOneProduct(@PathVariable Integer id) {

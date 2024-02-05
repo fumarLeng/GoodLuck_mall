@@ -1,6 +1,7 @@
 package com.cy.store.vo;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class CartVO implements Serializable {
@@ -14,7 +15,7 @@ public class CartVO implements Serializable {
     private Integer num;
     private String title;
     private Long realPrice;
-    private String image;
+    private byte[] image;
 
     public Integer getCid() {
         return cid;
@@ -72,39 +73,27 @@ public class CartVO implements Serializable {
         this.realPrice = realPrice;
     }
 
-    public String getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof CartVO)) return false;
         CartVO cartVO = (CartVO) o;
-        return Objects.equals(cid, cartVO.cid) && Objects.equals(uid, cartVO.uid) && Objects.equals(pid, cartVO.pid) && Objects.equals(price, cartVO.price) && Objects.equals(num, cartVO.num) && Objects.equals(title, cartVO.title) && Objects.equals(realPrice, cartVO.realPrice) && Objects.equals(image, cartVO.image);
+        return Objects.equals(getCid(), cartVO.getCid()) && Objects.equals(getUid(), cartVO.getUid()) && Objects.equals(getPid(), cartVO.getPid()) && Objects.equals(getPrice(), cartVO.getPrice()) && Objects.equals(getNum(), cartVO.getNum()) && Objects.equals(getTitle(), cartVO.getTitle()) && Objects.equals(getRealPrice(), cartVO.getRealPrice()) && Arrays.equals(getImage(), cartVO.getImage());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cid, uid, pid, price, num, title, realPrice, image);
-    }
-
-    @Override
-    public String toString() {
-        return "CartVO{" +
-                "cid=" + cid +
-                ", uid=" + uid +
-                ", pid=" + pid +
-                ", price=" + price +
-                ", num=" + num +
-                ", title='" + title + '\'' +
-                ", realPrice=" + realPrice +
-                ", image='" + image + '\'' +
-                '}';
+        int result = Objects.hash(getCid(), getUid(), getPid(), getPrice(), getNum(), getTitle(), getRealPrice());
+        result = 31 * result + Arrays.hashCode(getImage());
+        return result;
     }
 }
 

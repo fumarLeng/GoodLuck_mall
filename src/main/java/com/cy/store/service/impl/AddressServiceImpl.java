@@ -21,7 +21,7 @@ public class AddressServiceImpl implements IAddressService {
     @Autowired
     private IDistrictService districtService;
 
-    @Value("20")
+    @Value("10")
     private int maxCount;
 
     //------------------------------------------------------------------------//
