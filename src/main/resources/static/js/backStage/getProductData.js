@@ -40,6 +40,7 @@ function productUpdataEvent(clickedButton) {
             // 創建表身並填充數據
             const tbody = $('<tbody></tbody>');
             const tr = $('<tr></tr>').append(`
+                <td><input class="user-input modify-input" name="category_id" value="${productList.id}"></td>
                 <td><input class="user-input modify-input" name="category_id" value="${productList.categoryId}"></td>
                 <td><input class="user-input modify-input" name="item_type" value="${productList.itemType}"></td>
                 <td><input class="user-input modify-input" name="title" value="${productList.title}"></td>
