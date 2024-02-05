@@ -73,7 +73,12 @@
     font-weight: bold; /* 字体加粗 */
     font-size: 20px; /* 设置字体大小 */
 }
-
+.navli:hover{
+    border :1px solid #000;
+    transition: .5s;
+    background: #bce8f1;
+    border-radius: 25px;
+}
 /*========================================================================*/
 
 /* 商城文字 logo */

@@ -13,11 +13,11 @@ function showLogoDiv() {
         '<ul class="list-inline pull-right">' +
         // '<li><a href="favorites.html"><span class="fa fa-heart"></span>&nbsp;收藏</a></li>' +
         // '<li class="li-split">|</li>' +
-        '<li><a href="orders.html"><span class="fa fa-file-text"></span>&nbsp;訂單</a></li>' +
+        '<li class="navli"><a href="orders.html"><span class="fa fa-file-text"></span>&nbsp;訂單</a></li>' +
         '<li class="li-split">|</li>' +
-        '<li><a href="cart.html"><span class="fa fa-cart-plus"></span>&nbsp;購物車</a></li>' +
+        '<li class="navli"><a href="cart.html"><span class="fa fa-cart-plus"></span>&nbsp;購物車</a></li>' +
         '<li class="li-split">|</li>' +
-        '<li>' +
+        '<li class="navli">' +
         '<div class="btn-group">' +
         '<button type="button" class="btn btn-link dropdown-toggle" data-toggle="dropdown">' +
         '<span id="top-dropdown-btn"><span class="fa fa-gears"></span>&nbsp;管理 <span class="caret"></span></span>' +
@@ -32,7 +32,7 @@ function showLogoDiv() {
         '</li>' +
         '<li class="li-split">|</li>' +
         // '<li><a href="login.html"><span class="fa fa-user"></span>&nbsp;登入</a></li>' +
-        '<li><a href="login.html" onclick="Logout();"><span class="fa fa-sign-out"></span>&nbsp;登出</a></li>' +
+        '<li class="navli"><a href="login.html" onclick="Logout();"><span class="fa fa-sign-out"></span>&nbsp;登出</a></li>' +
         '</ul>' +
         '</div>' +
         '</div>';
