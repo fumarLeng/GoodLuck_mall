@@ -18,7 +18,6 @@
     <link rel="stylesheet" type="text/css" href="../css/top.css"/>
     <link rel="stylesheet" type="text/css" href="../css/footer.css"/>
     <link rel="stylesheet" type="text/css" href="../css/product.css"/>
-    <link rel="stylesheet" type="text/css" href="../css/imgmove.css"/>
     <script src="../js/product.js" type="text/javascript" charset="utf-8"></script>
     <script src="../js/imgmove.js" type="text/javascript" charset="utf-8"></script>
 
@@ -36,6 +35,12 @@
         .cart-s:hover{
             color: red;
             transition: .3s;
+        }
+        /*圖片變大默認*/
+        .move-img {
+            background-size: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
         }
     </style>
 <!--    <link rel="stylesheet" type="text/css" href="../css/index.css"/>-->
@@ -69,8 +74,6 @@
         <div class="col-md-6">
             <div  class="img-big move-img col-md-12">
                 <img id="product-image" src=""  style="width: 100%; height: 300px;"/>
-<!--                <img id="product-image" src=""  style="width: 200px; height: 200px;"-->
-<!--                     class="img-responsive"/>-->
             </div>
 
         </div>
@@ -105,25 +108,6 @@
 <!--footer開始-->
 <div class="clearfix"></div>
 <footer class="footer">
-    <!-- 私人訂製等-->
-    <div class="text-center rights container">
-        <div class="col-md-offset-2 col-md-2">
-            <span class="fa fa-thumbs-o-up"></span>
-            <p>品質保障</p>
-        </div>
-        <div class="col-md-2">
-            <span class="fa fa-address-card-o"></span>
-            <p>專屬商品</p>
-        </div>
-        <div class="col-md-2">
-            <span class="fa fa-graduation-cap"></span>
-            <p>會員專用</p>
-        </div>
-        <div class="col-md-2">
-            <span class="fa fa-bitcoin"></span>
-            <p>帶你發財</p>
-        </div>
-    </div>
 
     <!-- #footer底部 -->
     <div class="col-md-12 text-center bottom">
