@@ -1,0 +1,14 @@
+.col-md-12 text-center bottom {
+    position: absolute;
+    bottom: 0;
+    font-size: 2em;
+    /* border: 1px solid; */
+    border-radius: 25px;
+    /* padding-left: 50%; */
+    background: #cdd4dcdb;
+    display: inline;
+    left: 50%;
+    width: 16em;
+    /* margin: 0 auto; */
+    transform: translate(-50%, 0%);
+}

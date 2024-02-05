@@ -1,11 +1,16 @@
- /*图标加大 颜色*/
- .rights .fa {
- 	font-size: 30px;
- 	color: #667799;
- }
- /*整行的颜色和填充*/
- .rights {
- 	width: 100%;
- 	padding: 1em;
- 	background-color: #F2F2F2;
+	.bottom {
+	 position: fixed;
+	 bottom: 0;
+	 font-size: 2em;
+	 /* border: 1px solid; */
+	 border-radius: 25px;
+	 /* padding-left: 50%; */
+	 background: #cdd4dcdb;
+		opacity: .3;
+	 display: inline;
+	 left: 50%;
+	 width: 16em;
+	 /* margin: 0 auto; */
+	 transform: translate(-50%, 0%);
+		/*z-index: -10;*/
  }
