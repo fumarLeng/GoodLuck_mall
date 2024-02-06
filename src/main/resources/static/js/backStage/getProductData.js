@@ -21,9 +21,10 @@ function productUpdataEvent(clickedButton) {
 
                  <tr class="product-list-tr" id="product-list-tr-img">
 <!--                    <th class="product-list-th modify-td">圖片</th>-->
-                    <td class="product-list-td-img"><img src="data:image/png;base64,${productList.image}" style="width: 50%;" />
+                    <td class="product-list-td-img">
+                    <img id="productImage" src="data:image/png;base64,${productList.image}" style="width: 50%;" />
                     <label for="imageUpload" class="btn btn-primary btn-sm">更改圖片</label>
-                    <input id="imageUpload" type="file" class="form-control-file" name="newImage" style="display: none;"  /></td>
+                    <input id="imageUpload" onchange="updataImg()" type="file" class="form-control-file" name="newImage" style="display: none;"  /></td>
                 </tr>  
                 <tr>
                     <th class="product-list-th modify-td">商品id</th>
@@ -95,7 +96,7 @@ function productUpdataEvent(clickedButton) {
             table.append(thead);
 
             productContainer.append(table);
-
+            updataImg();
             changeColor();
         },
         error: function (jqXHR, textStatus, errorThrown) {
@@ -387,3 +388,20 @@ function changeColor() {
 }
 
 
+function updataImg(){
+
+    let imageUpload = document.getElementById("imageUpload");
+    let productImage = document.getElementById("productImage");
+
+    imageUpload.addEventListener("change", function() {
+        let selectedFile = imageUpload.files[0]; // 获取选择的文件
+        let reader = new FileReader(); // 创建一个文件读取器
+
+        reader.onload = function(event) {
+            productImage.src = event.target.result;
+        };
+
+        // 读取选择的文件作为DataURL
+        reader.readAsDataURL(selectedFile);
+    });
+}
