@@ -145,12 +145,13 @@ public class BackStageController {
             System.out.println("updatedOrder: " + updatedOrder.getOid());
 
             existingOrder.setOid(updatedOrder.getOid());
-            existingOrder.setRecvName(updatedOrder.getRecvName());
-            existingOrder.setRecvPhone(updatedOrder.getRecvPhone());
-            existingOrder.setRecvProvince(updatedOrder.getRecvProvince());
-            existingOrder.setRecvCity(updatedOrder.getRecvCity());
-            existingOrder.setRecvArea(updatedOrder.getRecvArea());
-            existingOrder.setRecvAddress(updatedOrder.getRecvAddress());
+            existingOrder.setStatus(updatedOrder.getStatus());
+//            existingOrder.setRecvName(updatedOrder.getRecvName());
+//            existingOrder.setRecvPhone(updatedOrder.getRecvPhone());
+//            existingOrder.setRecvProvince(updatedOrder.getRecvProvince());
+//            existingOrder.setRecvCity(updatedOrder.getRecvCity());
+//            existingOrder.setRecvArea(updatedOrder.getRecvArea());
+//            existingOrder.setRecvAddress(updatedOrder.getRecvAddress());
 
 //            existingOrder.setTotalPrice(updatedOrder.getTotalPrice());
 //            existingOrder.setStatus(updatedOrder.getStatus());

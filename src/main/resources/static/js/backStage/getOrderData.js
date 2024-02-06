@@ -219,12 +219,13 @@ function OrderUpdataEventFinish(clickedButton) {
         contentType: 'application/json',
         data: JSON.stringify({
             "oid" : Oid,
-            "recvName" : recv_name,
-            "recvPhone" : recv_phone,
-            "recvProvince" : recv_province,
-            "recvCity" : recv_city,
-            "recvArea" : recv_area,
-            "recvAddress" : recv_address
+            "status" : status
+            // "recvName" : recv_name,
+            // "recvPhone" : recv_phone,
+            // "recvProvince" : recv_province,
+            // "recvCity" : recv_city,
+            // "recvArea" : recv_area,
+            // "recvAddress" : recv_address
         }),
         success: function(result) {
             console.log(result);
