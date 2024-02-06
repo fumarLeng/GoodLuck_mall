@@ -244,7 +244,7 @@ function getProductData(){
                 tr.append('<td>' + product.price + '</td>');
                 tr.append('<td>' + product.num + '</td>');
                 tr.append('var<td>' + '<img alt="" class="tr-img" src="data:image/png;base64,' + product.image +   '"/></td>');
-                tr.append('<td>' + product.status + '</td>');
+                tr.append('<td class="statusList">' + product.status + '</td>');
                 tr.append('<td>' + product.priority + '</td>');
                 tr.append('<td name="id" >' + product.createdTime + '</td>');
                 tr.append('<td name="id" >' + product.modifiedTime + '</td>');
@@ -262,12 +262,37 @@ function getProductData(){
             productContainer.append(table);
 
             updatePaginationControls();
+
+            changeSwitchName();
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log('AJAX請求失敗：' + textStatus + ', ' + errorThrown);
         }
     });
 }
+
+
+// 1:上架, 2:下架, 3:刪除
+function changeSwitchName(){
+    const statusLis = document.querySelectorAll(".statusList");
+
+    for(let i = 0 ; i < statusLis.length ; i++){
+        switch (statusLis[i].innerText){
+
+            case "1":
+                statusLis[i].innerText = "上架"
+                break;
+            case "2":
+                statusLis[i].innerText = "下架"
+                break;
+            case "3":
+                statusLis[i].innerText = "刪除"
+                break;
+
+        }
+    }
+}
+
 
 function handlePaginationButtonClick(page) {
     if (page >= 1) {
