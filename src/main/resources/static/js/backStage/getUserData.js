@@ -89,15 +89,15 @@ function userUpdataEvent(clickedButton) {
                 </tr>
                 <tr>
                     <th class="product-list-th modify-td">電話</th>
-                    <td class="product-list-td" name="phone" >${userList.phone}</td>
+                    <td><input class="product-list-input" name="phone" value="${userList.phone}"></td>
                 </tr>
                 <tr>
                     <th class="product-list-th modify-td">郵件</th>
-                    <td class="product-list-td" name="email" >${userList.email}</td>
+                    <td><input class="product-list-input" name="email" value="${userList.email}"></td>
                 </tr>
                  <tr>
                     <th class="product-list-th modify-td">性別</th>
-                    <td class="product-list-td" name="uid">
+                    <td class="product-list-td" name="">
                         <label><input class="order-radio" type="radio" name="gender" value="0" ${userList.gender === 0 ? 'checked' : ''}> 女</label>
                         <label><input class="order-radio" type="radio" name="gender" value="1" ${userList.gender === 1 ? 'checked' : ''}> 男</label>
                     </td>
@@ -105,7 +105,7 @@ function userUpdataEvent(clickedButton) {
                
                 <tr>
                     <th class="product-list-th modify-td">是否刪除</th>
-                    <td class="product-list-td" name="uid">
+                    <td class="product-list-td" name="">
                         <label><input class="order-radio" type="radio" name="is_delete" value="0" ${userList.isDelete === 0 ? 'checked' : ''}> 未刪除</label>
                         <label><input class="order-radio" type="radio" name="is_delete" value="1" ${userList.isDelete === 1 ? 'checked' : ''}> 已刪除</label>
                     </td>
@@ -114,7 +114,7 @@ function userUpdataEvent(clickedButton) {
                  <tr>
                     <th class="product-list-th">功能</th>
                     <td class="product-list-button-td">
-                        <button class="btn btn-success productBtn" id="product-ok" onclick="productUpdataEventFinish(this)">確定</button>
+                        <button class="btn btn-success productBtn" id="product-ok" onclick="userUpdataEventFinish(this)">確定</button>
                         <button class="btn btn-success productBtn" id="product-cancel" onclick="getUserData()">取消</button>
 <!--                        <button class="btn btn-success productBtn" id="product-close" onclick="getProductData()">下架</button>-->
                     </td>
@@ -136,17 +136,23 @@ function userUpdataEventFinish(clickedButton) {
     // const index = Array.prototype.indexOf.call(userUpdata_btnList, clickedButton) + 1;
     // const userNameValue = $('td[name="username"]').text();
     const uidValue = $('td[name="uid"]').text();
-    const username = $('td[name="username"]').text();
+
+    const username = $('td[name="username"]').val();
     const phone = $('input[name="phone"]').val();
     const email = $('input[name="email"]').val();
-    const userGender = $('input[name="gender"]:checked').val();
-    const userIsDelete = $('input[name="isDelete"]:checked').val();
+
+
+    const userGender = getGenderJSON();
+    const userIsDelete = getIsDeleteJSON();
+
+    // const userGender = $('input[name="gender"]:checked').val();
+    // const userIsDelete = $('input[name="isDelete"]:checked').val();
     // const userGender = $('input[name="gender"]:checked').val();
     // const userGender = $('input[name="phone"]').text();
 
 
 
-    alert("您點擊的是第 " + (uidValue) + " 個按鈕");
+    // alert("您點擊的是第 " + (uidValue) + " 個按鈕");
 
 
     $.ajax({
@@ -155,7 +161,7 @@ function userUpdataEventFinish(clickedButton) {
         contentType: 'application/json',
         data: JSON.stringify({
             "uid": uidValue,
-            // "username": userNameValue,
+            "username": username,
             "phone" : phone,
             "email" : email,
             "gender": userGender,
@@ -172,7 +178,30 @@ function userUpdataEventFinish(clickedButton) {
 
 }
 
+function getGenderJSON() {
+    // 获取所有单选按钮
+    let radios = document.getElementsByName('gender');
+    let statusValue;
 
+    for (let i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+            return statusValue = radios[i].value;
+            // break;
+        }
+    }
+}
+function getIsDeleteJSON() {
+    // 获取所有单选按钮
+    let radios = document.getElementsByName('isDelete');
+    let statusValue;
+
+    for (let i = 0; i < radios.length; i++) {
+        if (radios[i].checked) {
+            return statusValue = radios[i].value;
+            // break;
+        }
+    }
+}
 
 function changeColor() {
     let inputElements = document.querySelectorAll(".product-list-input");
