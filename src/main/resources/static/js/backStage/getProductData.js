@@ -128,9 +128,13 @@ function productUpdataEventFinish(clickedButton) {
     const sellPoint = $('input[name="sell_point"]').val();
     const price = $('input[name="price"]').val();
     const num = $('input[name="num"]').val();
-    // const image = $('input[name="image"]').val();
+
+    const image = $('#productImage').attr('src');
+    const base64ImageData = image.replace(/^data:image\/\w+;base64,/, ''); // 去除MIME前缀
+
     const status = $('input[name="status"]').val();
     const priority = $('input[name="priority"]').val();
+
 
     // alert("您點擊的是第 " + (idValue) + " 個按鈕");
 
@@ -162,7 +166,7 @@ function productUpdataEventFinish(clickedButton) {
             "sellPoint" : sellPoint,
             "price" : price,
             "num" : num,
-            // "image" : image,
+            "image" : base64ImageData,
             "status" : status,
             "priority" : priority
         }),
