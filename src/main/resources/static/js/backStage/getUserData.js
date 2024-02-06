@@ -81,19 +81,19 @@ function userUpdataEvent(clickedButton) {
                 
                 <tr>
                     <th class="product-list-th modify-td">ID</th>
-                    <td class="product-list-td" name="oid" >${userList.uid}</td>
+                    <td class="product-list-td" name="uid" >${userList.uid}</td>
                 </tr>
                 <tr>
                     <th class="product-list-th modify-td">名稱</th>
-                    <td class="product-list-td" name="uid" >${userList.username}</td>
+                    <td><input class="product-list-input" name="username" value="${userList.username}"></td>
                 </tr>
                 <tr>
                     <th class="product-list-th modify-td">電話</th>
-                    <td class="product-list-td" name="recv_name" >${userList.phone}</td>
+                    <td class="product-list-td" name="phone" >${userList.phone}</td>
                 </tr>
                 <tr>
                     <th class="product-list-th modify-td">郵件</th>
-                    <td class="product-list-td" name="recv_phone" >${userList.email}</td>
+                    <td class="product-list-td" name="email" >${userList.email}</td>
                 </tr>
                  <tr>
                     <th class="product-list-th modify-td">性別</th>
@@ -124,6 +124,7 @@ function userUpdataEvent(clickedButton) {
                 table.append(thead);
 
                 memberContainer.append(table);
+                changeColor();
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log('AJAX請求失敗：' + textStatus + ', ' + errorThrown);
@@ -135,6 +136,7 @@ function userUpdataEventFinish(clickedButton) {
     // const index = Array.prototype.indexOf.call(userUpdata_btnList, clickedButton) + 1;
     // const userNameValue = $('td[name="username"]').text();
     const uidValue = $('td[name="uid"]').text();
+    const username = $('td[name="username"]').text();
     const phone = $('input[name="phone"]').val();
     const email = $('input[name="email"]').val();
     const userGender = $('input[name="gender"]:checked').val();
@@ -168,4 +170,42 @@ function userUpdataEventFinish(clickedButton) {
         }
     });
 
+}
+
+
+
+function changeColor() {
+    let inputElements = document.querySelectorAll(".product-list-input");
+
+    inputElements.forEach(function (inputElement) {
+        inputElement.style.color = "greenyellow";
+        inputElement.addEventListener("input", function () {
+
+            let inputValue = inputElement.value;
+
+            if (inputValue === "") {
+                inputElement.style.color = "greenyellow";
+            } else {
+                inputElement.style.color = "red";
+            }
+        });
+    });
+}
+
+
+function updataImg(){
+
+    let imageUpload = document.getElementById("imageUpload");
+    let productImage = document.getElementById("productImage");
+
+    imageUpload.addEventListener("change", function() {
+        let selectedFile = imageUpload.files[0];
+        let reader = new FileReader();
+
+        reader.onload = function(event) {
+            productImage.src = event.target.result;
+        };
+
+        reader.readAsDataURL(selectedFile);
+    });
 }
