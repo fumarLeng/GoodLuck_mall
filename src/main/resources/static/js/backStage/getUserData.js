@@ -35,9 +35,9 @@ function getUserData() {
                 tr.append('<td>' + user.phone + '</td>');
                 tr.append('<td>' + user.email + '</td>');
                 // tr.append('<td>' + user.gender + '</td>');
-                tr.append("<td>" + (user.gender == 0 ? "女生" : "男生") + "</td>");
+                tr.append("<td>" + (user.gender === 0 ? "女生" : "男生") + "</td>");
                 tr.append('<td><img src="data:image/png;base64,' + user.avatar + '" alt="User Avatar" style="width:50px;height:50px;"></td>');
-                tr.append('<td>' + (user.isDelete ? '是' : '否') + '</td>');
+                tr.append('<td>' + (user.isDelete === 0 ? '否' : '是') + '</td>');
                 tr.append('<td>' +
                     '<button class="btn btn-success btn-sm userUpdata" onclick="userUpdataEvent(this)">修改</button>' +
                     // '<button class="btn btn-warning btn-sm">刪除</button>' +
@@ -192,7 +192,7 @@ function getGenderJSON() {
 }
 function getIsDeleteJSON() {
     // 获取所有单选按钮
-    let radios = document.getElementsByName('isDelete');
+    let radios = document.getElementsByName('is_delete');
     let statusValue;
 
     for (let i = 0; i < radios.length; i++) {
