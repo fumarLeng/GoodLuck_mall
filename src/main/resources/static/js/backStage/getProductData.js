@@ -18,59 +18,69 @@ function productUpdataEvent(clickedButton) {
             // 創建表格並添加表頭
             const table = $('<table></table>').addClass('table');
             const thead = $('<thead></thead>').append(`
+
+                 <tr class="product-list-tr">
+                    <th class="product-list-th modify-td">圖片</th>
+                    <td class="product-list-td-img"><img src="data:image/png;base64,${productList.image}" style="width: 50%;" />
+                    <label for="imageUpload" class="btn btn-primary btn-sm">更改圖片</label>
+                    <input id="imageUpload" type="file" class="form-control-file" name="newImage" style="display: none;"  /></td>
+                </tr>  
                 <tr>
-                    <th class="member-list-th modify-td">商品id</th>
-                    <th class="member-list-th modify-td">分類id</th>
-                    <th class="member-list-th modify-td">商品系列</th>
-                    <th class="member-list-th modify-td">商品標題</th>
-                    <th class="member-list-th modify-td">商品賣點</th>
-                    <th class="member-list-th modify-td">商品單價</th>
-                    <th class="member-list-th modify-td">庫存數</th>
-                    <th class="member-list-th modify-td">圖片</th>
-                    <th class="member-list-th modify-td">商品狀態</th>
-                    <th class="member-list-th modify-td">優先級</th>
-                    <th class="member-list-th modify-td">創建時間</th>
-                    <th class="member-list-th modify-td">最後修改時間</th>
-                    <th class="member-list-th modify-td">創建人</th>
-                    <th class="member-list-th modify-td">最後修改人</th>
-                    <th class="member-list-th modify-td">操作</th>
+                    <th class="product-list-th modify-td">商品id</th>
+                    <td class="product-list-td" name="category_id" >${productList.id}</td>
                 </tr>
+                <tr>
+                    <th class="product-list-th">分類id</th>
+                    <td><input class="product-list-input" name="category_id" value="${productList.categoryId}"></td>
+                    
+                </tr>
+                <tr>
+                    <th class="product-list-th">商品系列</th>
+                    <td><input class="product-list-input" name="category_id" value="${productList.itemType}"></td>
+                </tr>  
+                <tr>
+                    <th class="product-list-th">商品賣點</th>
+                    <td><input class="product-list-input" name="category_id" value="${productList.title}"></td>
+                </tr>  
+                <tr>
+                    <th class="product-list-th">商品單價</th>
+                    <td><input class="product-list-input" name="category_id" value="${productList.sellPoint}"></td>
+                </tr>  
+                <tr>
+                    <th class="product-list-th">庫存數</th>
+                    <td><input class="product-list-input" name="category_id" value="${productList.price}"></td>
+                </tr>  
+               
+                <tr>
+                    <th class="product-list-th">商品狀態</th>
+                    <td><input class="product-list-input" name="category_id" value="${productList.status}"></td>
+                </tr>  
+                <tr>
+                    <th class="product-list-th">優先級</th>
+                    <td><input class="product-list-input" name="category_id" value="${productList.priority}"></td>
+                </tr>  
+                <tr>
+                    <th class="product-list-th">創建時間</th>
+                    <td><input class="product-list-input" name="category_id" value="${productList.createdTime}"></td>
+                </tr>  
+                <tr>
+                    <th class="product-list-th">最後修改時間</th>
+                    <td><input class="product-list-input" name="category_id" value="${productList.modifiedTime}"></td>
+                </tr>  
+                <tr>
+                    <th class="product-list-th">創建人</th>
+                    <td><input class="product-list-input" name="category_id" value="${productList.createdUser}"></td>
+                </tr>  
+                <tr>
+                    <th class="product-list-th">最後修改人</th>
+                    <td><input class="product-list-input" name="category_id" value="${productList.modifiedUser}"></td>
+                </tr>  
+    
+
+                
             `);
             table.append(thead);
 
-            // 創建表身並填充數據
-            const tbody = $('<tbody></tbody>');
-            const tr = $('<tr></tr>').append(`
-                <td name="category_id" >${productList.id}</td>
-                <td><input class="user-input modify-input" name="category_id" value="${productList.categoryId}"></td>
-                <td><input class="user-input modify-input" name="item_type" value="${productList.itemType}"></td>
-                <td><input class="user-input modify-input" name="title" value="${productList.title}"></td>
-                <td><input class="user-input modify-input" name="sell_point" value="${productList.sellPoint}"></td>
-                <td><input class="user-input modify-input" name="price" value="${productList.price}"></td>
-                <td><input class="user-input modify-input" name="num" value="${productList.num}"></td>
-                
-                
-              
-                <td><img src="data:image/png;base64,${productList.image}" style="width: 100px; height: 100px;" /><br>
-                <label for="imageUpload" class="btn btn-primary btn-sm">更改圖片</label>
-                <input id="imageUpload" type="file" class="form-control-file" name="newImage" style="display: none;"  /></td>
-
-                  
-                
-                
-                <td><input class="user-input modify-input" name="status" value="${productList.status}"></td>
-                <td><input class="user-input modify-input" name="priority" value="${productList.priority}"></td>
-                <td>${productList.createdTime}</td>
-                <td>${productList.modifiedTime}</td>
-                <td>${productList.createdUser}</td>
-                <td>${productList.modifiedUser}</td>
-                <td>
-                    <button class="btn btn-success btn-sm userUpdata" onclick="productUpdataEventFinish(this)">確定</button>
-                    <button class="btn btn-warning btn-sm" onclick="getProductData()">取消</button>
-                </td>
-            `);
-            tbody.append(tr);
-            table.append(tbody);
             productContainer.append(table);
         },
         error: function (jqXHR, textStatus, errorThrown) {
