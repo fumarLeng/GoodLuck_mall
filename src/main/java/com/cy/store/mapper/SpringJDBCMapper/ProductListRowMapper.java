@@ -21,8 +21,11 @@ public class ProductListRowMapper implements RowMapper<Product> {
         product.setImage(rs.getBytes("image")); //路徑
         product.setStatus(rs.getInt("status"));
         product.setPriority(rs.getInt("priority"));
-        product.setCreatedTime(rs.getDate("created_time"));
-        product.setModifiedTime(rs.getDate("modified_time"));
+//        product.setCreatedTime(rs.getDate("created_time"));
+//        product.setModifiedTime(rs.getDate("modified_time"));
+        product.setCreatedTime(rs.getTimestamp("created_time"));
+        product.setModifiedTime(rs.getTimestamp("modified_time"));
+
         product.setCreatedUser(rs.getString("created_user"));
         product.setModifiedUser(rs.getString("modified_user"));
 

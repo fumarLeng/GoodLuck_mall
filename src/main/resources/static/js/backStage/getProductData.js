@@ -62,24 +62,27 @@ function productUpdataEvent(clickedButton) {
                 </tr>  
                 <tr>
                     <th class="product-list-th">創建時間</th>
-                    <td><input class="product-list-input" name="category_id" value="${productList.createdTime}"></td>
+                    <td class="product-list-td">${productList.createdTime}</td>
                 </tr>  
                 <tr>
                     <th class="product-list-th">最後修改時間</th>
-                    <td><input class="product-list-input" name="category_id" value="${productList.modifiedTime}"></td>
+                    <td class="product-list-td">${productList.modifiedTime}</td>
                 </tr>  
                 <tr>
                     <th class="product-list-th">創建人</th>
-                    <td><input class="product-list-input" name="category_id" value="${productList.createdUser}"></td>
+                    <td class="product-list-td">${productList.createdUser}</td>
                 </tr>  
                 <tr>
                     <th class="product-list-th">最後修改人</th>
-                    <td><input class="product-list-input" name="category_id" value="${productList.modifiedUser}"></td>
+                    <td class="product-list-td">${productList.modifiedUser}</td>
                 </tr>  
                 <tr>
                     <th class="product-list-th">功能</th>
-                    <td><button class="btn btn-success btn-sm ordersUpdata" onclick="productUpdataEventFinish(this)">確定</button>
-                    <button class="btn btn-warning btn-sm" onclick="getProductData()">取消</button></td>
+                    <td class="product-list-button-td">
+                        <button class="btn btn-success productBtn" id="product-ok" onclick="productUpdataEventFinish(this)">確定</button>
+                        <button class="btn btn-success productBtn" id="product-cancel" onclick="getProductData()">取消</button>
+                        <button class="btn btn-success productBtn" id="product-close" onclick="getProductData()">下架</button>
+                    </td>
                 </tr>  
 
                 
@@ -87,6 +90,8 @@ function productUpdataEvent(clickedButton) {
             table.append(thead);
 
             productContainer.append(table);
+
+            changeColor();
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error(`AJAX請求失敗：${textStatus}, ${errorThrown}`);
@@ -343,6 +348,25 @@ function getProductCount(){
         error: function (jqXHR, textStatus, errorThrown) {
             console.log('AJAX請求失敗：' + textStatus + ', ' + errorThrown);
         }
+    });
+}
+
+
+function changeColor() {
+    let inputElements = document.querySelectorAll(".product-list-input");
+
+    inputElements.forEach(function (inputElement) {
+        inputElement.style.color = "greenyellow";
+        inputElement.addEventListener("input", function () {
+
+            let inputValue = inputElement.value;
+
+            if (inputValue === "") {
+                inputElement.style.color = "greenyellow";
+            } else {
+                inputElement.style.color = "red";
+            }
+        });
     });
 }
 

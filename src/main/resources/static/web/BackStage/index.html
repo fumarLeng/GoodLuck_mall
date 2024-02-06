@@ -73,6 +73,7 @@
             margin-left: 1em;
             border-radius: 5px;
             border: 0px solid #fff;
+            color: red;
         }
 
         #addProductForm input,
@@ -122,7 +123,7 @@
         }
             /*========================================================*/
         table {
-            width: 30%;
+            width: 20%;
             border-collapse: collapse;
             border-spacing: 0;
         }
@@ -192,6 +193,25 @@
             width: 10em;
             font-size: 2em;
         }
+
+        .product-list-button-td{
+            padding: 1em;
+        }
+
+        .productBtn{
+            font-size: 2em;
+        }
+
+        #product-ok{
+            background: green;
+        }
+        #product-cancel{
+            background: yellowgreen;
+        }
+        #product-close{
+            background: red;
+        }
+
     </style>
 
 </head>
@@ -351,6 +371,7 @@
         getOrderData();
         getProductData();
         // ProductPage();
+        // changeColor();
 
         // 主頁分頁切換
         $('.nav-li-a').on('click', function (e) {
@@ -431,6 +452,9 @@
             }
         });
     });
+
+
+
 
 </script>
 </body>
