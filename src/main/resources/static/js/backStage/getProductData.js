@@ -253,7 +253,6 @@ function getProductData(){
 
                 tr.append('<td>' +
                     '<button class="btn btn-success btn-sm producUpData" onclick="productUpdataEvent(this)">修改</button>' +
-                    // '<button class="btn btn-warning btn-sm">刪除</button>' +
                     '</td>');
                 tbody.append(tr);
             });

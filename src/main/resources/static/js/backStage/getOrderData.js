@@ -53,14 +53,14 @@ function getOrderData() {
 
             ordersContainer.append(table);
 
-            changeSwitchName();
+            changeSwitchNameOrder();
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log('AJAX請求失敗：' + textStatus + ', ' + errorThrown);
         }
     });
 }
-function changeSwitchName(){
+function changeSwitchNameOrder(){
     const statusLis = document.querySelectorAll(".statusList");
 
     for(let i = 0 ; i < statusLis.length ; i++){
