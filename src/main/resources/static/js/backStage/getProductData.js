@@ -2,7 +2,7 @@ function productUpdataEvent(clickedButton) {
     // 獲取所有更新按鈕並找出被點擊按鈕的索引
     const productUpdateButtonList = document.querySelectorAll(".producUpData");
     const index = Array.from(productUpdateButtonList).indexOf(clickedButton);
-    let productId = $('.productId').eq(index).text(); // 使用 jQuery 獲取對應的商品ID
+    let productId = $('.productId').eq(index).text();
 
     // 發送 AJAX 請求以獲取商品數據
     $.ajax({
@@ -14,7 +14,8 @@ function productUpdataEvent(clickedButton) {
             const productContainer = $('#product');
             const prev_next_buttons = $('#prev-next-buttons');
             productContainer.empty(); // 清空容器
-            prev_next_buttons.empty();
+            // prev_next_buttons.empty();
+            prev_next_buttons.hide();
             // 創建表格並添加表頭
             const table = $('<table></table>').addClass('table');
             const thead = $('<thead></thead>').append(`
@@ -75,10 +76,11 @@ function productUpdataEvent(clickedButton) {
                     <th class="product-list-th">最後修改人</th>
                     <td><input class="product-list-input" name="category_id" value="${productList.modifiedUser}"></td>
                 </tr>  
-<!--                <tr>-->
-<!--                    <button class="btn btn-success btn-sm ordersUpdata" onclick="productUpdataEventFinish(this)">確定</button>-->
-<!--                    <button class="btn btn-warning btn-sm" onclick="updatePaginationControls()">取消</button>-->
-<!--                </tr>  -->
+                <tr>
+                    <th class="product-list-th">功能</th>
+                    <td><button class="btn btn-success btn-sm ordersUpdata" onclick="productUpdataEventFinish(this)">確定</button>
+                    <button class="btn btn-warning btn-sm" onclick="getProductData()">取消</button></td>
+                </tr>  
 
                 
             `);
@@ -94,6 +96,10 @@ function productUpdataEvent(clickedButton) {
 
 
 function productUpdataEventFinish(clickedButton) {
+
+    const prev_next_buttons = $('#prev-next-buttons');
+    prev_next_buttons.show();
+
     const productUpData_btnList = document.querySelectorAll(".producUpData");
     const idValue = $('td[name="id"]').text();
     const categoryId = $('input[name="category_id"]').val();
@@ -147,6 +153,7 @@ function productUpdataEventFinish(clickedButton) {
                 }).then(() => {
                     setTimeout(() => {
                         // window.location.href = "index.html";
+
                         getProductData();
                     }, 100); // 延遲時間更改為1000毫秒
                 });
@@ -185,6 +192,9 @@ function getProductData(){
             let productList = data;
             let productContainer = $('#product');
             productContainer.empty();
+
+            const prev_next_buttons = $('#prev-next-buttons');
+            prev_next_buttons.show();
 
             let table = $('<table></table>').addClass('table');
 
