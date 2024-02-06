@@ -151,9 +151,9 @@ function OrderUpdataEvent(clickedButton) {
                 <tr>
                     <th class="product-list-th modify-td">操作</th>
                     <td class="product-list-button-td">
-                        <button class="btn btn-success productBtn" id="product-ok" onclick="productUpdataEventFinish(this)">確定</button>
-                        <button class="btn btn-success productBtn" id="product-cancel" onclick="getProductData()">取消</button>
-                        <button class="btn btn-success productBtn" id="product-close" onclick="getProductData()">下架</button>
+                        <button class="btn btn-success productBtn" id="product-ok" onclick="OrderUpdataEventFinish(this)">確定</button>
+                        <button class="btn btn-success productBtn" id="product-cancel" onclick="getOrderData()">取消</button>
+                        <button class="btn btn-success productBtn" id="product-close" onclick="getOrderData()">下架</button>
                     </td>
                 </tr>
                 
