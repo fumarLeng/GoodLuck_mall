@@ -80,12 +80,6 @@ function OrderUpdataEvent(clickedButton) {
             let orders = $('#orders');
             orders.empty();
 
-            // recv_name
-            // recv_phone
-            // recv_province
-            // recv_city
-            // recv_area
-            // recv_address
             let table = $('<table></table>').addClass('table');
 
             const thead = $('<thead></thead>').append(`

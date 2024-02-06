@@ -72,46 +72,67 @@ function userUpdataEvent(clickedButton) {
 
             let table = $('<table></table>').addClass('table');
 
-            let thead = $('<thead></thead>');
-            thead.append('<tr>' +
-                '<th class="member-list-th">ID</th>' +
-                '<th class="member-list-th">名稱</th>' +
-                // '<th class="member-list-th">密碼</th>' +
-                // '<th class="member-list-th">加密(鹽值)</th>' +
-                '<th class="member-list-th">電話</th>' +
-                '<th class="member-list-th">郵件</th>' +
-                '<th class="member-list-th">性別</th>' +
-                '<th class="member-list-th">頭像</th>' +
-                '<th class="member-list-th">是否刪除</th>' +
-                '<th class="member-list-th">操作</th>' +
-                '</tr>');
-            table.append(thead);
+            const thead = $('<thead></thead>').append(`
 
-            let tbody = $('<tbody></tbody>');
-            // $.each(userList, function (index, user) {
-            let tr = $('<tr></tr>');
-                // tr.append('<td><input class="user-input" name="uid" value="' + userList.uid + '"></td>');
-                // tr.append('<td><input class="user-input" name="username" value="' + userList.username + '"></td>');
-                // tr.append('<td><input value="' + userList.password + '"></td>');
-                // tr.append('<td><input value="' + userList.salt + '"></td>');
-                tr.append('<td name="uid" >' + userList.uid + '</td>');
-                tr.append('<td name="username" >' + userList.username + '</td>');
-                tr.append('<td><input class="user-input" name="phone" value="' + userList.phone + '"></td>');
-                tr.append('<td><input class="user-input" name="email" value="' + userList.email + '"></td>');
-                // tr.append('<td><input value="' + (userList.gender == 0 ? '女生' : '男生') + '"></td>');
-                tr.append('<td><input name="gender" type="radio" name="gender" value="0" ' + (userList.gender == 0 ? 'checked' : '') + '>女生 <input type="radio" name="gender" value="1" ' + (userList.gender == 1 ? 'checked' : '') + '>男生</td>');
+                <tr class="product-list-tr" id="product-list-tr-img">
+                    <td class="product-list-td-img">
+                    <img id="productImage" src="data:image/png;base64,${userList.avatar}" style="width: 50%;" />
+                </tr> 
+                
+                <tr>
+                    <th class="product-list-th modify-td">ID</th>
+                    <td class="product-list-td" name="oid" >${userList.uid}</td>
+                </tr>
+                <tr>
+                    <th class="product-list-th modify-td">名稱</th>
+                    <td class="product-list-td" name="uid" >${userList.username}</td>
+                </tr>
+                <tr>
+                    <th class="product-list-th modify-td">電話</th>
+                    <td class="product-list-td" name="recv_name" >${userList.phone}</td>
+                </tr>
+                <tr>
+                    <th class="product-list-th modify-td">郵件</th>
+                    <td class="product-list-td" name="recv_phone" >${userList.email}</td>
+                </tr>
+                <tr>
+                    <th class="product-list-th modify-td">性別</th>
+                    <td class="product-list-td" name="recv_province" >${userList.gender}</td>
+                </tr>
+               
+                <tr>
+                    <th class="product-list-th modify-td">創建人</th>
+                    <td class="product-list-td" name="recv_city" >${userList.createdUser}</td>
+                </tr>
+                <tr>
+                    <th class="product-list-th modify-td">創建時間</th>
+                    <td class="product-list-td" name="recv_city" >${userList.createdTime}</td>
+                </tr>
+               
+                <tr>
+                    <th class="product-list-th modify-td">最後修改人</th>
+                    <td class="product-list-td" name="recv_city" >${userList.modifiedUser}</td>
+                </tr>
+                <tr>
+                    <th class="product-list-th modify-td">最後修改時間</th>
+                    <td class="product-list-td" name="recv_city" >${userList.modifiedTime}</td>
+                </tr>
 
-                tr.append('<td><img src="data:image/png;base64,' + userList.avatar + '" alt="User Avatar" style="width:50px;height:50px;"></td>');
-
-                tr.append('<td><input type="radio" name="isDelete" value="0" ' + (userList.isDelete == 0 ? 'checked' : '') + '>否 <input type="radio" name="isDelete" value="1" ' + (userList.isDelete == 1 ? 'checked' : '') + '>是</td>');
-                // tr.append('<td>' + (userList.isDelete ? '是' : '否') + '</td>');
-                tr.append('<td>' +
-                    '<button class="btn btn-success btn-sm userUpdata" onclick="userUpdataEventFinish(this)">確定</button>' +
-                    '<button class="btn btn-warning btn-sm" onclick="getUserData()">取消</button>' +
-                    '</td>');
-                tbody.append(tr);
-                // });
-                table.append(tbody);
+                 <tr>
+                    <th class="product-list-th modify-td">是否刪除</th>
+                    <td class="product-list-td" name="recv_city" >${userList.is_delete}</td>
+                </tr>
+                 <tr>
+                    <th class="product-list-th">功能</th>
+                    <td class="product-list-button-td">
+                        <button class="btn btn-success productBtn" id="product-ok" onclick="productUpdataEventFinish(this)">確定</button>
+                        <button class="btn btn-success productBtn" id="product-cancel" onclick="getProductData()">取消</button>
+                        <button class="btn btn-success productBtn" id="product-close" onclick="getProductData()">下架</button>
+                    </td>
+                </tr>  
+            
+            `);
+                table.append(thead);
 
                 memberContainer.append(table);
         },
