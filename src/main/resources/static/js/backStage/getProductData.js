@@ -387,14 +387,13 @@ function updataImg(){
     let productImage = document.getElementById("productImage");
 
     imageUpload.addEventListener("change", function() {
-        let selectedFile = imageUpload.files[0]; // 获取选择的文件
-        let reader = new FileReader(); // 创建一个文件读取器
+        let selectedFile = imageUpload.files[0];
+        let reader = new FileReader();
 
         reader.onload = function(event) {
             productImage.src = event.target.result;
         };
 
-        // 读取选择的文件作为DataURL
         reader.readAsDataURL(selectedFile);
     });
 }
