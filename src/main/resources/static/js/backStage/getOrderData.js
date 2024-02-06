@@ -40,26 +40,49 @@ function getOrderData() {
                 tr.append('<td>' + order.recvArea + '</td>');
                 tr.append('<td>' + order.recvAddress + '</td>');
                 tr.append('<td>' + order.totalPrice + '</td>');
-                tr.append('<td>' + order.status + '</td>');
+                tr.append('<td class="statusList">' + order.status  + '</td>');
                 tr.append('<td>' + order.orderTime + '</td>');
                 tr.append('<td>' + order.payTime + '</td>');
 
                 tr.append('<td>' +
                     '<button class="btn btn-success btn-sm ordersUpData" onclick="OrderUpdataEvent(this)">修改</button>' +
-                    // '<button class="btn btn-warning btn-sm">刪除</button>' +
                     '</td>');
                 tbody.append(tr);
             });
             table.append(tbody);
 
             ordersContainer.append(table);
+
+            changeSwitchName();
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log('AJAX請求失敗：' + textStatus + ', ' + errorThrown);
         }
     });
 }
+function changeSwitchName(){
+    const statusLis = document.querySelectorAll(".statusList");
 
+    for(let i = 0 ; i < statusLis.length ; i++){
+        switch (statusLis[i].innerText){
+            case "0":
+                statusLis[i].innerText = "未付款"
+                break;
+            case "1":
+                statusLis[i].innerText = "已付款"
+                break;
+            case "2":
+                statusLis[i].innerText = "已取消"
+                break;
+            case "3":
+                statusLis[i].innerText = "已關閉"
+                break;
+            case "4":
+                statusLis[i].innerText = "已完成"
+                break;
+        }
+    }
+}
 
 
 function OrderUpdataEvent(clickedButton) {
