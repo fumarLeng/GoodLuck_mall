@@ -95,39 +95,28 @@ function userUpdataEvent(clickedButton) {
                     <th class="product-list-th modify-td">郵件</th>
                     <td class="product-list-td" name="recv_phone" >${userList.email}</td>
                 </tr>
-                <tr>
-                    <th class="product-list-th modify-td">性別</th>
-                    <td class="product-list-td" name="recv_province" >${userList.gender}</td>
-                </tr>
-               
-                <tr>
-                    <th class="product-list-th modify-td">創建人</th>
-                    <td class="product-list-td" name="recv_city" >${userList.createdUser}</td>
-                </tr>
-                <tr>
-                    <th class="product-list-th modify-td">創建時間</th>
-                    <td class="product-list-td" name="recv_city" >${userList.createdTime}</td>
-                </tr>
-               
-                <tr>
-                    <th class="product-list-th modify-td">最後修改人</th>
-                    <td class="product-list-td" name="recv_city" >${userList.modifiedUser}</td>
-                </tr>
-                <tr>
-                    <th class="product-list-th modify-td">最後修改時間</th>
-                    <td class="product-list-td" name="recv_city" >${userList.modifiedTime}</td>
-                </tr>
-
                  <tr>
-                    <th class="product-list-th modify-td">是否刪除</th>
-                    <td class="product-list-td" name="recv_city" >${userList.is_delete}</td>
+                    <th class="product-list-th modify-td">性別</th>
+                    <td class="product-list-td" name="uid">
+                        <label><input class="order-radio" type="radio" name="gender" value="0" ${userList.gender === 0 ? 'checked' : ''}> 女</label>
+                        <label><input class="order-radio" type="radio" name="gender" value="1" ${userList.gender === 1 ? 'checked' : ''}> 男</label>
+                    </td>
                 </tr>
+               
+                <tr>
+                    <th class="product-list-th modify-td">是否刪除</th>
+                    <td class="product-list-td" name="uid">
+                        <label><input class="order-radio" type="radio" name="is_delete" value="0" ${userList.isDelete === 0 ? 'checked' : ''}> 未刪除</label>
+                        <label><input class="order-radio" type="radio" name="is_delete" value="1" ${userList.isDelete === 1 ? 'checked' : ''}> 已刪除</label>
+                    </td>
+                </tr>
+                
                  <tr>
                     <th class="product-list-th">功能</th>
                     <td class="product-list-button-td">
                         <button class="btn btn-success productBtn" id="product-ok" onclick="productUpdataEventFinish(this)">確定</button>
-                        <button class="btn btn-success productBtn" id="product-cancel" onclick="getProductData()">取消</button>
-                        <button class="btn btn-success productBtn" id="product-close" onclick="getProductData()">下架</button>
+                        <button class="btn btn-success productBtn" id="product-cancel" onclick="getUserData()">取消</button>
+<!--                        <button class="btn btn-success productBtn" id="product-close" onclick="getProductData()">下架</button>-->
                     </td>
                 </tr>  
             
