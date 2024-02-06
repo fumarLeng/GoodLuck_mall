@@ -13,10 +13,9 @@ function productUpdataEvent(clickedButton) {
             const productList = data;
             const productContainer = $('#product');
             const prev_next_buttons = $('#prev-next-buttons');
-            productContainer.empty(); // 清空容器
-            // prev_next_buttons.empty();
+            productContainer.empty();
             prev_next_buttons.hide();
-            // 創建表格並添加表頭
+
             const table = $('<table></table>').addClass('table');
             const thead = $('<thead></thead>').append(`
 
@@ -28,7 +27,7 @@ function productUpdataEvent(clickedButton) {
                 </tr>  
                 <tr>
                     <th class="product-list-th modify-td">商品id</th>
-                    <td class="product-list-td" name="category_id" >${productList.id}</td>
+                    <td class="product-list-td" name="productId" >${productList.id}</td>
                 </tr>
                 <tr>
                     <th class="product-list-th">分類id</th>
@@ -37,28 +36,34 @@ function productUpdataEvent(clickedButton) {
                 </tr>
                 <tr>
                     <th class="product-list-th">商品系列</th>
-                    <td><input class="product-list-input" name="category_id" value="${productList.itemType}"></td>
+                    <td><input class="product-list-input" name="item_type" value="${productList.itemType}"></td>
                 </tr>  
+                <tr>
+                    <th class="product-list-th">商品標題</th>
+                    <td><input class="product-list-input" name="title" value="${productList.title}"></td>
+                </tr>  
+
                 <tr>
                     <th class="product-list-th">商品賣點</th>
-                    <td><input class="product-list-input" name="category_id" value="${productList.title}"></td>
-                </tr>  
+                    <td><input class="product-list-input" name="sell_point" value="${productList.sellPoint}"></td>
+                </tr>
+                  
                 <tr>
                     <th class="product-list-th">商品單價</th>
-                    <td><input class="product-list-input" name="category_id" value="${productList.sellPoint}"></td>
+                    <td><input class="product-list-input" name="price" value="${productList.price}"></td>
                 </tr>  
                 <tr>
                     <th class="product-list-th">庫存數</th>
-                    <td><input class="product-list-input" name="category_id" value="${productList.price}"></td>
+                    <td><input class="product-list-input" name="num" value="${productList.num}"></td>
                 </tr>  
                
                 <tr>
                     <th class="product-list-th">商品狀態</th>
-                    <td><input class="product-list-input" name="category_id" value="${productList.status}"></td>
+                    <td><input class="product-list-input" name="status" value="${productList.status}"></td>
                 </tr>  
                 <tr>
                     <th class="product-list-th">優先級</th>
-                    <td><input class="product-list-input" name="category_id" value="${productList.priority}"></td>
+                    <td><input class="product-list-input" name="priority" value="${productList.priority}"></td>
                 </tr>  
                 <tr>
                     <th class="product-list-th">創建時間</th>
@@ -102,18 +107,27 @@ function productUpdataEvent(clickedButton) {
 
 function productUpdataEventFinish(clickedButton) {
 
-    const prev_next_buttons = $('#prev-next-buttons');
-    prev_next_buttons.show();
+
 
     const productUpData_btnList = document.querySelectorAll(".producUpData");
-    const idValue = $('td[name="id"]').text();
+    // const idValue = $('td[name="id"]').text();
+    // const categoryId = $('input[name="category_id"]').val();
+    // const ItemType = $('input[name="item_type"]').val();
+    // const title = $('input[name="title"]').val();
+    // const sellPoint = $('input[name="sell_point"]').val();
+    // const price = $('input[name="price"]').val();
+    // const num = $('input[name="num"]').val();
+    // const image = $('input[name="image"]').val();
+    // const status = $('input[name="status"]').val();
+    // const priority = $('input[name="priority"]').val();
+    const idValue = $('td[name="productId"]').text();
     const categoryId = $('input[name="category_id"]').val();
     const ItemType = $('input[name="item_type"]').val();
     const title = $('input[name="title"]').val();
     const sellPoint = $('input[name="sell_point"]').val();
     const price = $('input[name="price"]').val();
     const num = $('input[name="num"]').val();
-    const image = $('input[name="image"]').val();
+    // const image = $('input[name="image"]').val();
     const status = $('input[name="status"]').val();
     const priority = $('input[name="priority"]').val();
 
@@ -147,11 +161,13 @@ function productUpdataEventFinish(clickedButton) {
             "sellPoint" : sellPoint,
             "price" : price,
             "num" : num,
-            "image" : image,
+            // "image" : image,
             "status" : status,
             "priority" : priority
         }),
             success: function(result) {
+                const prev_next_buttons = $('#prev-next-buttons');
+                prev_next_buttons.show();
                 Toast.fire({
                     icon: 'success',
                     title: '資料更新成功~',
