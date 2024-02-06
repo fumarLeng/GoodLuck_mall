@@ -10,6 +10,7 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -154,7 +155,8 @@ public class BackStageUser implements com.cy.store.Dao.BackStageUser {
 //        String sql = "UPDATE `t_product` SET category_id = :getCategoryId WHERE id = :id";
         String sql = "UPDATE `t_product` SET category_id = :category_id , item_type = :item_type , title = :title , " +
                 "sell_point = :sell_point ,price= :price , num = :num , " +
-                "image = :image ,status = :status , priority = :priority " +
+                "image = :image ,status = :status , priority = :priority , " +
+                "modified_time = :modified_time " +
                 " WHERE id = :id";
 
         Map<String, Object> map = new HashMap<>();
@@ -169,12 +171,9 @@ public class BackStageUser implements com.cy.store.Dao.BackStageUser {
         map.put("status", existingProdcut.getStatus());
         map.put("priority", existingProdcut.getPriority());
 
-//        try {
-//            byte[] image = file.getBytes();
-//            product.setImage(image);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
+        Date now  = new Date();
+        System.out.println(now);
+        map.put("modified_time" , now);
 
         namedParameterJdbcTemplate.update(sql, map);
     }

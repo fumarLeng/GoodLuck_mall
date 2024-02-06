@@ -91,17 +91,10 @@ public class BackStageController {
             existingProduct.setNum(updatedProduct.getNum());
             existingProduct.setImage(updatedProduct.getImage());
             existingProduct.setStatus(updatedProduct.getStatus());
-//            existingProduct.setUsername(updatedProduct.getUsername());
-
-//            existingProduct.setPhone(updatedProduct.getPhone());
-//            existingProduct.setEmail(updatedProduct.getEmail());
-//            existingProduct.setGender(updatedProduct.getGender());
-//            existingProduct.setIsDelete(updatedProduct.getIsDelete());
 
             System.out.println("getId: " + updatedProduct.getId());
             System.out.println("getItemType: " + updatedProduct.getItemType());
-//            System.out.println("Gender: " + updatedProduct.getPhone());
-//            System.out.println("IsDelete: " + updatedProduct.getEmail());
+
             // 保存更新後的用戶資訊
             UserService.saveProdcut(updatedProduct);
             return new ResponseEntity<>("用戶更新成功", HttpStatus.OK);
