@@ -55,7 +55,7 @@
 
         #addProductForm table {
             margin: 0 auto;
-            width: 50%;
+            width: 30%;
         }
 
         #addProductForm img{
@@ -73,6 +73,7 @@
             margin-left: 1em;
             border-radius: 5px;
             border: 0px solid #fff;
+            color: red;
         }
 
         #addProductForm input,
@@ -103,7 +104,113 @@
             height: 100px;
 
         }
-        /*========================================================*/
+
+        .product-list-th,
+        .product-list-td,
+        .product-list-input
+        {
+            width: 30%;
+            text-align: center;
+            font-size: 2em;
+        }
+
+        .product-list-td-img{
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+        }
+            /*========================================================*/
+        table {
+            width: 20%;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        th.product-list-th {
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 10px;
+        }
+
+        td.product-list-td-img {
+            vertical-align: top;
+            padding: 10px;
+        }
+
+        img {
+            max-width: 30%;
+        }
+
+        label.btn.btn-primary.btn-sm {
+            margin-top: 10px;
+        }
+
+        input.product-list-input {
+            width: 100%;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            margin-top: 5px;
+
+        }
+
+        .btn {
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        th.product-list-th {
+            background-color: #fff;
+            text-align: center;
+            vertical-align: middle;
+            padding: 10px;
+        }
+
+        tr{
+            border: 1px solid #ccc;
+        }
+
+        #product-list-tr-img{
+            position: relative;
+            left: 25%;
+            border: 0px;
+        }
+        #product-list-tr-img td{
+            border: 0px;
+        }
+
+        #product-list-tr-img label{
+            width: 10em;
+            font-size: 2em;
+        }
+
+        .product-list-button-td{
+            padding: 1em;
+        }
+
+        .productBtn{
+            font-size: 2em;
+        }
+
+        #product-ok{
+            background: green;
+        }
+        #product-cancel{
+            background: yellowgreen;
+        }
+        #product-close{
+            background: red;
+        }
 
     </style>
 
@@ -264,6 +371,7 @@
         getOrderData();
         getProductData();
         // ProductPage();
+        // changeColor();
 
         // 主頁分頁切換
         $('.nav-li-a').on('click', function (e) {
@@ -344,6 +452,9 @@
             }
         });
     });
+
+
+
 
 </script>
 </body>

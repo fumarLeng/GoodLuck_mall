@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -168,13 +169,12 @@ public class BackStageUser implements com.cy.store.Dao.BackStageUser {
         map.put("status", existingProdcut.getStatus());
         map.put("priority", existingProdcut.getPriority());
 
-//        System.out.println("getCategoryId " + existingProdcut.getCategoryId());
-//
-////        map.put("username", existingUser.getUsername());
-//        map.put("phone", existingUser.getPhone());
-//        map.put("email", existingUser.getEmail());
-//        map.put("gender", existingUser.getGender());
-//        map.put("is_delete", existingUser.getIsDelete());
+//        try {
+//            byte[] image = file.getBytes();
+//            product.setImage(image);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
 
         namedParameterJdbcTemplate.update(sql, map);
     }
