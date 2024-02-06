@@ -130,13 +130,14 @@ function OrderUpdataEvent(clickedButton) {
                 <tr>
                     <th class="product-list-th modify-td">狀態</th>
                     <td class="product-list-td" name="uid">
-                        <label><input class="order-radio" type="radio" name="status" value="0"> 未付款</label>
-                        <label><input class="order-radio" type="radio" name="status" value="1"> 已付款</label>
-                        <label><input class="order-radio" type="radio" name="status" value="2"> 已取消</label>
-                        <label><input class="order-radio" type="radio" name="status" value="3"> 已關閉</label>
-                        <label><input class="order-radio" type="radio" name="status" value="4"> 已完成</label>
+                        <label><input class="order-radio" type="radio" name="status" value="0" ${ordersList.status === 0 ? 'checked' : ''}> 未付款</label>
+                        <label><input class="order-radio" type="radio" name="status" value="1" ${ordersList.status === 1 ? 'checked' : ''}> 已付款</label>
+                        <label><input class="order-radio" type="radio" name="status" value="2" ${ordersList.status === 2 ? 'checked' : ''}> 已取消</label>
+                        <label><input class="order-radio" type="radio" name="status" value="3" ${ordersList.status === 3 ? 'checked' : ''}> 已關閉</label>
+                        <label><input class="order-radio" type="radio" name="status" value="4" ${ordersList.status === 4 ? 'checked' : ''}> 已完成</label>
                     </td>
                 </tr>
+
               
                 <tr>
                     <th class="product-list-th modify-td">下單時間</th>
