@@ -19,8 +19,8 @@ function productUpdataEvent(clickedButton) {
             const table = $('<table></table>').addClass('table');
             const thead = $('<thead></thead>').append(`
 
-                 <tr class="product-list-tr">
-                    <th class="product-list-th modify-td">圖片</th>
+                 <tr class="product-list-tr" id="product-list-tr-img">
+<!--                    <th class="product-list-th modify-td">圖片</th>-->
                     <td class="product-list-td-img"><img src="data:image/png;base64,${productList.image}" style="width: 50%;" />
                     <label for="imageUpload" class="btn btn-primary btn-sm">更改圖片</label>
                     <input id="imageUpload" type="file" class="form-control-file" name="newImage" style="display: none;"  /></td>
@@ -75,7 +75,10 @@ function productUpdataEvent(clickedButton) {
                     <th class="product-list-th">最後修改人</th>
                     <td><input class="product-list-input" name="category_id" value="${productList.modifiedUser}"></td>
                 </tr>  
-    
+<!--                <tr>-->
+<!--                    <button class="btn btn-success btn-sm ordersUpdata" onclick="productUpdataEventFinish(this)">確定</button>-->
+<!--                    <button class="btn btn-warning btn-sm" onclick="updatePaginationControls()">取消</button>-->
+<!--                </tr>  -->
 
                 
             `);
