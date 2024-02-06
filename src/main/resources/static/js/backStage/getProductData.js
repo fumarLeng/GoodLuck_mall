@@ -20,7 +20,6 @@ function productUpdataEvent(clickedButton) {
             const thead = $('<thead></thead>').append(`
 
                  <tr class="product-list-tr" id="product-list-tr-img">
-<!--                    <th class="product-list-th modify-td">圖片</th>-->
                     <td class="product-list-td-img">
                     <img id="productImage" src="data:image/png;base64,${productList.image}" style="width: 50%;" />
                     <label for="imageUpload" class="btn btn-primary btn-sm">更改圖片</label>
@@ -111,16 +110,6 @@ function productUpdataEventFinish(clickedButton) {
 
 
     const productUpData_btnList = document.querySelectorAll(".producUpData");
-    // const idValue = $('td[name="id"]').text();
-    // const categoryId = $('input[name="category_id"]').val();
-    // const ItemType = $('input[name="item_type"]').val();
-    // const title = $('input[name="title"]').val();
-    // const sellPoint = $('input[name="sell_point"]').val();
-    // const price = $('input[name="price"]').val();
-    // const num = $('input[name="num"]').val();
-    // const image = $('input[name="image"]').val();
-    // const status = $('input[name="status"]').val();
-    // const priority = $('input[name="priority"]').val();
     const idValue = $('td[name="productId"]').text();
     const categoryId = $('input[name="category_id"]').val();
     const ItemType = $('input[name="item_type"]').val();
@@ -254,7 +243,7 @@ function getProductData(){
                 tr.append('<td>' + product.sellPoint + '</td>');
                 tr.append('<td>' + product.price + '</td>');
                 tr.append('<td>' + product.num + '</td>');
-                tr.append('<td>' + '<img alt="" class="tr-img" src="data:image/png;base64,' + product.image +   '"/></td>');
+                tr.append('var<td>' + '<img alt="" class="tr-img" src="data:image/png;base64,' + product.image +   '"/></td>');
                 tr.append('<td>' + product.status + '</td>');
                 tr.append('<td>' + product.priority + '</td>');
                 tr.append('<td name="id" >' + product.createdTime + '</td>');
