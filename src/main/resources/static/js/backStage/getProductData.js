@@ -12,8 +12,9 @@ function productUpdataEvent(clickedButton) {
         success: function (data) {
             const productList = data;
             const productContainer = $('#product');
+            const prev_next_buttons = $('#prev-next-buttons');
             productContainer.empty(); // 清空容器
-
+            prev_next_buttons.empty();
             // 創建表格並添加表頭
             const table = $('<table></table>').addClass('table');
             const thead = $('<thead></thead>').append(`
@@ -40,7 +41,7 @@ function productUpdataEvent(clickedButton) {
             // 創建表身並填充數據
             const tbody = $('<tbody></tbody>');
             const tr = $('<tr></tr>').append(`
-                <td><input class="user-input modify-input" name="category_id" value="${productList.id}"></td>
+                <td name="category_id" >${productList.id}</td>
                 <td><input class="user-input modify-input" name="category_id" value="${productList.categoryId}"></td>
                 <td><input class="user-input modify-input" name="item_type" value="${productList.itemType}"></td>
                 <td><input class="user-input modify-input" name="title" value="${productList.title}"></td>
