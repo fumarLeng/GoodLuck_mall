@@ -243,7 +243,7 @@ function getProductData(){
                 tr.append('<td>' + product.sellPoint + '</td>');
                 tr.append('<td>' + product.price + '</td>');
                 tr.append('<td>' + product.num + '</td>');
-                tr.append('<td>' + '<img alt="" class="tr-img" src="data:image/png;base64,' + product.image +   '"/></td>');
+                tr.append('var<td>' + '<img alt="" class="tr-img" src="data:image/png;base64,' + product.image +   '"/></td>');
                 tr.append('<td>' + product.status + '</td>');
                 tr.append('<td>' + product.priority + '</td>');
                 tr.append('<td name="id" >' + product.createdTime + '</td>');
