@@ -190,14 +190,15 @@
         });
 
 
+        // 修改資料
         $("#btn-change-info").click(function (event) {
             event.preventDefault();
-
             var formIsValid = true;
             $(".form-control").each(function() {
-                $(this).next(".error-message").remove();
+                $(this).next(".error-message").remove(); // 移除之前的錯誤訊息
                 if (!this.checkValidity()) {
-                    $(this).after('<span class="error-message" style="color: red; margin-left: 10px;">格式錯誤囉</span>');
+                    var errorMessage = getErrorMessage($(this));
+                    $(this).after('<span class="error-message" style="color: red; margin-left: 10px;">' + errorMessage + '</span>');
                     formIsValid = false;
                 }
             });
@@ -222,6 +223,20 @@
                 });
             }
         });
+
+        // 定義錯誤訊息生成函數
+        function getErrorMessage($input) {
+            var name = $input.attr("name");
+            switch (name) {
+                case "phone":
+                    return "電話號碼格式錯誤，應為10位數字";
+                case "email":
+                    return "郵件格式錯誤，正確格式為：xxx@xxx.com";
+                default:
+                    return "格式錯誤囉。";
+            }
+        }
+
 
     });
 

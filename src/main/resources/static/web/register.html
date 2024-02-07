@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>租你好運商城</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--    <script src="../bootstrap3/js/holder.js"></script>-->
+    <!--    <script src="../bootstrap3/js/holder.js"></script>-->
     <link href="../bootstrap3/css/bootstrap.css" rel="stylesheet" type="text/css">
     <script src="../bootstrap3/jquery-1.9.1.min.js"></script>
     <script src="../bootstrap3/js/bootstrap.js"></script>
@@ -52,13 +52,13 @@
             width: 7em;
         }
 
-        .regDiv input{
+        .regDiv input {
             font-size: 22px;
             text-align: center;
             border-radius: 25px;
         }
 
-        .col-md-8{
+        .col-md-8 {
             display: flex;
             align-content: center;
             justify-content: center;
@@ -66,7 +66,7 @@
         }
 
 
-        #btn-reg{
+        #btn-reg {
             margin: 0 0.3em;
         }
     </style>
@@ -91,21 +91,23 @@
             <div class="form-group">
                 <label class="col-md-3 control-label">會員名稱：</label>
                 <div class="col-md-8">
-                    <input name="username" type="text" class="form-control" placeholder="請輸入會員名稱" required pattern="^[a-zA-Z0-9]+$" title="用戶名只能包含英文字母和數字">
+                    <input name="username" type="text" class="form-control" placeholder="請輸入會員名稱" required
+                           pattern="^[a-zA-Z0-9]+$" title="用戶名只能包含英文字母和數字">
                 </div>
             </div>
             <!--密碼-->
             <div class="form-group">
                 <label class="col-md-3 control-label"> 密碼：</label>
                 <div class="col-md-8">
-                    <input name="password" type="password" class="form-control" placeholder="請輸入密碼" required pattern="^[a-zA-Z0-9]+$" title="密碼只能包含英文字母和數字">
+                    <input name="password" type="password" class="form-control" placeholder="請輸入密碼" required
+                           pattern="^[a-zA-Z0-9]+$" title="密碼只能包含英文字母和數字">
                 </div>
             </div>
             <!--確認密碼-->
             <div class="form-group">
                 <label class="col-md-3 control-label"> 確認密碼：</label>
                 <div class="col-md-8">
-                    <input type="text" class="form-control" placeholder="請再次輸入密碼" required>
+                    <input name="confirmPassword" type="password" class="form-control" placeholder="請再次輸入密碼" required>
                 </div>
             </div>
             <!--提交按鈕-->
@@ -130,12 +132,18 @@
         版權所有
     </div>
 </footer>
+
+
+<!--sweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.2/dist/sweetalert2.all.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.10.2/dist/sweetalert2.min.css" rel="stylesheet">
+<script src="../../js/frontend/cart/login/comSweetAlert2.js"></script>
+
 <!--footer結束-->
 
 <script type="text/javascript">
     $(document).ready(function () {
         $("#form-reg").submit(function (e) {
-            // 停止表單默認
             e.preventDefault();
 
             // 获取表单
@@ -145,13 +153,19 @@
 
 
             if (!username.match(/^[a-zA-Z0-9]+$/) || !password.match(/^[a-zA-Z0-9]+$/)) {
-                alert("會員帳號或密碼格式不對。會員帳號和密碼只能包含英文字母和數字。");
+                Toast.fire({
+                    icon: 'error',
+                    title: '會員帳號或密碼格式不對。會員帳號和密碼只能包含英文字母和數字。'
+                });
                 return;
             }
 
-
+            // 驗證密碼和確認密碼是否一致
             if (password !== confirmPassword) {
-                alert("密碼跟確認密碼不一樣。");
+                Toast.fire({
+                    icon: 'error',
+                    title: '密碼與確認密碼不一致。'
+                });
                 return;
             }
 
@@ -163,10 +177,19 @@
                 dataType: "json",
                 success: function (json) {
                     if (json.state == 200) {
-                        alert("註冊成功 !");
-                        location.href = "login.html";
+                        Swal.fire({
+                            icon: 'success',
+                            title: '註冊成功！',
+                            showConfirmButton: false,
+                            timer: 1500
+                        }).then(() => {
+                            location.href = "login.html";
+                        });
                     } else {
-                        alert("註冊失敗 ! " + json.message);
+                        Toast.fire({
+                            icon: 'error',
+                            title: '註冊失敗！' + json.message
+                        });
                     }
                 }
             });
