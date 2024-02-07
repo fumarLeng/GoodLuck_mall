@@ -163,7 +163,7 @@
                     alert("加入購物車失敗" + json.message);
                 }
             },
-            error: function (xhr) {
+            error: function (json) {
                 alert("登入已過期,請重新登錄" + xhr.message);
                 location.href = "login.html";
             }

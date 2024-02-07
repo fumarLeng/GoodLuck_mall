@@ -132,7 +132,7 @@
                 </div>
                 <div id="collapseOne" class="panel-collapse collapse in">
                     <div class="panel-body">
-                        <div><a href="orders.html">全部訂單</a></div>
+                        <div><a id="allOrder" href="orders.html">全部訂單</a></div>
                         <div><a id="NoPay" href="javascript:void(0);" onclick="fetchOrdersByStatus(0)">已付款</a></div>
                         <div><a id="NoGet" href="javascript:void(0);" onclick="fetchOrdersByStatus(1)">已收貨</a></div>
                         <!--                        <div><a href="orders.html">待評價</a></div>-->
@@ -262,11 +262,11 @@
                 if (json.state === 200) {
                     displayOrders(json.data);
                 } else {
-                    console.error('Failed to fetch orders:', json.message);
+                    console.error('載入訂單出現問題:', json.message);
                 }
             },
             error: function (xhr, status, error) {
-                console.error('An error occurred:', error);
+                console.error('載入訂單出現問題:', json.message);
             }
         });
     }
@@ -306,11 +306,6 @@
 
                         }
 
-
-
-
-
-
                     }
 
                 } else {
@@ -319,8 +314,8 @@
                     // changeQuerySName();
                 }
             },
-            error: function (xhr) {
-                console.error('An error occurred:', xhr.message);
+            error: function (json) {
+                console.error('An error occurred:', json.message);
             }
         });
         // changeQuerySName();
@@ -345,8 +340,8 @@
                     console.error('Failed to fetch orders:', json.message);
                 }
             },
-            error: function (xhr) {
-                console.error('An error occurred:', xhr.message);
+            error: function (json) {
+                console.error('An error occurred:', json.message);
             }
         });
 

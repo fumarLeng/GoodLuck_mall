@@ -34,7 +34,7 @@ public class CartServiceImpl implements ICartService {
 
         Date date = new Date();
 
-        //先依靠uid,pid查目前要加入的購物車在表格裡面有沒有
+        //先用uid,pid查目前要加入的購物車在表格裡面有沒有
         Cart result = cartMapper.fundByUidAndPid(uid, pid);
 
         if (result == null) { //null表示商品不再購物車中,所以要新增
