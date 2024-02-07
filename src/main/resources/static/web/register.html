@@ -91,28 +91,30 @@
             <div class="form-group">
                 <label class="col-md-3 control-label">會員名稱：</label>
                 <div class="col-md-8">
-                    <input name="username" type="text" class="form-control" placeholder="請輸入會員名稱" pattern="^[a-zA-Z0-9]+$" title="用戶名只能包含英文字母和數字">
+                    <input name="username" type="text" class="form-control" placeholder="請輸入會員名稱" required pattern="^[a-zA-Z0-9]+$" title="用戶名只能包含英文字母和數字">
                 </div>
             </div>
             <!--密碼-->
             <div class="form-group">
                 <label class="col-md-3 control-label"> 密碼：</label>
                 <div class="col-md-8">
-                    <input name="password" type="password" class="form-control" placeholder="請輸入密碼" pattern="^[a-zA-Z0-9]+$" title="密碼只能包含英文字母和數字">
+                    <input name="password" type="password" class="form-control" placeholder="請輸入密碼" required pattern="^[a-zA-Z0-9]+$" title="密碼只能包含英文字母和數字">
                 </div>
             </div>
             <!--確認密碼-->
             <div class="form-group">
                 <label class="col-md-3 control-label"> 確認密碼：</label>
                 <div class="col-md-8">
-                    <input type="text" class="form-control" placeholder="請再次輸入密碼">
+                    <input type="text" class="form-control" placeholder="請再次輸入密碼" required>
                 </div>
             </div>
             <!--提交按鈕-->
             <div class="form-group">
                 <label class="col-md-3 control-label"></label>
                 <div class="col-md-8">
-                    <input id="btn-reg" class="btn btn-primary" type="button" value="立即註冊"/>
+                    <input id="btn-reg" class="btn btn-primary" type="submit" value="立即註冊" required/>
+                    <span class="error-message" style="color: red;"></span> <!-- 錯誤訊息 -->
+
                     <span class="pull-right"><small>已經有帳號？</small><a href="login.html">登錄</a></span>
                 </div>
             </div>
@@ -131,21 +133,43 @@
 <!--footer結束-->
 
 <script type="text/javascript">
-    $("#btn-reg").click(function () {
-        $.ajax({
-            url: "/users/reg",
-            type: "POST",
-            data: $("#form-reg").serialize(),
-            dataType: "json",
-            success: function (json) {
-                if (json.state == 200) {
-                    alert("註冊成功 ! ");
-                    location.href = "login.html";
+    $(document).ready(function () {
+        $("#form-reg").submit(function (e) {
+            // 停止表單默認
+            e.preventDefault();
 
-                } else {
-                    alert("註冊失敗 ! " + json.message);
-                }
+            // 获取表单
+            var username = $("input[name='username']").val();
+            var password = $("input[name='password']").val();
+            var confirmPassword = $("input[name='confirmPassword']").val();
+
+
+            if (!username.match(/^[a-zA-Z0-9]+$/) || !password.match(/^[a-zA-Z0-9]+$/)) {
+                alert("會員帳號或密碼格式不對。會員帳號和密碼只能包含英文字母和數字。");
+                return;
             }
+
+
+            if (password !== confirmPassword) {
+                alert("密碼跟確認密碼不一樣。");
+                return;
+            }
+
+            // 全部驗證通過才走到 AJAX 请求
+            $.ajax({
+                url: "/users/reg",
+                type: "POST",
+                data: $(this).serialize(), // 使用表单数据
+                dataType: "json",
+                success: function (json) {
+                    if (json.state == 200) {
+                        alert("註冊成功 !");
+                        location.href = "login.html";
+                    } else {
+                        alert("註冊失敗 ! " + json.message);
+                    }
+                }
+            });
         });
     });
 </script>

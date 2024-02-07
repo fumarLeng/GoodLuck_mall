@@ -2,7 +2,7 @@ function productUpdataEvent(clickedButton) {
     // 獲取所有更新按鈕並找出被點擊按鈕的索引
     const productUpdateButtonList = document.querySelectorAll(".producUpData");
     const index = Array.from(productUpdateButtonList).indexOf(clickedButton);
-    let productId = $('.productId').eq(index).text(); // 使用 jQuery 獲取對應的商品ID
+    let productId = $('.productId').eq(index).text();
 
     // 發送 AJAX 請求以獲取商品數據
     $.ajax({
@@ -12,64 +12,91 @@ function productUpdataEvent(clickedButton) {
         success: function (data) {
             const productList = data;
             const productContainer = $('#product');
-            productContainer.empty(); // 清空容器
+            const prev_next_buttons = $('#prev-next-buttons');
+            productContainer.empty();
+            prev_next_buttons.hide();
 
-            // 創建表格並添加表頭
             const table = $('<table></table>').addClass('table');
             const thead = $('<thead></thead>').append(`
+
+                 <tr class="product-list-tr" id="product-list-tr-img">
+                    <td class="product-list-td-img">
+                    <img id="productImage" src="data:image/png;base64,${productList.image}" style="width: 50%;" />
+                    <label for="imageUpload" class="btn btn-primary btn-sm">更改圖片</label>
+                    <input id="imageUpload" onchange="updataImg()" type="file" class="form-control-file" name="newImage" style="display: none;"  /></td>
+                </tr>  
                 <tr>
-                    <th class="member-list-th modify-td">商品id</th>
-                    <th class="member-list-th modify-td">分類id</th>
-                    <th class="member-list-th modify-td">商品系列</th>
-                    <th class="member-list-th modify-td">商品標題</th>
-                    <th class="member-list-th modify-td">商品賣點</th>
-                    <th class="member-list-th modify-td">商品單價</th>
-                    <th class="member-list-th modify-td">庫存數</th>
-                    <th class="member-list-th modify-td">圖片</th>
-                    <th class="member-list-th modify-td">商品狀態</th>
-                    <th class="member-list-th modify-td">優先級</th>
-                    <th class="member-list-th modify-td">創建時間</th>
-                    <th class="member-list-th modify-td">最後修改時間</th>
-                    <th class="member-list-th modify-td">創建人</th>
-                    <th class="member-list-th modify-td">最後修改人</th>
-                    <th class="member-list-th modify-td">操作</th>
+                    <th class="product-list-th modify-td">商品id</th>
+                    <td class="product-list-td" name="productId" >${productList.id}</td>
                 </tr>
+                <tr>
+                    <th class="product-list-th">分類id</th>
+                    <td><input class="product-list-input" name="category_id" value="${productList.categoryId}"></td>
+                    
+                </tr>
+                <tr>
+                    <th class="product-list-th">商品系列</th>
+                    <td><input class="product-list-input" name="item_type" value="${productList.itemType}"></td>
+                </tr>  
+                <tr>
+                    <th class="product-list-th">商品標題</th>
+                    <td><input class="product-list-input" name="title" value="${productList.title}"></td>
+                </tr>  
+
+                <tr>
+                    <th class="product-list-th">商品賣點</th>
+                    <td><input class="product-list-input" name="sell_point" value="${productList.sellPoint}"></td>
+                </tr>
+                  
+                <tr>
+                    <th class="product-list-th">商品單價</th>
+                    <td><input class="product-list-input" name="price" value="${productList.price}"></td>
+                </tr>  
+                <tr>
+                    <th class="product-list-th">庫存數</th>
+                    <td><input class="product-list-input" name="num" value="${productList.num}"></td>
+                </tr>  
+               
+                <tr>
+                    <th class="product-list-th">商品狀態</th>
+                    <td><input class="product-list-input" name="status" value="${productList.status}"></td>
+                </tr>  
+                <tr>
+                    <th class="product-list-th">優先級</th>
+                    <td><input class="product-list-input" name="priority" value="${productList.priority}"></td>
+                </tr>  
+                <tr>
+                    <th class="product-list-th">創建時間</th>
+                    <td class="product-list-td">${productList.createdTime}</td>
+                </tr>  
+                <tr>
+                    <th class="product-list-th">最後修改時間</th>
+                    <td class="product-list-td">${productList.modifiedTime}</td>
+                </tr>  
+                <tr>
+                    <th class="product-list-th">創建人</th>
+                    <td class="product-list-td">${productList.createdUser}</td>
+                </tr>  
+                <tr>
+                    <th class="product-list-th">最後修改人</th>
+                    <td class="product-list-td">${productList.modifiedUser}</td>
+                </tr>  
+                <tr>
+                    <th class="product-list-th">功能</th>
+                    <td class="product-list-button-td">
+                        <button class="btn btn-success productBtn" id="product-ok" onclick="productUpdataEventFinish(this)">確定</button>
+                        <button class="btn btn-success productBtn" id="product-cancel" onclick="getProductData()">取消</button>
+                        <button class="btn btn-success productBtn" id="product-close" onclick="getProductData()">下架</button>
+                    </td>
+                </tr>  
+
+                
             `);
             table.append(thead);
 
-            // 創建表身並填充數據
-            const tbody = $('<tbody></tbody>');
-            const tr = $('<tr></tr>').append(`
-                <td><input class="user-input modify-input" name="category_id" value="${productList.categoryId}"></td>
-                <td><input class="user-input modify-input" name="item_type" value="${productList.itemType}"></td>
-                <td><input class="user-input modify-input" name="title" value="${productList.title}"></td>
-                <td><input class="user-input modify-input" name="sell_point" value="${productList.sellPoint}"></td>
-                <td><input class="user-input modify-input" name="price" value="${productList.price}"></td>
-                <td><input class="user-input modify-input" name="num" value="${productList.num}"></td>
-                
-                
-              
-                <td><img src="data:image/png;base64,${productList.image}" style="width: 100px; height: 100px;" /><br>
-                <label for="imageUpload" class="btn btn-primary btn-sm">更改圖片</label>
-                <input id="imageUpload" type="file" class="form-control-file" name="newImage" style="display: none;"  /></td>
-
-                  
-                
-                
-                <td><input class="user-input modify-input" name="status" value="${productList.status}"></td>
-                <td><input class="user-input modify-input" name="priority" value="${productList.priority}"></td>
-                <td>${productList.createdTime}</td>
-                <td>${productList.modifiedTime}</td>
-                <td>${productList.createdUser}</td>
-                <td>${productList.modifiedUser}</td>
-                <td>
-                    <button class="btn btn-success btn-sm userUpdata" onclick="productUpdataEventFinish(this)">確定</button>
-                    <button class="btn btn-warning btn-sm" onclick="getProductData()">取消</button>
-                </td>
-            `);
-            tbody.append(tr);
-            table.append(tbody);
             productContainer.append(table);
+            updataImg();
+            changeColor();
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.error(`AJAX請求失敗：${textStatus}, ${errorThrown}`);
@@ -79,17 +106,24 @@ function productUpdataEvent(clickedButton) {
 
 
 function productUpdataEventFinish(clickedButton) {
+
+
+
     const productUpData_btnList = document.querySelectorAll(".producUpData");
-    const idValue = $('td[name="id"]').text();
+    const idValue = $('td[name="productId"]').text();
     const categoryId = $('input[name="category_id"]').val();
     const ItemType = $('input[name="item_type"]').val();
     const title = $('input[name="title"]').val();
     const sellPoint = $('input[name="sell_point"]').val();
     const price = $('input[name="price"]').val();
     const num = $('input[name="num"]').val();
-    const image = $('input[name="image"]').val();
+
+    const image = $('#productImage').attr('src');
+    const base64ImageData = image.replace(/^data:image\/\w+;base64,/, ''); // 去除MIME前缀
+
     const status = $('input[name="status"]').val();
     const priority = $('input[name="priority"]').val();
+
 
     // alert("您點擊的是第 " + (idValue) + " 個按鈕");
 
@@ -121,17 +155,20 @@ function productUpdataEventFinish(clickedButton) {
             "sellPoint" : sellPoint,
             "price" : price,
             "num" : num,
-            "image" : image,
+            "image" : base64ImageData,
             "status" : status,
             "priority" : priority
         }),
             success: function(result) {
+                const prev_next_buttons = $('#prev-next-buttons');
+                prev_next_buttons.show();
                 Toast.fire({
                     icon: 'success',
                     title: '資料更新成功~',
                 }).then(() => {
                     setTimeout(() => {
                         // window.location.href = "index.html";
+
                         getProductData();
                     }, 100); // 延遲時間更改為1000毫秒
                 });
@@ -171,6 +208,9 @@ function getProductData(){
             let productContainer = $('#product');
             productContainer.empty();
 
+            const prev_next_buttons = $('#prev-next-buttons');
+            prev_next_buttons.show();
+
             let table = $('<table></table>').addClass('table');
 
             let thead = $('<thead></thead>');
@@ -203,8 +243,8 @@ function getProductData(){
                 tr.append('<td>' + product.sellPoint + '</td>');
                 tr.append('<td>' + product.price + '</td>');
                 tr.append('<td>' + product.num + '</td>');
-                tr.append('<td>' + '<img alt="" class="tr-img" src="data:image/png;base64,' + product.image +   '"/></td>');
-                tr.append('<td>' + product.status + '</td>');
+                tr.append('var<td>' + '<img alt="" class="tr-img" src="data:image/png;base64,' + product.image +   '"/></td>');
+                tr.append('<td class="statusList">' + product.status + '</td>');
                 tr.append('<td>' + product.priority + '</td>');
                 tr.append('<td name="id" >' + product.createdTime + '</td>');
                 tr.append('<td name="id" >' + product.modifiedTime + '</td>');
@@ -213,7 +253,6 @@ function getProductData(){
 
                 tr.append('<td>' +
                     '<button class="btn btn-success btn-sm producUpData" onclick="productUpdataEvent(this)">修改</button>' +
-                    // '<button class="btn btn-warning btn-sm">刪除</button>' +
                     '</td>');
                 tbody.append(tr);
             });
@@ -222,12 +261,37 @@ function getProductData(){
             productContainer.append(table);
 
             updatePaginationControls();
+
+            changeSwitchName();
         },
         error: function (jqXHR, textStatus, errorThrown) {
             console.log('AJAX請求失敗：' + textStatus + ', ' + errorThrown);
         }
     });
 }
+
+
+// 1:上架, 2:下架, 3:刪除
+function changeSwitchName(){
+    const statusLis = document.querySelectorAll(".statusList");
+
+    for(let i = 0 ; i < statusLis.length ; i++){
+        switch (statusLis[i].innerText){
+
+            case "1":
+                statusLis[i].innerText = "上架"
+                break;
+            case "2":
+                statusLis[i].innerText = "下架"
+                break;
+            case "3":
+                statusLis[i].innerText = "刪除"
+                break;
+
+        }
+    }
+}
+
 
 function handlePaginationButtonClick(page) {
     if (page >= 1) {
@@ -322,3 +386,38 @@ function getProductCount(){
 }
 
 
+function changeColor() {
+    let inputElements = document.querySelectorAll(".product-list-input");
+
+    inputElements.forEach(function (inputElement) {
+        inputElement.style.color = "greenyellow";
+        inputElement.addEventListener("input", function () {
+
+            let inputValue = inputElement.value;
+
+            if (inputValue === "") {
+                inputElement.style.color = "greenyellow";
+            } else {
+                inputElement.style.color = "red";
+            }
+        });
+    });
+}
+
+
+function updataImg(){
+
+    let imageUpload = document.getElementById("imageUpload");
+    let productImage = document.getElementById("productImage");
+
+    imageUpload.addEventListener("change", function() {
+        let selectedFile = imageUpload.files[0];
+        let reader = new FileReader();
+
+        reader.onload = function(event) {
+            productImage.src = event.target.result;
+        };
+
+        reader.readAsDataURL(selectedFile);
+    });
+}

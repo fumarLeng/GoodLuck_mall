@@ -21,13 +21,13 @@ public class OrderListRowMapper implements RowMapper<Order> {
         order.setRecvAddress(rs.getString("recv_address"));
         order.setTotalPrice(rs.getLong("total_price"));
         order.setStatus(rs.getInt("status"));
-        order.setOrderTime(rs.getDate("order_time"));
-        order.setPayTime(rs.getDate("pay_time"));
+        order.setOrderTime(rs.getTimestamp("order_time"));
+        order.setPayTime(rs.getTimestamp("pay_time"));
 
         order.setCreatedUser(rs.getString("created_user"));
-        order.setCreatedTime(rs.getDate("created_time"));
+        order.setCreatedTime(rs.getTimestamp("created_time"));
         order.setModifiedUser(rs.getString("modified_user"));
-        order.setModifiedTime(rs.getDate("modified_time"));
+        order.setModifiedTime(rs.getTimestamp("modified_time"));
 
         return order;
     }

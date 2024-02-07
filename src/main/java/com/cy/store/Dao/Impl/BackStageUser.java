@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -126,20 +128,21 @@ public class BackStageUser implements com.cy.store.Dao.BackStageUser {
     }
 //=============新增產品======================================
     public void saveOrder(Order existingOrder){
-        String sql = "UPDATE `t_order` SET recv_name = :recv_name , recv_phone = :recv_phone , recv_province = :recv_province , recv_city= :recv_city , recv_area = :recv_area , recv_address = :recv_address WHERE oid = :oid";
+//        String sql = "UPDATE `t_order` SET recv_name = :recv_name , recv_phone = :recv_phone , recv_province = :recv_province , recv_city= :recv_city , recv_area = :recv_area , recv_address = :recv_address WHERE oid = :oid";
+        String sql = "UPDATE `t_order` SET status = :status WHERE oid = :oid";
 
         System.out.println("sql: " + sql);
         Map<String, Object> map = new HashMap<>();
         map.put("oid", existingOrder.getOid());
-        map.put("recv_name", existingOrder.getRecvName());
-        map.put("recv_phone", existingOrder.getRecvPhone());
-        map.put("recv_province", existingOrder.getRecvProvince());
-        map.put("recv_city", existingOrder.getRecvCity());
-        map.put("recv_area", existingOrder.getRecvArea());
-        map.put("recv_address", existingOrder.getRecvAddress());
-
-        System.out.println("sqlRecvName: " + existingOrder.getRecvName());
-        System.out.println("sqlOid: " + existingOrder.getOid());
+        map.put("status" , existingOrder.getStatus());
+//        map.put("recv_name", existingOrder.getRecvName());
+//        map.put("recv_phone", existingOrder.getRecvPhone());
+//        map.put("recv_province", existingOrder.getRecvProvince());
+//        map.put("recv_city", existingOrder.getRecvCity());
+//        map.put("recv_area", existingOrder.getRecvArea());
+//        map.put("recv_address", existingOrder.getRecvAddress());
+//        System.out.println("sqlRecvName: " + existingOrder.getRecvName());
+        System.out.println("Status: " + existingOrder.getStatus());
 
         namedParameterJdbcTemplate.update(sql, map);
     }
@@ -153,7 +156,8 @@ public class BackStageUser implements com.cy.store.Dao.BackStageUser {
 //        String sql = "UPDATE `t_product` SET category_id = :getCategoryId WHERE id = :id";
         String sql = "UPDATE `t_product` SET category_id = :category_id , item_type = :item_type , title = :title , " +
                 "sell_point = :sell_point ,price= :price , num = :num , " +
-                "image = :image ,status = :status , priority = :priority " +
+                "image = :image ,status = :status , priority = :priority , " +
+                "modified_time = :modified_time " +
                 " WHERE id = :id";
 
         Map<String, Object> map = new HashMap<>();
@@ -168,13 +172,9 @@ public class BackStageUser implements com.cy.store.Dao.BackStageUser {
         map.put("status", existingProdcut.getStatus());
         map.put("priority", existingProdcut.getPriority());
 
-//        System.out.println("getCategoryId " + existingProdcut.getCategoryId());
-//
-////        map.put("username", existingUser.getUsername());
-//        map.put("phone", existingUser.getPhone());
-//        map.put("email", existingUser.getEmail());
-//        map.put("gender", existingUser.getGender());
-//        map.put("is_delete", existingUser.getIsDelete());
+        Date now  = new Date();
+        System.out.println(now);
+        map.put("modified_time" , now);
 
         namedParameterJdbcTemplate.update(sql, map);
     }
