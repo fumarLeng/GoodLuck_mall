@@ -188,7 +188,6 @@
 
     $(document).ready(function () {
         showLogoDiv();
-        showHotList();
         showProvinceList();
         //設定默認的值
         $("#province-list").append(defaultOption);
@@ -292,25 +291,59 @@
 
     //-------------------------------城市
 
-    $("#btn-add-new-address").click(function () {
-        $.ajax({
-            url: "/addresses/add_new_address",
-            type: "POST",
-            data: $("#form-add-new-address").serialize(),
-            dataType: "JSON",
-            success: function (json) {
-                if (json.state === 200) {
-                    alert("新增收貨地址成功 ! ");
-                    location.href = "address.html";
-                } else {
-                    alert("新增收貨地址失敗 ! ");
+    $("#btn-add-new-address").click(function (event) {
+        event.preventDefault(); // 阻止表單的默認提交行為
+
+        var isValid = true;
+        var errorMessage = "";
+
+        // 清空之前的錯誤訊息
+        $(".error-message").remove();
+
+        // 收貨人姓名驗證
+        if (!$("input[name='name']").val()) {
+            errorMessage = "請輸入收貨人姓名。";
+            $("input[name='name']").after('<span class="error-message" style="color: red;">' + errorMessage + '</span>');
+            isValid = false;
+        }
+
+        // 詳細地址驗證
+        if (!$("textarea[name='address']").val()) {
+            errorMessage = "請輸入詳細地址。";
+            $("textarea[name='address']").after('<span class="error-message" style="color: red;">' + errorMessage + '</span>');
+            isValid = false;
+        }
+
+        // 手機號碼格式驗證
+        var phonePattern = /^09\d{8}$/; // 範例: 台灣手機號碼格式
+        if (!phonePattern.test($("input[name='phone']").val())) {
+            errorMessage = "手機號碼格式不正確，應為09開頭的10位數字。";
+            $("input[name='phone']").after('<span class="error-message" style="color: red;">' + errorMessage + '</span>');
+            isValid = false;
+        }
+
+        // 如果所有欄位都通過驗證
+        if (isValid) {
+            $.ajax({
+                url: "/addresses/add_new_address",
+                type: "POST",
+                data: $("#form-add-new-address").serialize(),
+                dataType: "JSON",
+                success: function (json) {
+                    if (json.state === 200) {
+                        alert("新增收貨地址成功 !");
+                        location.href = "address.html";
+                    } else {
+                        alert("新增收貨地址失敗 !");
+                    }
+                },
+                error: function (json) {
+                    alert("新增收貨地址時發生未知的異常 !");
                 }
-            },
-            error: function (json) {
-                alert("新增收貨地址時發生未知的異常 ! " + json.message)
-            }
-        });
+            });
+        }
     });
+
 </script>
 <!--footer結束-->
 </body>
