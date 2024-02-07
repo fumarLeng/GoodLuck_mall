@@ -107,13 +107,13 @@
                         <label class="col-md-2 control-label">電話號碼 :</label>
                         <div class="col-md-8">
                             <input id="phone" name="phone" type="text" class="form-control"
-                                   placeholder="請輸入電話號碼">
+                                   placeholder="請輸入電話號碼" required pattern="^\d{10,}$">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-2 control-label">信箱 ：</label>
                         <div class="col-md-8">
-                            <input id="email" name="email" type="text" class="form-control" placeholder="請輸入信箱"
+                            <input id="email" name="email" type="email" class="form-control" placeholder="請輸入信箱" required
                             >
                         </div>
                     </div>
@@ -131,7 +131,7 @@
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <!--修改按鈕-->
-                            <input id="btn-change-info" type="button" class="btn btn-primary" value="修改"/>
+                            <input id="btn-change-info" type="button" class="btn btn-default btn-lg active btn-info" role="button" value="修改"/>
                         </div>
                     </div>
                 </form>
@@ -154,12 +154,6 @@
 
 <!--footer結束-->
 <script type="text/javascript">
-    /**
-     * 檢查到當前頁面被載入,就觸發ready方法
-     * $(document).ready(function(){
-     *     //程式碼
-     * })
-     */
     $(document).ready(function () {
         showLogoDiv();
 
@@ -169,13 +163,12 @@
             dataType: "JSON",
             success: function (json) {
                 if (json.state === 200) {
-                    console.log("username=" + json.data.username);
-                    console.log("phone=" + json.data.phone);
-                    console.log("email=" + json.data.email);
-                    console.log("gender=" + json.data.gender)
+                    // console.log("username=" + json.data.username);
+                    // console.log("phone=" + json.data.phone);
+                    // console.log("email=" + json.data.email);
+                    // console.log("gender=" + json.data.gender)
 
 
-                    //得到狀態200之後在把得到的req傳給瀏覽器
                     $("#username").val(json.data.username);
                     $("#phone").val(json.data.phone);
                     $("#email").val(json.data.email);
@@ -196,31 +189,45 @@
 
         });
 
-    });
 
+        $("#btn-change-info").click(function (event) {
+            event.preventDefault();
 
-    $("#btn-change-info").click(function () {
-        $.ajax({
-            url: "/users/change_info",
-            type: "POST",
-            data: $("#form-change-info").serialize(),
-            dataType: "JSON",
-            success: function (json) {
-                if (json.state === 200) {
-                    alert("更改個人資料成功");
-                    //更改成功後重新載入頁面
-                    location.href = "userdata.html";
-                } else {
-                    alert("更改個人資料失敗");
+            var formIsValid = true;
+            $(".form-control").each(function() {
+                $(this).next(".error-message").remove();
+                if (!this.checkValidity()) {
+                    $(this).after('<span class="error-message" style="color: red; margin-left: 10px;">格式錯誤囉</span>');
+                    formIsValid = false;
                 }
-            },
-            error: function (json) {
-                alert("更改個人資料時發現未知的異常" + json.message);
-                location.href = "login.html";
+            });
 
+            if (formIsValid) {
+                $.ajax({
+                    url: "/users/change_info",
+                    type: "POST",
+                    data: $("#form-change-info").serialize(),
+                    dataType: "JSON",
+                    success: function (json) {
+                        if (json.state === 200) {
+                            alert("更改成功");
+                            location.href = "userdata.html";
+                        } else {
+                            alert("更改失敗: " + json.message);
+                        }
+                    },
+                    error: function (json) {
+                        alert("更改時有異常 : " + json.message);
+                    }
+                });
             }
         });
+
     });
+
+
+
+
 
 
 </script>
