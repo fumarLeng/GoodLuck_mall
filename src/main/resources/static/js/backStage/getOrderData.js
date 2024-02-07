@@ -66,18 +66,23 @@ function changeSwitchNameOrder(){
     for(let i = 0 ; i < statusLis.length ; i++){
         switch (statusLis[i].innerText){
             case "0":
+                statusLis[i].classList.add("statusRed");
                 statusLis[i].innerText = "未付款"
                 break;
             case "1":
+                statusLis[i].classList.add("statusGreen");
                 statusLis[i].innerText = "已付款"
                 break;
             case "2":
+                statusLis[i].classList.add("statusYellow");
                 statusLis[i].innerText = "已取消"
                 break;
             case "3":
+                statusLis[i].classList.add("statusRed");
                 statusLis[i].innerText = "已關閉"
                 break;
             case "4":
+                statusLis[i].classList.add("statusGreen");
                 statusLis[i].innerText = "已完成"
                 break;
         }
