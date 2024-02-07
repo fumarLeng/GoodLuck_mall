@@ -91,7 +91,6 @@ function productUpdataEvent(clickedButton) {
                     <td class="product-list-button-td">
                         <button class="btn btn-success productBtn" id="product-ok" onclick="productUpdataEventFinish(this)">確定</button>
                         <button class="btn btn-success productBtn" id="product-cancel" onclick="getProductData()">取消</button>
-                        <button class="btn btn-success productBtn" id="product-close" onclick="getProductData()">下架</button>
                     </td>
                 </tr>  
             
@@ -305,12 +304,13 @@ function changeSwitchName(){
                 break;
             case "2":
                 statusLis[i].innerText = "下架";
-                statusLis[i].classList.add("statusYellow");
-                break;
-            case "3":
-                statusLis[i].innerText = "刪除";
+                // statusLis[i].classList.add("statusYellow");
                 statusLis[i].classList.add("statusRed");
                 break;
+            // case "3":
+            //     statusLis[i].innerText = "刪除";
+            //     statusLis[i].classList.add("statusRed");
+            //     break;
 
         }
     }
