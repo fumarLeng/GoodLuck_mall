@@ -56,11 +56,16 @@ function productUpdataEvent(clickedButton) {
                     <th class="product-list-th">庫存數</th>
                     <td><input class="product-list-input" name="num" value="${productList.num}"></td>
                 </tr>  
-               
+                
                 <tr>
-                    <th class="product-list-th">商品狀態</th>
-                    <td><input class="product-list-input" name="status" value="${productList.status}"></td>
-                </tr>  
+                    <th class="product-list-th modify-td">商品狀態</th>
+                    <td class="product-list-td" name="">
+                        <label><input class="order-radio" type="radio" name="status" value="1" ${productList.status === 1 ? 'checked' : ''}>上架</label>
+                        <label><input class="order-radio" type="radio" name="status" value="2" ${productList.status === 2 ? 'checked' : ''}>下架</label>
+                        <label><input class="order-radio" type="radio" name="status" value="3" ${productList.status === 3 ? 'checked' : ''}>刪除</label>
+                    </td>
+                </tr>
+                
                 <tr>
                     <th class="product-list-th">優先級</th>
                     <td><input class="product-list-input" name="priority" value="${productList.priority}"></td>
@@ -89,7 +94,7 @@ function productUpdataEvent(clickedButton) {
                         <button class="btn btn-success productBtn" id="product-close" onclick="getProductData()">下架</button>
                     </td>
                 </tr>  
-
+            
                 
             `);
             table.append(thead);
@@ -103,7 +108,9 @@ function productUpdataEvent(clickedButton) {
         }
     });
 }
+function productDown(){
 
+}
 
 function productUpdataEventFinish(clickedButton) {
 
@@ -121,7 +128,7 @@ function productUpdataEventFinish(clickedButton) {
     const image = $('#productImage').attr('src');
     const base64ImageData = image.replace(/^data:image\/\w+;base64,/, ''); // 去除MIME前缀
 
-    const status = $('input[name="status"]').val();
+    const status = findCheckedValue();
     const priority = $('input[name="priority"]').val();
 
 
@@ -182,6 +189,20 @@ function productUpdataEventFinish(clickedButton) {
     });
 
 }
+//
+function findCheckedValue(){
+
+    const statusList = document.querySelectorAll(".order-radio");
+
+    for(let i = 0 ; i < statusList.length ; i++){
+
+        if (statusList[i].checked){
+
+            return statusList[i].value;
+        }
+    }
+}
+
 
 
 
@@ -279,13 +300,16 @@ function changeSwitchName(){
         switch (statusLis[i].innerText){
 
             case "1":
-                statusLis[i].innerText = "上架"
+                statusLis[i].innerText = "上架";
+                statusLis[i].classList.add("statusGreen");
                 break;
             case "2":
-                statusLis[i].innerText = "下架"
+                statusLis[i].innerText = "下架";
+                statusLis[i].classList.add("statusYellow");
                 break;
             case "3":
-                statusLis[i].innerText = "刪除"
+                statusLis[i].innerText = "刪除";
+                statusLis[i].classList.add("statusRed");
                 break;
 
         }
