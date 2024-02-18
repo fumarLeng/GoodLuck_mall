@@ -91,6 +91,7 @@ function userUpdataEvent(clickedButton) {
                     <th class="product-list-th modify-td">電話</th>
                     <td><input class="product-list-input" name="phone" value="${userList.phone}"></td>
                 </tr>
+
                 <tr>
                     <th class="product-list-th modify-td">郵件</th>
                     <td><input class="product-list-input" name="email" value="${userList.email}"></td>
