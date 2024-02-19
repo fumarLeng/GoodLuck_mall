@@ -22,6 +22,26 @@
     <link rel="stylesheet" type="text/css" href="../css/layout.css"/>
     <link rel="stylesheet" type="text/css" href="../css/login.css"/>
     <link rel="stylesheet" type="text/css" href="../css/footer.css"/>
+
+    <style>
+        /*驗證碼*/
+        #captcha-box {
+            background-color: white;
+            width: 100px;
+            height: 40px; /* 或调整高度 */
+            line-height: 38px;
+            text-align: center;
+            font-size: 20px; /* 减小字体大小 */
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            overflow: hidden; /* 隐藏溢出的内容 */
+            text-overflow: ellipsis; /* 显示省略符号 */
+            white-space: nowrap; /* 防止文字换行 */
+        }
+
+
+    </style>
 </head>
 
 <body>
@@ -56,6 +76,23 @@
                     <input name="password" type="password" class="form-control" id="password" placeholder="請輸入會員密碼" >
                 </div>
             </div>
+            <!-- 驗證碼 -->
+            <div class="form-group">
+                <label for="captcha" class="col-md-3 control-label">驗證碼:</label>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="captcha" name="captcha" placeholder="請輸入驗證碼">
+                </div>
+                <div class="col-md-3">
+                    <div id="captcha-box"  title="刷新驗證碼" onclick="fetchCaptcha()"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-3 col-md-9">
+                    <span id="captcha-timer">60</span> 秒後驗證碼到期
+                </div>
+            </div>
+
             <!-- 記住我-->
             <div class="form-group">
                 <div class="col-md-offset-3 col-md-6">
@@ -67,6 +104,7 @@
             </div>
             <!--提交的按紐-->
         </form>
+
     </div>
 </div>
 <!--頁腳開始-->
@@ -96,6 +134,7 @@
 
     $(document).ready(function() {
         setupLogin();
+        fetchCaptcha();
     });
     function setupLogin() {
         $("#btn-login").click(function() {
@@ -117,7 +156,6 @@
                         });
 
                     } else {
-
                         Toast.fire({
                             icon: 'error',
                             title: json.message
@@ -135,6 +173,40 @@
         });
     }
 
+
+    // 驗證碼
+
+    function fetchCaptcha() {
+        $.ajax({
+            url: "/users/captcha",
+            type: "GET",
+            dataType: "json",
+            success: function(data) {
+                $("#captcha-box").text(data.captcha);
+                startCaptchaTimer(59);
+            },
+            error: function(xhr, status, error) {
+                $("#captcha-box").text("Error");
+            }
+        });
+    }
+
+    function startCaptchaTimer(duration) {
+        var timer = duration, seconds;
+        var countdownElement = document.getElementById('captcha-timer');
+        countdownElement.textContent = timer;
+
+        var countdown = setInterval(function () {
+            seconds = parseInt(timer, 10);
+            countdownElement.textContent = seconds;
+
+            if (--timer < 0) {
+                clearInterval(countdown);
+                countdownElement.textContent = '驗證碼已過期,請點擊刷新';
+                fetchCaptcha();
+            }
+        }, 1000);
+    }
 </script>
 </body>
 </html>

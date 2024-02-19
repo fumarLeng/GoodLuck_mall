@@ -3,9 +3,11 @@ package com.cy.store.controller;
 import com.cy.store.controller.ex.*;
 import com.cy.store.entity.User;
 import com.cy.store.service.IUserService;
+import com.cy.store.service.impl.CaptchaService;
 import com.cy.store.util.JsonResult;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,10 +17,7 @@ import javax.servlet.http.HttpSession;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 
 @RestController // 等於 @Component + @ResponseBody
@@ -27,6 +26,10 @@ public class UserController extends BassController {
 
     @Autowired
     private IUserService userService;
+    @Autowired
+    private CaptchaService captchaService;
+
+
 
     //-----------------------------註冊-------------------------------------------//
     @RequestMapping("reg")
@@ -43,30 +46,27 @@ public class UserController extends BassController {
                                   HttpSession session) {
         User data = userService.login(username, password);
 
-//        if (data.getAvatar() != null) {
-//            // 將String轉換為 Base64 編碼字符串
-//            String avatar64 = Base64.getEncoder().encodeToString(data.getAvatar());
-//
-//            // 設置 Base64 到用戶的 avatar 屬性
-//            data.setAvatar64(avatar64);
-//        }
-
          // 把數據放到session裡面
         session.setAttribute("uid", data.getUid());
         session.setAttribute("username", data.getUsername());
         session.setAttribute("avatar",data.getAvatar());
         session.setAttribute("gender",data.getGender());
 
-        //測試拿不拿的到session裡面的數據
-//        System.out.println(getuidFromSession(session));
-//        System.out.println(getUsernameFromSession(session));
 
         return new JsonResult<User>(OK, data);
     }
 
 
-//------------------------------登出------------------------------------------//
+//    驗證碼
+    @RequestMapping("/captcha")
+    public JsonResult<Map<String,String>> generateCaptcha() {
+    // 调用service生成验证码
+        Map<String,String> captchaData  = captchaService.createCaptcha();
+        System.out.println(captchaData);
+     return new JsonResult<>(OK,captchaData);
+}
 
+//------------------------------登出------------------------------------------//
 
     @RequestMapping("logout")
     public JsonResult<Void> logout(HttpSession session){
