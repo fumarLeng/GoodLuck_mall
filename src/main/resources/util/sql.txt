@@ -1,0 +1,121 @@
+DROP TABLE IF EXISTS `t_address`;
+CREATE TABLE `t_address` (
+  `aid` int NOT NULL AUTO_INCREMENT COMMENT '收貨地址id',
+  `uid` int DEFAULT NULL COMMENT '會員id',
+  `name` varchar(20) DEFAULT NULL COMMENT '收貨人姓名',
+  `province_name` varchar(20) DEFAULT NULL COMMENT '國家',
+  `province_code` char(20) DEFAULT NULL COMMENT '國家-代號',
+  `city_name` varchar(20) DEFAULT NULL COMMENT '市-名稱',
+  `city_code` char(20) DEFAULT NULL COMMENT '市-代號',
+  `area_name` varchar(20) DEFAULT NULL COMMENT '區-名稱',
+  `area_code` char(20) DEFAULT NULL COMMENT '區-代號',
+  `zip` char(20) DEFAULT NULL COMMENT '郵遞區號',
+  `address` varchar(50) DEFAULT NULL COMMENT '詳細地址',
+  `phone` varchar(20) DEFAULT NULL COMMENT '手機',
+  `tel` varchar(20) DEFAULT NULL COMMENT '市話',
+  `tag` varchar(20) DEFAULT NULL COMMENT '標籤',
+  `is_default` int DEFAULT NULL COMMENT '是否預設：0-不預設，1-預設',
+  `created_user` varchar(20) DEFAULT NULL COMMENT '創建人',
+  `created_time` datetime DEFAULT NULL COMMENT '創建時間',
+  `modified_user` varchar(20) DEFAULT NULL COMMENT '修改人',
+  `modified_time` datetime DEFAULT NULL COMMENT '修改時間',
+  PRIMARY KEY (`aid`)
+) ;
+
+DROP TABLE IF EXISTS `t_cart`;
+CREATE TABLE `t_cart` (
+  `cid` int NOT NULL AUTO_INCREMENT COMMENT '購物車id',
+  `uid` int NOT NULL COMMENT '會員id',
+  `pid` int NOT NULL COMMENT '商品id',
+  `price` bigint DEFAULT NULL COMMENT '商品單價',
+  `num` int DEFAULT NULL COMMENT '商品數量',
+  `created_user` varchar(20) DEFAULT NULL COMMENT '創建人',
+  `created_time` datetime DEFAULT NULL COMMENT '創建時間',
+  `modified_user` varchar(20) DEFAULT NULL COMMENT '修改人',
+  `modified_time` datetime DEFAULT NULL COMMENT '修改時間',
+  PRIMARY KEY (`cid`)
+) ;
+
+DROP TABLE IF EXISTS `t_dict_district`;
+CREATE TABLE `t_dict_district` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `parent` varchar(20)  DEFAULT NULL,
+  `code` varchar(20)  DEFAULT NULL,
+  `name` varchar(20)  DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ;
+
+DROP TABLE IF EXISTS `t_order`;
+CREATE TABLE `t_order` (
+  `oid` int NOT NULL AUTO_INCREMENT COMMENT '訂單id',
+  `uid` int NOT NULL COMMENT '會員id',
+  `recv_name` varchar(20) NOT NULL COMMENT '收貨人姓名',
+  `recv_phone` varchar(20) DEFAULT NULL COMMENT '收貨人電話',
+  `recv_province` varchar(15) DEFAULT NULL COMMENT '收貨人國家',
+  `recv_city` varchar(15) DEFAULT NULL COMMENT '收貨人市',
+  `recv_area` varchar(15) DEFAULT NULL COMMENT '收貨人區',
+  `recv_address` varchar(50) DEFAULT NULL COMMENT '收貨詳細地址',
+  `total_price` bigint DEFAULT NULL COMMENT '總價',
+  `status` int DEFAULT NULL COMMENT '狀態 : 0未付款 ,1-已付款,2-已到貨,3-審核中,4-已退貨',
+  `order_time` datetime DEFAULT NULL COMMENT '下單時間',
+  `pay_time` datetime DEFAULT NULL COMMENT '付款時間',
+  `created_user` varchar(20) DEFAULT NULL COMMENT '創建人',
+  `created_time` datetime DEFAULT NULL COMMENT '創建時間',
+  `modified_user` varchar(20) DEFAULT NULL COMMENT '修改人',
+  `modified_time` datetime DEFAULT NULL COMMENT '修改時間',
+  PRIMARY KEY (`oid`)
+) ;
+
+DROP TABLE IF EXISTS `t_order_item`;
+CREATE TABLE `t_order_item` (
+  `id` int NOT NULL AUTO_INCREMENT COMMENT '訂單裡面商品的id',
+  `oid` int NOT NULL COMMENT '屬於哪個訂單編號',
+  `pid` int NOT NULL COMMENT '商品的pid',
+  `title` varchar(100) NOT NULL COMMENT '商品標題',
+  `image` varchar(500) DEFAULT NULL COMMENT '商品圖片',
+  `price` bigint DEFAULT NULL COMMENT '商品價格',
+  `num` int DEFAULT NULL COMMENT '購買數量',
+  `created_user` varchar(20) DEFAULT NULL COMMENT '創建人',
+  `created_time` datetime DEFAULT NULL COMMENT '創建時間',
+  `modified_user` varchar(20) DEFAULT NULL COMMENT '修改人',
+  `modified_time` datetime DEFAULT NULL COMMENT '修改時間',
+  PRIMARY KEY (`id`)
+) ;
+
+DROP TABLE IF EXISTS `t_product`;
+CREATE TABLE `t_product` (
+  `id` int NOT NULL AUTO_INCREMENT COMMENT  '商品id',
+  `category_id` int DEFAULT NULL COMMENT '分類id',
+  `item_type` varchar(100) DEFAULT NULL COMMENT '商品系列',
+  `title` varchar(100)  DEFAULT NULL COMMENT '商品標題',
+  `sell_point` varchar(150)  DEFAULT NULL COMMENT '商品賣點',
+  `price` bigint DEFAULT NULL COMMENT '商品單價',
+  `num` int DEFAULT NULL COMMENT '庫存數',
+  `image` varchar(500)  DEFAULT NULL COMMENT '圖片',
+  `status` int DEFAULT '1' COMMENT '商品狀態 1:上架 2:下架 3:刪除',
+  `priority` int DEFAULT NULL COMMENT '優先級',
+  `created_time` datetime DEFAULT NULL COMMENT '創建時間',
+  `modified_time` datetime DEFAULT NULL COMMENT '最後修改時間',
+  `created_user` varchar(50)  DEFAULT NULL COMMENT '創建人',
+  `modified_user` varchar(50)  DEFAULT NULL COMMENT '最後修改人',
+  PRIMARY KEY (`id`)
+) ;
+
+DROP TABLE IF EXISTS `t_user`;
+CREATE TABLE `t_user` (
+  `uid` int NOT NULL AUTO_INCREMENT COMMENT '會員id',
+  `username` varchar(20) NOT NULL COMMENT '會員名稱',
+  `password` char(32) NOT NULL COMMENT '密碼',
+  `salt` char(36) DEFAULT NULL COMMENT '鹽值',
+  `phone` varchar(20) DEFAULT NULL COMMENT '電話號碼',
+  `email` varchar(30) DEFAULT NULL COMMENT '電子郵件',
+  `gender` int DEFAULT NULL COMMENT '性別: 0-女，1-男',
+  `avatar` blob,
+  `is_delete` int DEFAULT NULL COMMENT '是否刪除：0-未刪除，1-已刪除',
+  `created_user` varchar(20) DEFAULT NULL COMMENT '日誌-創建人',
+  `created_time` datetime DEFAULT NULL COMMENT '日誌-創建時間',
+  `modified_user` varchar(20) DEFAULT NULL COMMENT '日誌-最後修改執行人',
+  `modified_time` datetime DEFAULT NULL COMMENT '日誌-最後修改時間',
+  PRIMARY KEY (`uid`),
+  UNIQUE KEY `username` (`username`)
+) ;
